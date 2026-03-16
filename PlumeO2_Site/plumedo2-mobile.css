@@ -1,0 +1,162 @@
+/* ============================================================
+   PLUME D'O² — Fix responsive mobile + images cliquables
+   Ajoute dans ton <head> :
+   <link rel="stylesheet" href="plumedo2-mobile.css">
+   ============================================================ */
+
+/* ── FIX HEADER : compense le navbar fixed ──────────────── */
+.hero {
+  padding-top: 80px;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding-top: 100px;
+  }
+
+  /* Navbar mobile plus compacte */
+  .navbar {
+    padding: 0.8rem 1.2rem;
+  }
+
+  .navbar.scrolled {
+    padding: 0.5rem 1.2rem;
+  }
+}
+
+/* ── IMAGES CLIQUABLES — loupe + zoom ───────────────────── */
+
+/* Wrapper autour de chaque image de la galerie */
+.upcoming-gallery-scroll {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+}
+
+.scroll-img-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+/* Overlay sombre au hover/tap */
+.scroll-img-wrapper::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0);
+  transition: background 0.3s ease;
+  border-radius: 10px;
+}
+
+.scroll-img-wrapper:hover::after {
+  background: rgba(0, 0, 0, 0.35);
+}
+
+/* Icône loupe */
+.scroll-img-wrapper::before {
+  content: '🔍';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.6);
+  font-size: 28px;
+  opacity: 0;
+  z-index: 2;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+}
+
+.scroll-img-wrapper:hover::before {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* Zoom de l'image */
+.scroll-img-wrapper .scroll-img {
+  display: block;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  border-radius: 10px;
+}
+
+.scroll-img-wrapper:hover .scroll-img {
+  transform: scale(1.07);
+}
+
+/* ── TOUCH : effet visible sur mobile (tap) ─────────────── */
+@media (hover: none) {
+  .scroll-img-wrapper:active::after {
+    background: rgba(0, 0, 0, 0.35);
+  }
+
+  .scroll-img-wrapper:active::before {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  .scroll-img-wrapper:active .scroll-img {
+    transform: scale(1.05);
+  }
+}
+
+/* ── RESPONSIVE GÉNÉRAL mobile ──────────────────────────── */
+@media (max-width: 768px) {
+
+  /* Section header */
+  .section-header {
+    padding: 0 1rem;
+    text-align: center;
+  }
+
+  /* Cards streaming */
+  .players-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 0 1rem;
+  }
+
+  /* Journal */
+  .journal-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 0 1rem;
+  }
+
+  /* Boutique */
+  .boutique-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 0 1rem;
+  }
+
+  /* Upcoming */
+  .upcoming-container {
+    flex-direction: column;
+    gap: 24px;
+    padding: 0 1rem;
+  }
+
+  /* Footer */
+  .footer-container {
+    flex-direction: column;
+    gap: 24px;
+    padding: 0 1rem;
+  }
+
+  /* Mini player plus petit sur mobile */
+  .mini-player {
+    width: calc(100% - 24px);
+    padding: 10px 12px;
+    gap: 8px;
+  }
+
+  .mini-player-title {
+    font-size: 12px;
+  }
+
+  .mini-player-artist {
+    font-size: 10px;
+  }
+}
