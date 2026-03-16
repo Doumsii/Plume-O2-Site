@@ -976,3 +976,7 @@ body {
         justify-content: center;
     }
 }
+a.logo {
+  text-decoration: none;
+  color: inherit;
+}
