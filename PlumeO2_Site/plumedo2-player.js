@@ -30,10 +30,10 @@ document.addEventListener('DOMContentLoaded', () => {
       platform: 'Apple Music'
     },
     {
-      name:     'Al Fatiha',
+      name:     'Ad-Duhā',
       artist:   'Ustadh Mounir',
       cover:    'pochette4.jpg',
-      src:      'extrait-alfatiha.mp3',
+      src:      'extrait-adduha.mp3',
       spotify:  'https://open.spotify.com/intl-fr/artist/3QGBoMKOchcr6qyKXZOab5',
       platform: 'Spotify'
     },
@@ -46,10 +46,10 @@ document.addEventListener('DOMContentLoaded', () => {
       platform: 'Spotify'
     },
     {
-      name:     'Sourate Al Baqara',
+      name:     'At-Taghabun',
       artist:   'Oways Ahmad',
       cover:    'pochette6.jpg',
-      src:      'extrait-albaqara.mp3',
+      src:      'extrait-attaghabun.mp3',
       spotify:  'https://open.spotify.com/intl-fr/artist/3QGBoMKOchcr6qyKXZOab5',
       platform: 'Spotify'
     }
@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const miniClose    = miniPlayer.querySelector('.mini-close-btn');
   const miniProgress = miniPlayer.querySelector('.mini-player-progress-bar');
 
-  /* ── BOUTONS PLAY SUR CHAQUE TRACK ─────────────────────── */
+  /* ── BOUTONS PLAY PERMANENTS SUR CHAQUE TRACK ───────────── */
   const trackItems = document.querySelectorAll('.track-item');
 
   trackItems.forEach((item, idx) => {
@@ -99,17 +99,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     item.dataset.trackIdx = idx;
 
+    /* Bouton play — toujours visible à droite */
     const btn = document.createElement('button');
     btn.className = 'play-btn';
     btn.innerHTML = ICON_PLAY;
     btn.setAttribute('aria-label', `Écouter ${track.name}`);
     item.appendChild(btn);
 
+    /* Barre de progression */
     const progressWrap = document.createElement('div');
     progressWrap.className = 'track-progress';
     progressWrap.innerHTML = `<div class="track-progress-bar"></div>`;
     item.appendChild(progressWrap);
 
+    /* Clic sur toute la ligne */
     item.addEventListener('click', (e) => {
       e.preventDefault();
       e.stopPropagation();
@@ -164,11 +167,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function updateUI(idx, item, track, playing) {
     item.classList.add('active');
+
+    /* Bouton play de la track */
     const btn = item.querySelector('.play-btn');
-    if (btn) { btn.innerHTML = playing ? ICON_PAUSE : ICON_PLAY; btn.classList.toggle('playing', playing); }
+    if (btn) {
+      btn.innerHTML = playing ? ICON_PAUSE : ICON_PLAY;
+      btn.classList.toggle('playing', playing);
+    }
+
+    /* Pochette */
     const cover = item.querySelector('.track-cover');
     if (cover) cover.classList.toggle('playing-cover', playing);
 
+    /* Mini player */
     miniCover.src           = track.cover;
     miniTitle.textContent   = track.name;
     miniArtist.textContent  = track.artist;
@@ -185,7 +196,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const item = document.querySelectorAll('.track-item')[currentIdx];
     if (!item) return;
     const btn = item.querySelector('.play-btn');
-    if (btn) { btn.innerHTML = playing ? ICON_PAUSE : ICON_PLAY; btn.classList.toggle('playing', playing); }
+    if (btn) {
+      btn.innerHTML = playing ? ICON_PAUSE : ICON_PLAY;
+      btn.classList.toggle('playing', playing);
+    }
     miniPlayBtn.innerHTML = playing ? ICON_PAUSE : ICON_PLAY;
     miniPlayBtn.classList.toggle('playing', playing);
   }

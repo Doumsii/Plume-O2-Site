@@ -1,0 +1,351 @@
+/* ============================================================
+   PLUME D'O² — Styles pages articles
+   Ajoute dans le <head> de chaque article :
+   <link rel="stylesheet" href="article.css">
+   ============================================================ */
+
+/* ── HERO IMAGE ─────────────────────────────────────────── */
+.article-page {
+  min-height: 100vh;
+  padding-top: 0;
+}
+
+.article-hero {
+  position: relative;
+  height: 70vh;
+  min-height: 420px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+}
+
+.article-hero-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: brightness(0.45);
+}
+
+.article-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(8, 12, 28, 0.3) 0%,
+    rgba(8, 12, 28, 0.85) 100%
+  );
+  z-index: 1;
+}
+
+.article-hero-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 0 2rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* ── BOUTON RETOUR ──────────────────────────────────────── */
+.btn-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.65);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  transition: color 0.2s ease;
+  width: fit-content;
+}
+
+.btn-back:hover {
+  color: #fff;
+}
+
+/* ── TITRE & META ───────────────────────────────────────── */
+.article-hero-content h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.25;
+  margin: 0;
+}
+
+.article-meta-bar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.article-author {
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+}
+
+.article-dot {
+  opacity: 0.4;
+}
+
+.article-read-time {
+  color: rgba(0, 200, 220, 0.85);
+}
+
+/* ── CORPS DE L'ARTICLE ─────────────────────────────────── */
+.article-container {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 3rem 2rem 5rem;
+}
+
+.article-body {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  line-height: 1.85;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.article-intro {
+  font-size: 18px;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.92);
+  font-style: italic;
+  border-left: 3px solid rgba(0, 200, 220, 0.5);
+  padding-left: 1.2rem;
+  margin-bottom: 2.5rem;
+}
+
+.article-body h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  color: #fff;
+  margin: 2.5rem 0 1rem;
+  font-weight: 700;
+}
+
+.article-body p {
+  margin-bottom: 1.4rem;
+}
+
+.article-body ul {
+  margin: 1rem 0 1.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.article-body ul li {
+  padding-left: 0.5rem;
+}
+
+.article-body em {
+  color: rgba(255, 255, 255, 0.9);
+  font-style: italic;
+}
+
+/* ── CITATION ───────────────────────────────────────────── */
+blockquote {
+  margin: 2.5rem 0;
+  padding: 1.5rem 2rem;
+  background: rgba(0, 200, 220, 0.05);
+  border-left: 3px solid rgba(0, 200, 220, 0.4);
+  border-radius: 0 12px 12px 0;
+}
+
+blockquote p,
+blockquote {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.88);
+  line-height: 1.7;
+  margin: 0 0 0.8rem;
+}
+
+blockquote cite {
+  display: block;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-style: normal;
+  color: rgba(0, 200, 220, 0.75);
+  margin-top: 0.8rem;
+}
+
+/* ── PARTAGE ────────────────────────────────────────────── */
+.article-share {
+  margin-top: 3.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.article-share > span {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.45);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.share-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.share-btn {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 7px 14px;
+  border-radius: 20px;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition: background 0.2s ease, transform 0.15s ease;
+  letter-spacing: 0.03em;
+}
+
+.share-btn:hover {
+  transform: translateY(-1px);
+}
+
+.share-btn.twitter {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.15);
+}
+
+.share-btn.twitter:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.share-btn.whatsapp {
+  background: rgba(37, 211, 102, 0.12);
+  color: #25d366;
+  border: 1px solid rgba(37, 211, 102, 0.3);
+}
+
+.share-btn.whatsapp:hover {
+  background: rgba(37, 211, 102, 0.22);
+}
+
+.share-btn.copy {
+  background: rgba(0, 200, 220, 0.1);
+  color: #00c8dc;
+  border: 1px solid rgba(0, 200, 220, 0.3);
+}
+
+.share-btn.copy:hover {
+  background: rgba(0, 200, 220, 0.2);
+}
+
+/* ── NAVIGATION ARTICLES ────────────────────────────────── */
+.article-nav {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 16px;
+}
+
+.article-nav-prev,
+.article-nav-next {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-decoration: none;
+  padding: 16px 20px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: background 0.2s ease, border-color 0.2s ease;
+  max-width: 48%;
+  flex: 1;
+}
+
+.article-nav-next {
+  align-items: flex-end;
+  text-align: right;
+}
+
+.article-nav-prev:hover,
+.article-nav-next:hover {
+  background: rgba(0, 200, 220, 0.06);
+  border-color: rgba(0, 200, 220, 0.2);
+}
+
+.nav-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(0, 200, 220, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.nav-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.4;
+}
+
+.article-nav-empty {
+  flex: 1;
+}
+
+/* ── MOBILE ─────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .article-hero {
+    height: 60vh;
+    min-height: 360px;
+  }
+
+  .article-hero-content {
+    padding: 0 1.2rem 2rem;
+  }
+
+  .article-container {
+    padding: 2rem 1.2rem 4rem;
+  }
+
+  .article-intro {
+    font-size: 16px;
+  }
+
+  .article-nav {
+    flex-direction: column;
+  }
+
+  .article-nav-prev,
+  .article-nav-next {
+    max-width: 100%;
+    text-align: left;
+    align-items: flex-start;
+  }
+
+  .article-share {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

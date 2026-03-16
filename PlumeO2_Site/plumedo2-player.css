@@ -15,55 +15,66 @@
   background: rgba(255, 255, 255, 0.07);
 }
 
-/* ── BOUTON PLAY ────────────────────────────────────────── */
+/* ── BOUTON PLAY — toujours visible ─────────────────────── */
 .play-btn {
   position: absolute;
-  left: 6px;
+  right: 8px;
   top: 50%;
   transform: translateY(-50%);
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.15);
-  border: none;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0;
-  transition: opacity 0.2s ease, background 0.2s ease, transform 0.2s ease;
+  opacity: 1;
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
   z-index: 10;
   backdrop-filter: blur(4px);
+  flex-shrink: 0;
 }
 
+/* Hover : léger éclat */
 .track-item:hover .play-btn {
-  opacity: 1;
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.35);
+  transform: translateY(-50%) scale(1.08);
 }
 
-.play-btn:hover {
-  background: rgba(255, 255, 255, 0.28);
-  transform: translateY(-50%) scale(1.1);
+/* État actif/lecture : doré */
+.play-btn.playing {
+  background: rgba(0, 200, 220, 0.25);
+  border-color: rgba(0, 200, 220, 0.7);
+}
+
+.play-btn.playing:hover {
+  background: rgba(0, 200, 220, 0.4);
 }
 
 .play-btn svg {
-  width: 12px;
-  height: 12px;
-  fill: #fff;
+  width: 11px;
+  height: 11px;
+  fill: rgba(255, 255, 255, 0.85);
   margin-left: 2px;
+  transition: fill 0.2s ease;
 }
 
 .play-btn.playing svg {
+  fill: #00c8dc;
   margin-left: 0;
 }
 
-/* ── BARRE DE PROGRESSION MINI ──────────────────────────── */
+/* ── BARRE DE PROGRESSION ───────────────────────────────── */
 .track-progress {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
   height: 2px;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.08);
   border-radius: 0 0 8px 8px;
   overflow: hidden;
   opacity: 0;
@@ -73,7 +84,7 @@
 .track-progress-bar {
   height: 100%;
   width: 0%;
-  background: linear-gradient(90deg, #c9a96e, #e8d5a3);
+  background: linear-gradient(90deg, #00c8dc, #7eeaf0);
   border-radius: 2px;
   transition: width 0.1s linear;
 }
@@ -82,15 +93,15 @@
   opacity: 1;
 }
 
-/* ── ANIMATION PULSE ────────────────────────────────────── */
+/* ── POCHETTE — pulse quand lecture ─────────────────────── */
 .track-cover.playing-cover {
-  box-shadow: 0 0 0 2px rgba(201, 169, 110, 0.6);
+  box-shadow: 0 0 0 2px rgba(0, 200, 220, 0.6);
   animation: pulseCover 1.5s ease-in-out infinite;
 }
 
 @keyframes pulseCover {
-  0%, 100% { box-shadow: 0 0 0 2px rgba(201, 169, 110, 0.6); }
-  50%       { box-shadow: 0 0 0 5px rgba(201, 169, 110, 0.2); }
+  0%, 100% { box-shadow: 0 0 0 2px rgba(0, 200, 220, 0.6); }
+  50%       { box-shadow: 0 0 0 5px rgba(0, 200, 220, 0.15); }
 }
 
 /* ── MINI PLAYER ────────────────────────────────────────── */
@@ -101,7 +112,7 @@
   transform: translateX(-50%);
   width: calc(100% - 40px);
   max-width: 500px;
-  background: rgba(15, 12, 28, 0.85);
+  background: rgba(15, 12, 28, 0.88);
   backdrop-filter: blur(20px) saturate(160%);
   -webkit-backdrop-filter: blur(20px) saturate(160%);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -182,7 +193,7 @@
   margin-left: 0;
 }
 
-/* ── BOUTON PLATEFORME — Spotify (vert) par défaut ──────── */
+/* ── BOUTON PLATEFORME ──────────────────────────────────── */
 .mini-spotify-btn {
   font-size: 11px;
   font-weight: 600;
@@ -192,7 +203,7 @@
   border: 1px solid rgba(29, 185, 84, 0.3);
   border-radius: 20px;
   padding: 5px 10px;
-  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  transition: background 0.2s ease;
   white-space: nowrap;
 }
 
@@ -200,7 +211,6 @@
   background: rgba(29, 185, 84, 0.2);
 }
 
-/* ── BOUTON PLATEFORME — Apple Music (rouge) ────────────── */
 .mini-spotify-btn.apple {
   color: #FA243C;
   background: rgba(250, 36, 60, 0.1);
@@ -248,6 +258,18 @@
 .mini-player-progress-bar {
   height: 100%;
   width: 0%;
-  background: linear-gradient(90deg, #c9a96e, #e8d5a3);
+  background: linear-gradient(90deg, #00c8dc, #7eeaf0);
   transition: width 0.1s linear;
+}
+
+/* ── MOBILE ─────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .mini-player {
+    width: calc(100% - 24px);
+    padding: 10px 12px;
+    gap: 8px;
+  }
+
+  .mini-player-title { font-size: 12px; }
+  .mini-player-artist { font-size: 10px; }
 }
