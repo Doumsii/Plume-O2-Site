@@ -169,12 +169,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const cover = item.querySelector('.track-cover');
     if (cover) cover.classList.toggle('playing-cover', playing);
 
-    miniCover.src            = track.cover;
-    miniTitle.textContent    = track.name;
-    miniArtist.textContent   = track.artist;
-    miniSpotify.href         = track.spotify;
-    miniSpotify.textContent  = track.platform + ' ↗';
-    miniPlayBtn.innerHTML    = playing ? ICON_PAUSE : ICON_PLAY;
+    miniCover.src           = track.cover;
+    miniTitle.textContent   = track.name;
+    miniArtist.textContent  = track.artist;
+    miniSpotify.href        = track.spotify;
+    miniSpotify.textContent = track.platform + ' ↗';
+    miniSpotify.className   = 'mini-spotify-btn' + (track.platform === 'Apple Music' ? ' apple' : '');
+    miniPlayBtn.innerHTML   = playing ? ICON_PAUSE : ICON_PLAY;
     miniPlayBtn.classList.toggle('playing', playing);
     miniPlayer.classList.add('visible');
   }
