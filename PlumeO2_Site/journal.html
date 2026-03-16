@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Journal | Plume d'O²</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="plumedo2-animations.css">
+    <link rel="stylesheet" href="article.css">
+    <link rel="stylesheet" href="journal.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">Plume d'O²</div>
+        <nav>
+            <a href="index.html#ecouter">Écouter</a>
+            <a href="journal.html">Le Journal</a>
+            <a href="boutique.html">Boutique</a>
+        </nav>
+    </header>
+
+    <main class="journal-page">
+
+        <div class="journal-page-hero">
+            <a href="index.html" class="btn-back">← Retour à l'accueil</a>
+            <h1>Le Journal</h1>
+            <p>Explorations du Coran, recherches scientifiques et méditations spirituelles.</p>
+        </div>
+
+        <!-- FILTRES -->
+        <div class="journal-filters">
+            <button class="filter-btn active" data-filter="all">Tous</button>
+            <button class="filter-btn" data-filter="meditation">Méditation</button>
+            <button class="filter-btn" data-filter="recherche">Recherche</button>
+        </div>
+
+        <!-- GRILLE ARTICLES -->
+        <div class="journal-page-grid">
+
+            <article class="journal-card-full" data-category="meditation">
+                <a href="article1.html" class="journal-card-link">
+                    <div class="journal-card-img-wrapper">
+                        <img src="cover-hujurat.jpg" alt="L'éthique de l'information">
+                        <span class="journal-card-tag">Méditation</span>
+                    </div>
+                    <div class="journal-card-body">
+                        <div class="journal-card-meta">
+                            <span>Oways Ahmad</span>
+                            <span class="dot">·</span>
+                            <span>Sourate Al-Hujurat (V.6)</span>
+                            <span class="dot">·</span>
+                            <span class="cyan">⏱ 4 min</span>
+                        </div>
+                        <h2>L'éthique de l'information et la préservation de l'honneur</h2>
+                        <p>Ce verset nous appelle à la vigilance face aux informations que l'on reçoit et pourrait propager. Il est primordial de vérifier chaque information, surtout si elle nous vient d'un fasiq.</p>
+                        <span class="journal-card-read">Lire l'article →</span>
+                    </div>
+                </a>
+            </article>
+
+            <article class="journal-card-full" data-category="recherche">
+                <a href="article2.html" class="journal-card-link">
+                    <div class="journal-card-img-wrapper">
+                        <img src="hadid.jpg" alt="L'engagement et l'équilibre">
+                        <span class="journal-card-tag">Recherche</span>
+                    </div>
+                    <div class="journal-card-body">
+                        <div class="journal-card-meta">
+                            <span>Plume d'O²</span>
+                            <span class="dot">·</span>
+                            <span>Sourate Al-Hadid</span>
+                            <span class="dot">·</span>
+                            <span class="cyan">⏱ 5 min</span>
+                        </div>
+                        <h2>L'engagement et l'équilibre</h2>
+                        <p>Une analyse profonde de la sourate Al-Hadid dont le sujet central est l'engagement véritable envers Allah, Sa religion, Son Prophète et Sa voie.</p>
+                        <span class="journal-card-read">Lire l'article →</span>
+                    </div>
+                </a>
+            </article>
+
+            <!-- Template pour ajouter de nouveaux articles :
+            <article class="journal-card-full" data-category="meditation">
+                <a href="article3.html" class="journal-card-link">
+                    <div class="journal-card-img-wrapper">
+                        <img src="ton-image.jpg" alt="Titre">
+                        <span class="journal-card-tag">Méditation</span>
+                    </div>
+                    <div class="journal-card-body">
+                        <div class="journal-card-meta">
+                            <span>Auteur</span>
+                            <span class="dot">·</span>
+                            <span>Référence</span>
+                            <span class="dot">·</span>
+                            <span class="cyan">⏱ X min</span>
+                        </div>
+                        <h2>Titre de l'article</h2>
+                        <p>Résumé court...</p>
+                        <span class="journal-card-read">Lire l'article →</span>
+                    </div>
+                </a>
+            </article>
+            -->
+
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>Plume d'O²</h3>
+                <p>Votre sanctuaire audio pour apaiser le cœur et nourrir l'âme.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="index.html#ecouter">Écouter</a></li>
+                    <li><a href="journal.html">Le Journal</a></li>
+                    <li><a href="boutique.html">Boutique</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Réseaux & Plateformes</h4>
+                <div class="social-links">
+                    <a href="https://open.spotify.com/intl-fr/artist/3QGBoMKOchcr6qyKXZOab5" target="_blank" rel="noopener">Spotify</a>
+                    <a href="https://music.apple.com/fr/artist/oways-ahmad/1561790485" target="_blank" rel="noopener">Apple Music</a>
+                    <a href="https://youtube.com/@plumedo2_records" target="_blank" rel="noopener">YouTube</a>
+                    <a href="https://link.deezer.com/s/32GjMDt3vzl7ZV7YudgLt" target="_blank" rel="noopener">Deezer</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Plume d'O². Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script src="plumedo2-animations.js"></script>
+    <script>
+        // Filtres
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const cards = document.querySelectorAll('.journal-card-full');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const filter = btn.dataset.filter;
+                cards.forEach(card => {
+                    if (filter === 'all' || card.dataset.category === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
