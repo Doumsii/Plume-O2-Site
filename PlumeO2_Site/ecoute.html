@@ -202,9 +202,87 @@
                 <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/CUoZiQMlsqo" title="Récitation 6" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
                 <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/Yt4bMoSoQdA" title="Récitation 7" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
             </div>
-            <div style="text-align:center; margin-top: 2rem;">
-                <a href="https://youtube.com/@plumedo2_records" target="_blank" rel="noopener" class="btn-primary">Voir toutes les vidéos →</a>
+            <div style="text-align:center; margin-top: 2rem;" class="dropdown-container">
+                <button class="btn-primary dropdown-toggle" onclick="toggleDropdown()">
+                    Voir toutes les vidéos ↓
+                </button>
+                <div class="dropdown-menu" id="videoDropdown">
+                    <a href="https://youtube.com/@plumedo2_records" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 576 512" width="16" height="16" fill="#FF0000"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg>
+                        Plume d'O² Records
+                    </a>
+                    <a href="https://www.youtube.com/@instantcoranique" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 576 512" width="16" height="16" fill="#FF0000"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg>
+                        Instant Coranique
+                    </a>
+                    <a href="https://www.youtube.com/@mounirmonprofdarabe8460" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 576 512" width="16" height="16" fill="#FF0000"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg>
+                        Ustadh Mounir — Bibliodin
+                    </a>
+                    <a href="https://www.youtube.com/@Muddakkir/videos" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 576 512" width="16" height="16" fill="#FF0000"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg>
+                        Ustadh Muhammad — Centre Muddakir
+                    </a>
+                </div>
             </div>
+
+            <style>
+            .dropdown-container { position: relative; display: inline-block; }
+            .dropdown-toggle { cursor: pointer; border: none; }
+            .dropdown-menu {
+                display: none;
+                position: absolute;
+                bottom: calc(100% + 10px);
+                left: 50%;
+                transform: translateX(-50%);
+                background: rgba(15, 12, 28, 0.95);
+                backdrop-filter: blur(20px);
+                border: 1px solid rgba(255,255,255,0.1);
+                border-radius: 14px;
+                padding: 8px;
+                min-width: 280px;
+                box-shadow: 0 -8px 32px rgba(0,0,0,0.4);
+                z-index: 100;
+                animation: dropUp 0.25s cubic-bezier(0.22,1,0.36,1);
+            }
+            @keyframes dropUp {
+                from { opacity: 0; transform: translateX(-50%) translateY(10px); }
+                to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+            }
+            .dropdown-menu.open { display: block; }
+            .dropdown-menu a {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                padding: 12px 16px;
+                border-radius: 10px;
+                text-decoration: none;
+                font-family: 'Montserrat', sans-serif;
+                font-size: 13px;
+                font-weight: 500;
+                color: rgba(255,255,255,0.8);
+                transition: background 0.2s ease, color 0.2s ease;
+            }
+            .dropdown-menu a:hover {
+                background: rgba(255,0,0,0.1);
+                color: #fff;
+            }
+            </style>
+            <script>
+            function toggleDropdown() {
+                const menu = document.getElementById('videoDropdown');
+                menu.classList.toggle('open');
+                const btn = document.querySelector('.dropdown-toggle');
+                btn.textContent = menu.classList.contains('open') ? 'Voir toutes les vidéos ↑' : 'Voir toutes les vidéos ↓';
+            }
+            document.addEventListener('click', function(e) {
+                const container = document.querySelector('.dropdown-container');
+                if (!container.contains(e.target)) {
+                    document.getElementById('videoDropdown').classList.remove('open');
+                    document.querySelector('.dropdown-toggle').textContent = 'Voir toutes les vidéos ↓';
+                }
+            });
+            </script>
         </section>
 
     </main>
