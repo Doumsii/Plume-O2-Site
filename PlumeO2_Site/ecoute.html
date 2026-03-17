@@ -16,6 +16,174 @@
     <meta name="description" content="Découvrez toute la discographie de Plume d'O² — Albums, EPs, récitations coraniques et vidéos spirituelles.">
     <meta property="og:title" content="Écouter | Plume d'O²">
     <meta property="og:image" content="https://plume-o2-site.vercel.app/logo-original.jpg">
+
+    <style id="video-post-styles">
+    /* ── FORMAT PUBLICATION CARRÉ ──────────────────────── */
+    .videos-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 24px;
+    }
+
+    .video-post-card {
+        border-radius: 16px;
+        overflow: hidden;
+        background: rgba(255,255,255,0.03);
+        border: 1px solid rgba(0, 200, 220, 0.15);
+        box-shadow: 0 0 18px rgba(0, 200, 220, 0.08), 0 0 1px rgba(0, 200, 220, 0.3);
+        transition: box-shadow 0.3s ease, transform 0.3s ease;
+    }
+
+    .video-post-card:hover {
+        box-shadow: 0 0 28px rgba(0, 200, 220, 0.2), 0 0 2px rgba(0, 200, 220, 0.5);
+        transform: translateY(-3px);
+    }
+
+    .video-post-frame {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        overflow: hidden;
+        background: #000;
+    }
+
+    .video-post-frame iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        display: block;
+    }
+
+    /* ── BARRE D'ACTIONS ────────────────────────────── */
+    .video-post-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 14px;
+        border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .video-like-btn,
+    .video-share-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.2s ease;
+        flex-shrink: 0;
+    }
+
+    .video-like-btn:hover { transform: scale(1.2); }
+    .video-share-btn:hover { transform: scale(1.15); }
+
+    .heart-icon {
+        fill: rgba(255,255,255,0.25);
+        stroke: rgba(255,255,255,0.5);
+        stroke-width: 1.5;
+        transition: fill 0.2s ease, stroke 0.2s ease, transform 0.15s ease;
+    }
+
+    .video-like-btn.liked .heart-icon {
+        fill: #00c8dc;
+        stroke: #00c8dc;
+        transform: scale(1.15);
+    }
+
+    .video-share-btn svg {
+        color: rgba(255,255,255,0.5);
+        transition: color 0.2s ease;
+    }
+
+    .video-share-btn:hover svg { color: #00c8dc; }
+
+    .video-yt-btn {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 11px;
+        font-weight: 600;
+        color: rgba(255,255,255,0.45);
+        text-decoration: none;
+        padding: 5px 10px;
+        border-radius: 20px;
+        border: 1px solid rgba(255,255,255,0.1);
+        transition: all 0.2s ease;
+        white-space: nowrap;
+    }
+
+    .video-yt-btn:hover {
+        color: #fff;
+        border-color: rgba(255,0,0,0.4);
+        background: rgba(255,0,0,0.08);
+    }
+
+    /* Toast partage */
+    .share-toast {
+        position: fixed;
+        bottom: 80px;
+        left: 50%;
+        transform: translateX(-50%) translateY(20px);
+        background: rgba(0, 200, 220, 0.15);
+        border: 1px solid rgba(0, 200, 220, 0.4);
+        color: #00c8dc;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 13px;
+        font-weight: 600;
+        padding: 10px 20px;
+        border-radius: 30px;
+        backdrop-filter: blur(10px);
+        opacity: 0;
+        transition: all 0.3s ease;
+        z-index: 9999;
+        pointer-events: none;
+    }
+
+    .share-toast.show {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+
+    @media (max-width: 768px) {
+        .videos-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+        }
+        .video-yt-btn span { display: none; }
+    }
+    </style>
+
+    <script>
+    function toggleLike(btn) {
+        btn.classList.toggle('liked');
+    }
+
+    function shareVideo(url) {
+        if (navigator.share) {
+            navigator.share({ title: "Plume d'O² — Récitation", url: url });
+        } else {
+            navigator.clipboard.writeText(url);
+            showToast('Lien copié ! 🔗');
+        }
+    }
+
+    function showToast(msg) {
+        let toast = document.getElementById('shareToast');
+        if (!toast) {
+            toast = document.createElement('div');
+            toast.id = 'shareToast';
+            toast.className = 'share-toast';
+            document.body.appendChild(toast);
+        }
+        toast.textContent = msg;
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2500);
+    }
+    </script>
 </head>
 <body>
 
@@ -194,13 +362,125 @@
                 <p>Plongez dans l'univers sonore de Plume d'O²</p>
             </div>
             <div class="videos-grid">
-                <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/ospnawIowKg" title="Récitation 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
-                <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/LDMQvh9I6x8" title="Récitation 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
-                <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/f3kOuyDZCOw" title="Récitation 3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
-                <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/O13KI9Nh7us" title="Récitation 4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
-                <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/rf8BFCB_I6g" title="Récitation 5" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
-                <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/CUoZiQMlsqo" title="Récitation 6" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
-                <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/Yt4bMoSoQdA" title="Récitation 7" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+                <div class="video-post-card">
+                    <div class="video-post-frame">
+                        <iframe src="https://www.youtube.com/embed/ospnawIowKg" title="Récitation 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                    </div>
+                    <div class="video-post-actions">
+                        <button class="video-like-btn" onclick="toggleLike(this)" aria-label="J'aime">
+                            <svg viewBox="0 0 24 24" width="22" height="22" class="heart-icon"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                        </button>
+                        <button class="video-share-btn" onclick="shareVideo('https://youtu.be/ospnawIowKg')" aria-label="Partager">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8M16 6l-4-4-4 4M12 2v13"/></svg>
+                        </button>
+                        <a href="https://youtu.be/ospnawIowKg" target="_blank" rel="noopener" class="video-yt-btn">
+                            <svg viewBox="0 0 576 512" width="14" height="14" fill="#FF0000"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg>
+                            Regarder sur YouTube
+                        </a>
+                    </div>
+                </div>
+                <div class="video-post-card">
+                    <div class="video-post-frame">
+                        <iframe src="https://www.youtube.com/embed/LDMQvh9I6x8" title="Récitation 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                    </div>
+                    <div class="video-post-actions">
+                        <button class="video-like-btn" onclick="toggleLike(this)" aria-label="J'aime">
+                            <svg viewBox="0 0 24 24" width="22" height="22" class="heart-icon"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                        </button>
+                        <button class="video-share-btn" onclick="shareVideo('https://youtu.be/LDMQvh9I6x8')" aria-label="Partager">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8M16 6l-4-4-4 4M12 2v13"/></svg>
+                        </button>
+                        <a href="https://youtu.be/LDMQvh9I6x8" target="_blank" rel="noopener" class="video-yt-btn">
+                            <svg viewBox="0 0 576 512" width="14" height="14" fill="#FF0000"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg>
+                            Regarder sur YouTube
+                        </a>
+                    </div>
+                </div>
+                <div class="video-post-card">
+                    <div class="video-post-frame">
+                        <iframe src="https://www.youtube.com/embed/f3kOuyDZCOw" title="Récitation 3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                    </div>
+                    <div class="video-post-actions">
+                        <button class="video-like-btn" onclick="toggleLike(this)" aria-label="J'aime">
+                            <svg viewBox="0 0 24 24" width="22" height="22" class="heart-icon"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                        </button>
+                        <button class="video-share-btn" onclick="shareVideo('https://youtu.be/f3kOuyDZCOw')" aria-label="Partager">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8M16 6l-4-4-4 4M12 2v13"/></svg>
+                        </button>
+                        <a href="https://youtu.be/f3kOuyDZCOw" target="_blank" rel="noopener" class="video-yt-btn">
+                            <svg viewBox="0 0 576 512" width="14" height="14" fill="#FF0000"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg>
+                            Regarder sur YouTube
+                        </a>
+                    </div>
+                </div>
+                <div class="video-post-card">
+                    <div class="video-post-frame">
+                        <iframe src="https://www.youtube.com/embed/O13KI9Nh7us" title="Récitation 4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                    </div>
+                    <div class="video-post-actions">
+                        <button class="video-like-btn" onclick="toggleLike(this)" aria-label="J'aime">
+                            <svg viewBox="0 0 24 24" width="22" height="22" class="heart-icon"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                        </button>
+                        <button class="video-share-btn" onclick="shareVideo('https://youtu.be/O13KI9Nh7us')" aria-label="Partager">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8M16 6l-4-4-4 4M12 2v13"/></svg>
+                        </button>
+                        <a href="https://youtu.be/O13KI9Nh7us" target="_blank" rel="noopener" class="video-yt-btn">
+                            <svg viewBox="0 0 576 512" width="14" height="14" fill="#FF0000"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg>
+                            Regarder sur YouTube
+                        </a>
+                    </div>
+                </div>
+                <div class="video-post-card">
+                    <div class="video-post-frame">
+                        <iframe src="https://www.youtube.com/embed/rf8BFCB_I6g" title="Récitation 5" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                    </div>
+                    <div class="video-post-actions">
+                        <button class="video-like-btn" onclick="toggleLike(this)" aria-label="J'aime">
+                            <svg viewBox="0 0 24 24" width="22" height="22" class="heart-icon"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                        </button>
+                        <button class="video-share-btn" onclick="shareVideo('https://youtu.be/rf8BFCB_I6g')" aria-label="Partager">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8M16 6l-4-4-4 4M12 2v13"/></svg>
+                        </button>
+                        <a href="https://youtu.be/rf8BFCB_I6g" target="_blank" rel="noopener" class="video-yt-btn">
+                            <svg viewBox="0 0 576 512" width="14" height="14" fill="#FF0000"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg>
+                            Regarder sur YouTube
+                        </a>
+                    </div>
+                </div>
+                <div class="video-post-card">
+                    <div class="video-post-frame">
+                        <iframe src="https://www.youtube.com/embed/CUoZiQMlsqo" title="Récitation 6" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                    </div>
+                    <div class="video-post-actions">
+                        <button class="video-like-btn" onclick="toggleLike(this)" aria-label="J'aime">
+                            <svg viewBox="0 0 24 24" width="22" height="22" class="heart-icon"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                        </button>
+                        <button class="video-share-btn" onclick="shareVideo('https://youtu.be/CUoZiQMlsqo')" aria-label="Partager">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8M16 6l-4-4-4 4M12 2v13"/></svg>
+                        </button>
+                        <a href="https://youtu.be/CUoZiQMlsqo" target="_blank" rel="noopener" class="video-yt-btn">
+                            <svg viewBox="0 0 576 512" width="14" height="14" fill="#FF0000"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg>
+                            Regarder sur YouTube
+                        </a>
+                    </div>
+                </div>
+                <div class="video-post-card">
+                    <div class="video-post-frame">
+                        <iframe src="https://www.youtube.com/embed/Yt4bMoSoQdA" title="Récitation 7" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                    </div>
+                    <div class="video-post-actions">
+                        <button class="video-like-btn" onclick="toggleLike(this)" aria-label="J'aime">
+                            <svg viewBox="0 0 24 24" width="22" height="22" class="heart-icon"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                        </button>
+                        <button class="video-share-btn" onclick="shareVideo('https://youtu.be/Yt4bMoSoQdA')" aria-label="Partager">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8M16 6l-4-4-4 4M12 2v13"/></svg>
+                        </button>
+                        <a href="https://youtu.be/Yt4bMoSoQdA" target="_blank" rel="noopener" class="video-yt-btn">
+                            <svg viewBox="0 0 576 512" width="14" height="14" fill="#FF0000"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg>
+                            Regarder sur YouTube
+                        </a>
+                    </div>
+                </div>
             </div>
             <div style="text-align:center; margin-top: 2rem;" class="dropdown-container">
                 <button class="btn-primary dropdown-toggle" onclick="toggleDropdown()">
