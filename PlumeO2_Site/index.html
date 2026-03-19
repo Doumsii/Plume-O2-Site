@@ -1,78 +1,81 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plume d'O² | Le sanctuaire de l'âme</title>
-
-<!-- ── PAGE D'ACCUEIL (index.html) ────────────────────────── -->
-
-<!-- SEO Google -->
-<meta name="description" content="Plume d'O² — Votre sanctuaire audio pour apaiser le cœur et nourrir l'âme. Récitations coraniques, méditations spirituelles et outils pour se reconnecter à l'Éternel.">
-<meta name="keywords" content="récitation coran, audio spirituel, méditation islamique, invocations, plume d'O2, sanctuaire audio">
-<meta name="author" content="Plume d'O²">
-<meta name="robots" content="index, follow">
-
-<!-- Open Graph (Facebook, Instagram, WhatsApp) -->
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://plumedo2-officiel.netlify.app/">
-<meta property="og:title" content="Plume d'O² | Le sanctuaire de l'âme">
-<meta property="og:description" content="Votre sanctuaire audio pour apaiser le cœur et nourrir l'âme. Récitations coraniques, méditations et outils spirituels.">
-<meta property="og:image" content="https://plumedo2-officiel.netlify.app/logo-original.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="1200">
-<meta property="og:locale" content="fr_FR">
-<meta property="og:site_name" content="Plume d'O²">
-
-<!-- Twitter / X -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Plume d'O² | Le sanctuaire de l'âme">
-<meta name="twitter:description" content="Votre sanctuaire audio pour apaiser le cœur et nourrir l'âme. Récitations coraniques, méditations et outils spirituels.">
-<meta name="twitter:image" content="https://plumedo2-officiel.netlify.app/logo-original.jpg">
-
-<!-- Favicon -->
-<link rel="icon" type="image/jpeg" href="logo-original.jpg">
-<link rel="apple-touch-icon" href="logo-original.jpg">
-
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="plumedo2-animations.css">
     <link rel="stylesheet" href="plumedo2-player.css">
     <link rel="stylesheet" href="plumedo2-mobile.css">
+    <link rel="stylesheet" href="lang-switcher.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- SEO -->
+    <meta name="description" content="Plume d'O² — Votre sanctuaire audio pour apaiser le cœur et nourrir l'âme.">
+    <meta name="keywords" content="récitation coran, audio spirituel, méditation islamique, invocations">
+    <meta name="author" content="Plume d'O²">
+    <meta name="robots" content="index, follow">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://plume-o2-site.vercel.app/">
+    <meta property="og:title" content="Plume d'O² | Le sanctuaire de l'âme">
+    <meta property="og:description" content="Votre sanctuaire audio pour apaiser le cœur et nourrir l'âme.">
+    <meta property="og:image" content="https://plume-o2-site.vercel.app/logo-original.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="1200">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:site_name" content="Plume d'O²">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Plume d'O² | Le sanctuaire de l'âme">
+    <meta name="twitter:description" content="Votre sanctuaire audio pour apaiser le cœur et nourrir l'âme.">
+    <meta name="twitter:image" content="https://plume-o2-site.vercel.app/logo-original.jpg">
+    <link rel="icon" type="image/jpeg" href="logo-original.jpg">
+    <link rel="apple-touch-icon" href="logo-original.jpg">
 </head>
 <body>
 
     <header class="navbar">
         <a href="index.html" class="logo">Plume d'O²</a>
         <nav>
-            <a href="ecoute.html">Écouter</a>
-            <a href="journal.html">Le Journal</a>
-            <a href="boutique.html">Boutique</a>
+            <a href="ecoute.html" data-i18n="nav_ecouter">Écouter</a>
+            <a href="journal.html" data-i18n="nav_journal">Le Journal</a>
+            <a href="boutique.html" data-i18n="nav_boutique">Boutique</a>
         </nav>
+        <div class="lang-switcher">
+            <button class="lang-btn active" data-lang="fr" onclick="setLanguage('fr')">
+                <span class="lang-flag">🇫🇷</span> FR
+            </button>
+            <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">
+                <span class="lang-flag">🇬🇧</span> EN
+            </button>
+            <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')">
+                <span class="lang-flag">🇸🇦</span> AR
+            </button>
+        </div>
     </header>
 
     <section class="hero">
         <div class="hero-content">
-            <h1>Respirez. Écoutez. Méditez.</h1>
-            <p>Votre sanctuaire audio pour apaiser le cœur et nourrir l'âme. Des récitations et histoires inspirantes pour se reconnecter à l'Éternel dans le tumulte du monde.</p>
-            <a href="ecoute.html" class="btn-primary">Découvrir les écoutes</a>
+            <h1 data-i18n="hero_title">Respirez. Écoutez. Méditez.</h1>
+            <p data-i18n="hero_subtitle">Votre sanctuaire audio pour apaiser le cœur et nourrir l'âme. Des récitations et histoires inspirantes pour se reconnecter à l'Éternel dans le tumulte du monde.</p>
+            <a href="ecoute.html" class="btn-primary" data-i18n="hero_btn">Découvrir les écoutes</a>
         </div>
     </section>
 
     <section id="mission" class="mission">
         <div class="mission-content">
-            <h2>Notre Vision : Un Souffle pour l'Âme</h2>
+            <h2 data-i18n="mission_title">Notre Vision : Un Souffle pour l'Âme</h2>
             <div class="mission-text">
-                <p>Plume d'O² n'est pas simplement un label audio ; c'est un sanctuaire numérique, une respiration nécessaire dans un monde saturé de bruit et de distractions. Notre mission est d'offrir un espace intime et pur pour se reconnecter à l'Éternel.</p>
-                <p>À travers des récitations apaisantes, des histoires inspirantes et des réflexions profondes, nous allions la pureté du son à la beauté visuelle pour créer une expérience immersive qui nourrit l'intellect et apaise le cœur. Notre objectif est de vous accompagner sur le chemin de l'introspection et de la paix intérieure.</p>
+                <p data-i18n="mission_p1">Plume d'O² n'est pas simplement un label audio ; c'est un sanctuaire numérique, une respiration nécessaire dans un monde saturé de bruit et de distractions. Notre mission est d'offrir un espace intime et pur pour se reconnecter à l'Éternel.</p>
+                <p data-i18n="mission_p2">À travers des récitations apaisantes, des histoires inspirantes et des réflexions profondes, nous allions la pureté du son à la beauté visuelle pour créer une expérience immersive qui nourrit l'intellect et apaise le cœur. Notre objectif est de vous accompagner sur le chemin de l'introspection et de la paix intérieure.</p>
             </div>
         </div>
     </section>
 
     <section id="ecouter" class="streaming">
         <div class="section-header">
-            <h2>Plongez dans l'écoute</h2>
-            <p>Découvrez nos univers sonores et abonnez-vous sur vos plateformes.</p>
+            <h2 data-i18n="streaming_title">Plongez dans l'écoute</h2>
+            <p data-i18n="streaming_subtitle">Découvrez nos univers sonores et abonnez-vous sur vos plateformes.</p>
         </div>
         
         <div class="players-grid">
@@ -88,17 +91,15 @@
                     </div>
                     <img src="logo.jpg" alt="Plume d'O² Logo" class="profile-avatar">
                 </div>
-                
                 <div class="profile-body">
                     <h3 class="label-title">Plume d'O²</h3>
                     <p class="profile-subtitle">Records</p>
-                    
                     <div class="popular-tracks">
-                        <h4>Populaires</h4>
+                        <h4 data-i18n="streaming_popular">Populaires</h4>
                         <div class="track-item">
                             <img class="track-cover" src="pochette1.jpg" alt="cover">
                             <div class="track-info">
-                                <span class="track-name">Al kahf</span>
+                                <span class="track-name">Al Kahf</span>
                                 <span class="track-artist">Ustadh Idriss</span>
                             </div>
                         </div>
@@ -117,7 +118,7 @@
                             </div>
                         </div>
                     </div>
-                    <span class="btn-listen apple">Écouter sur Apple Music</span>
+                    <span class="btn-listen apple" data-i18n="streaming_listen_apple">Écouter sur Apple Music</span>
                 </div>
             </a>
 
@@ -133,13 +134,11 @@
                     </div>
                     <img src="logo.jpg" alt="Plume d'O² Logo" class="profile-avatar">
                 </div>
-                
                 <div class="profile-body">
                     <h3 class="label-title">Plume d'O²</h3>
                     <p class="profile-subtitle">Records</p>
-                    
                     <div class="popular-tracks">
-                        <h4>Populaires</h4>
+                        <h4 data-i18n="streaming_popular">Populaires</h4>
                         <div class="track-item">
                             <img class="track-cover" src="pochette4.jpg" alt="cover">
                             <div class="track-info">
@@ -162,7 +161,7 @@
                             </div>
                         </div>
                     </div>
-                    <span class="btn-listen spotify">Écouter sur Spotify</span>
+                    <span class="btn-listen spotify" data-i18n="streaming_listen_spotify">Écouter sur Spotify</span>
                 </div>
             </a>
         </div>
@@ -178,12 +177,11 @@
     <section class="upcoming">
         <div class="upcoming-container">
             <div class="upcoming-text">
-                <span class="upcoming-tag">Prochainement</span>
-                <h2>Les Invocations des Prophètes</h2>
-                <p>Plongez au cœur de la révélation avec notre prochain projet inédit. Nous avons compilé pour vous toutes les invocations (Duaas) prononcées par les prophètes, tirées exclusivement du Saint Coran.</p>
-                <p>Une œuvre sonore apaisante et spirituelle pour accompagner vos moments de recueillement. À venir très bientôt sur toutes vos plateformes de streaming.</p>
+                <span class="upcoming-tag" data-i18n="upcoming_tag">Prochainement</span>
+                <h2 data-i18n="upcoming_title">Les Invocations des Prophètes</h2>
+                <p data-i18n="upcoming_p1">Plongez au cœur de la révélation avec notre prochain projet inédit. Nous avons compilé pour vous toutes les invocations (Duaas) prononcées par les prophètes, tirées exclusivement du Saint Coran.</p>
+                <p data-i18n="upcoming_p2">Une œuvre sonore apaisante et spirituelle pour accompagner vos moments de recueillement. À venir très bientôt sur toutes vos plateformes de streaming.</p>
             </div>
-            
             <div class="upcoming-gallery-scroll">
                 <img src="prophetes-1.jpg" alt="Pochette Invocations 1" class="scroll-img">
                 <img src="prophetes-2.jpg" alt="Pochette Invocations 2" class="scroll-img">
@@ -195,63 +193,57 @@
 
     <section id="savoir" class="journal">
         <div class="section-header">
-            <h2>Le Journal</h2>
-            <p>Exploration du Coran, recherches scientifiques et méditations spirituelles.</p>
+            <h2 data-i18n="journal_title">Le Journal</h2>
+            <p data-i18n="journal_subtitle">Exploration du Coran, recherches scientifiques et méditations spirituelles.</p>
         </div>
-
         <div class="journal-grid">
             <article class="article-card featured">
                 <div class="article-content">
-                    <span class="article-tag">Méditation</span>
-                    <h3>L'éthique de l'information et la préservation de l'honneur</h3>
-                    <div class="article-meta">Sourate Al-Hujurat (Verset 6) • Oways Ahmad</div>
-                    <p>Ce verset vient après un passage qui évoque le mauvais comportement envers le Prophète et les graves conséquences qui en découlent. Ce verset nous appelle à la patience, mais aussi à la vigilance face aux informations que l'on reçoit et pourrait propager, au risque de nuire à l'honneur des gens. Il est primordial de vérifier chaque information, surtout si elle nous vient d'un "fasiq".</p>
-                    <p>Il nous rappelle au moins trois finalités de notre religion (Maqasid Ashari'a). Préservation de la société, de notre religion et l'honneur des gens. La sourate nous parle essentiellement de l'éthique du croyant de façon générale, en particulier de la langue et comment l'éduquer.</p>
-                    <a href="article1.html" class="btn-read-more">Lire l'article complet</a>
+                    <span class="article-tag" data-i18n="journal_tag1">Méditation</span>
+                    <h3 data-i18n="journal_article1_title">L'éthique de l'information et la préservation de l'honneur</h3>
+                    <div class="article-meta" data-i18n="journal_article1_meta">Sourate Al-Hujurat (Verset 6) • Oways Ahmad</div>
+                    <p data-i18n="journal_article1_p1">Ce verset vient après un passage qui évoque le mauvais comportement envers le Prophète et les graves conséquences qui en découlent.</p>
+                    <p data-i18n="journal_article1_p2">Il nous rappelle au moins trois finalités de notre religion (Maqasid Ashari'a).</p>
+                    <a href="article1.html" class="btn-read-more" data-i18n="journal_read1">Lire l'article complet</a>
                 </div>
             </article>
-
             <article class="article-card has-image">
                 <img src="hadid.jpg" alt="Sourate Al-Hadid" class="article-image">
                 <div class="article-content">
-                    <span class="article-tag">Recherche</span>
-                    <h3>L'engagement et l'équilibre</h3>
-                    <div class="article-meta">Sourate Al-Hadid • Plume d'O²</div>
-                    <p>Une analyse profonde de la sourate Al-Hadid. Son sujet central est l'engagement véritable envers Allah, Sa religion, Son Prophète et Sa voie. Elle nous invite à concilier cet engagement spirituel profond avec notre vie personnelle, trouvant le juste équilibre pour éviter la dureté du cœur et exceller dans la vie.</p>
-                   <a href="article2.html" class="btn-read-more">Lire la recherche</a>
+                    <span class="article-tag" data-i18n="journal_tag2">Recherche</span>
+                    <h3 data-i18n="journal_article2_title">L'engagement et l'équilibre</h3>
+                    <div class="article-meta" data-i18n="journal_article2_meta">Sourate Al-Hadid • Plume d'O²</div>
+                    <p data-i18n="journal_article2_p1">Une analyse profonde de la sourate Al-Hadid.</p>
+                    <a href="article2.html" class="btn-read-more" data-i18n="journal_read2">Lire la recherche</a>
                 </div>
             </article>
         </div>
-        
         <div class="journal-footer">
-            <a href="journal.html" class="btn-primary">Voir tous les articles</a>
+            <a href="journal.html" class="btn-primary" data-i18n="journal_btn">Voir tous les articles</a>
         </div>
     </section>
 
     <section id="boutique" class="boutique">
         <div class="section-header">
-            <h2>Boutique & Outils</h2>
-            <p>Ressources spirituelles, ouvrages et supports pour vous accompagner au quotidien.</p>
+            <h2 data-i18n="boutique_title">Boutique & Outils</h2>
+            <p data-i18n="boutique_subtitle">Ressources spirituelles, ouvrages et supports pour vous accompagner au quotidien.</p>
         </div>
-
         <div class="boutique-grid">
             <div class="product-card">
                 <div class="product-img-wrapper light-bg">
                     <img src="recueil.jpg" alt="Recueil d'Invocations" class="product-img contain">
                 </div>
                 <div class="product-info">
-                    <span class="product-category">Livre • Éditions Al Buraq</span>
-                    <h3>Invocations du Matin & du Soir</h3>
-                    
+                    <span class="product-category" data-i18n="boutique_cat1">Livre • Éditions Al Buraq</span>
+                    <h3 data-i18n="boutique_product1_title">Invocations du Matin & du Soir</h3>
                     <div class="bio-container">
                         <img src="oways.jpg" alt="Oways Ahmad" class="bio-avatar">
                         <div class="author-bio">
-                            <p>Jeune étudiant et apprenant en langue arabe, mon ambition est de partager le bien autour de moi et de donner de l'amour aux gens. L'apprentissage et la mémorisation de ces invocations m'ont procuré un bien-être incroyable que j'ai souhaité rendre accessible à tous.</p>
-                            <p>J'ai donc compilé certaines de ces prières aux mille et une vertus, ainsi que d'autres que j'apprécie tout particulièrement, afin d'en faire profiter le plus grand nombre en les publiant aux éditions Al Buraq. En espérant que ce recueil vous apporte un mieux-être dans votre vie de tous les jours et vous permette de vous rapprocher du Divin.</p>
-                            <p class="label-role"><strong>Oways Ahmad</strong><br><em>Créateur et dirigeant de Plume d'O² : Plongez dans un voyage spirituel célébrant la beauté et la diversité de la récitation du Coran. 🌘📖</em></p>
+                            <p data-i18n="boutique_bio_p1">Jeune étudiant et apprenant en langue arabe...</p>
+                            <p data-i18n="boutique_bio_p2">J'ai donc compilé certaines de ces prières...</p>
+                            <p class="label-role"><strong>Oways Ahmad</strong><br><em data-i18n="boutique_bio_role">Créateur et dirigeant de Plume d'O² 🌘📖</em></p>
                         </div>
                     </div>
-
                     <div class="product-action-multi">
                         <span class="product-price">2,00 €</span>
                         <div class="store-buttons">
@@ -262,19 +254,17 @@
                     </div>
                 </div>
             </div>
-
             <div class="product-card">
                 <div class="product-img-wrapper light-bg">
                     <img src="parchemin.jpg" alt="Cartes Mentales Juzz Amma" class="product-img contain">
                 </div>
                 <div class="product-info">
-                    <span class="product-category">Outil Pédagogique</span>
-                    <h3>Cartes Mentales - Juzz 'Amma</h3>
-                    <p class="product-desc">Comprenez l'architecture du Coran. Conçues pour faciliter la mémorisation et la méditation, ces cartes mentales cartographient les thèmes, la structure et les liens de chaque sourate du Juzz 'Amma (illustré ici par le parchemin de la sourate Abassa). Un outil pédagogique essentiel pour une vue d'ensemble claire lors de votre apprentissage.</p>
-                    
+                    <span class="product-category" data-i18n="boutique_cat2">Outil Pédagogique</span>
+                    <h3 data-i18n="boutique_product2_title">Cartes Mentales - Juzz 'Amma</h3>
+                    <p class="product-desc" data-i18n="boutique_product2_desc">Comprenez l'architecture du Coran...</p>
                     <div class="product-action">
                         <span class="product-price">19,90 €</span>
-                        <a href="#" class="btn-primary">Acheter le pack</a>
+                        <a href="#" class="btn-primary" data-i18n="boutique_buy">Acheter le pack</a>
                     </div>
                 </div>
             </div>
@@ -285,19 +275,19 @@
         <div class="footer-container">
             <div class="footer-col">
                 <h3>Plume d'O²</h3>
-                <p>Votre sanctuaire audio pour apaiser le cœur et nourrir l'âme. Récitations, méditations et outils spirituels.</p>
+                <p data-i18n="footer_tagline">Votre sanctuaire audio pour apaiser le cœur et nourrir l'âme.</p>
             </div>
             <div class="footer-col">
-                <h4>Navigation</h4>
+                <h4 data-i18n="footer_nav">Navigation</h4>
                 <ul>
-                    <li><a href="#">Accueil</a></li>
-                    <li><a href="ecoute.html">Écouter</a></li>
-                    <li><a href="journal.html">Le Journal</a></li>
-                    <li><a href="boutique.html">Boutique</a></li>
+                    <li><a href="index.html" data-i18n="footer_home">Accueil</a></li>
+                    <li><a href="ecoute.html" data-i18n="nav_ecouter">Écouter</a></li>
+                    <li><a href="journal.html" data-i18n="nav_journal">Le Journal</a></li>
+                    <li><a href="boutique.html" data-i18n="nav_boutique">Boutique</a></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>Réseaux & Plateformes</h4>
+                <h4 data-i18n="footer_networks">Réseaux & Plateformes</h4>
                 <div class="social-links">
                     <a href="https://open.spotify.com/intl-fr/artist/3QGBoMKOchcr6qyKXZOab5" target="_blank" rel="noopener noreferrer">Spotify</a>
                     <a href="https://music.apple.com/fr/artist/oways-ahmad/1561790485" target="_blank" rel="noopener noreferrer">Apple Music</a>
@@ -309,9 +299,9 @@
         <div class="footer-bottom">
             <p>&copy; 2026 Plume d'O². Tous droits réservés.</p>
             <div class="legal-links">
-                <a href="legales.html#mentions">Mentions Légales</a>
-                <a href="legales.html#confidentialite">Politique de Confidentialité</a>
-                <a href="legales.html#cgv">CGV</a>
+                <a href="legales.html#mentions" data-i18n="footer_legal">Mentions Légales</a>
+                <a href="legales.html#confidentialite" data-i18n="footer_privacy">Politique de Confidentialité</a>
+                <a href="legales.html#cgv" data-i18n="footer_cgv">CGV</a>
             </div>
         </div>
     </footer>
@@ -326,27 +316,19 @@
         const fullImage = document.getElementById("fullImage");
         const images = document.querySelectorAll(".scroll-img");
         const closeBtn = document.querySelector(".close-modal");
-
         images.forEach(img => {
             img.addEventListener("click", function() {
                 modal.style.display = "flex";
                 fullImage.src = this.src;
             });
         });
-
-        closeBtn.addEventListener("click", () => {
-            modal.style.display = "none";
-        });
-
-        modal.addEventListener("click", (e) => {
-            if(e.target === modal) {
-                modal.style.display = "none";
-            }
-        });
+        closeBtn.addEventListener("click", () => { modal.style.display = "none"; });
+        modal.addEventListener("click", (e) => { if(e.target === modal) modal.style.display = "none"; });
     </script>
 
-<script src="plumedo2-animations.js"></script>
-<script src="plumedo2-player.js"></script>
-<script src="plumedo2-mobile.js"></script>
+    <script src="plumedo2-animations.js"></script>
+    <script src="plumedo2-player.js"></script>
+    <script src="plumedo2-mobile.js"></script>
+    <script src="translations.js"></script>
 </body>
 </html>
