@@ -355,3 +355,11 @@
     height: 220px;
   }
 }
+.btn-back {
+  color: rgba(255, 255, 255, 0.65) !important;
+  text-decoration: none !important;
+}
+
+.btn-back:hover {
+  color: #fff !important;
+}
