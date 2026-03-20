@@ -71,7 +71,7 @@ const TRANSLATIONS = {
     footer_privacy: "Politique de Confidentialité",
     footer_cgv: "CGV",
     footer_copyright: "© 2026 Plume d'O². Tous droits réservés.",
-    boutique_modal_recueil_desc: "Ce recueil réunit certaines des invocations aux mille vertus récitées matin et soir, compilées par Oways Ahmad avec sincérité et amour. À travers ces prières tirées du Coran et de la Sunna, accompagnées de leur translittération et traduction française, l'auteur souhaite rendre accessible ce trésor spirituel à tous — pour apaiser les cœurs et se rapprocher du Divin au quotidien.",
+    boutique_modal_recueil_desc: "Ce recueil aux mille vertus rassemble les invocations du matin et du soir — tirées du Coran et de la Sunna, avec translittération et traduction française. À l'aube, ces prières agissent comme une douche revigorante avant d'affronter la journée. Au crépuscule, elles apaisent comme un bain après un long labeur. Car les invocations ne sont pas de simples mots : elles établissent un lien vivant avec Allah, protègent des pensées négatives et régénèrent le cœur, le corps et l'âme. Comme le rappelle le Prophète ﷺ : «La différence entre celui qui invoque son Seigneur et celui qui ne l'invoque pas est comme la différence entre le vivant et le mort.»",
   },
 
   en: {
@@ -141,7 +141,7 @@ const TRANSLATIONS = {
     footer_privacy: "Privacy Policy",
     footer_cgv: "Terms & Conditions",
     footer_copyright: "© 2026 Plume d'O². All rights reserved.",
-    boutique_modal_recueil_desc: "This collection gathers some of the thousand-virtue invocations recited morning and evening, compiled by Oways Ahmad with sincerity and love. Through these prayers drawn from the Quran and Sunnah, with their transliteration and French translation, the author wishes to make this spiritual treasure accessible to all — to soothe hearts and draw closer to the Divine daily.",
+    boutique_modal_recueil_desc: "This collection of thousand-virtue supplications gathers the morning and evening invocations — drawn from the Quran and Sunnah, with transliteration and French translation. At dawn, these prayers act like a reviving shower before facing the day. At dusk, they soothe like a warm bath after long labor. For invocations are not mere words: they forge a living bond with Allah, shield against negative thoughts and regenerate the heart, body and soul. As the Prophet ﷺ said: «The difference between one who remembers his Lord and one who does not is like the difference between the living and the dead.»",
   },
 
   ar: {
@@ -484,7 +484,7 @@ const TRANSLATIONS_EXTRA = {
     ecoute_videos_subtitle: "انغمس في الفضاء الصوتي لـ Plume d'O²",
     ecoute_videos_btn: "شاهد جميع الفيديوهات ↓",
     footer_copyright: "© 2026 Plume d'O². جميع الحقوق محفوظة.",
-    boutique_modal_recueil_desc: "يجمع هذا الكتيّب بعضًا من أدعية الصباح والمساء ذات الفضائل الجمّة، التي جمعها أويس أحمد بصدق ومحبة. من خلال هذه الأدعية المستقاة من القرآن الكريم والسنة النبوية، مع كتابتها الصوتية وترجمتها، يُريد المؤلف إتاحة هذا الكنز الروحي للجميع — لتهدئة القلوب والتقرب من الله في كل يوم.",
+    boutique_modal_recueil_desc: "يجمع هذا الكتيّب أدعية الصباح والمساء ذات الفضائل الجمّة — مستقاةً من القرآن الكريم والسنة النبوية، مع كتابتها الصوتية وترجمتها الفرنسية. في الفجر، تعمل هذه الأدعية كالدش المنعش قبل مواجهة اليوم. وعند الغروب، تُهدِّئ كحمّام دافئ بعد يوم طويل من العمل. فالأدعية ليست مجرد كلمات: بل هي رابط حيّ مع الله، وحصن من الأفكار السلبية، وتجديد للقلب والجسد والروح. كما قال النبي ﷺ: «مثل الذي يذكر ربه والذي لا يذكر ربه مثل الحي والميت.»",
   }
 };
 

@@ -15,172 +15,169 @@
     <link rel="icon" type="image/jpeg" href="logo-original.jpg">
 
     <style>
-    /* ── MODAL PRODUIT ──────────────────────────────────── */
-    .product-modal-overlay {
-        display: none;
-        position: fixed;
-        inset: 0;
-        background: rgba(0,0,0,0.85);
-        backdrop-filter: blur(8px);
-        z-index: 9999;
-        align-items: center;
-        justify-content: center;
-        padding: 20px;
-    }
-    .product-modal-overlay.open { display: flex; }
+/* ── STYLES MODALS PRODUITS (partagés index + boutique) ── */
+.product-modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.88);
+    backdrop-filter: blur(10px);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+.product-modal-overlay.open { display: flex; }
 
-    .product-modal {
-        background: rgba(12, 16, 32, 0.98);
-        border: 1px solid rgba(255,255,255,0.1);
-        border-radius: 20px;
-        max-width: 860px;
-        width: 100%;
-        max-height: 90vh;
-        overflow-y: auto;
-        display: flex;
-        flex-direction: column;
-        box-shadow: 0 24px 80px rgba(0,0,0,0.7);
-        animation: modalIn 0.35s cubic-bezier(0.22,1,0.36,1);
-    }
+.product-modal {
+    background: #0c1020;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    max-width: 900px;
+    width: 100%;
+    max-height: 92vh;
+    overflow-y: auto;
+    box-shadow: 0 32px 100px rgba(0,0,0,0.8);
+    animation: modalIn 0.35s cubic-bezier(0.22,1,0.36,1);
+    position: relative;
+}
 
-    @keyframes modalIn {
-        from { opacity: 0; transform: translateY(30px) scale(0.97); }
-        to   { opacity: 1; transform: translateY(0) scale(1); }
-    }
+@keyframes modalIn {
+    from { opacity: 0; transform: translateY(40px) scale(0.96); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
 
-    .product-modal-close {
-        position: absolute;
-        top: 16px;
-        right: 16px;
-        width: 36px;
-        height: 36px;
-        border-radius: 50%;
-        background: rgba(255,255,255,0.1);
-        border: none;
-        cursor: pointer;
-        color: #fff;
-        font-size: 18px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: background 0.2s;
-        z-index: 10;
-    }
-    .product-modal-close:hover { background: rgba(255,255,255,0.2); }
+.product-modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.12);
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+    z-index: 10;
+}
+.product-modal-close:hover { background: rgba(255,255,255,0.22); }
 
-    .product-modal-inner {
-        position: relative;
-        display: flex;
-        gap: 0;
-    }
+/* Layout images en haut, texte en bas */
+.product-modal-images {
+    display: flex;
+    gap: 12px;
+    padding: 28px 28px 0;
+    justify-content: center;
+}
 
-    /* Images côte à côte */
-    .product-modal-images {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-        padding: 24px;
-        min-width: 200px;
-        max-width: 240px;
-        background: rgba(255,255,255,0.02);
-        border-right: 1px solid rgba(255,255,255,0.07);
-    }
+.product-modal-images img {
+    height: 320px;
+    width: auto;
+    border-radius: 12px;
+    object-fit: cover;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+    transition: transform 0.3s;
+}
+.product-modal-images img:hover { transform: scale(1.02); }
 
-    .product-modal-images img {
-        width: 100%;
-        border-radius: 10px;
-        object-fit: cover;
-    }
+.product-modal-images.single img {
+    height: 380px;
+    max-width: 100%;
+}
 
-    .product-modal-body {
-        padding: 28px 28px 28px 24px;
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        gap: 14px;
-    }
+.product-modal-body {
+    padding: 24px 32px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
 
-    .product-modal-cat {
-        font-family: 'Montserrat', sans-serif;
-        font-size: 11px;
-        font-weight: 600;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: rgba(0,200,220,0.8);
-    }
+.product-modal-cat {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(0,200,220,0.85);
+}
 
-    .product-modal-title {
-        font-family: 'Playfair Display', serif;
-        font-size: 1.6rem;
-        color: #fff;
-        line-height: 1.25;
-        margin: 0;
-    }
+.product-modal-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.75rem;
+    color: #fff;
+    line-height: 1.2;
+    margin: 0;
+}
 
-    .product-modal-author {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-    .product-modal-author img {
-        width: 32px;
-        height: 32px;
-        border-radius: 50%;
-        object-fit: cover;
-    }
-    .product-modal-author span {
-        font-family: 'Montserrat', sans-serif;
-        font-size: 13px;
-        color: rgba(255,255,255,0.7);
-        font-weight: 500;
-    }
+.product-modal-author {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.product-modal-author img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.product-modal-author span {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    color: rgba(255,255,255,0.65);
+    font-weight: 500;
+}
 
-    .product-modal-desc {
-        font-family: 'Montserrat', sans-serif;
-        font-size: 13.5px;
-        line-height: 1.8;
-        color: rgba(255,255,255,0.65);
-        border-left: 2px solid rgba(0,200,220,0.3);
-        padding-left: 14px;
-    }
+.product-modal-desc {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13.5px;
+    line-height: 1.9;
+    color: rgba(255,255,255,0.6);
+    border-left: 2px solid rgba(0,200,220,0.35);
+    padding-left: 16px;
+    margin: 4px 0;
+}
 
-    .product-modal-price {
-        font-family: 'Playfair Display', serif;
-        font-size: 1.5rem;
-        color: #fff;
-        font-weight: 700;
-    }
+.product-modal-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: #fff;
+    font-weight: 700;
+}
 
-    .product-modal-btns {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-    }
+.product-modal-btns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
 
-    /* Curseur pointer sur les cards */
-    .boutique-page-card { cursor: pointer; }
+.fr-only-notice {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba(0,200,220,0.85);
+    background: rgba(0,200,220,0.08);
+    border: 1px solid rgba(0,200,220,0.25);
+    border-radius: 20px;
+    padding: 4px 12px;
+    display: inline-block;
+}
 
-    /* Notice FR only */
-    .fr-only-notice {
-        font-family: 'Montserrat', sans-serif;
-        font-size: 11px;
-        font-weight: 600;
-        color: rgba(0,200,220,0.8);
-        background: rgba(0,200,220,0.08);
-        border: 1px solid rgba(0,200,220,0.2);
-        border-radius: 20px;
-        padding: 4px 12px;
-        display: inline-block;
-        margin-bottom: 4px;
-    }
+/* Curseur pointer sur les cards cliquables */
+.product-card, .boutique-page-card { cursor: pointer; }
 
-    @media (max-width: 640px) {
-        .product-modal-inner { flex-direction: column; }
-        .product-modal-images { max-width: 100%; flex-direction: row; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); }
-        .product-modal-images img { max-width: 140px; }
-        .product-modal-body { padding: 20px; }
-    }
-    </style>
+@media (max-width: 600px) {
+    .product-modal-images { flex-direction: column; align-items: center; padding: 20px 20px 0; }
+    .product-modal-images img { height: 200px; }
+    .product-modal-body { padding: 20px; }
+    .product-modal-title { font-size: 1.3rem; }
+}
+
+</style>
 </head>
 <body>
     <header class="navbar">
@@ -267,8 +264,8 @@
             <div class="product-modal-inner">
                 <button class="product-modal-close" onclick="closeModal('recueil')">✕</button>
                 <div class="product-modal-images">
-                    <img src="recueil.jpg" alt="Couverture 1">
-                    <img src="recueil-4eme.jpg" alt="Couverture 4" onerror="this.style.display='none'">
+                    <img src="recueil.jpg" alt="Couverture — Invocations du Matin & du Soir">
+                    <img src="recueil-4eme.jpg" alt="4ème de couverture" onerror="this.style.display='none'">
                 </div>
                 <div class="product-modal-body">
                     <span class="product-modal-cat" data-i18n="boutique_cat1">Livre • Éditions Al Buraq</span>
@@ -277,7 +274,7 @@
                         <img src="oways.jpg" alt="Oways Ahmad">
                         <span>Oways Ahmad</span>
                     </div>
-                    <p class="product-modal-desc" data-i18n="boutique_modal_recueil_desc">Ce recueil réunit certaines des invocations aux mille vertus récitées matin et soir, compilées par Oways Ahmad avec sincérité et amour pour ses frères et sœurs en humanité. À travers ces prières tirées du Coran et de la Sunna, accompagnées de leur translittération et traduction, l'auteur souhaite rendre accessible ce trésor spirituel à tous — pour appaiser les cœurs, nourrir les âmes et se rapprocher du Divin au quotidien.</p>
+                    <p class="product-modal-desc" data-i18n="boutique_modal_recueil_desc">Ce recueil aux mille vertus rassemble les invocations du matin et du soir — tirées du Coran et de la Sunna, avec translittération et traduction française. À l'aube, ces prières agissent comme une douche revigorante avant d'affronter la journée. Au crépuscule, elles apaisent comme un bain après un long labeur. Car les invocations ne sont pas de simples mots : elles établissent un lien vivant avec Allah, protègent des pensées négatives et régénèrent le cœur, le corps et l'âme. Comme le rappelle le Prophète ﷺ : «La différence entre celui qui invoque son Seigneur et celui qui ne l'invoque pas est comme la différence entre le vivant et le mort.»</p>
                     <span class="product-modal-price">2,00 €</span>
                     <div class="product-modal-btns">
                         <a href="https://www.albouraq.fr/bookdetails/698410" target="_blank" rel="noopener" class="btn-secondary">Al Buraq</a>
@@ -294,8 +291,8 @@
         <div class="product-modal">
             <div class="product-modal-inner">
                 <button class="product-modal-close" onclick="closeModal('cartes')">✕</button>
-                <div class="product-modal-images">
-                    <img src="parchemin.jpg" alt="Cartes Mentales">
+                <div class="product-modal-images single">
+                    <img src="parchemin.jpg" alt="Cartes Mentales — Juzz 'Amma">
                 </div>
                 <div class="product-modal-body">
                     <span class="product-modal-cat" data-i18n="boutique_cat2">Outil Pédagogique</span>

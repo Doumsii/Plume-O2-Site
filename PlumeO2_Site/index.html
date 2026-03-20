@@ -31,6 +31,170 @@
     <meta name="twitter:image" content="https://plume-o2-site.vercel.app/logo-original.jpg">
     <link rel="icon" type="image/jpeg" href="logo-original.jpg">
     <link rel="apple-touch-icon" href="logo-original.jpg">
+<style>
+/* ── STYLES MODALS PRODUITS (partagés index + boutique) ── */
+.product-modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.88);
+    backdrop-filter: blur(10px);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+.product-modal-overlay.open { display: flex; }
+
+.product-modal {
+    background: #0c1020;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    max-width: 900px;
+    width: 100%;
+    max-height: 92vh;
+    overflow-y: auto;
+    box-shadow: 0 32px 100px rgba(0,0,0,0.8);
+    animation: modalIn 0.35s cubic-bezier(0.22,1,0.36,1);
+    position: relative;
+}
+
+@keyframes modalIn {
+    from { opacity: 0; transform: translateY(40px) scale(0.96); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.product-modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.12);
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+    z-index: 10;
+}
+.product-modal-close:hover { background: rgba(255,255,255,0.22); }
+
+/* Layout images en haut, texte en bas */
+.product-modal-images {
+    display: flex;
+    gap: 12px;
+    padding: 28px 28px 0;
+    justify-content: center;
+}
+
+.product-modal-images img {
+    height: 320px;
+    width: auto;
+    border-radius: 12px;
+    object-fit: cover;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+    transition: transform 0.3s;
+}
+.product-modal-images img:hover { transform: scale(1.02); }
+
+.product-modal-images.single img {
+    height: 380px;
+    max-width: 100%;
+}
+
+.product-modal-body {
+    padding: 24px 32px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.product-modal-cat {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(0,200,220,0.85);
+}
+
+.product-modal-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.75rem;
+    color: #fff;
+    line-height: 1.2;
+    margin: 0;
+}
+
+.product-modal-author {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.product-modal-author img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.product-modal-author span {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    color: rgba(255,255,255,0.65);
+    font-weight: 500;
+}
+
+.product-modal-desc {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13.5px;
+    line-height: 1.9;
+    color: rgba(255,255,255,0.6);
+    border-left: 2px solid rgba(0,200,220,0.35);
+    padding-left: 16px;
+    margin: 4px 0;
+}
+
+.product-modal-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: #fff;
+    font-weight: 700;
+}
+
+.product-modal-btns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.fr-only-notice {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba(0,200,220,0.85);
+    background: rgba(0,200,220,0.08);
+    border: 1px solid rgba(0,200,220,0.25);
+    border-radius: 20px;
+    padding: 4px 12px;
+    display: inline-block;
+}
+
+/* Curseur pointer sur les cards cliquables */
+.product-card, .boutique-page-card { cursor: pointer; }
+
+@media (max-width: 600px) {
+    .product-modal-images { flex-direction: column; align-items: center; padding: 20px 20px 0; }
+    .product-modal-images img { height: 200px; }
+    .product-modal-body { padding: 20px; }
+    .product-modal-title { font-size: 1.3rem; }
+}
+
+</style>
 </head>
 <body>
 
@@ -229,7 +393,7 @@
             <p data-i18n="boutique_subtitle">Ressources spirituelles, ouvrages et supports pour vous accompagner au quotidien.</p>
         </div>
         <div class="boutique-grid">
-            <div class="product-card">
+            <div class="product-card" onclick="openModal('recueil')">
                 <div class="product-img-wrapper light-bg">
                     <img src="recueil.jpg" alt="Recueil d'Invocations" class="product-img contain">
                 </div>
@@ -247,14 +411,14 @@
                     <div class="product-action-multi">
                         <span class="product-price">2,00 €</span>
                         <div class="store-buttons">
-                            <a href="https://www.albouraq.fr/bookdetails/698410" target="_blank" rel="noopener noreferrer" class="btn-secondary">Al Buraq</a>
-                            <a href="https://www.fnac.com/a16176695/Ahmad-Invocations-du-matin-et-du-soir" target="_blank" rel="noopener noreferrer" class="btn-secondary">Fnac</a>
-                            <a href="https://www.cultura.com/p-invocations-du-matin-du-soir-9791022504423.html" target="_blank" rel="noopener noreferrer" class="btn-secondary">Cultura</a>
+                            <a href="https://www.albouraq.fr/bookdetails/698410" target="_blank" rel="noopener noreferrer" class="btn-secondary" onclick="event.stopPropagation()">Al Buraq</a>
+                            <a href="https://www.fnac.com/a16176695/Ahmad-Invocations-du-matin-et-du-soir" target="_blank" rel="noopener noreferrer" class="btn-secondary" onclick="event.stopPropagation()">Fnac</a>
+                            <a href="https://www.cultura.com/p-invocations-du-matin-du-soir-9791022504423.html" target="_blank" rel="noopener noreferrer" class="btn-secondary" onclick="event.stopPropagation()">Cultura</a>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="product-card">
+            <div class="product-card" onclick="openModal('cartes')">
                 <div class="product-img-wrapper light-bg">
                     <img src="parchemin.jpg" alt="Cartes Mentales Juzz Amma" class="product-img contain">
                 </div>
@@ -330,5 +494,73 @@
     <script src="plumedo2-player.js"></script>
     <script src="plumedo2-mobile.js"></script>
     <script src="translations.js"></script>
+
+    <!-- ══ MODAL RECUEIL ══════════════════════════════════════ -->
+    <div class="product-modal-overlay" id="modal-recueil" onclick="closeModalOutside(event,'recueil')">
+        <div class="product-modal">
+            <button class="product-modal-close" onclick="closeModal('recueil')">✕</button>
+            <div class="product-modal-images">
+                <img src="recueil.jpg" alt="Couverture — Invocations du Matin & du Soir">
+                <img src="recueil-4eme.jpg" alt="4ème de couverture" onerror="this.style.display='none'">
+            </div>
+            <div class="product-modal-body">
+                <span class="product-modal-cat" data-i18n="boutique_cat1">Livre • Éditions Al Buraq</span>
+                <h2 class="product-modal-title" data-i18n="boutique_product1_title">Invocations du Matin & du Soir</h2>
+                <div class="product-modal-author">
+                    <img src="oways.jpg" alt="Oways Ahmad">
+                    <span>Oways Ahmad</span>
+                </div>
+                <p class="product-modal-desc" data-i18n="boutique_modal_recueil_desc">Ce recueil aux mille vertus rassemble les invocations du matin et du soir — tirées du Coran et de la Sunna, avec translittération et traduction française. À l'aube, ces prières agissent comme une douche revigorante avant d'affronter la journée. Au crépuscule, elles apaisent comme un bain après un long labeur. Car les invocations ne sont pas de simples mots : elles établissent un lien vivant avec Allah, protègent des pensées négatives et régénèrent le cœur, le corps et l'âme. Comme le rappelle le Prophète ﷺ : «La différence entre celui qui invoque son Seigneur et celui qui ne l'invoque pas est comme la différence entre le vivant et le mort.»</p>
+                <span class="product-modal-price">2,00 €</span>
+                <div class="product-modal-btns">
+                    <a href="https://www.albouraq.fr/bookdetails/698410" target="_blank" rel="noopener" class="btn-secondary" onclick="event.stopPropagation()">Al Buraq</a>
+                    <a href="https://www.fnac.com/a16176695/Ahmad-Invocations-du-matin-et-du-soir" target="_blank" rel="noopener" class="btn-secondary" onclick="event.stopPropagation()">Fnac</a>
+                    <a href="https://www.cultura.com/p-invocations-du-matin-du-soir-9791022504423.html" target="_blank" rel="noopener" class="btn-secondary" onclick="event.stopPropagation()">Cultura</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══ MODAL CARTES MENTALES ══════════════════════════════ -->
+    <div class="product-modal-overlay" id="modal-cartes" onclick="closeModalOutside(event,'cartes')">
+        <div class="product-modal">
+            <button class="product-modal-close" onclick="closeModal('cartes')">✕</button>
+            <div class="product-modal-images single">
+                <img src="parchemin.jpg" alt="Cartes Mentales — Juzz 'Amma">
+            </div>
+            <div class="product-modal-body">
+                <span class="product-modal-cat" data-i18n="boutique_cat2">Outil Pédagogique</span>
+                <h2 class="product-modal-title" data-i18n="boutique_product2_title">Cartes Mentales — Juzz 'Amma</h2>
+                <div class="product-modal-author">
+                    <img src="oways.jpg" alt="Oways Ahmad">
+                    <span>Oways Ahmad</span>
+                </div>
+                <span class="fr-only-notice" data-i18n="boutique_french_only"></span>
+                <p class="product-modal-desc" data-i18n="boutique_product2_desc">Comprenez l'architecture du Coran. Conçues pour faciliter la mémorisation et la méditation, ces cartes mentales cartographient les thèmes, la structure et les liens de chaque sourate du Juzz 'Amma. Un outil pédagogique essentiel pour une vue d'ensemble claire et profonde lors de votre apprentissage.</p>
+                <span class="product-modal-price">19,90 €</span>
+                <div class="product-modal-btns">
+                    <a href="#" class="btn-primary" onclick="event.stopPropagation()" data-i18n="boutique_buy">Acheter le pack</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+function openModal(id) {
+    document.getElementById('modal-' + id).classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+function closeModal(id) {
+    document.getElementById('modal-' + id).classList.remove('open');
+    document.body.style.overflow = '';
+}
+function closeModalOutside(e, id) {
+    if (e.target === document.getElementById('modal-' + id)) closeModal(id);
+}
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') ['recueil','cartes'].forEach(id => closeModal(id));
+});
+
+    </script>
 </body>
 </html>
