@@ -188,11 +188,13 @@
 .parchemin-blocker {
     position: absolute;
     inset: 0;
-    z-index: 10;
+    z-index: 100;
     cursor: default;
+    pointer-events: all !important;
     -webkit-user-drag: none;
     user-select: none;
     -webkit-user-select: none;
+    background: transparent;
 }
 
 /* ── FILIGRANE PARCHEMIN ────────────────────────────── */
@@ -523,5 +525,20 @@
     </script>
     <script src="plumedo2-animations.js"></script>
     <script src="translations.js"></script>
+<script>
+    // Protection parchemin — bloquer clic droit sur toutes les instances
+    document.querySelectorAll('.parchemin-blocker, .parchemin-wrapper img').forEach(el => {
+        el.addEventListener('contextmenu', e => e.preventDefault());
+        el.addEventListener('dragstart', e => e.preventDefault());
+    });
+    // Also block on the modal when it opens
+    document.querySelectorAll('.product-modal-overlay').forEach(modal => {
+        modal.addEventListener('contextmenu', e => {
+            if (e.target.tagName === 'IMG' && e.target.src.includes('parchemin')) {
+                e.preventDefault();
+            }
+        });
+    });
+</script>
 </body>
 </html>
