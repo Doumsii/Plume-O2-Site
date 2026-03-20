@@ -177,6 +177,47 @@
     .product-modal-title { font-size: 1.3rem; }
 }
 
+
+/* ── FILIGRANE PARCHEMIN ────────────────────────────── */
+.parchemin-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+.parchemin-wrapper img {
+    display: block;
+    width: 100%;
+}
+.parchemin-watermark {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    border-radius: inherit;
+    background: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 60px,
+        rgba(0,0,0,0) 60px,
+        rgba(0,0,0,0) 120px
+    );
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-around;
+    justify-content: space-around;
+    gap: 0;
+}
+.parchemin-watermark span {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba(80, 60, 20, 0.18);
+    white-space: nowrap;
+    transform: rotate(-35deg);
+    letter-spacing: 0.05em;
+    user-select: none;
+    -webkit-user-select: none;
+}
 </style>
 </head>
 <body>
@@ -237,7 +278,51 @@
             <!-- CARTES MENTALES -->
             <div class="boutique-page-card" data-category="outil" onclick="openModal('cartes')">
                 <div class="boutique-page-img">
-                    <img src="parchemin.jpg" alt="Cartes Mentales Juzz Amma">
+                    <div class="parchemin-wrapper">
+                    <img src="parchemin.jpg" alt="Cartes Mentales Juzz Amma" class="product-img contain" oncontextmenu="return false" ondragstart="return false" style="-webkit-user-drag:none;">
+                    <div class="parchemin-watermark" oncontextmenu="return false">
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                    </div>
+                </div>
                     <span class="boutique-badge" data-i18n="filter_outils">Outil</span>
                 </div>
                 <div class="boutique-page-info">
@@ -292,7 +377,51 @@
             <div class="product-modal-inner">
                 <button class="product-modal-close" onclick="closeModal('cartes')">✕</button>
                 <div class="product-modal-images single">
-                    <img src="parchemin.jpg" alt="Cartes Mentales — Juzz 'Amma">
+                    <div class="parchemin-wrapper" style="border-radius:12px;overflow:hidden;">
+                    <img src="parchemin.jpg" alt="Cartes Mentales — Juzz 'Amma" oncontextmenu="return false" ondragstart="return false" style="-webkit-user-drag:none;width:100%;display:block;">
+                    <div class="parchemin-watermark" oncontextmenu="return false">
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                    </div>
+                </div>
                 </div>
                 <div class="product-modal-body">
                     <span class="product-modal-cat" data-i18n="boutique_cat2">Outil Pédagogique</span>
