@@ -29,6 +29,24 @@
     </style>
 </head>
 <body>
+        <!-- Bannière langue -->
+    <div id="legal-lang-banner" style="display:none; background: rgba(0,200,220,0.08); border-bottom: 1px solid rgba(0,200,220,0.2); padding: 10px 24px; text-align: center; font-family: 'Montserrat', sans-serif; font-size: 13px; color: rgba(255,255,255,0.7);">
+        <span id="legal-lang-text"></span>
+    </div>
+
+    <script>
+    (function() {
+        const lang = localStorage.getItem('plumedo2-lang') || 'fr';
+        if (lang === 'en') {
+            document.getElementById('legal-lang-banner').style.display = 'block';
+            document.getElementById('legal-lang-text').textContent = '🇫🇷 This page is only available in French for legal reasons.';
+        } else if (lang === 'ar') {
+            document.getElementById('legal-lang-banner').style.display = 'block';
+            document.getElementById('legal-lang-text').textContent = '🇫🇷 هذه الصفحة متاحة باللغة الفرنسية فقط لأسباب قانونية.';
+        }
+    })();
+    </script>
+
     <header class="navbar">
         <a href="index.html" class="logo">Plume d'O²</a>
         <nav>
