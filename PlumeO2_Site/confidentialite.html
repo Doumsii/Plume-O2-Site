@@ -22,27 +22,20 @@
     .legal-nav { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 48px; }
     .legal-nav a { font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.5); border: 1px solid rgba(255,255,255,0.15); border-radius: 20px; padding: 6px 16px; text-decoration: none; transition: all 0.2s; }
     .legal-nav a:hover, .legal-nav a.active { color: #fff; border-color: rgba(0,200,220,0.5); background: rgba(0,200,220,0.08); }
+    
+    <style>
+    .btn-back {
+        color: rgba(255,255,255,0.65) !important;
+        text-decoration: none !important;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 13px;
+    }
+    .btn-back:hover { color: #fff !important; }
+    </style>
     </style>
 </head>
 <body>
-        <!-- Bannière langue -->
-    <div id="legal-lang-banner" style="display:none; background: rgba(0,200,220,0.08); border-bottom: 1px solid rgba(0,200,220,0.2); padding: 10px 24px; text-align: center; font-family: 'Montserrat', sans-serif; font-size: 13px; color: rgba(255,255,255,0.7);">
-        <span id="legal-lang-text"></span>
-    </div>
-
-    <script>
-    (function() {
-        const lang = localStorage.getItem('plumedo2-lang') || 'fr';
-        if (lang === 'en') {
-            document.getElementById('legal-lang-banner').style.display = 'block';
-            document.getElementById('legal-lang-text').textContent = '🇫🇷 This page is only available in French for legal reasons.';
-        } else if (lang === 'ar') {
-            document.getElementById('legal-lang-banner').style.display = 'block';
-            document.getElementById('legal-lang-text').textContent = '🇫🇷 هذه الصفحة متاحة باللغة الفرنسية فقط لأسباب قانونية.';
-        }
-    })();
-    </script>
-
+    
     <header class="navbar">
         <a href="index.html" class="logo">Plume d'O²</a>
         <nav>
@@ -155,5 +148,21 @@
         <div class="footer-bottom"><p>© 2026 Plume d'O². Tous droits réservés.</p></div>
     </footer>
     <script src="translations.js"></script>
+    <script>
+    // Bannière langue — exécuté après le DOM
+    window.addEventListener('DOMContentLoaded', function() {
+        var lang = localStorage.getItem('plumedo2-lang') || 'fr';
+        var banner = document.getElementById('legal-lang-banner');
+        var text = document.getElementById('legal-lang-text');
+        if (!banner || !text) return;
+        if (lang === 'en') {
+            banner.style.display = 'block';
+            text.textContent = '🇫🇷  This page is only available in French for legal reasons.';
+        } else if (lang === 'ar') {
+            banner.style.display = 'block';
+            text.textContent = '🇫🇷  هذه الصفحة متاحة باللغة الفرنسية فقط لأسباب قانونية.';
+        }
+    });
+    </script>
 </body>
 </html>
