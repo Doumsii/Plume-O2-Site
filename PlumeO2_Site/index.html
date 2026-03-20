@@ -195,6 +195,23 @@
 }
 
 
+
+/* ── BLOCKER CLIC DROIT ─────────────────────────────── */
+.parchemin-wrapper {
+    position: relative;
+    display: block;
+    width: 100%;
+}
+.parchemin-blocker {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    cursor: default;
+    -webkit-user-drag: none;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
 /* ── FILIGRANE PARCHEMIN ────────────────────────────── */
 .parchemin-wrapper {
     position: relative;
@@ -463,6 +480,7 @@
                 <div class="product-img-wrapper light-bg">
                     <div class="parchemin-wrapper">
                     <img src="parchemin.jpg" alt="Cartes Mentales Juzz Amma" class="product-img contain" oncontextmenu="return false" ondragstart="return false" style="-webkit-user-drag:none;">
+                    <div class="parchemin-blocker" oncontextmenu="return false" ondragstart="return false"></div>
                     <div class="parchemin-watermark" oncontextmenu="return false">
                 <span>© Plume d'O²</span>
                 <span>© Plume d'O²</span>
