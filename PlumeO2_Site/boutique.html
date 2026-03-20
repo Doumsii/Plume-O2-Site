@@ -1,69 +1,62 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Boutique | Plume d'O²</title>
-
-<!-- ============================================================ -->
-<!-- ── PAGE BOUTIQUE (boutique.html) ──────────────────────────── -->
-
-<meta name="description" content="Boutique Plume d'O² — Livres, recueils d'invocations et outils pédagogiques pour accompagner votre chemin spirituel au quotidien.">
-<meta property="og:url" content="https://plumedo2-officiel.netlify.app/boutique.html">
-<meta property="og:title" content="Boutique & Outils | Plume d'O²">
-<meta property="og:description" content="Livres, recueils d'invocations et outils pédagogiques pour votre chemin spirituel.">
-<meta property="og:image" content="https://plumedo2-officiel.netlify.app/logo-original.jpg">
-<meta name="twitter:title" content="Boutique & Outils | Plume d'O²">
-<meta name="twitter:description" content="Livres, recueils d'invocations et outils pédagogiques.">
-<meta name="twitter:image" content="https://plumedo2-officiel.netlify.app/logo-original.jpg">
-
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="plumedo2-animations.css">
     <link rel="stylesheet" href="journal.css">
+    <link rel="stylesheet" href="lang-switcher.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <meta name="description" content="Boutique Plume d'O² — Livres et outils pédagogiques spirituels.">
+    <meta property="og:title" content="Boutique | Plume d'O²">
+    <meta property="og:image" content="https://plume-o2-site.vercel.app/logo-original.jpg">
+    <link rel="icon" type="image/jpeg" href="logo-original.jpg">
 </head>
 <body>
-
     <header class="navbar">
         <a href="index.html" class="logo">Plume d'O²</a>
         <nav>
-            <a href="ecoute.html">Écouter</a>
-            <a href="journal.html">Le Journal</a>
-            <a href="boutique.html">Boutique</a>
+            <a href="ecoute.html" data-i18n="nav_ecouter">Écouter</a>
+            <a href="journal.html" data-i18n="nav_journal">Le Journal</a>
+            <a href="boutique.html" data-i18n="nav_boutique">Boutique</a>
         </nav>
+        <div class="lang-switcher">
+            <button class="lang-btn active" data-lang="fr" onclick="setLanguage('fr')"><span class="lang-flag">🇫🇷</span> FR</button>
+            <button class="lang-btn" data-lang="en" onclick="setLanguage('en')"><span class="lang-flag">🇬🇧</span> EN</button>
+            <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')"><span class="lang-flag">🇸🇦</span> AR</button>
+        </div>
     </header>
 
     <main class="journal-page">
-
         <div class="journal-page-hero">
-            <a href="index.html" class="btn-back">← Retour à l'accueil</a>
-            <h1>Boutique & Outils</h1>
-            <p>Ressources spirituelles, ouvrages et supports pour vous accompagner au quotidien.</p>
+            <a href="index.html" class="btn-back" data-i18n="boutique_page_back">← Retour à l'accueil</a>
+            <h1 data-i18n="boutique_page_title">Boutique & Outils</h1>
+            <p data-i18n="boutique_page_subtitle">Ressources spirituelles, ouvrages et supports pour vous accompagner au quotidien.</p>
         </div>
 
-        <!-- FILTRES -->
         <div class="journal-filters">
-            <button class="filter-btn active" data-filter="all">Tout</button>
-            <button class="filter-btn" data-filter="livre">Livres</button>
-            <button class="filter-btn" data-filter="outil">Outils</button>
+            <button class="filter-btn active" data-filter="all" data-i18n="filter_tout">Tout</button>
+            <button class="filter-btn" data-filter="livre" data-i18n="filter_livres">Livres</button>
+            <button class="filter-btn" data-filter="outil" data-i18n="filter_outils">Outils</button>
         </div>
 
-        <!-- GRILLE PRODUITS -->
         <div class="boutique-page-grid">
 
             <div class="boutique-page-card" data-category="livre">
                 <div class="boutique-page-img">
                     <img src="recueil.jpg" alt="Invocations du Matin & du Soir">
-                    <span class="boutique-badge">Livre</span>
+                    <span class="boutique-badge" data-i18n="filter_livres">Livre</span>
                 </div>
                 <div class="boutique-page-info">
-                    <span class="boutique-category">Éditions Al Buraq</span>
-                    <h2>Invocations du Matin & du Soir</h2>
+                    <span class="boutique-category" data-i18n="boutique_cat1">Éditions Al Buraq</span>
+                    <h2 data-i18n="boutique_product1_title">Invocations du Matin & du Soir</h2>
                     <div class="boutique-author">
                         <img src="oways.jpg" alt="Oways Ahmad" class="boutique-author-img">
                         <span>Oways Ahmad</span>
                     </div>
-                    <p>Jeune étudiant et apprenant en langue arabe, Oways Ahmad a compilé certaines prières aux mille et une vertus afin d'en faire profiter le plus grand nombre. Un recueil publié aux éditions Al Buraq pour vous permettre de vous rapprocher du Divin au quotidien.</p>
+                    <p data-i18n="boutique_bio_p1">Jeune étudiant et apprenant en langue arabe...</p>
                     <div class="boutique-page-action">
                         <span class="boutique-price">2,00 €</span>
                         <div class="boutique-store-btns">
@@ -78,57 +71,37 @@
             <div class="boutique-page-card" data-category="outil">
                 <div class="boutique-page-img">
                     <img src="parchemin.jpg" alt="Cartes Mentales Juzz Amma">
-                    <span class="boutique-badge">Outil</span>
+                    <span class="boutique-badge" data-i18n="filter_outils">Outil</span>
                 </div>
                 <div class="boutique-page-info">
-                    <span class="boutique-category">Outil Pédagogique</span>
-                    <h2>Cartes Mentales — Juzz 'Amma</h2>
-                    <p>Conçues pour faciliter la mémorisation et la méditation, ces cartes mentales cartographient les thèmes, la structure et les liens de chaque sourate du Juzz 'Amma. Un outil pédagogique essentiel pour une vue d'ensemble claire lors de votre apprentissage du Coran.</p>
+                    <span class="boutique-category" data-i18n="boutique_cat2">Outil Pédagogique</span>
+                    <h2 data-i18n="boutique_product2_title">Cartes Mentales — Juzz 'Amma</h2>
+                    <p class="french-only-notice" data-i18n="boutique_french_only" style="color: rgba(0,200,220,0.8); font-size:12px; font-weight:600; margin-bottom:8px;"></p>
+                    <p data-i18n="boutique_product2_desc">Comprenez l'architecture du Coran...</p>
                     <div class="boutique-page-action">
                         <span class="boutique-price">19,90 €</span>
-                        <a href="#" class="btn-primary">Acheter le pack</a>
+                        <a href="#" class="btn-primary" data-i18n="boutique_buy">Acheter le pack</a>
                     </div>
                 </div>
             </div>
-
-            <!-- Template pour ajouter un produit :
-            <div class="boutique-page-card" data-category="livre">
-                <div class="boutique-page-img">
-                    <img src="ton-image.jpg" alt="Nom du produit">
-                    <span class="boutique-badge">Livre</span>
-                </div>
-                <div class="boutique-page-info">
-                    <span class="boutique-category">Catégorie</span>
-                    <h2>Nom du produit</h2>
-                    <p>Description...</p>
-                    <div class="boutique-page-action">
-                        <span class="boutique-price">X,XX €</span>
-                        <a href="#" class="btn-primary">Acheter</a>
-                    </div>
-                </div>
-            </div>
-            -->
 
         </div>
     </main>
 
     <footer class="footer">
         <div class="footer-container">
+            <div class="footer-col"><h3>Plume d'O²</h3><p data-i18n="footer_tagline">Votre sanctuaire audio pour apaiser le cœur et nourrir l'âme.</p></div>
             <div class="footer-col">
-                <h3>Plume d'O²</h3>
-                <p>Votre sanctuaire audio pour apaiser le cœur et nourrir l'âme.</p>
-            </div>
-            <div class="footer-col">
-                <h4>Navigation</h4>
+                <h4 data-i18n="footer_nav">Navigation</h4>
                 <ul>
-                    <li><a href="index.html">Accueil</a></li>
-                    <li><a href="ecoute.html">Écouter</a></li>
-                    <li><a href="journal.html">Le Journal</a></li>
-                    <li><a href="boutique.html">Boutique</a></li>
+                    <li><a href="index.html" data-i18n="footer_home">Accueil</a></li>
+                    <li><a href="ecoute.html" data-i18n="nav_ecouter">Écouter</a></li>
+                    <li><a href="journal.html" data-i18n="nav_journal">Le Journal</a></li>
+                    <li><a href="boutique.html" data-i18n="nav_boutique">Boutique</a></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>Réseaux & Plateformes</h4>
+                <h4 data-i18n="footer_networks">Réseaux & Plateformes</h4>
                 <div class="social-links">
                     <a href="https://open.spotify.com/intl-fr/artist/3QGBoMKOchcr6qyKXZOab5" target="_blank" rel="noopener">Spotify</a>
                     <a href="https://music.apple.com/fr/artist/oways-ahmad/1561790485" target="_blank" rel="noopener">Apple Music</a>
@@ -137,16 +110,12 @@
                 </div>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Plume d'O². Tous droits réservés.</p>
-        </div>
+        <div class="footer-bottom"><p>&copy; 2026 Plume d'O². Tous droits réservés.</p></div>
     </footer>
 
-    <script src="plumedo2-animations.js"></script>
     <script>
         const filterBtns = document.querySelectorAll('.filter-btn');
         const cards = document.querySelectorAll('.boutique-page-card');
-
         filterBtns.forEach(btn => {
             btn.addEventListener('click', () => {
                 filterBtns.forEach(b => b.classList.remove('active'));
@@ -158,5 +127,7 @@
             });
         });
     </script>
+    <script src="plumedo2-animations.js"></script>
+    <script src="translations.js"></script>
 </body>
 </html>

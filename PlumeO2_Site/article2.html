@@ -1,144 +1,101 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>L'engagement et l'équilibre | Plume d'O²</title>
-
-<!-- ============================================================ -->
-<!-- ── ARTICLE 2 (article2.html) ──────────────────────────────── -->
-
-<meta name="description" content="L'engagement et l'équilibre — Recherche sur la Sourate Al-Hadid par Plume d'O². Comment concilier engagement spirituel et vie personnelle.">
-<meta property="og:url" content="https://plumedo2-officiel.netlify.app/article2.html">
-<meta property="og:title" content="L'engagement et l'équilibre | Plume d'O²">
-<meta property="og:description" content="Analyse de la Sourate Al-Hadid — engagement envers Allah et équilibre avec la vie personnelle.">
-<meta property="og:image" content="https://plumedo2-officiel.netlify.app/hadid.jpg">
-<meta name="twitter:title" content="L'engagement et l'équilibre | Plume d'O²">
-<meta name="twitter:description" content="Analyse de la Sourate Al-Hadid — engagement et équilibre spirituel.">
-<meta name="twitter:image" content="https://plumedo2-officiel.netlify.app/hadid.jpg">
-
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="plumedo2-animations.css">
     <link rel="stylesheet" href="article.css">
+    <link rel="stylesheet" href="lang-switcher.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <meta name="description" content="L'engagement et l'équilibre — Sourate Al-Hadid.">
+    <meta property="og:image" content="https://plume-o2-site.vercel.app/hadid.jpg">
+    <link rel="icon" type="image/jpeg" href="logo-original.jpg">
 </head>
 <body>
-
     <header class="navbar">
         <a href="index.html" class="logo">Plume d'O²</a>
         <nav>
-            <a href="ecoute.html">Écouter</a>
-            <a href="index.html#savoir">Le Journal</a>
-            <a href="index.html#boutique">Boutique</a>
+            <a href="ecoute.html" data-i18n="nav_ecouter">Écouter</a>
+            <a href="journal.html" data-i18n="nav_journal">Le Journal</a>
+            <a href="boutique.html" data-i18n="nav_boutique">Boutique</a>
         </nav>
+        <div class="lang-switcher">
+            <button class="lang-btn active" data-lang="fr" onclick="setLanguage('fr')"><span class="lang-flag">🇫🇷</span> FR</button>
+            <button class="lang-btn" data-lang="en" onclick="setLanguage('en')"><span class="lang-flag">🇬🇧</span> EN</button>
+            <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')"><span class="lang-flag">🇸🇦</span> AR</button>
+        </div>
     </header>
 
     <main class="article-page">
-
-        <!-- HERO IMAGE -->
         <div class="article-hero">
             <div class="article-hero-overlay"></div>
             <img src="hadid.jpg" alt="L'engagement et l'équilibre" class="article-hero-img">
             <div class="article-hero-content">
-                <a href="index.html#savoir" class="btn-back">← Retour au Journal</a>
-                <span class="article-tag">Recherche</span>
-                <h1>L'engagement et l'équilibre</h1>
+                <a href="journal.html" class="btn-back" data-i18n="art2_back">← Retour au Journal</a>
+                <span class="article-tag" data-i18n="art2_tag">Recherche</span>
+                <h1 data-i18n="art2_title">L'engagement et l'équilibre</h1>
                 <div class="article-meta-bar">
                     <span class="article-author">Plume d'O²</span>
                     <span class="article-dot">·</span>
-                    <span class="article-ref">Sourate Al-Hadid</span>
+                    <span class="article-ref" data-i18n="art2_ref">Sourate Al-Hadid</span>
                     <span class="article-dot">·</span>
-                    <span class="article-read-time">⏱ 5 min de lecture</span>
+                    <span class="article-read-time">⏱ <span data-i18n="art2_read">5 min de lecture</span></span>
                 </div>
             </div>
         </div>
 
-        <!-- CONTENU -->
         <div class="article-container">
             <div class="article-body">
-
-                <p class="article-intro">
-                    La sourate Al-Hadid — Le Fer — porte en elle une invitation paradoxale : s'engager pleinement envers Allah tout en restant ancré dans le monde. Une tension féconde qui définit l'équilibre du croyant.
-                </p>
-
-                <h2>Un engagement véritable</h2>
-                <p>
-                    Le sujet central de la sourate Al-Hadid est l'engagement véritable envers Allah, Sa religion, Son Prophète ﷺ et Sa voie. Cet engagement n'est pas une posture extérieure, un habit qu'on enfile le vendredi pour le ranger le samedi — c'est une transformation intérieure profonde, continue, qui colore chaque acte de notre vie.
-                </p>
-                <p>
-                    Allah interpelle directement les croyants : <em>« N'est-il pas temps que vos cœurs s'humilient au rappel d'Allah ? »</em> Cette question rhétorique est d'une force saisissante. Elle présuppose que la tendance naturelle du cœur est de durcir, de s'habituer, de s'éloigner — et que l'engagement est précisément ce qui contrecarre cette dérive.
-                </p>
-
-                <h2>Le danger de la dureté du cœur</h2>
-                <p>
-                    La sourate met en garde contre un écueil particulier : la dureté du cœur. Ce phénomène n'arrive pas brutalement — il s'installe progressivement, imperceptiblement, comme le calcaire dans une tuyauterie. Une prière négligée ici, une lecture abandonnée là, une compagnie néfaste tolérée un peu trop longtemps.
-                </p>
-                <p>
-                    Allah cite en exemple les gens du Livre qui reçurent la révélation et dont les cœurs durcirent avec le temps, à mesure que les générations s'éloignaient de la source vive. C'est un avertissement intemporel : la transmission de la foi ne garantit pas sa vivacité. Chaque génération, chaque individu, doit raviver la flamme en son sein.
-                </p>
-
+                <p class="article-intro" data-i18n="art2_intro">La sourate Al-Hadid — Le Fer — porte en elle une invitation paradoxale...</p>
+                <h2 data-i18n="art2_h2_1">Un engagement véritable</h2>
+                <p data-i18n="art2_p1">Le sujet central de la sourate Al-Hadid est l'engagement véritable envers Allah...</p>
+                <h2 data-i18n="art2_h2_2">Le danger de la dureté du cœur</h2>
+                <p data-i18n="art2_p2">La sourate met en garde contre un écueil particulier : la dureté du cœur...</p>
                 <blockquote>
-                    « N'est-il pas venu le moment pour ceux qui ont cru que leurs cœurs s'humilient à l'évocation d'Allah et à ce qui est descendu de la vérité ? »
+                    « N'est-il pas venu le moment pour ceux qui ont cru que leurs cœurs s'humilient... »
                     <cite>— Coran, Sourate Al-Hadid (57:16)</cite>
                 </blockquote>
-
-                <h2>Concilier l'ici-bas et l'au-delà</h2>
-                <p>
-                    Mais Al-Hadid ne prêche pas le retrait du monde. Bien au contraire. La sourate évoque le fer — métal de l'industrie, de la construction, de la guerre — comme une bénédiction divine accordée aux hommes pour qu'ils bâtissent une civilisation juste.
-                </p>
-                <p>
-                    L'engagement spirituel profond n'est pas antinomique avec une vie personnelle épanouie. Il n'y a pas, dans l'Islam, de clergé coupé du monde réel, de moines réfugiés dans leurs cellules. Le croyant est invité à exceller dans sa profession, à fonder une famille aimante, à contribuer à sa communauté — tout en gardant les yeux fixés sur ce qui dépasse le visible.
-                </p>
-
-                <h2>Trouver le juste équilibre</h2>
-                <p>
-                    Cet équilibre est peut-être le défi le plus difficile de la vie spirituelle. Trop dans le monde, et le cœur s'encrasse. Trop dans la retraite, et on manque à ses responsabilités. La sourate Al-Hadid nous offre une boussole : l'engagement sincère envers Allah, lorsqu'il est vivant et profond, régule naturellement nos priorités et nous aide à trouver notre juste place dans ce monde.
-                </p>
-                <p>
-                    Ce n'est pas une formule magique ni un équilibre figé — c'est un ajustement permanent, une attention quotidienne portée à l'état de son cœur, à la qualité de sa présence à Allah dans les petits comme dans les grands moments.
-                </p>
-
+                <h2 data-i18n="art2_h2_3">Concilier l'ici-bas et l'au-delà</h2>
+                <p data-i18n="art2_p3">Mais Al-Hadid ne prêche pas le retrait du monde...</p>
+                <h2 data-i18n="art2_h2_4">Trouver le juste équilibre</h2>
+                <p data-i18n="art2_p4">Cet équilibre est peut-être le défi le plus difficile de la vie spirituelle...</p>
             </div>
 
-            <!-- PARTAGE -->
             <div class="article-share">
-                <span>Partager cet article</span>
+                <span data-i18n="art2_share">Partager cet article</span>
                 <div class="share-buttons">
-                    <a href="https://twitter.com/intent/tweet?text=L'engagement et l'équilibre — Sourate Al-Hadid | Plume d'O²&url=https://plumedo2-officiel.netlify.app/article2.html" target="_blank" rel="noopener" class="share-btn twitter">𝕏 Twitter</a>
-                    <a href="https://wa.me/?text=L'engagement et l'équilibre — Plume d'O² https://plumedo2-officiel.netlify.app/article2.html" target="_blank" rel="noopener" class="share-btn whatsapp">WhatsApp</a>
-                    <button class="share-btn copy" onclick="navigator.clipboard.writeText(window.location.href); this.textContent='✓ Copié !'; setTimeout(()=>this.textContent='Copier le lien',2000)">Copier le lien</button>
+                    <a href="https://twitter.com/intent/tweet?url=https://plume-o2-site.vercel.app/article2.html" target="_blank" rel="noopener" class="share-btn twitter">𝕏 Twitter</a>
+                    <a href="https://wa.me/?text=https://plume-o2-site.vercel.app/article2.html" target="_blank" rel="noopener" class="share-btn whatsapp">WhatsApp</a>
+                    <button class="share-btn copy" onclick="navigator.clipboard.writeText(window.location.href); this.textContent='✓'; setTimeout(()=>{ const t=TRANSLATIONS[currentLang]; this.textContent=t&&t['art2_copy']||'Copier le lien'; },2000)" data-i18n="art2_copy">Copier le lien</button>
                 </div>
             </div>
 
-            <!-- NAVIGATION ARTICLES -->
             <nav class="article-nav">
                 <a href="article1.html" class="article-nav-prev">
-                    <span class="nav-label">← Article précédent</span>
-                    <span class="nav-title">L'éthique de l'information</span>
+                    <span class="nav-label" data-i18n="art2_prev_label">← Article précédent</span>
+                    <span class="nav-title" data-i18n="art2_prev_title">L'éthique de l'information</span>
                 </a>
                 <div class="article-nav-empty"></div>
             </nav>
-
         </div>
     </main>
 
     <footer class="footer">
         <div class="footer-container">
+            <div class="footer-col"><h3>Plume d'O²</h3><p data-i18n="footer_tagline">Votre sanctuaire audio.</p></div>
             <div class="footer-col">
-                <h3>Plume d'O²</h3>
-                <p>Votre sanctuaire audio pour apaiser le cœur et nourrir l'âme.</p>
-            </div>
-            <div class="footer-col">
-                <h4>Navigation</h4>
+                <h4 data-i18n="footer_nav">Navigation</h4>
                 <ul>
-                    <li><a href="index.html">Accueil</a></li>
-                    <li><a href="ecoute.html">Écouter</a></li>
-                    <li><a href="index.html#savoir">Le Journal</a></li>
-                    <li><a href="index.html#boutique">Boutique</a></li>
+                    <li><a href="index.html" data-i18n="footer_home">Accueil</a></li>
+                    <li><a href="ecoute.html" data-i18n="nav_ecouter">Écouter</a></li>
+                    <li><a href="journal.html" data-i18n="nav_journal">Le Journal</a></li>
+                    <li><a href="boutique.html" data-i18n="nav_boutique">Boutique</a></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>Réseaux & Plateformes</h4>
+                <h4 data-i18n="footer_networks">Réseaux & Plateformes</h4>
                 <div class="social-links">
                     <a href="https://open.spotify.com/intl-fr/artist/3QGBoMKOchcr6qyKXZOab5" target="_blank" rel="noopener">Spotify</a>
                     <a href="https://music.apple.com/fr/artist/oways-ahmad/1561790485" target="_blank" rel="noopener">Apple Music</a>
@@ -147,12 +104,10 @@
                 </div>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Plume d'O². Tous droits réservés.</p>
-        </div>
+        <div class="footer-bottom"><p>&copy; 2026 Plume d'O². Tous droits réservés.</p></div>
     </footer>
 
     <script src="plumedo2-animations.js"></script>
-
+    <script src="translations.js"></script>
 </body>
 </html>

@@ -1,103 +1,90 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>L'éthique de l'information | Plume d'O²</title>
-    <!-- ============================================================ -->
-<!-- ── ARTICLE 1 (article1.html) ──────────────────────────────── -->
-
-<meta name="description" content="L'éthique de l'information et la préservation de l'honneur — Méditation sur la Sourate Al-Hujurat (V.6) par Oways Ahmad.">
-<meta property="og:url" content="https://plumedo2-officiel.netlify.app/article1.html">
-<meta property="og:title" content="L'éthique de l'information | Plume d'O²">
-<meta property="og:description" content="Méditation sur la Sourate Al-Hujurat — vérifier l'information, préserver l'honneur et éduquer la langue.">
-<meta property="og:image" content="https://plumedo2-officiel.netlify.app/cover-hujurat.jpg">
-<meta name="twitter:title" content="L'éthique de l'information | Plume d'O²">
-<meta name="twitter:description" content="Méditation sur la Sourate Al-Hujurat — vérifier l'information, préserver l'honneur.">
-<meta name="twitter:image" content="https://plumedo2-officiel.netlify.app/cover-hujurat.jpg">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="plumedo2-animations.css">
     <link rel="stylesheet" href="article.css">
+    <link rel="stylesheet" href="lang-switcher.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <meta name="description" content="L'éthique de l'information et la préservation de l'honneur — Sourate Al-Hujurat.">
+    <meta property="og:image" content="https://plume-o2-site.vercel.app/cover-hujurat.jpg">
+    <link rel="icon" type="image/jpeg" href="logo-original.jpg">
 </head>
 <body>
-
     <header class="navbar">
         <a href="index.html" class="logo">Plume d'O²</a>
         <nav>
-            <a href="ecoute.html">Écouter</a>
-            <a href="journal.html">Le Journal</a>
-            <a href="index.html#boutique">Boutique</a>
+            <a href="ecoute.html" data-i18n="nav_ecouter">Écouter</a>
+            <a href="journal.html" data-i18n="nav_journal">Le Journal</a>
+            <a href="boutique.html" data-i18n="nav_boutique">Boutique</a>
         </nav>
+        <div class="lang-switcher">
+            <button class="lang-btn active" data-lang="fr" onclick="setLanguage('fr')"><span class="lang-flag">🇫🇷</span> FR</button>
+            <button class="lang-btn" data-lang="en" onclick="setLanguage('en')"><span class="lang-flag">🇬🇧</span> EN</button>
+            <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')"><span class="lang-flag">🇸🇦</span> AR</button>
+        </div>
     </header>
 
     <main class="article-page">
-
         <div class="article-hero">
             <div class="article-hero-overlay"></div>
             <img src="cover-hujurat.jpg" alt="L'éthique de l'information" class="article-hero-img">
             <div class="article-hero-content">
-                <a href="journal.html" class="btn-back">← Retour au Journal</a>
-                <span class="article-tag">Méditation</span>
-                <h1>L'éthique de l'information et la préservation de l'honneur</h1>
+                <a href="journal.html" class="btn-back" data-i18n="art1_back">← Retour au Journal</a>
+                <span class="article-tag" data-i18n="art1_tag">Méditation</span>
+                <h1 data-i18n="art1_title">L'éthique de l'information et la préservation de l'honneur</h1>
                 <div class="article-meta-bar">
                     <span class="article-author">Oways Ahmad</span>
                     <span class="article-dot">·</span>
-                    <span class="article-ref">Sourate Al-Hujurat (Verset 6)</span>
+                    <span class="article-ref" data-i18n="art1_ref">Sourate Al-Hujurat (Verset 6)</span>
                     <span class="article-dot">·</span>
-                    <span class="article-read-time">⏱ 4 min de lecture</span>
+                    <span class="article-read-time">⏱ <span data-i18n="art1_read">4 min de lecture</span></span>
                 </div>
             </div>
         </div>
 
         <div class="article-container">
             <div class="article-body">
-
-                <p class="article-intro">
-                    Ce verset vient après un passage qui évoque le mauvais comportement envers le Prophète ﷺ et les graves conséquences qui en découlent. Il nous appelle à la patience, mais aussi à la vigilance face aux informations que l'on reçoit et pourrait propager, au risque de nuire à l'honneur des gens.
-                </p>
-
-                <h2>La vérification, une obligation religieuse</h2>
-                <p>Il est primordial de vérifier chaque information, surtout si elle nous vient d'un <em>fasiq</em> — celui dont la probité est douteuse. Allah nous avertit dans ce verset que propager une information sans vérification peut conduire à blesser des innocents, et que nous serons alors tenus pour responsables de cette négligence.</p>
-                <p>À l'ère des réseaux sociaux, ce verset résonne avec une acuité particulière. Le partage impulsif d'une rumeur, d'une capture d'écran sortie de son contexte, d'une accusation non vérifiée — tout cela peut détruire en quelques secondes ce qu'une personne a mis des années à construire.</p>
-
-                <h2>Les trois finalités rappelées</h2>
-                <p>Ce verset nous rappelle au moins trois finalités fondamentales de notre religion (<em>Maqasid Ashari'a</em>) :</p>
+                <p class="article-intro" data-i18n="art1_intro">Ce verset vient après un passage qui évoque le mauvais comportement envers le Prophète ﷺ...</p>
+                <h2 data-i18n="art1_h2_1">La vérification, une obligation religieuse</h2>
+                <p data-i18n="art1_p1">Il est primordial de vérifier chaque information...</p>
+                <p data-i18n="art1_p2">À l'ère des réseaux sociaux, ce verset résonne avec une acuité particulière...</p>
+                <h2 data-i18n="art1_h2_2">Les trois finalités rappelées</h2>
+                <p data-i18n="art1_p3">Ce verset nous rappelle au moins trois finalités fondamentales :</p>
                 <ul>
-                    <li><strong>La préservation de la société</strong> — une communauté ne peut prospérer si la méfiance et la calomnie y règnent.</li>
-                    <li><strong>La préservation de la religion</strong> — agir avec légèreté sur la parole d'autrui fragilise notre propre intégrité spirituelle.</li>
-                    <li><strong>La préservation de l'honneur des gens</strong> — chaque être humain possède une dignité sacrée que rien ne justifie de bafouer.</li>
+                    <li data-i18n="art1_li1"><strong>La préservation de la société</strong></li>
+                    <li data-i18n="art1_li2"><strong>La préservation de la religion</strong></li>
+                    <li data-i18n="art1_li3"><strong>La préservation de l'honneur des gens</strong></li>
                 </ul>
-
-                <h2>Éduquer la langue, éduquer le cœur</h2>
-                <p>La sourate Al-Hujurat nous parle essentiellement de l'éthique du croyant, en particulier de la langue et de la manière de l'éduquer. La langue est à la fois l'outil le plus précieux et le plus dangereux que nous possédons.</p>
-                <p>Le Prophète ﷺ nous a enseigné que la plupart des gens entreront dans le Feu à cause de ce que leurs langues ont récolté. La maîtrise de la parole n'est pas simplement une vertu sociale — c'est un acte d'adoration à part entière.</p>
-
+                <h2 data-i18n="art1_h2_3">Éduquer la langue, éduquer le cœur</h2>
+                <p data-i18n="art1_p4">La sourate Al-Hujurat nous parle essentiellement de l'éthique du croyant...</p>
+                <p data-i18n="art1_p5">Le Prophète ﷺ nous a enseigné que la plupart des gens entreront dans le Feu...</p>
                 <blockquote>
-                    « Ô vous qui croyez ! Si un pervers vous apporte une nouvelle, vérifiez-la, pour ne pas atteindre des gens par mégarde et vous retrouver ensuite pleins de regrets pour ce que vous avez fait. »
+                    « Ô vous qui croyez ! Si un pervers vous apporte une nouvelle, vérifiez-la... »
                     <cite>— Coran, Sourate Al-Hujurat (49:6)</cite>
                 </blockquote>
-
-                <h2>Une invitation à la lenteur</h2>
-                <p>Dans un monde qui valorise la vitesse — réagir vite, partager vite, commenter vite — ce verset est une invitation à la lenteur bienveillante. Prendre le temps de vérifier, de s'interroger sur la source, de peser les conséquences avant de parler ou de transmettre.</p>
-                <p>Cette lenteur n'est pas de la faiblesse. C'est la marque d'une intelligence spirituelle mûrie, d'un cœur qui a appris à se méfier de ses propres impulsions avant de se précipiter sur celles des autres.</p>
-
+                <h2 data-i18n="art1_h2_4">Une invitation à la lenteur</h2>
+                <p data-i18n="art1_p6">Dans un monde qui valorise la vitesse...</p>
+                <p data-i18n="art1_p7">Cette lenteur n'est pas de la faiblesse...</p>
             </div>
 
             <div class="article-share">
-                <span>Partager cet article</span>
+                <span data-i18n="art1_share">Partager cet article</span>
                 <div class="share-buttons">
-                    <a href="https://twitter.com/intent/tweet?text=L'éthique de l'information — Plume d'O²&url=https://plumedo2-officiel.netlify.app/article1.html" target="_blank" rel="noopener" class="share-btn twitter">𝕏 Twitter</a>
-                    <a href="https://wa.me/?text=L'éthique de l'information — Plume d'O² https://plumedo2-officiel.netlify.app/article1.html" target="_blank" rel="noopener" class="share-btn whatsapp">WhatsApp</a>
-                    <button class="share-btn copy" onclick="navigator.clipboard.writeText(window.location.href); this.textContent='✓ Copié !'; setTimeout(()=>this.textContent='Copier le lien',2000)">Copier le lien</button>
+                    <a href="https://twitter.com/intent/tweet?url=https://plume-o2-site.vercel.app/article1.html" target="_blank" rel="noopener" class="share-btn twitter">𝕏 Twitter</a>
+                    <a href="https://wa.me/?text=https://plume-o2-site.vercel.app/article1.html" target="_blank" rel="noopener" class="share-btn whatsapp">WhatsApp</a>
+                    <button class="share-btn copy" onclick="navigator.clipboard.writeText(window.location.href); this.setAttribute('data-i18n','art1_copy'); this.textContent='✓'; setTimeout(()=>{ const t=TRANSLATIONS[currentLang]; this.textContent=t&&t['art1_copy']||'Copier le lien'; },2000)" data-i18n="art1_copy">Copier le lien</button>
                 </div>
             </div>
 
             <nav class="article-nav">
                 <div class="article-nav-empty"></div>
                 <a href="article2.html" class="article-nav-next">
-                    <span class="nav-label">Article suivant →</span>
-                    <span class="nav-title">L'engagement et l'équilibre</span>
+                    <span class="nav-label" data-i18n="art1_next_label">Article suivant →</span>
+                    <span class="nav-title" data-i18n="art1_next_title">L'engagement et l'équilibre</span>
                 </a>
             </nav>
         </div>
@@ -105,21 +92,18 @@
 
     <footer class="footer">
         <div class="footer-container">
+            <div class="footer-col"><h3>Plume d'O²</h3><p data-i18n="footer_tagline">Votre sanctuaire audio.</p></div>
             <div class="footer-col">
-                <h3>Plume d'O²</h3>
-                <p>Votre sanctuaire audio pour apaiser le cœur et nourrir l'âme.</p>
-            </div>
-            <div class="footer-col">
-                <h4>Navigation</h4>
+                <h4 data-i18n="footer_nav">Navigation</h4>
                 <ul>
-                    <li><a href="index.html">Accueil</a></li>
-                    <li><a href="ecoute.html">Écouter</a></li>
-                    <li><a href="journal.html">Le Journal</a></li>
-                    <li><a href="boutique.html">Boutique</a></li>
+                    <li><a href="index.html" data-i18n="footer_home">Accueil</a></li>
+                    <li><a href="ecoute.html" data-i18n="nav_ecouter">Écouter</a></li>
+                    <li><a href="journal.html" data-i18n="nav_journal">Le Journal</a></li>
+                    <li><a href="boutique.html" data-i18n="nav_boutique">Boutique</a></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>Réseaux & Plateformes</h4>
+                <h4 data-i18n="footer_networks">Réseaux & Plateformes</h4>
                 <div class="social-links">
                     <a href="https://open.spotify.com/intl-fr/artist/3QGBoMKOchcr6qyKXZOab5" target="_blank" rel="noopener">Spotify</a>
                     <a href="https://music.apple.com/fr/artist/oways-ahmad/1561790485" target="_blank" rel="noopener">Apple Music</a>
@@ -128,11 +112,10 @@
                 </div>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Plume d'O². Tous droits réservés.</p>
-        </div>
+        <div class="footer-bottom"><p>&copy; 2026 Plume d'O². Tous droits réservés.</p></div>
     </footer>
 
     <script src="plumedo2-animations.js"></script>
+    <script src="translations.js"></script>
 </body>
 </html>

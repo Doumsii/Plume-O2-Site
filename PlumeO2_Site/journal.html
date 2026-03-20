@@ -1,73 +1,67 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Le Journal | Plume d'O²</title>
-    <!-- ============================================================ -->
-<!-- ── PAGE JOURNAL (journal.html) ────────────────────────────── -->
-
-<meta name="description" content="Le Journal de Plume d'O² — Explorations du Coran, recherches scientifiques et méditations spirituelles pour nourrir l'intellect et le cœur.">
-<meta property="og:url" content="https://plumedo2-officiel.netlify.app/journal.html">
-<meta property="og:title" content="Le Journal | Plume d'O²">
-<meta property="og:description" content="Explorations du Coran, recherches et méditations spirituelles. Découvrez les articles de Plume d'O².">
-<meta property="og:image" content="https://plumedo2-officiel.netlify.app/logo-original.jpg">
-<meta name="twitter:title" content="Le Journal | Plume d'O²">
-<meta name="twitter:description" content="Explorations du Coran, recherches et méditations spirituelles.">
-<meta name="twitter:image" content="https://plumedo2-officiel.netlify.app/logo-original.jpg">
-
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="plumedo2-animations.css">
     <link rel="stylesheet" href="article.css">
     <link rel="stylesheet" href="journal.css">
+    <link rel="stylesheet" href="lang-switcher.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <meta name="description" content="Le Journal de Plume d'O² — Explorations du Coran, recherches et méditations spirituelles.">
+    <meta property="og:title" content="Le Journal | Plume d'O²">
+    <meta property="og:image" content="https://plume-o2-site.vercel.app/logo-original.jpg">
+    <meta property="og:url" content="https://plume-o2-site.vercel.app/journal.html">
+    <link rel="icon" type="image/jpeg" href="logo-original.jpg">
 </head>
 <body>
-
     <header class="navbar">
         <a href="index.html" class="logo">Plume d'O²</a>
         <nav>
-            <a href="ecoute.html">Écouter</a>
-            <a href="journal.html">Le Journal</a>
-            <a href="boutique.html">Boutique</a>
+            <a href="ecoute.html" data-i18n="nav_ecouter">Écouter</a>
+            <a href="journal.html" data-i18n="nav_journal">Le Journal</a>
+            <a href="boutique.html" data-i18n="nav_boutique">Boutique</a>
         </nav>
+        <div class="lang-switcher">
+            <button class="lang-btn active" data-lang="fr" onclick="setLanguage('fr')"><span class="lang-flag">🇫🇷</span> FR</button>
+            <button class="lang-btn" data-lang="en" onclick="setLanguage('en')"><span class="lang-flag">🇬🇧</span> EN</button>
+            <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')"><span class="lang-flag">🇸🇦</span> AR</button>
+        </div>
     </header>
 
     <main class="journal-page">
-
         <div class="journal-page-hero">
-            <a href="index.html" class="btn-back">← Retour à l'accueil</a>
-            <h1>Le Journal</h1>
-            <p>Explorations du Coran, recherches scientifiques et méditations spirituelles.</p>
+            <a href="index.html" class="btn-back" data-i18n="journal_page_back">← Retour à l'accueil</a>
+            <h1 data-i18n="journal_page_title">Le Journal</h1>
+            <p data-i18n="journal_page_subtitle">Explorations du Coran, recherches scientifiques et méditations spirituelles.</p>
         </div>
 
-        <!-- FILTRES -->
         <div class="journal-filters">
-            <button class="filter-btn active" data-filter="all">Tous</button>
-            <button class="filter-btn" data-filter="meditation">Méditation</button>
-            <button class="filter-btn" data-filter="recherche">Recherche</button>
+            <button class="filter-btn active" data-filter="all" data-i18n="filter_all">Tous</button>
+            <button class="filter-btn" data-filter="meditation" data-i18n="filter_meditation">Méditation</button>
+            <button class="filter-btn" data-filter="recherche" data-i18n="filter_recherche">Recherche</button>
         </div>
 
-        <!-- GRILLE ARTICLES -->
         <div class="journal-page-grid">
-
             <article class="journal-card-full" data-category="meditation">
                 <a href="article1.html" class="journal-card-link">
                     <div class="journal-card-img-wrapper">
                         <img src="cover-hujurat.jpg" alt="L'éthique de l'information">
-                        <span class="journal-card-tag">Méditation</span>
+                        <span class="journal-card-tag" data-i18n="journal_tag1">Méditation</span>
                     </div>
                     <div class="journal-card-body">
                         <div class="journal-card-meta">
                             <span>Oways Ahmad</span>
                             <span class="dot">·</span>
-                            <span>Sourate Al-Hujurat (V.6)</span>
+                            <span data-i18n="art1_ref">Sourate Al-Hujurat (V.6)</span>
                             <span class="dot">·</span>
-                            <span class="cyan">⏱ 4 min</span>
+                            <span class="cyan" data-i18n="art1_read">⏱ 4 min</span>
                         </div>
-                        <h2>L'éthique de l'information et la préservation de l'honneur</h2>
-                        <p>Ce verset nous appelle à la vigilance face aux informations que l'on reçoit et pourrait propager. Il est primordial de vérifier chaque information, surtout si elle nous vient d'un fasiq.</p>
-                        <span class="journal-card-read">Lire l'article →</span>
+                        <h2 data-i18n="art1_title">L'éthique de l'information et la préservation de l'honneur</h2>
+                        <p data-i18n="art1_intro">Ce verset nous appelle à la vigilance face aux informations que l'on reçoit et pourrait propager.</p>
+                        <span class="journal-card-read" data-i18n="journal_card1_read">Lire l'article →</span>
                     </div>
                 </a>
             </article>
@@ -76,66 +70,39 @@
                 <a href="article2.html" class="journal-card-link">
                     <div class="journal-card-img-wrapper">
                         <img src="hadid.jpg" alt="L'engagement et l'équilibre">
-                        <span class="journal-card-tag">Recherche</span>
+                        <span class="journal-card-tag" data-i18n="journal_tag2">Recherche</span>
                     </div>
                     <div class="journal-card-body">
                         <div class="journal-card-meta">
                             <span>Plume d'O²</span>
                             <span class="dot">·</span>
-                            <span>Sourate Al-Hadid</span>
+                            <span data-i18n="art2_ref">Sourate Al-Hadid</span>
                             <span class="dot">·</span>
-                            <span class="cyan">⏱ 5 min</span>
+                            <span class="cyan" data-i18n="art2_read">⏱ 5 min</span>
                         </div>
-                        <h2>L'engagement et l'équilibre</h2>
-                        <p>Une analyse profonde de la sourate Al-Hadid dont le sujet central est l'engagement véritable envers Allah, Sa religion, Son Prophète et Sa voie.</p>
-                        <span class="journal-card-read">Lire l'article →</span>
+                        <h2 data-i18n="art2_title">L'engagement et l'équilibre</h2>
+                        <p data-i18n="art2_intro">Une analyse profonde de la sourate Al-Hadid dont le sujet central est l'engagement véritable envers Allah.</p>
+                        <span class="journal-card-read" data-i18n="journal_card2_read">Lire l'article →</span>
                     </div>
                 </a>
             </article>
-
-            <!-- Template pour ajouter de nouveaux articles :
-            <article class="journal-card-full" data-category="meditation">
-                <a href="article3.html" class="journal-card-link">
-                    <div class="journal-card-img-wrapper">
-                        <img src="ton-image.jpg" alt="Titre">
-                        <span class="journal-card-tag">Méditation</span>
-                    </div>
-                    <div class="journal-card-body">
-                        <div class="journal-card-meta">
-                            <span>Auteur</span>
-                            <span class="dot">·</span>
-                            <span>Référence</span>
-                            <span class="dot">·</span>
-                            <span class="cyan">⏱ X min</span>
-                        </div>
-                        <h2>Titre de l'article</h2>
-                        <p>Résumé court...</p>
-                        <span class="journal-card-read">Lire l'article →</span>
-                    </div>
-                </a>
-            </article>
-            -->
-
         </div>
     </main>
 
     <footer class="footer">
         <div class="footer-container">
+            <div class="footer-col"><h3>Plume d'O²</h3><p data-i18n="footer_tagline">Votre sanctuaire audio pour apaiser le cœur et nourrir l'âme.</p></div>
             <div class="footer-col">
-                <h3>Plume d'O²</h3>
-                <p>Votre sanctuaire audio pour apaiser le cœur et nourrir l'âme.</p>
-            </div>
-            <div class="footer-col">
-                <h4>Navigation</h4>
+                <h4 data-i18n="footer_nav">Navigation</h4>
                 <ul>
-                    <li><a href="index.html">Accueil</a></li>
-                    <li><a href="ecoute.html">Écouter</a></li>
-                    <li><a href="journal.html">Le Journal</a></li>
-                    <li><a href="boutique.html">Boutique</a></li>
+                    <li><a href="index.html" data-i18n="footer_home">Accueil</a></li>
+                    <li><a href="ecoute.html" data-i18n="nav_ecouter">Écouter</a></li>
+                    <li><a href="journal.html" data-i18n="nav_journal">Le Journal</a></li>
+                    <li><a href="boutique.html" data-i18n="nav_boutique">Boutique</a></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>Réseaux & Plateformes</h4>
+                <h4 data-i18n="footer_networks">Réseaux & Plateformes</h4>
                 <div class="social-links">
                     <a href="https://open.spotify.com/intl-fr/artist/3QGBoMKOchcr6qyKXZOab5" target="_blank" rel="noopener">Spotify</a>
                     <a href="https://music.apple.com/fr/artist/oways-ahmad/1561790485" target="_blank" rel="noopener">Apple Music</a>
@@ -144,31 +111,24 @@
                 </div>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Plume d'O². Tous droits réservés.</p>
-        </div>
+        <div class="footer-bottom"><p>&copy; 2026 Plume d'O². Tous droits réservés.</p></div>
     </footer>
 
-    <script src="plumedo2-animations.js"></script>
     <script>
-        // Filtres
         const filterBtns = document.querySelectorAll('.filter-btn');
         const cards = document.querySelectorAll('.journal-card-full');
-
         filterBtns.forEach(btn => {
             btn.addEventListener('click', () => {
                 filterBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 const filter = btn.dataset.filter;
                 cards.forEach(card => {
-                    if (filter === 'all' || card.dataset.category === filter) {
-                        card.style.display = 'block';
-                    } else {
-                        card.style.display = 'none';
-                    }
+                    card.style.display = (filter === 'all' || card.dataset.category === filter) ? 'block' : 'none';
                 });
             });
         });
     </script>
+    <script src="plumedo2-animations.js"></script>
+    <script src="translations.js"></script>
 </body>
 </html>

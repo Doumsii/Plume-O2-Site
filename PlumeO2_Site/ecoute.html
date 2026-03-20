@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="plumedo2-animations.css">
     <link rel="stylesheet" href="journal.css">
     <link rel="stylesheet" href="ecoute.css">
+    <link rel="stylesheet" href="lang-switcher.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         .journal-page .btn-back { color: rgba(255,255,255,0.65) !important; text-decoration: none !important; }
@@ -190,18 +191,23 @@
     <header class="navbar">
         <a href="index.html" class="logo">Plume d'O²</a>
         <nav>
-            <a href="ecoute.html">Écouter</a>
-            <a href="journal.html">Le Journal</a>
-            <a href="boutique.html">Boutique</a>
+            <a href="ecoute.html" data-i18n="nav_ecouter">Écouter</a>
+            <a href="journal.html" data-i18n="nav_journal">Le Journal</a>
+            <a href="boutique.html" data-i18n="nav_boutique">Boutique</a>
         </nav>
+        <div class="lang-switcher">
+            <button class="lang-btn active" data-lang="fr" onclick="setLanguage('fr')"><span class="lang-flag">🇫🇷</span> FR</button>
+            <button class="lang-btn" data-lang="en" onclick="setLanguage('en')"><span class="lang-flag">🇬🇧</span> EN</button>
+            <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')"><span class="lang-flag">🇸🇦</span> AR</button>
+        </div>
     </header>
 
     <main class="journal-page">
 
         <div class="journal-page-hero">
-            <a href="index.html" class="btn-back">← Retour à l'accueil</a>
-            <h1>Écouter</h1>
-            <p>Toute la discographie de Plume d'O² — récitations coraniques, invocations et méditations audio.</p>
+            <a href="index.html" class="btn-back" data-i18n="ecoute_back">← Retour à l'accueil</a>
+            <h1 data-i18n="ecoute_title">Écouter</h1>
+            <p data-i18n="ecoute_subtitle">Toute la discographie de Plume d'O² — récitations coraniques, invocations et méditations audio.</p>
         </div>
 
         <!-- PLATEFORMES -->
@@ -222,7 +228,7 @@
         <section class="ecoute-section">
             <div class="ecoute-section-title">
                 <span class="upcoming-tag">Prochainement</span>
-                <h2>Les Invocations des Prophètes</h2>
+                <h2 data-i18n="ecoute_upcoming_title">Les Invocations des Prophètes</h2>
                 <p>Toutes les invocations (Duaas) prononcées par les prophètes, tirées exclusivement du Saint Coran. À venir très bientôt sur toutes vos plateformes.</p>
             </div>
             <div class="upcoming-covers">
@@ -236,8 +242,8 @@
         <!-- 2. DISCOGRAPHIE -->
         <section class="ecoute-section">
             <div class="ecoute-section-title">
-                <h2>Discographie</h2>
-                <p>10 projets · 2021 — 2025</p>
+                <h2 data-i18n="ecoute_disco_title">Discographie</h2>
+                <p data-i18n="ecoute_disco_subtitle">10 projets · 2021 — 2025</p>
             </div>
             <div class="albums-grid">
 
@@ -358,8 +364,8 @@
         <!-- 3. VIDÉOS -->
         <section class="ecoute-section">
             <div class="ecoute-section-title">
-                <h2>Récitations</h2>
-                <p>Plongez dans l'univers sonore de Plume d'O²</p>
+                <h2 data-i18n="ecoute_videos_title">Récitations</h2>
+                <p data-i18n="ecoute_videos_subtitle">Plongez dans l'univers sonore de Plume d'O²</p>
             </div>
             <div class="videos-grid">
                 <div class="video-post-card">
@@ -593,5 +599,6 @@
     </footer>
 
     <script src="plumedo2-animations.js"></script>
+    <script src="translations.js"></script>
 </body>
 </html>
