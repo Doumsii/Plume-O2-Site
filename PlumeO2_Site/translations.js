@@ -70,6 +70,8 @@ const TRANSLATIONS = {
     footer_legal: "Mentions Légales",
     footer_privacy: "Politique de Confidentialité",
     footer_cgv: "CGV",
+    footer_copyright: "© 2026 Plume d'O². Tous droits réservés.",
+    boutique_modal_recueil_desc: "Ce recueil réunit certaines des invocations aux mille vertus récitées matin et soir, compilées par Oways Ahmad avec sincérité et amour. À travers ces prières tirées du Coran et de la Sunna, accompagnées de leur translittération et traduction française, l'auteur souhaite rendre accessible ce trésor spirituel à tous — pour apaiser les cœurs et se rapprocher du Divin au quotidien.",
   },
 
   en: {
@@ -138,6 +140,8 @@ const TRANSLATIONS = {
     footer_legal: "Legal Notice",
     footer_privacy: "Privacy Policy",
     footer_cgv: "Terms & Conditions",
+    footer_copyright: "© 2026 Plume d'O². All rights reserved.",
+    boutique_modal_recueil_desc: "This collection gathers some of the thousand-virtue invocations recited morning and evening, compiled by Oways Ahmad with sincerity and love. Through these prayers drawn from the Quran and Sunnah, with their transliteration and French translation, the author wishes to make this spiritual treasure accessible to all — to soothe hearts and draw closer to the Divine daily.",
   },
 
   ar: {
@@ -479,6 +483,8 @@ const TRANSLATIONS_EXTRA = {
     ecoute_videos_title: "التلاوات",
     ecoute_videos_subtitle: "انغمس في الفضاء الصوتي لـ Plume d'O²",
     ecoute_videos_btn: "شاهد جميع الفيديوهات ↓",
+    footer_copyright: "© 2026 Plume d'O². جميع الحقوق محفوظة.",
+    boutique_modal_recueil_desc: "يجمع هذا الكتيّب بعضًا من أدعية الصباح والمساء ذات الفضائل الجمّة، التي جمعها أويس أحمد بصدق ومحبة. من خلال هذه الأدعية المستقاة من القرآن الكريم والسنة النبوية، مع كتابتها الصوتية وترجمتها، يُريد المؤلف إتاحة هذا الكنز الروحي للجميع — لتهدئة القلوب والتقرب من الله في كل يوم.",
   }
 };
 
