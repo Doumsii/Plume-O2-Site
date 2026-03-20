@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conditions Générales de Vente | Plume d'O²</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="plumedo2-animations.css">
+    <link rel="stylesheet" href="lang-switcher.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/jpeg" href="logo-original.jpg">
+    <style>
+    .legal-page { max-width: 800px; margin: 0 auto; padding: 120px 24px 80px; }
+    .legal-page h1 { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: #fff; margin-bottom: 12px; }
+    .legal-page .legal-updated { font-family: 'Montserrat', sans-serif; font-size: 12px; color: rgba(0,200,220,0.7); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 48px; }
+    .legal-section { margin-bottom: 40px; }
+    .legal-section h2 { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: #fff; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .legal-section h3 { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.85); margin: 18px 0 8px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .legal-section p, .legal-section li { font-family: 'Montserrat', sans-serif; font-size: 14px; line-height: 1.9; color: rgba(255,255,255,0.6); margin-bottom: 10px; }
+    .legal-section ul { padding-left: 20px; }
+    .legal-section a { color: rgba(0,200,220,0.8); text-decoration: none; }
+    .legal-section a:hover { text-decoration: underline; }
+    .legal-nav { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 48px; }
+    .legal-nav a { font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.5); border: 1px solid rgba(255,255,255,0.15); border-radius: 20px; padding: 6px 16px; text-decoration: none; transition: all 0.2s; }
+    .legal-nav a:hover, .legal-nav a.active { color: #fff; border-color: rgba(0,200,220,0.5); background: rgba(0,200,220,0.08); }
+    .cgv-bloc { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 28px 28px 20px; margin-bottom: 32px; }
+    .cgv-bloc-tag { font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(0,200,220,0.8); background: rgba(0,200,220,0.08); border: 1px solid rgba(0,200,220,0.2); border-radius: 20px; padding: 3px 12px; display: inline-block; margin-bottom: 14px; }
+    .cgv-bloc h2 { border-bottom-color: rgba(255,255,255,0.06); }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <a href="index.html" class="logo">Plume d'O²</a>
+        <nav>
+            <a href="ecoute.html">Écouter</a>
+            <a href="journal.html">Le Journal</a>
+            <a href="boutique.html">Boutique</a>
+        </nav>
+        <div class="lang-switcher">
+            <button class="lang-btn active" data-lang="fr" onclick="setLanguage('fr')"><span class="lang-flag">🇫🇷</span> FR</button>
+            <button class="lang-btn" data-lang="en" onclick="setLanguage('en')"><span class="lang-flag">🇬🇧</span> EN</button>
+            <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')"><span class="lang-flag">🇸🇦</span> AR</button>
+        </div>
+    </header>
+
+    <main class="legal-page">
+        <a href="index.html" class="btn-back" style="display:inline-block;margin-bottom:32px;">← Retour à l'accueil</a>
+
+        <div class="legal-nav">
+            <a href="legales.html">Mentions Légales</a>
+            <a href="confidentialite.html">Confidentialité</a>
+            <a href="cgv.html" class="active">CGV</a>
+        </div>
+
+        <h1>Conditions Générales de Vente</h1>
+        <p class="legal-updated">Dernière mise à jour : mars 2026</p>
+
+        <div class="legal-section">
+            <p>Les présentes CGV régissent les conditions dans lesquelles vous pouvez acquérir les produits proposés par Plume d'O² / Oways Ahmad. Deux circuits de vente distincts existent selon le produit.</p>
+        </div>
+
+        <!-- BLOC 1 : CARTES MENTALES via Stripe -->
+        <div class="cgv-bloc">
+            <span class="cgv-bloc-tag">Vente directe — Stripe</span>
+            <div class="legal-section" style="margin-bottom:0;">
+                <h2>Cartes Mentales — Juzz 'Amma</h2>
+
+                <h3>Vendeur</h3>
+                <p><strong>Oways Ahmad</strong> — Plume d'O²<br>
+                Email : [À compléter]<br>
+                Adresse : [À compléter]</p>
+
+                <h3>Description du produit</h3>
+                <p>Pack de cartes mentales pédagogiques au format numérique (PDF) et/ou physique portant sur les sourates du Juzz 'Amma. Produit disponible uniquement en français. Prix : <strong>19,90 €</strong> TTC.</p>
+
+                <h3>Commande et paiement</h3>
+                <p>La commande est passée directement via le bouton « Acheter le pack » sur ce site, traité par <strong>Stripe Inc.</strong> Les moyens de paiement acceptés sont les cartes bancaires (Visa, Mastercard, American Express) et tout moyen proposé par Stripe.</p>
+                <p>La vente est réputée conclue dès la confirmation de paiement par Stripe. Un email de confirmation vous est envoyé automatiquement.</p>
+
+                <h3>Livraison</h3>
+                <p><strong>Version numérique :</strong> Le fichier PDF est envoyé par email à l'adresse fournie lors du paiement, dans un délai maximum de 24 heures ouvrées après confirmation.</p>
+                <p><strong>Version physique (si applicable) :</strong> Expédition sous 3 à 5 jours ouvrés. Les frais de livraison sont indiqués au moment de la commande.</p>
+
+                <h3>Droit de rétractation</h3>
+                <p><strong>Produit numérique :</strong> Conformément à l'article L221-28 du Code de la consommation, le droit de rétractation ne s'applique pas aux contenus numériques fournis sur un support immatériel dont l'exécution a commencé avec votre accord préalable.</p>
+                <p><strong>Produit physique :</strong> Vous disposez d'un délai de <strong>14 jours</strong> à compter de la réception pour exercer votre droit de rétractation, sans justification, en nous contactant à [À compléter]. Les frais de retour sont à votre charge.</p>
+
+                <h3>Propriété intellectuelle</h3>
+                <p>Les Cartes Mentales sont des œuvres originales protégées par le droit d'auteur. Toute reproduction, redistribution, revente ou partage non autorisé est strictement interdit et constitue un délit de contrefaçon.</p>
+
+                <h3>Réclamations</h3>
+                <p>Pour toute réclamation concernant une commande directe, contactez : <a href="mailto:[À compléter]">[À compléter]</a>. Nous nous engageons à répondre dans un délai de 5 jours ouvrés.</p>
+            </div>
+        </div>
+
+        <!-- BLOC 2 : RECUEIL via revendeurs -->
+        <div class="cgv-bloc">
+            <span class="cgv-bloc-tag">Vente via revendeurs</span>
+            <div class="legal-section" style="margin-bottom:0;">
+                <h2>Invocations du Matin & du Soir — Recueil</h2>
+
+                <h3>Éditeur & distributeur</h3>
+                <p>Cet ouvrage est publié et distribué par les <strong>Éditions Al Buraq</strong> (Dar Albouraq — EAN 9791022504423). Il est également disponible chez des revendeurs agréés tiers.</p>
+
+                <h3>Points de vente</h3>
+                <ul>
+                    <li><strong>Al Buraq</strong> — <a href="https://www.albouraq.fr/bookdetails/698410" target="_blank" rel="noopener">albouraq.fr</a></li>
+                    <li><strong>Fnac</strong> — <a href="https://www.fnac.com/a16176695/Ahmad-Invocations-du-matin-et-du-soir" target="_blank" rel="noopener">fnac.com</a></li>
+                    <li><strong>Cultura</strong> — <a href="https://www.cultura.com/p-invocations-du-matin-du-soir-9791022504423.html" target="_blank" rel="noopener">cultura.com</a></li>
+                </ul>
+
+                <h3>Prix</h3>
+                <p><strong>2,00 €</strong> TTC (prix indicatif — peut varier selon le revendeur).</p>
+
+                <h3>Conditions d'achat</h3>
+                <p>Les achats effectués chez Al Buraq, Fnac, Cultura ou tout autre revendeur sont soumis aux CGV propres à chaque enseigne. Plume d'O² n'est pas partie prenante de ces transactions et ne peut être tenu responsable de celles-ci.</p>
+                <p>Pour toute question relative à une commande passée chez un revendeur, merci de contacter directement le service client du revendeur concerné.</p>
+
+                <h3>Droit applicable</h3>
+                <p>Les présentes CGV sont soumises au droit français. En cas de litige non résolu à l'amiable, les tribunaux compétents seront ceux du ressort du domicile du vendeur.</p>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-col"><h3>Plume d'O²</h3><p>Votre sanctuaire audio pour apaiser le cœur et nourrir l'âme.</p></div>
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="ecoute.html">Écouter</a></li>
+                    <li><a href="journal.html">Le Journal</a></li>
+                    <li><a href="boutique.html">Boutique</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Légal</h4>
+                <ul>
+                    <li><a href="legales.html">Mentions Légales</a></li>
+                    <li><a href="confidentialite.html">Politique de Confidentialité</a></li>
+                    <li><a href="cgv.html">CGV</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom"><p>© 2026 Plume d'O². Tous droits réservés.</p></div>
+    </footer>
+    <script src="translations.js"></script>
+</body>
+</html>
