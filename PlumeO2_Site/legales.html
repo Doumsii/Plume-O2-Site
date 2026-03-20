@@ -9,12 +9,14 @@
     <link rel="stylesheet" href="lang-switcher.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="icon" type="image/jpeg" href="logo-original.jpg">
+    
     <style>
     .legal-page { max-width: 800px; margin: 0 auto; padding: 120px 24px 80px; }
     .legal-page h1 { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: #fff; margin-bottom: 12px; }
-    .legal-page .legal-updated { font-family: 'Montserrat', sans-serif; font-size: 12px; color: rgba(0,200,220,0.7); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 48px; }
+    .legal-updated { font-family: 'Montserrat', sans-serif; font-size: 12px; color: rgba(0,200,220,0.7); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 48px; display:block; }
     .legal-section { margin-bottom: 40px; }
     .legal-section h2 { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: #fff; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .legal-section h3 { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.85); margin: 18px 0 8px; text-transform: uppercase; letter-spacing: 0.05em; }
     .legal-section p, .legal-section li { font-family: 'Montserrat', sans-serif; font-size: 14px; line-height: 1.9; color: rgba(255,255,255,0.6); margin-bottom: 10px; }
     .legal-section ul { padding-left: 20px; }
     .legal-section a { color: rgba(0,200,220,0.8); text-decoration: none; }
@@ -22,20 +24,18 @@
     .legal-nav { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 48px; }
     .legal-nav a { font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.5); border: 1px solid rgba(255,255,255,0.15); border-radius: 20px; padding: 6px 16px; text-decoration: none; transition: all 0.2s; }
     .legal-nav a:hover, .legal-nav a.active { color: #fff; border-color: rgba(0,200,220,0.5); background: rgba(0,200,220,0.08); }
-    
-    <style>
-    .btn-back {
-        color: rgba(255,255,255,0.65) !important;
-        text-decoration: none !important;
-        font-family: 'Montserrat', sans-serif;
-        font-size: 13px;
-    }
+    .btn-back { color: rgba(255,255,255,0.65) !important; text-decoration: none !important; font-family: 'Montserrat', sans-serif; font-size: 13px; display: inline-block; margin-bottom: 32px; }
     .btn-back:hover { color: #fff !important; }
+    .lang-banner { display:none; background: rgba(0,200,220,0.08); border-bottom: 1px solid rgba(0,200,220,0.25); padding: 10px 24px; text-align: center; font-family: 'Montserrat', sans-serif; font-size: 13px; color: rgba(255,255,255,0.75); }
+    .cgv-bloc { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 28px 28px 20px; margin-bottom: 32px; }
+    .cgv-bloc-tag { font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(0,200,220,0.8); background: rgba(0,200,220,0.08); border: 1px solid rgba(0,200,220,0.2); border-radius: 20px; padding: 3px 12px; display: inline-block; margin-bottom: 14px; }
     </style>
-    </style>
+
 </head>
 <body>
-    
+    <div class="lang-banner" id="legal-banner">
+        <span id="legal-banner-text"></span>
+    </div>
     <header class="navbar">
         <a href="index.html" class="logo">Plume d'O²</a>
         <nav>
@@ -49,40 +49,25 @@
             <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')"><span class="lang-flag">🇸🇦</span> AR</button>
         </div>
     </header>
-
     <main class="legal-page">
-        <a href="index.html" class="btn-back" style="display:inline-block;margin-bottom:32px;">← Retour à l'accueil</a>
-
+        <a href="index.html" class="btn-back">← Retour à l'accueil</a>
         <div class="legal-nav">
             <a href="legales.html" class="active">Mentions Légales</a>
             <a href="confidentialite.html">Confidentialité</a>
             <a href="cgv.html">CGV</a>
         </div>
-
         <h1>Mentions Légales</h1>
-        <p class="legal-updated">Dernière mise à jour : mars 2026</p>
+        <span class="legal-updated">Dernière mise à jour : mars 2026</span>
 
         <div class="legal-section">
             <h2>1. Éditeur du site</h2>
             <p>Le site <strong>plume-o2-site.vercel.app</strong> est édité par :</p>
-            <p>
-                <strong>Oways Ahmad</strong><br>
-                Créateur et dirigeant de Plume d'O²<br>
-                Adresse : [À compléter]<br>
-                Email : [À compléter]<br>
-                Téléphone : [À compléter]
-            </p>
+            <p><strong>Oways Ahmad</strong><br>Créateur et dirigeant de Plume d'O²<br>Adresse : [À compléter]<br>Email : [À compléter]<br>Téléphone : [À compléter]</p>
         </div>
 
         <div class="legal-section">
             <h2>2. Hébergement</h2>
-            <p>Ce site est hébergé par :</p>
-            <p>
-                <strong>Vercel Inc.</strong><br>
-                340 Pine Street, Suite 701<br>
-                San Francisco, CA 94104 – États-Unis<br>
-                Site : <a href="https://vercel.com" target="_blank" rel="noopener">vercel.com</a>
-            </p>
+            <p><strong>Vercel Inc.</strong><br>340 Pine Street, Suite 701<br>San Francisco, CA 94104 – États-Unis<br>Site : <a href="https://vercel.com" target="_blank" rel="noopener">vercel.com</a></p>
         </div>
 
         <div class="legal-section">
@@ -94,12 +79,12 @@
 
         <div class="legal-section">
             <h2>4. Protection des œuvres</h2>
-            <p>Les Cartes Mentales Juzz 'Amma sont des œuvres originales créées par Oways Ahmad. Elles font l'objet d'un dépôt et sont protégées par les dispositions du Code de la propriété intellectuelle. Toute reproduction ou diffusion non autorisée constitue un acte de contrefaçon passible de sanctions pénales et civiles.</p>
+            <p>Les Cartes Mentales Juzz 'Amma sont des œuvres originales créées par Oways Ahmad, protégées par le droit d'auteur. Toute reproduction ou diffusion non autorisée constitue un acte de contrefaçon passible de sanctions pénales et civiles.</p>
         </div>
 
         <div class="legal-section">
             <h2>5. Liens hypertextes</h2>
-            <p>Ce site peut contenir des liens vers des sites tiers (Spotify, Apple Music, YouTube, Al Buraq, Fnac, Cultura, Deezer). Plume d'O² n'est pas responsable du contenu de ces sites externes et ne peut être tenu pour responsable des dommages ou préjudices provenant de leur consultation.</p>
+            <p>Ce site peut contenir des liens vers des sites tiers (Spotify, Apple Music, YouTube, Al Buraq, Fnac, Cultura, Deezer). Plume d'O² n'est pas responsable du contenu de ces sites externes.</p>
         </div>
 
         <div class="legal-section">
@@ -124,7 +109,7 @@
                 <h4>Légal</h4>
                 <ul>
                     <li><a href="legales.html">Mentions Légales</a></li>
-                    <li><a href="confidentialite.html">Politique de Confidentialité</a></li>
+                    <li><a href="confidentialite.html">Confidentialité</a></li>
                     <li><a href="cgv.html">CGV</a></li>
                 </ul>
             </div>
@@ -133,12 +118,10 @@
     </footer>
     <script src="translations.js"></script>
     <script>
-    // Bannière langue — exécuté après le DOM
     window.addEventListener('DOMContentLoaded', function() {
         var lang = localStorage.getItem('plumedo2-lang') || 'fr';
-        var banner = document.getElementById('legal-lang-banner');
-        var text = document.getElementById('legal-lang-text');
-        if (!banner || !text) return;
+        var banner = document.getElementById('legal-banner');
+        var text = document.getElementById('legal-banner-text');
         if (lang === 'en') {
             banner.style.display = 'block';
             text.textContent = '🇫🇷  This page is only available in French for legal reasons.';
