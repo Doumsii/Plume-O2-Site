@@ -1,114 +1,96 @@
-/* ══ LECTEUR MÉDITATION v2 ════════════════════════════════ */
+/* ══ LECTEUR MÉDITATIONS — Style track-item ══════════════ */
 (function() {
     if (typeof MEDITATIONS === 'undefined') return;
 
-    var currentMed = null;
-    var audio = null;
+    var currentId  = null;
+    var audio      = null;
+    var isPlaying  = false;
 
+    function pad(n) { return n < 10 ? '0' + n : '' + n; }
     function formatTime(s) {
-        if (isNaN(s)) return '0:00';
-        var h   = Math.floor(s / 3600);
-        var m   = Math.floor((s % 3600) / 60);
+        if (!s || isNaN(s)) return '0:00';
+        var h = Math.floor(s / 3600);
+        var m = Math.floor((s % 3600) / 60);
         var sec = Math.floor(s % 60);
-        if (h > 0) return h + ':' + pad(m) + ':' + pad(sec);
-        return m + ':' + pad(sec);
+        return h > 0 ? h + ':' + pad(m) + ':' + pad(sec) : m + ':' + pad(sec);
     }
-    function pad(n) { return n < 10 ? '0' + n : n; }
 
-    function getEl(id) { return document.getElementById(id); }
-
-    function stopAll() {
-        // Stop any playing card
-        document.querySelectorAll('.med-track-card.playing').forEach(function(c) {
-            c.classList.remove('playing');
-            var pi = c.querySelector('.med-play-icon');
-            var pa = c.querySelector('.med-pause-icon');
-            if (pi) pi.style.display = 'block';
-            if (pa) pa.style.display = 'none';
+    function setUI(id, playing) {
+        document.querySelectorAll('.med-track-item[data-id="' + id + '"]').forEach(function(item) {
+            var cover = item.querySelector('.med-track-cover');
+            var playBtn = item.querySelector('.med-play-btn');
+            var playIcon  = item.querySelector('.med-play-icon');
+            var pauseIcon = item.querySelector('.med-pause-icon');
+            if (playing) {
+                item.classList.add('active');
+                if (cover)     cover.classList.add('playing-cover');
+                if (playBtn)   playBtn.classList.add('playing');
+                if (playIcon)  playIcon.style.display = 'none';
+                if (pauseIcon) pauseIcon.style.display = 'block';
+            } else {
+                item.classList.remove('active');
+                if (cover)     cover.classList.remove('playing-cover');
+                if (playBtn)   playBtn.classList.remove('playing');
+                if (playIcon)  playIcon.style.display = 'block';
+                if (pauseIcon) pauseIcon.style.display = 'none';
+            }
         });
-        if (audio) { audio.pause(); }
+    }
+
+    function resetUI(id) {
+        setUI(id, false);
+        document.querySelectorAll('.med-track-item[data-id="' + id + '"] .med-prog-bar').forEach(function(b) { b.style.width = '0%'; });
+        document.querySelectorAll('.med-track-item[data-id="' + id + '"] .med-prog-time').forEach(function(t) { t.textContent = '0:00 / 0:00'; });
     }
 
     function buildAudio(med) {
-        if (audio) { audio.pause(); audio.remove(); }
+        if (audio) { audio.pause(); audio.src = ''; }
         audio = new Audio(med.file);
-        audio.preload = 'metadata';
-
         audio.addEventListener('timeupdate', function() {
-            updateProgress(med.id);
+            if (!audio.duration) return;
+            var pct = (audio.currentTime / audio.duration * 100).toFixed(1) + '%';
+            document.querySelectorAll('.med-track-item[data-id="' + med.id + '"] .med-prog-bar').forEach(function(b) { b.style.width = pct; });
+            document.querySelectorAll('.med-track-item[data-id="' + med.id + '"] .med-prog-time').forEach(function(t) { t.textContent = formatTime(audio.currentTime) + ' / ' + formatTime(audio.duration); });
         });
         audio.addEventListener('loadedmetadata', function() {
-            updateProgress(med.id);
+            document.querySelectorAll('.med-track-item[data-id="' + med.id + '"] .med-prog-time').forEach(function(t) { t.textContent = '0:00 / ' + formatTime(audio.duration); });
         });
         audio.addEventListener('ended', function() {
-            var card = document.querySelector('.med-track-card[data-id="' + med.id + '"]');
-            if (card) {
-                card.classList.remove('playing');
-                var pi = card.querySelector('.med-play-icon');
-                var pa = card.querySelector('.med-pause-icon');
-                if (pi) pi.style.display = 'block';
-                if (pa) pa.style.display = 'none';
-            }
-            resetProgress(med.id);
+            isPlaying = false;
+            resetUI(med.id);
         });
-        audio.addEventListener('error', function() {
-            console.warn('Audio non trouvé : ' + med.file);
-        });
+        audio.addEventListener('error', function() { console.warn('Audio introuvable: ' + med.file); });
         return audio;
-    }
-
-    function updateProgress(id) {
-        if (!audio || !audio.duration) return;
-        var fill = document.querySelector('.med-track-card[data-id="' + id + '"] .med-prog-fill');
-        var time = document.querySelector('.med-track-card[data-id="' + id + '"] .med-prog-time');
-        if (fill) fill.style.width = (audio.currentTime / audio.duration * 100) + '%';
-        if (time) time.textContent = formatTime(audio.currentTime) + ' / ' + formatTime(audio.duration);
-    }
-
-    function resetProgress(id) {
-        var fill = document.querySelector('.med-track-card[data-id="' + id + '"] .med-prog-fill');
-        var time = document.querySelector('.med-track-card[data-id="' + id + '"] .med-prog-time');
-        if (fill) fill.style.width = '0%';
-        if (time) time.textContent = '0:00 / 0:00';
     }
 
     window.toggleMedTrack = function(id) {
         var med = MEDITATIONS.find(function(m) { return m.id === id; });
         if (!med) return;
 
-        var card = document.querySelector('.med-track-card[data-id="' + id + '"]');
-        var pi   = card ? card.querySelector('.med-play-icon')  : null;
-        var pa   = card ? card.querySelector('.med-pause-icon') : null;
-
-        // Si c'est un autre track → stop tout et charger le nouveau
-        if (!currentMed || currentMed.id !== id) {
-            stopAll();
-            currentMed = med;
-            audio = buildAudio(med);
-            audio.play().catch(function(e) { console.warn('Play error:', e); });
-            if (card) card.classList.add('playing');
-            if (pi) pi.style.display = 'none';
-            if (pa) pa.style.display = 'block';
-            return;
+        if (currentId && currentId !== id) {
+            setUI(currentId, false);
+            audio.pause();
         }
 
-        // Même track → toggle
+        if (currentId !== id) {
+            currentId = id;
+            audio = buildAudio(med);
+        }
+
         if (audio.paused) {
-            audio.play().catch(function(e) { console.warn('Play error:', e); });
-            if (card) card.classList.add('playing');
-            if (pi) pi.style.display = 'none';
-            if (pa) pa.style.display = 'block';
+            audio.play().catch(function(e) { console.warn('Lecture impossible:', e); });
+            isPlaying = true;
+            setUI(id, true);
         } else {
             audio.pause();
-            if (card) card.classList.remove('playing');
-            if (pi) pi.style.display = 'block';
-            if (pa) pa.style.display = 'none';
+            isPlaying = false;
+            setUI(id, false);
         }
     };
 
     window.seekMedTrack = function(e, id) {
         e.stopPropagation();
-        if (!audio || !currentMed || currentMed.id !== id) return;
+        if (!audio || currentId !== id || !audio.duration) return;
         var bar = e.currentTarget;
         var rect = bar.getBoundingClientRect();
         audio.currentTime = ((e.clientX - rect.left) / rect.width) * audio.duration;
@@ -116,68 +98,53 @@
 
     window.saveMedTrack = function(e, id) {
         e.stopPropagation();
-        var med = MEDITATIONS.find(function(m) { return m.id === id; });
-        if (!med) return;
         var btn = e.currentTarget;
-        btn.style.color = '#00c8dc';
-        btn.title = 'Sauvegardé !';
-        setTimeout(function() {
-            btn.style.color = '';
-            btn.title = 'Sauvegarder';
-        }, 2000);
-        // Future : intégrer avec localStorage pour vraie liste de favoris
-    };
-
-    // Rebuild cards on page if container exists
-    window.buildMedCards = function(containerId) {
-        var container = document.getElementById(containerId);
-        if (!container) return;
-        container.innerHTML = '';
-
-        MEDITATIONS.forEach(function(med) {
-            var card = document.createElement('div');
-            card.className = 'med-track-card';
-            card.setAttribute('data-id', med.id);
-
-            card.innerHTML =
-                '<div class="med-card-img-wrap">' +
-                    '<img src="' + med.image + '" alt="' + med.title + '" onerror="this.src=\'logo-original.jpg\'">' +
-                    '<div class="med-card-overlay"></div>' +
-                    '<button class="med-card-play-btn" onclick="toggleMedTrack(' + med.id + ');event.stopPropagation()" aria-label="Lecture">' +
-                        '<svg class="med-play-icon" viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>' +
-                        '<svg class="med-pause-icon" viewBox="0 0 24 24" width="22" height="22" fill="currentColor" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>' +
-                    '</button>' +
-                '</div>' +
-                '<div class="med-card-info">' +
-                    '<div class="med-card-title">' + med.title + '</div>' +
-                    '<div class="med-card-author">' + med.author + '</div>' +
-                    '<div class="med-card-date">' + med.date + '</div>' +
-                    '<div class="med-prog-bar" onclick="seekMedTrack(event,' + med.id + ')">' +
-                        '<div class="med-prog-fill"></div>' +
-                    '</div>' +
-                    '<div class="med-card-bottom">' +
-                        '<span class="med-prog-time">0:00 / 0:00</span>' +
-                        '<div class="med-card-actions">' +
-                            '<button class="med-action-btn" onclick="saveMedTrack(event,' + med.id + ')" title="Sauvegarder">' +
-                                '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg>' +
-                            '</button>' +
-                            '<button class="med-action-btn" onclick="shareMedTrack(event,' + med.id + ')" title="Partager">' +
-                                '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>' +
-                            '</button>' +
-                        '</div>' +
-                    '</div>' +
-                '</div>';
-
-            container.appendChild(card);
-        });
+        var saved = btn.getAttribute('data-saved') === '1';
+        btn.setAttribute('data-saved', saved ? '0' : '1');
+        btn.style.color = saved ? '' : 'rgba(0,200,220,0.9)';
+        btn.style.fill  = saved ? '' : 'rgba(0,200,220,0.9)';
     };
 
     window.shareMedTrack = function(e, id) {
         e.stopPropagation();
+        var btn = e.currentTarget;
         navigator.clipboard.writeText(window.location.origin + '/meditations.html').then(function() {
-            var btn = e.currentTarget;
-            btn.style.color = '#00c8dc';
+            btn.style.color = 'rgba(0,200,220,0.9)';
             setTimeout(function() { btn.style.color = ''; }, 2000);
+        });
+    };
+
+    window.buildMedCards = function(containerId) {
+        var container = document.getElementById(containerId);
+        if (!container) return;
+        container.innerHTML = '';
+        MEDITATIONS.forEach(function(med) {
+            var li = document.createElement('div');
+            li.className = 'track-item med-track-item';
+            li.setAttribute('data-id', med.id);
+            li.innerHTML =
+                '<img class="track-cover med-track-cover" src="' + med.image + '" alt="' + med.title + '" onerror="this.src='logo-original.jpg'">' +
+                '<div class="track-info">' +
+                    '<span class="track-name">' + med.title + '</span>' +
+                    '<span class="track-artist">' + med.author + '</span>' +
+                    '<div class="track-progress" style="opacity:1;">' +
+                        '<div class="track-progress-bar med-prog-bar" style="width:0%"></div>' +
+                    '</div>' +
+                '</div>' +
+                '<span class="med-prog-time" style="font-family:Montserrat,sans-serif;font-size:10px;color:rgba(255,255,255,0.35);margin-right:8px;white-space:nowrap;">0:00 / 0:00</span>' +
+                '<div style="display:flex;gap:6px;align-items:center;">' +
+                    '<button class="med-action-btn" onclick="saveMedTrack(event,' + med.id + ')" title="Sauvegarder" style="background:none;border:none;cursor:pointer;color:rgba(255,255,255,0.4);transition:color 0.2s;display:flex;padding:2px;">' +
+                        '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg>' +
+                    '</button>' +
+                    '<button class="med-action-btn" onclick="shareMedTrack(event,' + med.id + ')" title="Partager" style="background:none;border:none;cursor:pointer;color:rgba(255,255,255,0.4);transition:color 0.2s;display:flex;padding:2px;">' +
+                        '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>' +
+                    '</button>' +
+                    '<button class="play-btn med-play-btn" onclick="toggleMedTrack(' + med.id + ');event.stopPropagation()" aria-label="Lecture">' +
+                        '<svg class="med-play-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>' +
+                        '<svg class="med-pause-icon" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>' +
+                    '</button>' +
+                '</div>';
+            container.appendChild(li);
         });
     };
 })();

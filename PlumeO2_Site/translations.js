@@ -152,7 +152,8 @@ const TRANSLATIONS = {
     footer_copyright: "© 2026 Plume d'O². All rights reserved.",
     // MÉDITATION QUOTIDIENNE
     meditation_title: "Daily Meditation",
-    meditation_subtitle: "A new audio meditation every two weeks.",
+    meditation_subtitle: "A new audio meditation every two weeks — available in French only.",
+    meditation_fr_only: "🇫🇷 These audio meditations are available in French only.",
     meditation_tag: "Meditation",
     meditation_track_title: "How to start your day",
     meditation_author: "Ustadh Mathieu",
@@ -505,7 +506,8 @@ const TRANSLATIONS_EXTRA = {
     footer_copyright: "© 2026 Plume d'O². جميع الحقوق محفوظة.",
     // المديتاسيون اليومي
     meditation_title: "تأمل يومي",
-    meditation_subtitle: "تأمل صوتي جديد كل أسبوعين.",
+    meditation_subtitle: "تأمل صوتي جديد كل أسبوعين — باللغة الفرنسية فقط.",
+    meditation_fr_only: "🇫🇷 هذه التأملات الصوتية متاحة باللغة الفرنسية فقط.",
     meditation_tag: "تأمل",
     meditation_track_title: "كيف تبدأ يومك",
     meditation_author: "أستاذ ماتيو",
