@@ -45,154 +45,38 @@
 }
 
 /* ── RTL — Arabe ────────────────────────────────────────── */
-[dir="rtl"] .navbar {
-  flex-direction: row-reverse;
-}
+[dir="rtl"] .navbar { flex-direction: row-reverse; }
+[dir="rtl"] nav { flex-direction: row-reverse; }
+[dir="rtl"] .lang-switcher { margin-left: 0; margin-right: 24px; }
+[dir="rtl"] .hero-content { text-align: right; }
+[dir="rtl"] .mission-content { text-align: right; }
+[dir="rtl"] .footer-container { direction: rtl; }
+[dir="rtl"] .footer-col ul { text-align: right; }
+[dir="rtl"] .article-content { text-align: right; }
+[dir="rtl"] .article-meta { text-align: right; }
+[dir="rtl"] .section-header { text-align: right; }
+[dir="rtl"] .upcoming-text { text-align: right; }
+[dir="rtl"] .product-info { text-align: right; }
+[dir="rtl"] .author-bio { text-align: right; }
 
-[dir="rtl"] nav {
-  flex-direction: row-reverse;
-}
-
-[dir="rtl"] .lang-switcher {
-  margin-left: 0;
-  margin-right: 24px;
-}
-
-[dir="rtl"] .hero-content {
-  text-align: right;
-}
-
-[dir="rtl"] .mission-content {
-  text-align: right;
-}
-
-[dir="rtl"] .footer-container {
-  direction: rtl;
-}
-
-[dir="rtl"] .footer-col ul {
-  text-align: right;
-}
-
-[dir="rtl"] .article-content {
-  text-align: right;
-}
-
-[dir="rtl"] .article-meta {
-  text-align: right;
-}
-
-[dir="rtl"] .section-header {
-  text-align: right;
-}
-
-[dir="rtl"] .upcoming-text {
-  text-align: right;
-}
-
-[dir="rtl"] .product-info {
-  text-align: right;
-}
-
-[dir="rtl"] .author-bio {
-  text-align: right;
-}
-
-/* Police arabe plus lisible */
-[dir="rtl"] h1,
-[dir="rtl"] h2,
-[dir="rtl"] h3,
-[dir="rtl"] p,
-[dir="rtl"] span,
-[dir="rtl"] a {
+[dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3,
+[dir="rtl"] p, [dir="rtl"] span, [dir="rtl"] a {
   font-family: 'Montserrat', 'Segoe UI', Tahoma, Arial, sans-serif;
   line-height: 1.9;
 }
 
-/* ── MOBILE ─────────────────────────────────────────────── */
+/* ── MOBILE — uniquement les drapeaux ───────────────────── */
 @media (max-width: 768px) {
-  .lang-switcher {
-    margin-left: 8px;
-    gap: 3px;
-  }
-
-  .lang-btn {
-    padding: 3px 6px;
-    font-size: 10px;
-  }
-
-  .lang-flag {
-    font-size: 12px;
-  }
+  .lang-switcher { margin-left: 8px; gap: 3px; }
+  .lang-btn { padding: 3px 6px; font-size: 10px; }
+  .lang-flag { font-size: 12px; }
+  .lang-btn .lang-text { display: none; }
 }
 
-/* ── MOBILE NAVBAR — fix empiètement drapeaux ──────────── */
-@media (max-width: 768px) {
-
-  /* Ligne 1 : Logo + drapeaux */
-  .navbar {
-    flex-wrap: wrap;
-    gap: 6px;
-    padding: 10px 16px !important;
-    align-items: center;
-  }
-
-  .navbar .logo {
-    flex: 1;
-    font-size: 1.05rem;
-  }
-
-  /* Drapeaux à droite du logo sur la même ligne */
-  .lang-switcher {
-    order: 2;
-    gap: 3px;
-    margin-left: auto;
-  }
-
-  .lang-btn {
-    padding: 3px 6px;
-    font-size: 10px;
-  }
-
-  .lang-btn .lang-text {
-    display: none;
-  }
-
-  /* Ligne 2 : Liens nav sur toute la largeur */
-  .navbar nav {
-    order: 3;
-    flex: 0 0 100%;
-    display: flex;
-    justify-content: space-between;
-    gap: 0;
-    font-size: 10px;
-    border-top: 1px solid rgba(255,255,255,0.06);
-    padding-top: 8px;
-    margin-top: 2px;
-  }
-
-  .navbar nav a {
-    padding: 4px 2px;
-    white-space: nowrap;
-  }
-}
-
-/* ── BANNIÈRE LÉGALE — fix chevauchement mobile ─────────── */
-.lang-banner {
-  position: relative;
-  z-index: 999;
-  margin-top: 0;
-}
+/* ── BANNIÈRE LÉGALE ────────────────────────────────────── */
+.lang-banner { position: relative; z-index: 999; margin-top: 0; }
 
 @media (max-width: 640px) {
-  .lang-banner {
-    padding: 10px 16px;
-    font-size: 12px;
-    line-height: 1.5;
-  }
-
-  /* S'assurer que le contenu légal ne commence pas sous le header */
-  .legal-page {
-    padding-top: 100px !important;
-  }
+  .lang-banner { padding: 10px 16px; font-size: 12px; line-height: 1.5; }
+  .legal-page { padding-top: 100px !important; }
 }
