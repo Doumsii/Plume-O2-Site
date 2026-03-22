@@ -71,6 +71,15 @@ const TRANSLATIONS = {
     footer_privacy: "Politique de Confidentialité",
     footer_cgv: "CGV",
     footer_copyright: "© 2026 Plume d'O². Tous droits réservés.",
+    // MÉDITATION QUOTIDIENNE
+    meditation_title: "Méditation Quotidienne",
+    meditation_subtitle: "Une méditation audio renouvelée toutes les deux semaines.",
+    meditation_tag: "Méditation",
+    meditation_track_title: "Comment débuter sa journée",
+    meditation_author: "Ustadh Mathieu",
+    meditation_desc: "Comment débuter sa journée dans la conscience d'Allah et la sérénité du cœur.",
+    meditation_latest: "Épisode en cours",
+    meditation_all: "Tous les épisodes",
     boutique_modal_recueil_desc: "Ce recueil aux mille vertus rassemble les invocations du matin et du soir — tirées du Coran et de la Sunna, avec translittération et traduction française. À l'aube, ces prières agissent comme une douche revigorante avant d'affronter la journée. Au crépuscule, elles apaisent comme un bain après un long labeur. Car les invocations ne sont pas de simples mots : elles établissent un lien vivant avec Allah, protègent des pensées négatives et régénèrent le cœur, le corps et l'âme. Comme le rappelle le Prophète ﷺ : «La différence entre celui qui invoque son Seigneur et celui qui ne l'invoque pas est comme la différence entre le vivant et le mort.»",
   },
 
@@ -141,6 +150,15 @@ const TRANSLATIONS = {
     footer_privacy: "Privacy Policy",
     footer_cgv: "Terms & Conditions",
     footer_copyright: "© 2026 Plume d'O². All rights reserved.",
+    // MÉDITATION QUOTIDIENNE
+    meditation_title: "Daily Meditation",
+    meditation_subtitle: "A new audio meditation every two weeks.",
+    meditation_tag: "Meditation",
+    meditation_track_title: "How to start your day",
+    meditation_author: "Ustadh Mathieu",
+    meditation_desc: "How to start your day in the awareness of Allah and the serenity of the heart.",
+    meditation_latest: "Current episode",
+    meditation_all: "All episodes",
     boutique_modal_recueil_desc: "This collection of thousand-virtue supplications gathers the morning and evening invocations — drawn from the Quran and Sunnah, with transliteration and French translation. At dawn, these prayers act like a reviving shower before facing the day. At dusk, they soothe like a warm bath after long labor. For invocations are not mere words: they forge a living bond with Allah, shield against negative thoughts and regenerate the heart, body and soul. As the Prophet ﷺ said: «The difference between one who remembers his Lord and one who does not is like the difference between the living and the dead.»",
   },
 
@@ -149,6 +167,7 @@ const TRANSLATIONS = {
     nav_ecouter: "استمع",
     nav_journal: "المجلة",
     nav_boutique: "المتجر",
+    nav_meditations: "تأملات",
 
     // HERO
     hero_title: "تنفَّس. استمِع. تأمَّل.",
@@ -484,6 +503,15 @@ const TRANSLATIONS_EXTRA = {
     ecoute_videos_subtitle: "انغمس في الفضاء الصوتي لـ Plume d'O²",
     ecoute_videos_btn: "شاهد جميع الفيديوهات ↓",
     footer_copyright: "© 2026 Plume d'O². جميع الحقوق محفوظة.",
+    // المديتاسيون اليومي
+    meditation_title: "تأمل يومي",
+    meditation_subtitle: "تأمل صوتي جديد كل أسبوعين.",
+    meditation_tag: "تأمل",
+    meditation_track_title: "كيف تبدأ يومك",
+    meditation_author: "أستاذ ماتيو",
+    meditation_desc: "كيف تبدأ يومك في وعي الله وسكينة القلب.",
+    meditation_latest: "الحلقة الحالية",
+    meditation_all: "جميع الحلقات",
     boutique_modal_recueil_desc: "يجمع هذا الكتيّب أدعية الصباح والمساء ذات الفضائل الجمّة — مستقاةً من القرآن الكريم والسنة النبوية، مع كتابتها الصوتية وترجمتها الفرنسية. في الفجر، تعمل هذه الأدعية كالدش المنعش قبل مواجهة اليوم. وعند الغروب، تُهدِّئ كحمّام دافئ بعد يوم طويل من العمل. فالأدعية ليست مجرد كلمات: بل هي رابط حيّ مع الله، وحصن من الأفكار السلبية، وتجديد للقلب والجسد والروح. كما قال النبي ﷺ: «مثل الذي يذكر ربه والذي لا يذكر ربه مثل الحي والميت.»",
   }
 };
