@@ -10,17 +10,17 @@ const MEDITATIONS = [
         file:  "meditation-2.m4a",
         image: "meditation-2.jpg",
         date:  "Mars 2026",
-        title:  "Au cœur de la spiritualité",
+        title:  "Au c\u0153ur de la spiritualit\u00e9",
         author: "Ustadh Anthony",
-        desc:   "Une invitation à plonger au cœur de la vie spirituelle, pour nourrir l'âme et raviver la flamme intérieure."
+        desc:   "Une invitation \u00e0 plonger au c\u0153ur de la vie spirituelle, pour nourrir l'\u00e2me et raviver la flamme int\u00e9rieure."
     },
     {
         id: 1,
-        file:  "meditation-1.m4a",
+        file:  "meditation-quotidienne.m4a",
         image: "meditation-1.jpg",
         date:  "Mars 2026",
-        title:  "Comment débuter sa journée",
+        title:  "Comment d\u00e9buter sa journ\u00e9e",
         author: "Ustadh Mathieu",
-        desc:   "Comment débuter sa journée dans la conscience d'Allah et la sérénité du cœur."
+        desc:   "Comment d\u00e9buter sa journ\u00e9e dans la conscience d'Allah et la s\u00e9r\u00e9nit\u00e9 du c\u0153ur."
     }
 ];
