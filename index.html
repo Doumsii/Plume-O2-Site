@@ -1,45 +1,306 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plume d'O² | Le sanctuaire de l'âme</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="plumedo2-animations.css">
+    <link rel="stylesheet" href="plumedo2-player.css">
+    <link rel="stylesheet" href="plumedo2-mobile.css">
+    <link rel="stylesheet" href="lang-switcher.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- SEO -->
+    <meta name="description" content="Plume d'O² — Votre sanctuaire audio pour apaiser le cœur et nourrir l'âme.">
+    <meta name="keywords" content="récitation coran, audio spirituel, méditation islamique, invocations">
+    <meta name="author" content="Plume d'O²">
+    <meta name="robots" content="index, follow">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://plume-o2-site.vercel.app/">
+    <meta property="og:title" content="Plume d'O² | Le sanctuaire de l'âme">
+    <meta property="og:description" content="Votre sanctuaire audio pour apaiser le cœur et nourrir l'âme.">
+    <meta property="og:image" content="https://plume-o2-site.vercel.app/logo-original.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="1200">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:site_name" content="Plume d'O²">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Plume d'O² | Le sanctuaire de l'âme">
+    <meta name="twitter:description" content="Votre sanctuaire audio pour apaiser le cœur et nourrir l'âme.">
+    <meta name="twitter:image" content="https://plume-o2-site.vercel.app/logo-original.jpg">
+    <link rel="icon" type="image/jpeg" href="logo-original.jpg">
+    <link rel="apple-touch-icon" href="logo-original.jpg">
+<style>
+/* ── STYLES MODALS PRODUITS (partagés index + boutique) ── */
+.product-modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.88);
+    backdrop-filter: blur(10px);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+.product-modal-overlay.open { display: flex; }
+
+.product-modal {
+    background: #0c1020;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    max-width: 900px;
+    width: 100%;
+    max-height: 92vh;
+    overflow-y: auto;
+    box-shadow: 0 32px 100px rgba(0,0,0,0.8);
+    animation: modalIn 0.35s cubic-bezier(0.22,1,0.36,1);
+    position: relative;
+}
+
+@keyframes modalIn {
+    from { opacity: 0; transform: translateY(40px) scale(0.96); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.product-modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.12);
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+    z-index: 10;
+}
+.product-modal-close:hover { background: rgba(255,255,255,0.22); }
+
+/* Layout images en haut, texte en bas */
+.product-modal-images {
+    display: flex;
+    gap: 12px;
+    padding: 28px 28px 0;
+    justify-content: center;
+}
+
+.product-modal-images img {
+    height: 320px;
+    width: auto;
+    border-radius: 12px;
+    object-fit: cover;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+    transition: transform 0.3s;
+}
+.product-modal-images img:hover { transform: scale(1.02); }
+
+.product-modal-images.single img {
+    height: 380px;
+    max-width: 100%;
+}
+
+.product-modal-body {
+    padding: 24px 32px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.product-modal-cat {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(0,200,220,0.85);
+}
+
+.product-modal-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.75rem;
+    color: #fff;
+    line-height: 1.2;
+    margin: 0;
+}
+
+.product-modal-author {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.product-modal-author img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.product-modal-author span {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    color: rgba(255,255,255,0.65);
+    font-weight: 500;
+}
+
+.product-modal-desc {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13.5px;
+    line-height: 1.9;
+    color: rgba(255,255,255,0.6);
+    border-left: 2px solid rgba(0,200,220,0.35);
+    padding-left: 16px;
+    margin: 4px 0;
+}
+
+.product-modal-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: #fff;
+    font-weight: 700;
+}
+
+.product-modal-btns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.fr-only-notice {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba(0,200,220,0.85);
+    background: rgba(0,200,220,0.08);
+    border: 1px solid rgba(0,200,220,0.25);
+    border-radius: 20px;
+    padding: 4px 12px;
+    display: inline-block;
+}
+
+/* Curseur pointer sur les cards cliquables */
+.product-card, .boutique-page-card { cursor: pointer; }
+
+@media (max-width: 600px) {
+    .product-modal-images { flex-direction: column; align-items: center; padding: 20px 20px 0; }
+    .product-modal-images img { height: 200px; }
+    .product-modal-body { padding: 20px; }
+    .product-modal-title { font-size: 1.3rem; }
+}
+
+
+
+/* ── BLOCKER CLIC DROIT ─────────────────────────────── */
+.parchemin-wrapper {
+    position: relative;
+    display: block;
+    width: 100%;
+}
+.parchemin-blocker {
+    position: absolute;
+    inset: 0;
+    z-index: 100;
+    cursor: default;
+    pointer-events: all !important;
+    -webkit-user-drag: none;
+    user-select: none;
+    -webkit-user-select: none;
+    background: transparent;
+}
+
+/* ── FILIGRANE PARCHEMIN ────────────────────────────── */
+.parchemin-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+.parchemin-wrapper img {
+    display: block;
+    width: 100%;
+}
+.parchemin-watermark {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    border-radius: inherit;
+    background: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 60px,
+        rgba(0,0,0,0) 60px,
+        rgba(0,0,0,0) 120px
+    );
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-around;
+    justify-content: space-around;
+    gap: 0;
+}
+.parchemin-watermark span {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba(80, 60, 20, 0.18);
+    white-space: nowrap;
+    transform: rotate(-35deg);
+    letter-spacing: 0.05em;
+    user-select: none;
+    -webkit-user-select: none;
+}
+</style>
 </head>
 <body>
 
     <header class="navbar">
-        <div class="logo">Plume d'O²</div>
+        <a href="index.html" class="logo">Plume d'O²</a>
         <nav>
-            <a href="#ecouter">Écouter</a>
-            <a href="#savoir">Le Journal</a>
-            <a href="#boutique">Boutique</a>
+            <a href="ecoute.html" data-i18n="nav_ecouter">Écouter</a>
+            <a href="meditations.html" data-i18n="nav_meditations">Méditations</a>
+            <a href="journal.html" data-i18n="nav_journal">Le Journal</a>
+            <a href="boutique.html" data-i18n="nav_boutique">Boutique</a>
         </nav>
+        <div class="lang-switcher">
+            <button class="lang-btn active" data-lang="fr" onclick="setLanguage('fr')">
+                <span class="lang-flag">🇫🇷</span> FR
+            </button>
+            <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">
+                <span class="lang-flag">🇬🇧</span> EN
+            </button>
+            <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')">
+                <span class="lang-flag">🇸🇦</span> AR
+            </button>
+        </div>
     </header>
 
     <section class="hero">
         <div class="hero-content">
-            <h1>Respirez. Écoutez. Méditez.</h1>
-            <p>Votre sanctuaire audio pour apaiser le cœur et nourrir l'âme. Des récitations et histoires inspirantes pour se reconnecter à l'Éternel dans le tumulte du monde.</p>
-            <a href="#ecouter" class="btn-primary">Découvrir les écoutes</a>
+            <h1 data-i18n="hero_title">Respirez. Écoutez. Méditez.</h1>
+            <p data-i18n="hero_subtitle">Votre sanctuaire audio pour apaiser le cœur et nourrir l'âme. Des récitations et histoires inspirantes pour se reconnecter à l'Éternel dans le tumulte du monde.</p>
+            <a href="ecoute.html" class="btn-primary" data-i18n="hero_btn">Découvrir les écoutes</a>
         </div>
     </section>
 
     <section id="mission" class="mission">
         <div class="mission-content">
-            <h2>Notre Vision : Un Souffle pour l'Âme</h2>
+            <h2 data-i18n="mission_title">Notre Vision : Un Souffle pour l'Âme</h2>
             <div class="mission-text">
-                <p>Plume d'O² n'est pas simplement un label audio ; c'est un sanctuaire numérique, une respiration nécessaire dans un monde saturé de bruit et de distractions. Notre mission est d'offrir un espace intime et pur pour se reconnecter à l'Éternel.</p>
-                <p>À travers des récitations apaisantes, des histoires inspirantes et des réflexions profondes, nous allions la pureté du son à la beauté visuelle pour créer une expérience immersive qui nourrit l'intellect et apaise le cœur. Notre objectif est de vous accompagner sur le chemin de l'introspection et de la paix intérieure.</p>
+                <p data-i18n="mission_p1">Plume d'O² n'est pas simplement un label audio ; c'est un sanctuaire numérique, une respiration nécessaire dans un monde saturé de bruit et de distractions. Notre mission est d'offrir un espace intime et pur pour se reconnecter à l'Éternel.</p>
+                <p data-i18n="mission_p2">À travers des récitations apaisantes, des histoires inspirantes et des réflexions profondes, nous allions la pureté du son à la beauté visuelle pour créer une expérience immersive qui nourrit l'intellect et apaise le cœur. Notre objectif est de vous accompagner sur le chemin de l'introspection et de la paix intérieure.</p>
             </div>
         </div>
     </section>
 
     <section id="ecouter" class="streaming">
         <div class="section-header">
-            <h2>Plongez dans l'écoute</h2>
-            <p>Découvrez nos univers sonores et abonnez-vous sur vos plateformes.</p>
+            <h2 data-i18n="streaming_title">Plongez dans l'écoute</h2>
+            <p data-i18n="streaming_subtitle">Découvrez nos univers sonores et abonnez-vous sur vos plateformes.</p>
         </div>
         
         <div class="players-grid">
@@ -55,17 +316,15 @@
                     </div>
                     <img src="logo.jpg" alt="Plume d'O² Logo" class="profile-avatar">
                 </div>
-                
                 <div class="profile-body">
                     <h3 class="label-title">Plume d'O²</h3>
                     <p class="profile-subtitle">Records</p>
-                    
                     <div class="popular-tracks">
-                        <h4>Populaires</h4>
+                        <h4 data-i18n="streaming_popular">Populaires</h4>
                         <div class="track-item">
                             <img class="track-cover" src="pochette1.jpg" alt="cover">
                             <div class="track-info">
-                                <span class="track-name">Al kahf</span>
+                                <span class="track-name">Al Kahf</span>
                                 <span class="track-artist">Ustadh Idriss</span>
                             </div>
                         </div>
@@ -84,7 +343,7 @@
                             </div>
                         </div>
                     </div>
-                    <span class="btn-listen apple">Écouter sur Apple Music</span>
+                    <span class="btn-listen apple" data-i18n="streaming_listen_apple">Écouter sur Apple Music</span>
                 </div>
             </a>
 
@@ -100,17 +359,15 @@
                     </div>
                     <img src="logo.jpg" alt="Plume d'O² Logo" class="profile-avatar">
                 </div>
-                
                 <div class="profile-body">
                     <h3 class="label-title">Plume d'O²</h3>
                     <p class="profile-subtitle">Records</p>
-                    
                     <div class="popular-tracks">
-                        <h4>Populaires</h4>
+                        <h4 data-i18n="streaming_popular">Populaires</h4>
                         <div class="track-item">
                             <img class="track-cover" src="pochette4.jpg" alt="cover">
                             <div class="track-info">
-                                <span class="track-name">Al Fatiha</span>
+                                <span class="track-name">Ad-Duhã</span>
                                 <span class="track-artist">Ustadh Mounir</span>
                             </div>
                         </div>
@@ -124,12 +381,12 @@
                         <div class="track-item">
                             <img class="track-cover" src="pochette6.jpg" alt="cover">
                             <div class="track-info">
-                                <span class="track-name">Sourate Al Baqara (285_286)</span>
+                                <span class="track-name">At-Taghabun</span>
                                 <span class="track-artist">Oways Ahmad</span>
                             </div>
                         </div>
                     </div>
-                    <span class="btn-listen spotify">Écouter sur Spotify</span>
+                    <span class="btn-listen spotify" data-i18n="streaming_listen_spotify">Écouter sur Spotify</span>
                 </div>
             </a>
         </div>
@@ -140,17 +397,28 @@
             <a href="https://youtube.com/@plumedo2_records?si=ej0LK4i50TXXwfjH" target="_blank" rel="noopener noreferrer" class="btn-secondary">YouTube</a>
             <a href="https://link.deezer.com/s/32GjMDt3vzl7ZV7YudgLt" target="_blank" rel="noopener noreferrer" class="btn-secondary">Deezer</a>
         </div>
+
+    <!-- ══ MÉDITATIONS ════════════════════════════════════ -->
+    <section class="streaming" style="padding-top:56px;padding-bottom:48px;">
+        <div class="section-header">
+            <h2 data-i18n="meditation_title">Méditations Quotidiennes</h2>
+            <p data-i18n="meditation_subtitle">Des méditations guidées pour nourrir l'âme. Un nouvel épisode toutes les deux semaines.</p>
+            <p id="med-fr-notice-index" style="display:none;font-family:Montserrat,sans-serif;font-size:12px;color:rgba(0,200,220,0.7);margin-top:8px;" data-i18n="meditation_fr_only"></p>
+        </div>
+        <div class="popular-tracks" id="med-tracks-container" style="max-width:560px;margin:0 auto;"></div>
+        <div class="streaming-links" style="margin-top:24px;">
+            <a href="meditations.html" class="btn-secondary" data-i18n="meditation_all">Voir tous les épisodes →</a>
+        </div>
     </section>
 
     <section class="upcoming">
         <div class="upcoming-container">
             <div class="upcoming-text">
-                <span class="upcoming-tag">Prochainement</span>
-                <h2>Les Invocations des Prophètes</h2>
-                <p>Plongez au cœur de la révélation avec notre prochain projet inédit. Nous avons compilé pour vous toutes les invocations (Duaas) prononcées par les prophètes, tirées exclusivement du Saint Coran.</p>
-                <p>Une œuvre sonore apaisante et spirituelle pour accompagner vos moments de recueillement. À venir très bientôt sur toutes vos plateformes de streaming.</p>
+                <span class="upcoming-tag" data-i18n="upcoming_tag">Prochainement</span>
+                <h2 data-i18n="upcoming_title">Les Invocations des Prophètes</h2>
+                <p data-i18n="upcoming_p1">Plongez au cœur de la révélation avec notre prochain projet inédit. Nous avons compilé pour vous toutes les invocations (Duaas) prononcées par les prophètes, tirées exclusivement du Saint Coran.</p>
+                <p data-i18n="upcoming_p2">Une œuvre sonore apaisante et spirituelle pour accompagner vos moments de recueillement. À venir très bientôt sur toutes vos plateformes de streaming.</p>
             </div>
-            
             <div class="upcoming-gallery-scroll">
                 <img src="prophetes-1.jpg" alt="Pochette Invocations 1" class="scroll-img">
                 <img src="prophetes-2.jpg" alt="Pochette Invocations 2" class="scroll-img">
@@ -162,86 +430,122 @@
 
     <section id="savoir" class="journal">
         <div class="section-header">
-            <h2>Le Journal</h2>
-            <p>Exploration du Coran, recherches scientifiques et méditations spirituelles.</p>
+            <h2 data-i18n="journal_title">Le Journal</h2>
+            <p data-i18n="journal_subtitle">Exploration du Coran, recherches scientifiques et méditations spirituelles.</p>
         </div>
-
         <div class="journal-grid">
             <article class="article-card featured">
                 <div class="article-content">
-                    <span class="article-tag">Méditation</span>
-                    <h3>L'éthique de l'information et la préservation de l'honneur</h3>
-                    <div class="article-meta">Sourate Al-Hujurat (Verset 6) • Oways Ahmad</div>
-                    <p>Ce verset vient après un passage qui évoque le mauvais comportement envers le Prophète et les graves conséquences qui en découlent. Ce verset nous appelle à la patience, mais aussi à la vigilance face aux informations que l'on reçoit et pourrait propager, au risque de nuire à l'honneur des gens. Il est primordial de vérifier chaque information, surtout si elle nous vient d'un "fasiq".</p>
-                    <p>Il nous rappelle au moins trois finalités de notre religion (Maqasid Ashari'a). Préservation de la société, de notre religion et l'honneur des gens. La sourate nous parle essentiellement de l'éthique du croyant de façon générale, en particulier de la langue et comment l'éduquer.</p>
-                    <a href="#" class="btn-read-more">Lire l'article complet</a>
+                    <span class="article-tag" data-i18n="journal_tag1">Méditation</span>
+                    <h3 data-i18n="journal_article1_title">L'éthique de l'information et la préservation de l'honneur</h3>
+                    <div class="article-meta" data-i18n="journal_article1_meta">Sourate Al-Hujurat (Verset 6) • Oways Ahmad</div>
+                    <p data-i18n="journal_article1_p1">Ce verset vient après un passage qui évoque le mauvais comportement envers le Prophète et les graves conséquences qui en découlent.</p>
+                    <p data-i18n="journal_article1_p2">Il nous rappelle au moins trois finalités de notre religion (Maqasid Ashari'a).</p>
+                    <a href="article1.html" class="btn-read-more" data-i18n="journal_read1">Lire l'article complet</a>
                 </div>
             </article>
-
             <article class="article-card has-image">
                 <img src="hadid.jpg" alt="Sourate Al-Hadid" class="article-image">
                 <div class="article-content">
-                    <span class="article-tag">Recherche</span>
-                    <h3>L'engagement et l'équilibre</h3>
-                    <div class="article-meta">Sourate Al-Hadid • Plume d'O²</div>
-                    <p>Une analyse profonde de la sourate Al-Hadid. Son sujet central est l'engagement véritable envers Allah, Sa religion, Son Prophète et Sa voie. Elle nous invite à concilier cet engagement spirituel profond avec notre vie personnelle, trouvant le juste équilibre pour éviter la dureté du cœur et exceller dans la vie.</p>
-                    <a href="#" class="btn-read-more">Lire la recherche</a>
+                    <span class="article-tag" data-i18n="journal_tag2">Recherche</span>
+                    <div class="article-meta" data-i18n="journal_article2_meta">Sourate Al-Hadid • Oways Ahmad</div>
+                    <h3 data-i18n="journal_article2_title">L'engagement et l'équilibre</h3>
+                    <p data-i18n="journal_article2_p1">Une analyse profonde de la sourate Al-Hadid.</p>
+                    <a href="article2.html" class="btn-read-more" data-i18n="journal_read2">Lire la recherche</a>
                 </div>
             </article>
         </div>
-        
         <div class="journal-footer">
-            <a href="#" class="btn-primary">Voir tous les articles</a>
+            <a href="journal.html" class="btn-primary" data-i18n="journal_btn">Voir tous les articles</a>
         </div>
     </section>
-
     <section id="boutique" class="boutique">
         <div class="section-header">
-            <h2>Boutique & Outils</h2>
-            <p>Ressources spirituelles, ouvrages et supports pour vous accompagner au quotidien.</p>
+            <h2 data-i18n="boutique_title">Boutique & Outils</h2>
+            <p data-i18n="boutique_subtitle">Ressources spirituelles, ouvrages et supports pour vous accompagner au quotidien.</p>
         </div>
-
         <div class="boutique-grid">
-            <div class="product-card">
+            <div class="product-card" onclick="openModal('recueil')">
                 <div class="product-img-wrapper light-bg">
                     <img src="recueil.jpg" alt="Recueil d'Invocations" class="product-img contain">
                 </div>
                 <div class="product-info">
-                    <span class="product-category">Livre • Éditions Al Buraq</span>
-                    <h3>Invocations du Matin & du Soir</h3>
-                    
+                    <span class="product-category" data-i18n="boutique_cat1">Livre • Éditions Al Buraq</span>
+                    <h3 data-i18n="boutique_product1_title">Invocations du Matin & du Soir</h3>
                     <div class="bio-container">
                         <img src="oways.jpg" alt="Oways Ahmad" class="bio-avatar">
                         <div class="author-bio">
-                            <p>Jeune étudiant et apprenant en langue arabe, mon ambition est de partager le bien autour de moi et de donner de l'amour aux gens. L'apprentissage et la mémorisation de ces invocations m'ont procuré un bien-être incroyable que j'ai souhaité rendre accessible à tous.</p>
-                            <p>J'ai donc compilé certaines de ces prières aux mille et une vertus, ainsi que d'autres que j'apprécie tout particulièrement, afin d'en faire profiter le plus grand nombre en les publiant aux éditions Al Buraq. En espérant que ce recueil vous apporte un mieux-être dans votre vie de tous les jours et vous permette de vous rapprocher du Divin.</p>
-                            <p class="label-role"><strong>Oways Ahmad</strong><br><em>Créateur et dirigeant de Plume d'O² : Plongez dans un voyage spirituel célébrant la beauté et la diversité de la récitation du Coran. 🌘📖</em></p>
+                            <p data-i18n="boutique_bio_p1">Jeune étudiant et apprenant en langue arabe...</p>
+                            <p data-i18n="boutique_bio_p2">J'ai donc compilé certaines de ces prières...</p>
+                            <p class="label-role"><strong>Oways Ahmad</strong><br><em data-i18n="boutique_bio_role">Créateur et dirigeant de Plume d'O² 🌘📖</em></p>
                         </div>
                     </div>
-
                     <div class="product-action-multi">
                         <span class="product-price">2,00 €</span>
                         <div class="store-buttons">
-                            <a href="https://www.albouraq.fr/bookdetails/698410" target="_blank" rel="noopener noreferrer" class="btn-secondary">Al Buraq</a>
-                            <a href="https://www.fnac.com/a16176695/Ahmad-Invocations-du-matin-et-du-soir" target="_blank" rel="noopener noreferrer" class="btn-secondary">Fnac</a>
-                            <a href="https://www.cultura.com/p-invocations-du-matin-du-soir-9791022504423.html" target="_blank" rel="noopener noreferrer" class="btn-secondary">Cultura</a>
+                            <a href="https://www.albouraq.fr/bookdetails/698410" target="_blank" rel="noopener noreferrer" class="btn-secondary" onclick="event.stopPropagation()">Al Buraq</a>
+                            <a href="https://www.fnac.com/a16176695/Ahmad-Invocations-du-matin-et-du-soir" target="_blank" rel="noopener noreferrer" class="btn-secondary" onclick="event.stopPropagation()">Fnac</a>
+                            <a href="https://www.cultura.com/p-invocations-du-matin-du-soir-9791022504423.html" target="_blank" rel="noopener noreferrer" class="btn-secondary" onclick="event.stopPropagation()">Cultura</a>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <div class="product-card">
+            <div class="product-card" onclick="openModal('cartes')">
                 <div class="product-img-wrapper light-bg">
-                    <img src="parchemin.jpg" alt="Cartes Mentales Juzz Amma" class="product-img contain">
+                    <div class="parchemin-wrapper">
+                    <img src="parchemin.jpg" alt="Cartes Mentales Juzz Amma" class="product-img contain" oncontextmenu="return false" ondragstart="return false" style="-webkit-user-drag:none;">
+                    <div class="parchemin-blocker" oncontextmenu="return false" ondragstart="return false"></div>
+                    <div class="parchemin-watermark" oncontextmenu="return false">
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                <span>© Plume d'O²</span>
+                    </div>
+                </div>
                 </div>
                 <div class="product-info">
-                    <span class="product-category">Outil Pédagogique</span>
-                    <h3>Cartes Mentales - Juzz 'Amma</h3>
-                    <p class="product-desc">Comprenez l'architecture du Coran. Conçues pour faciliter la mémorisation et la méditation, ces cartes mentales cartographient les thèmes, la structure et les liens de chaque sourate du Juzz 'Amma (illustré ici par le parchemin de la sourate An-Naba). Un outil pédagogique essentiel pour une vue d'ensemble claire lors de votre apprentissage.</p>
-                    
+                    <span class="product-category" data-i18n="boutique_cat2">Outil Pédagogique</span>
+                    <h3 data-i18n="boutique_product2_title">Cartes Mentales - Juzz 'Amma</h3>
+                    <p class="product-desc" data-i18n="boutique_product2_desc">Comprenez l'architecture du Coran...</p>
                     <div class="product-action">
                         <span class="product-price">19,90 €</span>
-                        <a href="#" class="btn-primary">Acheter le pack</a>
+                        <a href="#" class="btn-primary" data-i18n="boutique_buy">Acheter le pack</a>
                     </div>
                 </div>
             </div>
@@ -252,19 +556,19 @@
         <div class="footer-container">
             <div class="footer-col">
                 <h3>Plume d'O²</h3>
-                <p>Votre sanctuaire audio pour apaiser le cœur et nourrir l'âme. Récitations, méditations et outils spirituels.</p>
+                <p data-i18n="footer_tagline">Votre sanctuaire audio pour apaiser le cœur et nourrir l'âme.</p>
             </div>
             <div class="footer-col">
-                <h4>Navigation</h4>
+                <h4 data-i18n="footer_nav">Navigation</h4>
                 <ul>
-                    <li><a href="#">Accueil</a></li>
-                    <li><a href="#ecouter">Écouter</a></li>
-                    <li><a href="#savoir">Le Journal</a></li>
-                    <li><a href="#boutique">Boutique</a></li>
+                    <li><a href="index.html" data-i18n="footer_home">Accueil</a></li>
+                    <li><a href="ecoute.html" data-i18n="nav_ecouter">Écouter</a></li>
+                    <li><a href="journal.html" data-i18n="nav_journal">Le Journal</a></li>
+                    <li><a href="boutique.html" data-i18n="nav_boutique">Boutique</a></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>Réseaux & Plateformes</h4>
+                <h4 data-i18n="footer_networks">Réseaux & Plateformes</h4>
                 <div class="social-links">
                     <a href="https://open.spotify.com/intl-fr/artist/3QGBoMKOchcr6qyKXZOab5" target="_blank" rel="noopener noreferrer">Spotify</a>
                     <a href="https://music.apple.com/fr/artist/oways-ahmad/1561790485" target="_blank" rel="noopener noreferrer">Apple Music</a>
@@ -274,11 +578,11 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 Plume d'O². Tous droits réservés.</p>
+            <p data-i18n="footer_copyright">© 2026 Plume d'O². Tous droits réservés.</p>
             <div class="legal-links">
-                <a href="legales.html#mentions">Mentions Légales</a>
-                <a href="legales.html#confidentialite">Politique de Confidentialité</a>
-                <a href="legales.html#cgv">CGV</a>
+                <a href="legales.html#mentions" data-i18n="footer_legal">Mentions Légales</a>
+                <a href="legales.html#confidentialite" data-i18n="footer_privacy">Politique de Confidentialité</a>
+                <a href="legales.html#cgv" data-i18n="footer_cgv">CGV</a>
             </div>
         </div>
     </footer>
@@ -293,23 +597,165 @@
         const fullImage = document.getElementById("fullImage");
         const images = document.querySelectorAll(".scroll-img");
         const closeBtn = document.querySelector(".close-modal");
-
         images.forEach(img => {
             img.addEventListener("click", function() {
                 modal.style.display = "flex";
                 fullImage.src = this.src;
             });
         });
+        closeBtn.addEventListener("click", () => { modal.style.display = "none"; });
+        modal.addEventListener("click", (e) => { if(e.target === modal) modal.style.display = "none"; });
+    </script>
 
-        closeBtn.addEventListener("click", () => {
-            modal.style.display = "none";
-        });
+    <script src="plumedo2-animations.js"></script>
+    <script src="plumedo2-player.js"></script>
+    <script src="plumedo2-mobile.js"></script>
 
-        modal.addEventListener("click", (e) => {
-            if(e.target === modal) {
-                modal.style.display = "none";
+    <script src="meditations-data.js"></script>
+    <script src="meditation-player-v2.js"></script>
+    <script src="translations.js"></script>
+
+    <!-- ══ MODAL RECUEIL ══════════════════════════════════════ -->
+    <div class="product-modal-overlay" id="modal-recueil" onclick="closeModalOutside(event,'recueil')">
+        <div class="product-modal">
+            <button class="product-modal-close" onclick="closeModal('recueil')">✕</button>
+            <div class="product-modal-images">
+                <img src="recueil.jpg" alt="Couverture — Invocations du Matin & du Soir">
+                <img src="recueil-4eme.jpg" alt="4ème de couverture" onerror="this.style.display='none'">
+            </div>
+            <div class="product-modal-body">
+                <span class="product-modal-cat" data-i18n="boutique_cat1">Livre • Éditions Al Buraq</span>
+                <h2 class="product-modal-title" data-i18n="boutique_product1_title">Invocations du Matin & du Soir</h2>
+                <div class="product-modal-author">
+                    <img src="oways.jpg" alt="Oways Ahmad">
+                    <span>Oways Ahmad</span>
+                </div>
+                <p class="product-modal-desc" data-i18n="boutique_modal_recueil_desc">Ce recueil aux mille vertus rassemble les invocations du matin et du soir — tirées du Coran et de la Sunna, avec translittération et traduction française. À l'aube, ces prières agissent comme une douche revigorante avant d'affronter la journée. Au crépuscule, elles apaisent comme un bain après un long labeur. Car les invocations ne sont pas de simples mots : elles établissent un lien vivant avec Allah, protègent des pensées négatives et régénèrent le cœur, le corps et l'âme. Comme le rappelle le Prophète ﷺ : «La différence entre celui qui invoque son Seigneur et celui qui ne l'invoque pas est comme la différence entre le vivant et le mort.»</p>
+                <span class="product-modal-price">2,00 €</span>
+                <div class="product-modal-btns">
+                    <a href="https://www.albouraq.fr/bookdetails/698410" target="_blank" rel="noopener" class="btn-secondary" onclick="event.stopPropagation()">Al Buraq</a>
+                    <a href="https://www.fnac.com/a16176695/Ahmad-Invocations-du-matin-et-du-soir" target="_blank" rel="noopener" class="btn-secondary" onclick="event.stopPropagation()">Fnac</a>
+                    <a href="https://www.cultura.com/p-invocations-du-matin-du-soir-9791022504423.html" target="_blank" rel="noopener" class="btn-secondary" onclick="event.stopPropagation()">Cultura</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══ MODAL CARTES MENTALES ══════════════════════════════ -->
+    <div class="product-modal-overlay" id="modal-cartes" onclick="closeModalOutside(event,'cartes')">
+        <div class="product-modal">
+            <button class="product-modal-close" onclick="closeModal('cartes')">✕</button>
+            <div class="product-modal-images single">
+                    <div class="parchemin-wrapper" style="border-radius:12px;overflow:hidden;max-width:380px;margin:0 auto;">
+                        <img src="parchemin.jpg" alt="Cartes Mentales — Juzz 'Amma" oncontextmenu="return false" ondragstart="return false" style="-webkit-user-drag:none;width:100%;display:block;">
+                        <div class="parchemin-blocker" oncontextmenu="return false" ondragstart="return false"></div>
+                        <div class="parchemin-watermark" oncontextmenu="return false">
+                        <span>© Plume d'O²</span>
+                        <span>© Plume d'O²</span>
+                        <span>© Plume d'O²</span>
+                        <span>© Plume d'O²</span>
+                        <span>© Plume d'O²</span>
+                        <span>© Plume d'O²</span>
+                        <span>© Plume d'O²</span>
+                        <span>© Plume d'O²</span>
+                        <span>© Plume d'O²</span>
+                        <span>© Plume d'O²</span>
+                        <span>© Plume d'O²</span>
+                        <span>© Plume d'O²</span>
+                        <span>© Plume d'O²</span>
+                        <span>© Plume d'O²</span>
+                        <span>© Plume d'O²</span>
+                        <span>© Plume d'O²</span>
+                        <span>© Plume d'O²</span>
+                        <span>© Plume d'O²</span>
+                        <span>© Plume d'O²</span>
+                        <span>© Plume d'O²</span>
+                        <span>© Plume d'O²</span>
+                        <span>© Plume d'O²</span>
+                        <span>© Plume d'O²</span>
+                        <span>© Plume d'O²</span>
+                        <span>© Plume d'O²</span>
+                        <span>© Plume d'O²</span>
+                        <span>© Plume d'O²</span>
+                        <span>© Plume d'O²</span>
+                        <span>© Plume d'O²</span>
+                        <span>© Plume d'O²</span>
+                        <span>© Plume d'O²</span>
+                        <span>© Plume d'O²</span>
+                        <span>© Plume d'O²</span>
+                        <span>© Plume d'O²</span>
+                        <span>© Plume d'O²</span>
+                        <span>© Plume d'O²</span>
+                        <span>© Plume d'O²</span>
+                        <span>© Plume d'O²</span>
+                        <span>© Plume d'O²</span>
+                        <span>© Plume d'O²</span>
+                        </div>
+                    </div>
+                </div>
+            <div class="product-modal-body">
+                <span class="product-modal-cat" data-i18n="boutique_cat2">Outil Pédagogique</span>
+                <h2 class="product-modal-title" data-i18n="boutique_product2_title">Cartes Mentales — Juzz 'Amma</h2>
+                <div class="product-modal-author">
+                    <img src="oways.jpg" alt="Oways Ahmad">
+                    <span>Oways Ahmad</span>
+                </div>
+                <span class="fr-only-notice" data-i18n="boutique_french_only"></span>
+                <p class="product-modal-desc" data-i18n="boutique_product2_desc">Comprenez l'architecture du Coran. Conçues pour faciliter la mémorisation et la méditation, ces cartes mentales cartographient les thèmes, la structure et les liens de chaque sourate du Juzz 'Amma. Un outil pédagogique essentiel pour une vue d'ensemble claire et profonde lors de votre apprentissage.</p>
+                <span class="product-modal-price">19,90 €</span>
+                <div class="product-modal-btns">
+                    <a href="#" class="btn-primary" onclick="event.stopPropagation()" data-i18n="boutique_buy">Acheter le pack</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+function openModal(id) {
+    document.getElementById('modal-' + id).classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+function closeModal(id) {
+    document.getElementById('modal-' + id).classList.remove('open');
+    document.body.style.overflow = '';
+}
+function closeModalOutside(e, id) {
+    if (e.target === document.getElementById('modal-' + id)) closeModal(id);
+}
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') ['recueil','cartes'].forEach(id => closeModal(id));
+});
+
+    </script>
+<script>
+    // Protection parchemin — bloquer clic droit sur toutes les instances
+    document.querySelectorAll('.parchemin-blocker, .parchemin-wrapper img').forEach(el => {
+        el.addEventListener('contextmenu', e => e.preventDefault());
+        el.addEventListener('dragstart', e => e.preventDefault());
+    });
+    // Also block on the modal when it opens
+    document.querySelectorAll('.product-modal-overlay').forEach(modal => {
+        modal.addEventListener('contextmenu', e => {
+            if (e.target.tagName === 'IMG' && e.target.src.includes('parchemin')) {
+                e.preventDefault();
             }
         });
+    });
+</script>
+    <script>
+    if (typeof buildMedCards === 'function') buildMedCards('med-tracks-container');
+    // Notice FR only sur index
+    (function() {
+        function updateNotice() {
+            var lang = localStorage.getItem('plumedo2_lang') || 'fr';
+            var notice = document.getElementById('med-fr-notice-index');
+            if (notice) notice.style.display = lang !== 'fr' ? 'block' : 'none';
+        }
+        updateNotice();
+        document.querySelectorAll('.lang-btn').forEach(function(b) {
+            b.addEventListener('click', function() { setTimeout(updateNotice, 60); });
+        });
+    })();
     </script>
 </body>
 </html>
