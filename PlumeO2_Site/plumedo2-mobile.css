@@ -1,162 +1,420 @@
-/* ============================================================
-   PLUME D'O² — Fix responsive mobile + images cliquables
-   Ajoute dans ton <head> :
-   <link rel="stylesheet" href="plumedo2-mobile.css">
-   ============================================================ */
-
-/* ── FIX HEADER : compense le navbar fixed ──────────────── */
-.hero {
-  padding-top: 80px;
-}
+/* ═══════════════════════════════════════════════════════════════
+   PLUME D'O² — MOBILE CSS (max-width: 768px)
+   ✅ Desktop : inchangé
+   ✅ Mobile  : navbar 1 ligne [☰ gauche | logo centre | flags droite]
+   ✅ Mobile  : texte corps réduit et aéré
+═══════════════════════════════════════════════════════════════ */
 
 @media (max-width: 768px) {
-  .hero {
-    padding-top: 100px;
-  }
 
-  /* Navbar mobile plus compacte */
+  /* ── NAVBAR : structure 1 ligne ─────────────────────────── */
   .navbar {
-    padding: 0.8rem 1.2rem;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 10px 16px !important;
+    min-height: 56px !important;
+    position: relative !important;
+    flex-wrap: nowrap !important;
+    gap: 0 !important;
   }
 
-  .navbar.scrolled {
-    padding: 0.5rem 1.2rem;
-  }
-}
-
-/* ── IMAGES CLIQUABLES — loupe + zoom ───────────────────── */
-
-/* Wrapper autour de chaque image de la galerie */
-.upcoming-gallery-scroll {
-  display: flex;
-  gap: 12px;
-  overflow-x: auto;
-}
-
-.scroll-img-wrapper {
-  position: relative;
-  overflow: hidden;
-  border-radius: 10px;
-  flex-shrink: 0;
-  cursor: pointer;
-}
-
-/* Overlay sombre au hover/tap */
-.scroll-img-wrapper::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0);
-  transition: background 0.3s ease;
-  border-radius: 10px;
-}
-
-.scroll-img-wrapper:hover::after {
-  background: rgba(0, 0, 0, 0.35);
-}
-
-/* Icône loupe */
-.scroll-img-wrapper::before {
-  content: '🔍';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0.6);
-  font-size: 28px;
-  opacity: 0;
-  z-index: 2;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  pointer-events: none;
-}
-
-.scroll-img-wrapper:hover::before {
-  opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
-}
-
-/* Zoom de l'image */
-.scroll-img-wrapper .scroll-img {
-  display: block;
-  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-  border-radius: 10px;
-}
-
-.scroll-img-wrapper:hover .scroll-img {
-  transform: scale(1.07);
-}
-
-/* ── TOUCH : effet visible sur mobile (tap) ─────────────── */
-@media (hover: none) {
-  .scroll-img-wrapper:active::after {
-    background: rgba(0, 0, 0, 0.35);
+  /* ── HAMBURGER : à gauche ────────────────────────────────── */
+  .hamburger {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 5px !important;
+    width: 36px !important;
+    height: 36px !important;
+    background: none !important;
+    border: none !important;
+    cursor: pointer !important;
+    padding: 4px !important;
+    flex-shrink: 0 !important;
+    order: 1 !important;
+    z-index: 10 !important;
   }
 
-  .scroll-img-wrapper:active::before {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
+  .hamburger span {
+    display: block !important;
+    width: 22px !important;
+    height: 2px !important;
+    background: rgba(255,255,255,0.85) !important;
+    border-radius: 2px !important;
+    transition: all 0.3s ease !important;
+    transform-origin: center !important;
   }
 
-  .scroll-img-wrapper:active .scroll-img {
-    transform: scale(1.05);
+  /* Animation croix quand ouvert */
+  .hamburger.open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg) !important;
   }
-}
+  .hamburger.open span:nth-child(2) {
+    opacity: 0 !important;
+    transform: scaleX(0) !important;
+  }
+  .hamburger.open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg) !important;
+  }
 
-/* ── RESPONSIVE GÉNÉRAL mobile ──────────────────────────── */
-@media (max-width: 768px) {
+  /* ── LOGO : centré absolument ────────────────────────────── */
+  .navbar .logo,
+  .navbar a.logo {
+    position: absolute !important;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    font-size: 1.1rem !important;
+    white-space: nowrap !important;
+    order: 2 !important;
+    text-align: center !important;
+    pointer-events: auto !important;
+  }
 
-  /* Section header */
+  /* ── LANG SWITCHER : à droite ────────────────────────────── */
+  .lang-switcher {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 4px !important;
+    flex-shrink: 0 !important;
+    order: 3 !important;
+    margin-left: auto !important;
+  }
+
+  .lang-btn {
+    padding: 4px 7px !important;
+    font-size: 10px !important;
+    border-radius: 20px !important;
+    white-space: nowrap !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 3px !important;
+  }
+
+  .lang-flag {
+    font-size: 13px !important;
+  }
+
+  /* ── NAV MENU : dropdown vertical caché par défaut ──────── */
+  .navbar nav {
+    display: none !important;
+    position: absolute !important;
+    top: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
+    background: rgba(8, 15, 36, 0.98) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 0 !important;
+    padding: 8px 0 16px !important;
+    border-top: 1px solid rgba(255,255,255,0.06) !important;
+    border-bottom: 1px solid rgba(255,255,255,0.06) !important;
+    z-index: 999 !important;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.5) !important;
+    animation: menuSlide 0.25s ease !important;
+  }
+
+  @keyframes menuSlide {
+    from { opacity: 0; transform: translateY(-8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .navbar nav.open {
+    display: flex !important;
+  }
+
+  .navbar nav a {
+    width: 100% !important;
+    text-align: center !important;
+    padding: 13px 24px !important;
+    font-size: 0.9rem !important;
+    letter-spacing: 0.12em !important;
+    border-bottom: 1px solid rgba(255,255,255,0.04) !important;
+    color: rgba(255,255,255,0.8) !important;
+    transition: color 0.2s, background 0.2s !important;
+  }
+
+  .navbar nav a:last-child {
+    border-bottom: none !important;
+  }
+
+  .navbar nav a:hover,
+  .navbar nav a:active {
+    color: #00c8dc !important;
+    background: rgba(0,200,220,0.06) !important;
+  }
+
+
+  /* ══════════════════════════════════════════════════════════
+     HERO — texte adapté mobile
+  ══════════════════════════════════════════════════════════ */
+  .hero-content h1 {
+    font-size: 2rem !important;
+    line-height: 1.25 !important;
+  }
+
+  .hero-content p {
+    font-size: 0.85rem !important;
+    line-height: 1.7 !important;
+    max-width: 100% !important;
+  }
+
+
+  /* ══════════════════════════════════════════════════════════
+     SECTIONS — padding réduit
+  ══════════════════════════════════════════════════════════ */
+  .mission,
+  .streaming,
+  .upcoming,
+  .journal,
+  .boutique {
+    padding: 40px 16px !important;
+  }
+
   .section-header {
-    padding: 0 1rem;
-    text-align: center;
+    margin-bottom: 24px !important;
   }
 
-  /* Cards streaming */
+  .section-header h2 {
+    font-size: 1.4rem !important;
+  }
+
+  .section-header p {
+    font-size: 0.82rem !important;
+    line-height: 1.65 !important;
+  }
+
+
+  /* ══════════════════════════════════════════════════════════
+     MISSION — texte condensé
+  ══════════════════════════════════════════════════════════ */
+  .mission-content {
+    padding: 0 !important;
+  }
+
+  .mission-content h2 {
+    font-size: 1.35rem !important;
+    margin-bottom: 16px !important;
+  }
+
+  .mission-text p {
+    font-size: 0.82rem !important;
+    line-height: 1.75 !important;
+    margin-bottom: 12px !important;
+  }
+
+
+  /* ══════════════════════════════════════════════════════════
+     PLAYER CARDS — 1 colonne
+  ══════════════════════════════════════════════════════════ */
   .players-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-    padding: 0 1rem;
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
   }
 
-  /* Journal */
-  .journal-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-    padding: 0 1rem;
+  .player-card-profile {
+    padding: 16px !important;
   }
 
-  /* Boutique */
-  .boutique-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-    padding: 0 1rem;
+  .popular-tracks h4 {
+    font-size: 0.72rem !important;
   }
 
-  /* Upcoming */
+  .track-name {
+    font-size: 0.8rem !important;
+  }
+
+  .track-artist {
+    font-size: 0.7rem !important;
+  }
+
+
+  /* ══════════════════════════════════════════════════════════
+     UPCOMING
+  ══════════════════════════════════════════════════════════ */
   .upcoming-container {
-    flex-direction: column;
-    gap: 24px;
-    padding: 0 1rem;
+    flex-direction: column !important;
+    gap: 24px !important;
   }
 
-  /* Footer */
+  .upcoming-text h2 {
+    font-size: 1.35rem !important;
+  }
+
+  .upcoming-text p {
+    font-size: 0.82rem !important;
+    line-height: 1.7 !important;
+  }
+
+
+  /* ══════════════════════════════════════════════════════════
+     JOURNAL
+  ══════════════════════════════════════════════════════════ */
+  .journal-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  .article-content h3 {
+    font-size: 1rem !important;
+    line-height: 1.4 !important;
+  }
+
+  .article-content p {
+    font-size: 0.8rem !important;
+    line-height: 1.65 !important;
+    /* Limiter l'aperçu à 3 lignes */
+    display: -webkit-box !important;
+    -webkit-line-clamp: 3 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+  }
+
+  .article-meta {
+    font-size: 0.72rem !important;
+  }
+
+
+  /* ══════════════════════════════════════════════════════════
+     BOUTIQUE
+  ══════════════════════════════════════════════════════════ */
+  .boutique-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  .product-card {
+    padding: 16px !important;
+  }
+
+  .product-info h3 {
+    font-size: 1rem !important;
+  }
+
+  /* Bio auteur : limiter à 3 lignes sur mobile */
+  .author-bio p {
+    font-size: 0.78rem !important;
+    line-height: 1.6 !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 3 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+  }
+
+  .product-desc {
+    font-size: 0.78rem !important;
+    line-height: 1.6 !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 3 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+  }
+
+  .store-buttons {
+    flex-wrap: wrap !important;
+    gap: 6px !important;
+  }
+
+  .btn-secondary {
+    font-size: 0.72rem !important;
+    padding: 6px 12px !important;
+  }
+
+  .product-action-multi {
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+  }
+
+
+  /* ══════════════════════════════════════════════════════════
+     FOOTER
+  ══════════════════════════════════════════════════════════ */
   .footer-container {
-    flex-direction: column;
-    gap: 24px;
-    padding: 0 1rem;
+    flex-direction: column !important;
+    gap: 24px !important;
+    padding: 32px 16px !important;
   }
 
-  /* Mini player plus petit sur mobile */
-  .mini-player {
-    width: calc(100% - 24px);
-    padding: 10px 12px;
-    gap: 8px;
+  .footer-col p,
+  .footer-col li,
+  .footer-col a {
+    font-size: 0.8rem !important;
   }
 
-  .mini-player-title {
-    font-size: 12px;
+  .footer-bottom {
+    flex-direction: column !important;
+    gap: 8px !important;
+    text-align: center !important;
+    font-size: 0.72rem !important;
+    padding: 16px !important;
   }
 
-  .mini-player-artist {
-    font-size: 10px;
+  .legal-links {
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 8px !important;
+  }
+
+
+  /* ══════════════════════════════════════════════════════════
+     BOUTONS généraux
+  ══════════════════════════════════════════════════════════ */
+  .btn-primary {
+    font-size: 0.78rem !important;
+    padding: 12px 24px !important;
+    letter-spacing: 0.1em !important;
+  }
+
+  .streaming-links {
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+    justify-content: center !important;
+  }
+
+
+  /* ══════════════════════════════════════════════════════════
+     MÉDITATIONS TRACK
+  ══════════════════════════════════════════════════════════ */
+  .med-track-item {
+    gap: 8px !important;
+    padding: 10px 8px !important;
+    flex-wrap: nowrap !important;
+  }
+
+  .med-track-cover,
+  .track-cover {
+    width: 42px !important;
+    height: 42px !important;
+    min-width: 42px !important;
+    border-radius: 6px !important;
+  }
+
+  .med-actions {
+    gap: 4px !important;
+  }
+
+} /* fin @media 768px */
+
+
+/* ── Très petit écran (< 380px) ──────────────────────────── */
+@media (max-width: 380px) {
+  .navbar .logo,
+  .navbar a.logo {
+    font-size: 0.95rem !important;
+  }
+
+  .lang-btn {
+    padding: 3px 5px !important;
+    font-size: 9px !important;
+  }
+
+  .lang-flag {
+    font-size: 11px !important;
   }
 }
