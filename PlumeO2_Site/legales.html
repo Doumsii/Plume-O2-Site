@@ -118,10 +118,11 @@
     </footer>
     <script src="translations.js"></script>
     <script>
-    window.addEventListener('DOMContentLoaded', function() {
+    (function() {
         var lang = localStorage.getItem('plumedo2_lang') || 'fr';
         var banner = document.getElementById('legal-banner');
         var text = document.getElementById('legal-banner-text');
+        if (!banner || !text) return;
         if (lang === 'en') {
             banner.style.display = 'block';
             text.textContent = '🇫🇷  This page is only available in French for legal reasons.';
@@ -129,7 +130,7 @@
             banner.style.display = 'block';
             text.textContent = '🇫🇷  هذه الصفحة متاحة باللغة الفرنسية فقط لأسباب قانونية.';
         }
-    });
+    })();
     </script>
 </body>
 </html>
