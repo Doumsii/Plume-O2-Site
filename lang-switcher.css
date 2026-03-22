@@ -1,0 +1,204 @@
+/* ============================================================
+   PLUME D'O² — Sélecteur de langue
+   ============================================================ */
+
+/* ── SÉLECTEUR ──────────────────────────────────────────── */
+.lang-switcher {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 24px;
+}
+
+.lang-btn {
+  background: none;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 6px;
+  padding: 4px 8px;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 0.04em;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.lang-btn:hover {
+  border-color: rgba(0, 200, 220, 0.35);
+  color: rgba(255,255,255,0.8);
+  background: rgba(0, 200, 220, 0.06);
+}
+
+.lang-btn.active {
+  border-color: rgba(0, 200, 220, 0.6);
+  color: #00c8dc;
+  background: rgba(0, 200, 220, 0.1);
+}
+
+.lang-flag {
+  font-size: 14px;
+  line-height: 1;
+}
+
+/* ── RTL — Arabe ────────────────────────────────────────── */
+[dir="rtl"] .navbar {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] nav {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .lang-switcher {
+  margin-left: 0;
+  margin-right: 24px;
+}
+
+[dir="rtl"] .hero-content {
+  text-align: right;
+}
+
+[dir="rtl"] .mission-content {
+  text-align: right;
+}
+
+[dir="rtl"] .footer-container {
+  direction: rtl;
+}
+
+[dir="rtl"] .footer-col ul {
+  text-align: right;
+}
+
+[dir="rtl"] .article-content {
+  text-align: right;
+}
+
+[dir="rtl"] .article-meta {
+  text-align: right;
+}
+
+[dir="rtl"] .section-header {
+  text-align: right;
+}
+
+[dir="rtl"] .upcoming-text {
+  text-align: right;
+}
+
+[dir="rtl"] .product-info {
+  text-align: right;
+}
+
+[dir="rtl"] .author-bio {
+  text-align: right;
+}
+
+/* Police arabe plus lisible */
+[dir="rtl"] h1,
+[dir="rtl"] h2,
+[dir="rtl"] h3,
+[dir="rtl"] p,
+[dir="rtl"] span,
+[dir="rtl"] a {
+  font-family: 'Montserrat', 'Segoe UI', Tahoma, Arial, sans-serif;
+  line-height: 1.9;
+}
+
+/* ── MOBILE ─────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .lang-switcher {
+    margin-left: 8px;
+    gap: 3px;
+  }
+
+  .lang-btn {
+    padding: 3px 6px;
+    font-size: 10px;
+  }
+
+  .lang-flag {
+    font-size: 12px;
+  }
+}
+
+/* ── MOBILE NAVBAR — fix empiètement drapeaux ──────────── */
+@media (max-width: 768px) {
+
+  /* Navbar : 2 lignes */
+  .navbar {
+    flex-wrap: wrap;
+    gap: 0;
+    padding: 10px 16px 8px !important;
+    align-items: center;
+  }
+
+  /* Ligne 1 : Logo à gauche */
+  .navbar .logo {
+    flex: 1;
+    font-size: 1.05rem;
+    order: 1;
+  }
+
+  /* Ligne 1 : Drapeaux à droite */
+  .lang-switcher {
+    order: 2;
+    gap: 4px;
+    margin-left: auto;
+  }
+
+  .lang-btn {
+    padding: 4px 7px;
+    font-size: 10px;
+  }
+
+  .lang-btn .lang-text {
+    display: none;
+  }
+
+  /* Ligne 2 : liens nav à GAUCHE, bien espacés, cliquables */
+  .navbar nav {
+    order: 3;
+    flex: 0 0 100%;
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px;
+    font-size: 11px;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    padding-top: 10px;
+    margin-top: 8px;
+  }
+
+  .navbar nav a {
+    padding: 6px 0;
+    white-space: nowrap;
+    /* Zone de clic agrandie */
+    display: inline-block;
+    min-height: 36px;
+    line-height: 24px;
+  }
+}
+
+/* ── BANNIÈRE LÉGALE — fix chevauchement mobile ─────────── */
+.lang-banner {
+  position: relative;
+  z-index: 999;
+  margin-top: 0;
+}
+
+@media (max-width: 640px) {
+  .lang-banner {
+    padding: 10px 16px;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  /* S'assurer que le contenu légal ne commence pas sous le header */
+  .legal-page {
+    padding-top: 100px !important;
+  }
+}
