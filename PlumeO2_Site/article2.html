@@ -12,6 +12,22 @@
     <meta name="description" content="L'engagement et l'équilibre — Sourate Al-Hadid.">
     <meta property="og:image" content="https://plume-o2-site.vercel.app/hadid.jpg">
     <link rel="icon" type="image/jpeg" href="logo-original.jpg">
+    <style>
+    .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none; padding:4px; z-index:1001; }
+    .hamburger span { display:block; width:22px; height:2px; background:rgba(255,255,255,0.8); border-radius:2px; transition:all 0.3s; }
+    .hamburger.open span:nth-child(1) { transform:rotate(45deg) translate(5px,5px); }
+    .hamburger.open span:nth-child(2) { opacity:0; }
+    .hamburger.open span:nth-child(3) { transform:rotate(-45deg) translate(5px,-5px); }
+    @media (max-width:768px) {
+        .hamburger { display:flex; }
+        .navbar { flex-wrap:nowrap !important; padding:0 16px !important; }
+        .navbar nav { display:none; position:fixed; top:56px; left:0; right:0; background:rgba(8,12,28,0.98); backdrop-filter:blur(20px); flex-direction:column; padding:20px 24px 28px; gap:0; border-bottom:1px solid rgba(255,255,255,0.08); z-index:1000; }
+        .navbar nav.open { display:flex !important; }
+        .navbar nav a { padding:14px 0; border-bottom:1px solid rgba(255,255,255,0.06); font-size:14px; text-align:left; }
+        .navbar nav a:last-child { border-bottom:none; }
+        .lang-switcher { margin-left:auto; margin-right:8px; }
+    }
+    </style>
 </head>
 <body>
     <header class="navbar">
@@ -27,6 +43,9 @@
             <button class="lang-btn" data-lang="en" onclick="setLanguage('en')"><span class="lang-flag">🇬🇧</span><span class="lang-text"> EN</span></button>
             <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')"><span class="lang-flag">🇸🇦</span><span class="lang-text"> AR</span></button>
         </div>
+        <button class="hamburger" id="nav-hamburger" aria-label="Menu" onclick="toggleHamburger()">
+            <span></span><span></span><span></span>
+        </button>
     </header>
 
     <main class="article-page">
@@ -117,5 +136,24 @@
 
     <script src="plumedo2-animations.js"></script>
     <script src="translations.js"></script>
+    <script>
+    if (!window._hambInit) {
+        window._hambInit = true;
+        function toggleHamburger() {
+            var nav = document.querySelector('.navbar nav');
+            var btn = document.getElementById('nav-hamburger');
+            if (nav) nav.classList.toggle('open');
+            if (btn) btn.classList.toggle('open');
+        }
+        document.addEventListener('click', function(e) {
+            var nav = document.querySelector('.navbar nav');
+            var btn = document.getElementById('nav-hamburger');
+            if (nav && nav.classList.contains('open') && btn && !nav.contains(e.target) && !btn.contains(e.target)) {
+                nav.classList.remove('open');
+                btn.classList.remove('open');
+            }
+        });
+    }
+    </script>
 </body>
 </html>

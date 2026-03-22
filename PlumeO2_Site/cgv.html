@@ -29,6 +29,55 @@
     .lang-banner { display:none; background: rgba(0,200,220,0.07); border: 1px solid rgba(0,200,220,0.2); border-radius: 10px; padding: 8px 16px; text-align: center; font-family: 'Montserrat', sans-serif; font-size: 12px; color: rgba(255,255,255,0.65); margin-bottom: 20px; }
     .cgv-bloc { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 28px 28px 20px; margin-bottom: 32px; }
     .cgv-bloc-tag { font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(0,200,220,0.8); background: rgba(0,200,220,0.08); border: 1px solid rgba(0,200,220,0.2); border-radius: 20px; padding: 3px 12px; display: inline-block; margin-bottom: 14px; }
+    
+    /* ── NAVBAR MOBILE — Hamburger ───────────────────── */
+    .hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        background: none;
+        border: none;
+        padding: 4px;
+        z-index: 1001;
+    }
+    .hamburger span {
+        display: block;
+        width: 22px;
+        height: 2px;
+        background: rgba(255,255,255,0.8);
+        border-radius: 2px;
+        transition: all 0.3s ease;
+    }
+    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    @media (max-width: 768px) {
+        .navbar { flex-wrap: nowrap; padding: 0 16px; position: relative; }
+        .hamburger { display: flex; }
+        .navbar nav {
+            display: none;
+            position: fixed;
+            top: 64px;
+            left: 0; right: 0;
+            background: rgba(8, 12, 28, 0.98);
+            backdrop-filter: blur(20px);
+            flex-direction: column;
+            padding: 20px 24px 28px;
+            gap: 0;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            z-index: 1000;
+        }
+        .navbar nav.open { display: flex; }
+        .navbar nav a {
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            font-size: 14px;
+        }
+        .navbar nav a:last-child { border-bottom: none; }
+        .lang-switcher { margin-left: auto; margin-right: 12px; }
+    }
     </style>
 
 </head>
@@ -46,6 +95,9 @@
             <button class="lang-btn" data-lang="en" onclick="setLanguage('en')"><span class="lang-flag">🇬🇧</span><span class="lang-text"> EN</span></button>
             <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')"><span class="lang-flag">🇸🇦</span><span class="lang-text"> AR</span></button>
         </div>
+        <button class="hamburger" id="nav-hamburger" aria-label="Menu" onclick="toggleHamburger()">
+            <span></span><span></span><span></span>
+        </button>
     </header>
     <main class="legal-page">
         <div class="lang-banner" id="legal-banner"><span id="legal-banner-text"></span></div>
@@ -134,6 +186,25 @@
         <div class="footer-bottom"><p>© 2026 Plume d'O². Tous droits réservés.</p></div>
     </footer>
     <script src="translations.js"></script>
+    <script>
+    if (!window._hambInit) {
+        window._hambInit = true;
+        function toggleHamburger() {
+            var nav = document.querySelector('.navbar nav');
+            var btn = document.getElementById('nav-hamburger');
+            if (nav) nav.classList.toggle('open');
+            if (btn) btn.classList.toggle('open');
+        }
+        document.addEventListener('click', function(e) {
+            var nav = document.querySelector('.navbar nav');
+            var btn = document.getElementById('nav-hamburger');
+            if (nav && nav.classList.contains('open') && btn && !nav.contains(e.target) && !btn.contains(e.target)) {
+                nav.classList.remove('open');
+                btn.classList.remove('open');
+            }
+        });
+    }
+    </script>
     <script>
     function updateLegalBanner() {
         var lang = localStorage.getItem('plumedo2_lang') || 'fr';
