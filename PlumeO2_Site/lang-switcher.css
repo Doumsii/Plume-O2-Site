@@ -125,3 +125,63 @@
     font-size: 12px;
   }
 }
+
+/* ── MOBILE NAVBAR — fix empiètement drapeaux ──────────── */
+@media (max-width: 640px) {
+
+  /* Navbar en colonne sur très petit écran */
+  .navbar {
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 10px 16px !important;
+  }
+
+  /* Logo prend toute la largeur en haut */
+  .navbar .logo {
+    flex: 1 0 100%;
+    font-size: 1.1rem;
+  }
+
+  /* Nav liens au centre */
+  .navbar nav {
+    flex: 1;
+    gap: 12px;
+    font-size: 11px;
+  }
+
+  /* Drapeaux à droite sur la même ligne que nav */
+  .lang-switcher {
+    margin-left: auto;
+    gap: 3px;
+  }
+
+  .lang-btn {
+    padding: 3px 5px;
+    font-size: 10px;
+  }
+
+  /* Cacher le texte FR/EN/AR, garder seulement le drapeau */
+  .lang-btn .lang-text {
+    display: none;
+  }
+}
+
+/* ── BANNIÈRE LÉGALE — fix chevauchement mobile ─────────── */
+.lang-banner {
+  position: relative;
+  z-index: 999;
+  margin-top: 0;
+}
+
+@media (max-width: 640px) {
+  .lang-banner {
+    padding: 10px 16px;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  /* S'assurer que le contenu légal ne commence pas sous le header */
+  .legal-page {
+    padding-top: 100px !important;
+  }
+}
