@@ -1,0 +1,185 @@
+<!-- ════════════════════════════════════════════════════════════════
+  FICHIER 2 — SNIPPET À COPIER DANS index.html
+  
+  ÉTAPE A : Dans la section <section id="boutique">,
+  REMPLACE toute la première <div class="product-card" onclick="openModal('recueil')">
+  (du premier <div class="product-card" jusqu'au </div> correspondant)
+  PAR CE BLOC :
+════════════════════════════════════════════════════════════════ -->
+
+<!-- ── CARD RECUEIL (nouvelle version) ──────────────────── -->
+<div class="product-card" onclick="openModal('recueil')" style="cursor:pointer;">
+    <div class="product-img-wrapper light-bg">
+        <img src="recueil.jpg" alt="Recueil d'Invocations" class="product-img contain">
+    </div>
+    <div class="product-info">
+        <span class="product-category" data-i18n="boutique_cat1">Livre • Éditions Al Buraq</span>
+        <h3 data-i18n="boutique_product1_title">Invocations du Matin & du Soir</h3>
+
+        <!-- Bio courte : photo + 1 phrase + nom -->
+        <div class="bio-container" style="align-items:center;">
+            <img src="oways.jpg" alt="Oways Ahmad" class="bio-avatar">
+            <div class="author-bio">
+                <p data-i18n="boutique_bio_accroche" style="-webkit-line-clamp:2;display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden;">
+                    Un recueil de prières du matin et du soir, tirées du Coran et de la Sunna, pour relier le cœur à l'Éternel.
+                </p>
+                <p class="label-role" style="margin-top:8px;padding-top:8px;">
+                    <strong>Oways Ahmad</strong><br>
+                    <em data-i18n="boutique_bio_role">Créateur et dirigeant de Plume d'O² 🌘📖</em>
+                </p>
+            </div>
+        </div>
+
+        <div class="product-action-multi">
+            <span class="product-price">2,00 €</span>
+            <div class="store-buttons">
+                <a href="https://www.albouraq.fr/bookdetails/698410" target="_blank" rel="noopener noreferrer" class="btn-secondary" onclick="event.stopPropagation()">Al Buraq</a>
+                <a href="https://www.fnac.com/a16176695/Ahmad-Invocations-du-matin-et-du-soir" target="_blank" rel="noopener noreferrer" class="btn-secondary" onclick="event.stopPropagation()">Fnac</a>
+                <a href="https://www.cultura.com/p-invocations-du-matin-du-soir-9791022504423.html" target="_blank" rel="noopener noreferrer" class="btn-secondary" onclick="event.stopPropagation()">Cultura</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════════════
+  ÉTAPE B : REMPLACE l'ancien <div class="product-modal-overlay" id="modal-recueil">
+  PAR CE NOUVEAU MODAL AVEC 2 ONGLETS :
+════════════════════════════════════════════════════════════════ -->
+
+<!-- ══ MODAL RECUEIL — 2 onglets ══════════════════════════════ -->
+<div class="product-modal-overlay" id="modal-recueil" onclick="closeModalOutside(event,'recueil')">
+    <div class="product-modal">
+        <button class="product-modal-close" onclick="closeModal('recueil')">✕</button>
+
+        <!-- ONGLETS -->
+        <div class="modal-tabs" style="
+            display:flex;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            padding: 0 24px;
+            margin-top: 12px;
+        ">
+            <button class="modal-tab modal-tab--active" id="tab-recueil-0" onclick="switchModalTab('recueil', 0)" style="
+                background:none; border:none; cursor:pointer;
+                font-family:'Montserrat',sans-serif; font-size:0.82rem; font-weight:600;
+                text-transform:uppercase; letter-spacing:0.1em;
+                color:#fff; padding:12px 20px; border-bottom:2px solid #00c8dc;
+                transition:all 0.2s;
+            ">Le Livre</button>
+            <button class="modal-tab" id="tab-recueil-1" onclick="switchModalTab('recueil', 1)" style="
+                background:none; border:none; cursor:pointer;
+                font-family:'Montserrat',sans-serif; font-size:0.82rem; font-weight:600;
+                text-transform:uppercase; letter-spacing:0.1em;
+                color:rgba(255,255,255,0.45); padding:12px 20px; border-bottom:2px solid transparent;
+                transition:all 0.2s;
+            ">L'Auteur</button>
+        </div>
+
+        <!-- ONGLET 0 : Le Livre -->
+        <div id="modal-recueil-panel-0" style="display:block;">
+            <div class="product-modal-images">
+                <img src="recueil.jpg" alt="Couverture — Invocations du Matin & du Soir">
+                <img src="recueil-4eme.jpg" alt="4ème de couverture" onerror="this.style.display='none'">
+            </div>
+            <div class="product-modal-body">
+                <span class="product-modal-cat" data-i18n="boutique_cat1">Livre • Éditions Al Buraq</span>
+                <h2 class="product-modal-title" data-i18n="boutique_product1_title">Invocations du Matin & du Soir</h2>
+                <div class="product-modal-author">
+                    <img src="oways.jpg" alt="Oways Ahmad">
+                    <span>Oways Ahmad</span>
+                </div>
+                <p class="product-modal-desc" data-i18n="boutique_modal_recueil_desc">
+                    Ce recueil aux mille vertus rassemble les invocations du matin et du soir — tirées du Coran et de la Sunna, avec translittération et traduction française. À l'aube, ces prières agissent comme une douche revigorante avant d'affronter la journée. Au crépuscule, elles apaisent comme un bain après un long labeur. Car les invocations ne sont pas de simples mots : elles établissent un lien vivant avec Allah, protègent des pensées négatives et régénèrent le cœur, le corps et l'âme.
+                </p>
+                <span class="product-modal-price">2,00 €</span>
+                <div class="product-modal-btns">
+                    <a href="https://www.albouraq.fr/bookdetails/698410" target="_blank" rel="noopener" class="btn-secondary" onclick="event.stopPropagation()">Al Buraq</a>
+                    <a href="https://www.fnac.com/a16176695/Ahmad-Invocations-du-matin-et-du-soir" target="_blank" rel="noopener" class="btn-secondary" onclick="event.stopPropagation()">Fnac</a>
+                    <a href="https://www.cultura.com/p-invocations-du-matin-du-soir-9791022504423.html" target="_blank" rel="noopener" class="btn-secondary" onclick="event.stopPropagation()">Cultura</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ONGLET 1 : L'Auteur -->
+        <div id="modal-recueil-panel-1" style="display:none;">
+            <div class="product-modal-body" style="padding-top:28px;">
+                <div class="product-modal-author" style="margin-bottom:20px;gap:14px;">
+                    <img src="oways.jpg" alt="Oways Ahmad" style="width:64px;height:64px;border-radius:50%;object-fit:cover;border:2px solid rgba(0,200,220,0.6);">
+                    <div>
+                        <div style="font-family:'Playfair Display',serif;font-size:1.1rem;color:#fff;font-weight:700;">Oways Ahmad</div>
+                        <div style="font-family:'Montserrat',sans-serif;font-size:0.75rem;color:rgba(0,200,220,0.8);font-style:italic;margin-top:2px;" data-i18n="boutique_bio_role">Créateur et dirigeant de Plume d'O² 🌘📖</div>
+                    </div>
+                </div>
+                <p class="product-modal-desc" data-i18n="boutique_bio_p1">
+                    Jeune étudiant et apprenant en langue arabe, mon ambition est de partager le bien autour de moi et de donner de l'amour aux gens.
+                </p>
+                <p class="product-modal-desc" data-i18n="boutique_bio_p2" style="margin-top:10px;">
+                    L'apprentissage et la mémorisation de ces invocations m'ont procuré un bien-être incroyable que j'ai souhaité partager. J'ai donc compilé certaines de ces prières aux mille et une vertus, ainsi que les versets coraniques les plus récités, pour en faire ce recueil accessible à tous.
+                </p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════════════
+  ÉTAPE C : Ajoute ce bloc <style> + <script> juste avant </body>
+  (ou dans le bloc <style> existant dans le <head>)
+════════════════════════════════════════════════════════════════ -->
+
+<style>
+/* Swipe touch sur la modal recueil */
+#modal-recueil .product-modal {
+    touch-action: pan-y;
+}
+</style>
+
+<script>
+// ═══ Gestion onglets modal ═══════════════════════════════════
+function switchModalTab(modalId, tabIndex) {
+    // Panels
+    var panel0 = document.getElementById('modal-' + modalId + '-panel-0');
+    var panel1 = document.getElementById('modal-' + modalId + '-panel-1');
+    var tab0   = document.getElementById('tab-' + modalId + '-0');
+    var tab1   = document.getElementById('tab-' + modalId + '-1');
+    if (!panel0 || !panel1) return;
+
+    if (tabIndex === 0) {
+        panel0.style.display = 'block';
+        panel1.style.display = 'none';
+        tab0.style.color = '#fff';
+        tab0.style.borderBottom = '2px solid #00c8dc';
+        tab1.style.color = 'rgba(255,255,255,0.45)';
+        tab1.style.borderBottom = '2px solid transparent';
+    } else {
+        panel0.style.display = 'none';
+        panel1.style.display = 'block';
+        tab1.style.color = '#fff';
+        tab1.style.borderBottom = '2px solid #00c8dc';
+        tab0.style.color = 'rgba(255,255,255,0.45)';
+        tab0.style.borderBottom = '2px solid transparent';
+    }
+}
+
+// ═══ Swipe gauche/droite sur la modal recueil ════════════════
+(function() {
+    var startX = null;
+    var modal  = document.getElementById('modal-recueil');
+    if (!modal) return;
+
+    modal.addEventListener('touchstart', function(e) {
+        startX = e.touches[0].clientX;
+    }, { passive: true });
+
+    modal.addEventListener('touchend', function(e) {
+        if (startX === null) return;
+        var diff = startX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 50) {
+            // Swipe gauche → onglet 1, swipe droite → onglet 0
+            switchModalTab('recueil', diff > 0 ? 1 : 0);
+        }
+        startX = null;
+    }, { passive: true });
+})();
+</script>

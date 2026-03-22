@@ -1,13 +1,15 @@
 /* ═══════════════════════════════════════════════════════════════
-   PLUME D'O² — MOBILE CSS (max-width: 768px)
+   PLUME D'O² — MOBILE CSS v3
    ✅ Desktop : inchangé
-   ✅ Mobile  : navbar 1 ligne [☰ gauche | logo centre | flags droite]
-   ✅ v2      : logo agrandi, flags compacts, pas d'overlap
+   ✅ Mobile  : [☰] logo centré [drapeaux sans bordure]
+   ✅ Toutes pages : même navbar
 ═══════════════════════════════════════════════════════════════ */
 
 @media (max-width: 768px) {
 
-  /* ── NAVBAR : structure 1 ligne ─────────────────────────── */
+  /* ══════════════════════════════════════════════════════════
+     NAVBAR — 1 ligne propre
+  ══════════════════════════════════════════════════════════ */
   .navbar {
     display: flex !important;
     flex-direction: row !important;
@@ -20,7 +22,7 @@
     gap: 0 !important;
   }
 
-  /* ── HAMBURGER : à gauche ────────────────────────────────── */
+  /* HAMBURGER — gauche */
   .hamburger {
     display: flex !important;
     flex-direction: column !important;
@@ -35,7 +37,7 @@
     padding: 4px !important;
     flex-shrink: 0 !important;
     order: 1 !important;
-    z-index: 10 !important;
+    z-index: 200 !important;
   }
 
   .hamburger span {
@@ -48,64 +50,67 @@
     transform-origin: center !important;
   }
 
-  .hamburger.open span:nth-child(1) {
-    transform: translateY(7px) rotate(45deg) !important;
-  }
-  .hamburger.open span:nth-child(2) {
-    opacity: 0 !important;
-    transform: scaleX(0) !important;
-  }
-  .hamburger.open span:nth-child(3) {
-    transform: translateY(-7px) rotate(-45deg) !important;
-  }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg) !important; }
+  .hamburger.open span:nth-child(2) { opacity: 0 !important; transform: scaleX(0) !important; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg) !important; }
 
-  /* ── LOGO : centré, taille augmentée ─────────────────────── */
+  /* LOGO — centré absolu */
   .navbar .logo,
   .navbar a.logo {
     position: absolute !important;
     left: 50% !important;
     top: 50% !important;
     transform: translate(-50%, -50%) !important;
-    font-size: 1.35rem !important;    /* ↑ augmenté vs 1.1rem */
+    font-size: 1.35rem !important;
     white-space: nowrap !important;
     order: 2 !important;
     text-align: center !important;
     pointer-events: auto !important;
-    /* Évite que le logo sorte sous les flags */
-    max-width: calc(100% - 160px) !important;
+    z-index: 1 !important;
   }
 
-  /* ── LANG SWITCHER : à droite, compact ───────────────────── */
+  /* LANG SWITCHER — droite, SANS bordure */
   .lang-switcher {
     display: flex !important;
     flex-direction: row !important;
     align-items: center !important;
-    gap: 3px !important;
+    gap: 2px !important;
     flex-shrink: 0 !important;
     order: 3 !important;
     margin-left: auto !important;
+    z-index: 200 !important;
   }
 
-  /* Bouton langue : drapeau seul sur mobile (texte masqué) */
   .lang-btn {
-    padding: 5px 7px !important;
-    font-size: 0 !important;           /* cache le texte "FR/EN/AR" */
-    border-radius: 20px !important;
-    white-space: nowrap !important;
+    padding: 4px 5px !important;
+    border: none !important;
+    background: transparent !important;
+    border-radius: 6px !important;
+    cursor: pointer !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    gap: 0 !important;
-    min-width: 32px !important;
+    font-size: 0 !important;
+    min-width: 30px !important;
     height: 30px !important;
+    transition: background 0.2s !important;
+    box-shadow: none !important;
+    outline: none !important;
   }
 
-  /* Seul le drapeau reste visible */
+  .lang-btn:hover,
+  .lang-btn.active {
+    background: rgba(255,255,255,0.1) !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
   .lang-flag {
-    font-size: 18px !important;
+    font-size: 20px !important;
+    line-height: 1 !important;
   }
 
-  /* ── NAV MENU : dropdown vertical ────────────────────────── */
+  /* NAV MENU — dropdown */
   .navbar nav {
     display: none !important;
     position: absolute !important;
@@ -119,7 +124,6 @@
     align-items: center !important;
     gap: 0 !important;
     padding: 8px 0 16px !important;
-    border-top: 1px solid rgba(255,255,255,0.06) !important;
     border-bottom: 1px solid rgba(255,255,255,0.06) !important;
     z-index: 999 !important;
     box-shadow: 0 12px 40px rgba(0,0,0,0.5) !important;
@@ -145,11 +149,10 @@
     color: rgba(255,255,255,0.8) !important;
     margin: 0 !important;
     transition: color 0.2s, background 0.2s !important;
+    text-decoration: none !important;
   }
 
-  .navbar nav a:last-child {
-    border-bottom: none !important;
-  }
+  .navbar nav a:last-child { border-bottom: none !important; }
 
   .navbar nav a:hover,
   .navbar nav a:active {
@@ -157,401 +160,126 @@
     background: rgba(0,200,220,0.06) !important;
   }
 
-
   /* ══════════════════════════════════════════════════════════
      HERO
   ══════════════════════════════════════════════════════════ */
-  .hero-content h1 {
-    font-size: 2rem !important;
-    line-height: 1.25 !important;
-  }
-
-  .hero-content p {
-    font-size: 0.85rem !important;
-    line-height: 1.7 !important;
-    padding: 0 !important;
-  }
-
+  .hero { height: auto !important; min-height: 75vh !important; }
+  .hero-content h1 { font-size: 2rem !important; line-height: 1.25 !important; }
+  .hero-content p  { font-size: 0.85rem !important; line-height: 1.7 !important; padding: 0 !important; }
 
   /* ══════════════════════════════════════════════════════════
-     SECTIONS — padding réduit
+     SECTIONS
   ══════════════════════════════════════════════════════════ */
-  .mission,
-  .streaming,
-  .upcoming,
-  .journal,
-  .boutique {
-    padding: 40px 16px !important;
-  }
-
-  .section-header {
-    margin-bottom: 24px !important;
-  }
-
-  .section-header h2 {
-    font-size: 1.4rem !important;
-  }
-
-  .section-header p {
-    font-size: 0.82rem !important;
-    line-height: 1.65 !important;
-  }
-
+  .mission, .streaming, .upcoming, .journal, .boutique { padding: 40px 16px !important; }
+  .section-header { margin-bottom: 24px !important; }
+  .section-header h2 { font-size: 1.4rem !important; }
+  .section-header p  { font-size: 0.82rem !important; line-height: 1.65 !important; }
+  .mission h2, .mission-content h2 { font-size: 1.35rem !important; }
+  .mission-text p { font-size: 0.82rem !important; line-height: 1.75 !important; }
 
   /* ══════════════════════════════════════════════════════════
-     MISSION
+     PLAYERS
   ══════════════════════════════════════════════════════════ */
-  .mission-content {
-    padding: 0 !important;
-  }
-
-  .mission h2,
-  .mission-content h2 {
-    font-size: 1.35rem !important;
-    margin-bottom: 16px !important;
-  }
-
-  .mission-text p {
-    font-size: 0.82rem !important;
-    line-height: 1.75 !important;
-    margin-bottom: 12px !important;
-  }
-
-
-  /* ══════════════════════════════════════════════════════════
-     PLAYER CARDS — 1 colonne
-  ══════════════════════════════════════════════════════════ */
-  .players-grid {
-    grid-template-columns: 1fr !important;
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 16px !important;
-  }
-
-  .player-card-profile {
-    min-width: 100% !important;
-    max-width: 100% !important;
-    padding: 0 !important;
-  }
-
-  .popular-tracks h4 {
-    font-size: 0.72rem !important;
-  }
-
-  .track-name {
-    font-size: 0.8rem !important;
-  }
-
-  .track-artist {
-    font-size: 0.7rem !important;
-  }
-
+  .players-grid { display: flex !important; flex-direction: column !important; gap: 16px !important; }
+  .player-card-profile { min-width: 100% !important; max-width: 100% !important; }
 
   /* ══════════════════════════════════════════════════════════
      UPCOMING
   ══════════════════════════════════════════════════════════ */
-  .upcoming-container {
-    flex-direction: column !important;
-    gap: 24px !important;
-    text-align: center !important;
-  }
-
-  .upcoming-text {
-    text-align: center !important;
-  }
-
-  .upcoming-text h2 {
-    font-size: 1.35rem !important;
-  }
-
-  .upcoming-text p {
-    font-size: 0.82rem !important;
-    line-height: 1.7 !important;
-  }
-
-  .upcoming-gallery-scroll {
-    width: 100% !important;
-  }
-
+  .upcoming-container { flex-direction: column !important; gap: 24px !important; text-align: center !important; }
+  .upcoming-text { text-align: center !important; }
+  .upcoming-text h2 { font-size: 1.35rem !important; }
+  .upcoming-text p  { font-size: 0.82rem !important; line-height: 1.7 !important; }
+  .upcoming-gallery-scroll { width: 100% !important; }
 
   /* ══════════════════════════════════════════════════════════
      JOURNAL
   ══════════════════════════════════════════════════════════ */
-  .journal-grid {
-    flex-direction: column !important;
-    gap: 16px !important;
-  }
-
-  .article-card {
-    min-width: 100% !important;
-    max-width: 100% !important;
-  }
-
-  .article-content {
-    padding: 20px !important;
-  }
-
-  .article-card h3 {
-    font-size: 1rem !important;
-    line-height: 1.4 !important;
-  }
-
-  .article-card p {
-    font-size: 0.8rem !important;
-    line-height: 1.65 !important;
-    display: -webkit-box !important;
-    -webkit-line-clamp: 3 !important;
-    -webkit-box-orient: vertical !important;
-    overflow: hidden !important;
-  }
-
-  .article-meta {
-    font-size: 0.72rem !important;
-  }
-
+  .journal-grid { flex-direction: column !important; gap: 16px !important; }
+  .article-card { min-width: 100% !important; max-width: 100% !important; }
+  .article-content { padding: 20px !important; }
+  .article-card h3 { font-size: 1rem !important; line-height: 1.4 !important; }
+  .article-card p  { font-size: 0.8rem !important; line-height: 1.65 !important; }
+  .article-meta    { font-size: 0.72rem !important; }
 
   /* ══════════════════════════════════════════════════════════
-     BOUTIQUE — cards produit
+     BOUTIQUE
   ══════════════════════════════════════════════════════════ */
-  .boutique-grid {
-    flex-direction: column !important;
-    gap: 16px !important;
-  }
+  .boutique-grid { flex-direction: column !important; gap: 16px !important; }
+  .product-card  { min-width: 100% !important; max-width: 100% !important; }
+  .product-info  { padding: 20px !important; }
+  .product-info h3 { font-size: 1rem !important; margin-bottom: 12px !important; }
 
-  .product-card {
-    min-width: 100% !important;
-    max-width: 100% !important;
-  }
-
-  .product-info {
-    padding: 20px !important;
-  }
-
-  .product-info h3 {
-    font-size: 1rem !important;
-    margin-bottom: 12px !important;
-  }
-
-  /* ── Bio auteur : avatar + texte côte à côte, limité ─── */
-  .bio-container {
-    gap: 10px !important;
-    margin-bottom: 12px !important;
-    align-items: flex-start !important;
-  }
-
-  .bio-avatar {
-    width: 44px !important;
-    height: 44px !important;
-    flex-shrink: 0 !important;
-  }
+  .bio-container { gap: 10px !important; margin-bottom: 12px !important; align-items: center !important; }
+  .bio-avatar    { width: 44px !important; height: 44px !important; flex-shrink: 0 !important; }
 
   .author-bio p {
-    font-size: 0.78rem !important;
-    line-height: 1.55 !important;
-    margin-bottom: 8px !important;
-    display: -webkit-box !important;
-    -webkit-line-clamp: 2 !important;
-    -webkit-box-orient: vertical !important;
-    overflow: hidden !important;
+    font-size: 0.78rem !important; line-height: 1.55 !important; margin-bottom: 6px !important;
   }
-
-  .author-bio .label-role {
-    font-size: 0.75rem !important;
-    padding-top: 10px !important;
-    margin-top: 10px !important;
-  }
+  .author-bio .label-role { font-size: 0.75rem !important; padding-top: 10px !important; margin-top: 10px !important; }
 
   .product-desc {
-    font-size: 0.78rem !important;
-    line-height: 1.6 !important;
-    display: -webkit-box !important;
-    -webkit-line-clamp: 3 !important;
-    -webkit-box-orient: vertical !important;
-    overflow: hidden !important;
+    font-size: 0.78rem !important; line-height: 1.6 !important;
+    display: -webkit-box !important; -webkit-line-clamp: 4 !important;
+    -webkit-box-orient: vertical !important; overflow: hidden !important;
   }
 
-  .product-action {
-    flex-direction: column !important;
-    gap: 12px !important;
-    align-items: stretch !important;
-    text-align: center !important;
-    padding-top: 16px !important;
-  }
-
-  .product-action-multi {
-    padding-top: 16px !important;
-    gap: 10px !important;
-  }
-
-  .store-buttons {
-    flex-wrap: wrap !important;
-    gap: 6px !important;
-    justify-content: center !important;
-  }
-
-  .store-buttons .btn-secondary,
-  .btn-secondary {
-    font-size: 0.72rem !important;
-    padding: 8px 14px !important;
-  }
-
-  .product-img-wrapper {
-    height: 220px !important;
-  }
-
+  .product-action { flex-direction: column !important; gap: 12px !important; align-items: stretch !important; text-align: center !important; padding-top: 16px !important; }
+  .product-action-multi { padding-top: 16px !important; gap: 10px !important; }
+  .store-buttons { flex-wrap: wrap !important; gap: 6px !important; justify-content: center !important; }
+  .store-buttons .btn-secondary, .btn-secondary { font-size: 0.72rem !important; padding: 8px 14px !important; }
+  .product-img-wrapper { height: 220px !important; }
 
   /* ══════════════════════════════════════════════════════════
      FOOTER
   ══════════════════════════════════════════════════════════ */
-  .footer {
-    padding: 40px 16px 20px !important;
-  }
-
-  .footer-container {
-    flex-direction: column !important;
-    gap: 24px !important;
-    padding: 0 !important;
-    margin-bottom: 24px !important;
-  }
-
-  .footer-col {
-    min-width: auto !important;
-  }
-
-  .footer-col h3 {
-    font-size: 1.3rem !important;
-  }
-
-  .footer-col p,
-  .footer-col li,
-  .footer-col a {
-    font-size: 0.8rem !important;
-  }
-
-  .footer-bottom {
-    flex-direction: column !important;
-    gap: 8px !important;
-    text-align: center !important;
-    font-size: 0.72rem !important;
-    padding-top: 16px !important;
-  }
-
-  .legal-links {
-    flex-wrap: wrap !important;
-    justify-content: center !important;
-    gap: 8px !important;
-  }
-
+  .footer { padding: 40px 16px 20px !important; }
+  .footer-container { flex-direction: column !important; gap: 24px !important; padding: 0 !important; margin-bottom: 24px !important; }
+  .footer-col { min-width: auto !important; }
+  .footer-col h3 { font-size: 1.3rem !important; }
+  .footer-col p, .footer-col li, .footer-col a { font-size: 0.8rem !important; }
+  .footer-bottom { flex-direction: column !important; gap: 8px !important; text-align: center !important; font-size: 0.72rem !important; padding-top: 16px !important; }
+  .legal-links { flex-wrap: wrap !important; justify-content: center !important; gap: 8px !important; }
 
   /* ══════════════════════════════════════════════════════════
-     BOUTONS généraux
+     BOUTONS
   ══════════════════════════════════════════════════════════ */
-  .btn-primary {
-    font-size: 0.78rem !important;
-    padding: 12px 24px !important;
-    letter-spacing: 0.1em !important;
-  }
-
-  .streaming-links {
-    flex-wrap: wrap !important;
-    gap: 8px !important;
-    justify-content: center !important;
-  }
-
+  .btn-primary { font-size: 0.78rem !important; padding: 12px 24px !important; letter-spacing: 0.1em !important; }
+  .streaming-links { flex-wrap: wrap !important; gap: 8px !important; justify-content: center !important; }
 
   /* ══════════════════════════════════════════════════════════
      MÉDITATIONS TRACK
   ══════════════════════════════════════════════════════════ */
-  .med-track-item {
-    gap: 8px !important;
-    padding: 10px 8px !important;
-    flex-wrap: nowrap !important;
-  }
-
-  .med-track-cover,
-  .track-cover {
-    width: 42px !important;
-    height: 42px !important;
-    min-width: 42px !important;
-    border-radius: 6px !important;
-  }
-
-  .med-actions {
-    gap: 4px !important;
-  }
-
+  .med-track-item { gap: 8px !important; padding: 10px 8px !important; flex-wrap: nowrap !important; }
+  .med-track-cover, .track-cover { width: 42px !important; height: 42px !important; min-width: 42px !important; border-radius: 6px !important; }
+  .med-actions { gap: 4px !important; }
 
   /* ══════════════════════════════════════════════════════════
-     PAGES INTERNES — écoute, méditations, journal, boutique
-     (assurent que le header est aussi corrigé sur ces pages)
+     PAGES INTERNES
   ══════════════════════════════════════════════════════════ */
+  .ecoute-hero h1, .page-hero h1 { font-size: 1.8rem !important; }
+  .ecoute-hero p,  .page-hero p  { font-size: 0.82rem !important; }
+  .tracks-grid, .episodes-grid   { grid-template-columns: 1fr !important; gap: 12px !important; }
+  .boutique-page-grid            { grid-template-columns: 1fr !important; gap: 16px !important; }
+  .boutique-page-card            { min-width: 100% !important; }
+  .journal-page-grid             { grid-template-columns: 1fr !important; gap: 16px !important; }
+  .article-body      { font-size: 0.85rem !important; line-height: 1.8 !important; padding: 0 16px !important; }
+  .article-body h2   { font-size: 1.2rem !important; }
+  .article-body h3   { font-size: 1rem !important; }
 
-  /* Page écoute */
-  .ecoute-hero h1,
-  .page-hero h1 {
-    font-size: 1.8rem !important;
-  }
-
-  .ecoute-hero p,
-  .page-hero p {
-    font-size: 0.82rem !important;
-  }
-
-  /* Grille tracks écoute */
-  .tracks-grid,
-  .episodes-grid {
-    grid-template-columns: 1fr !important;
-    gap: 12px !important;
-  }
-
-  /* Page boutique */
-  .boutique-page-grid {
-    grid-template-columns: 1fr !important;
-    gap: 16px !important;
-  }
-
-  .boutique-page-card {
-    min-width: 100% !important;
-  }
-
-  /* Page journal */
-  .journal-page-grid {
-    grid-template-columns: 1fr !important;
-    gap: 16px !important;
-  }
-
-  /* Articles internes */
-  .article-body {
-    font-size: 0.85rem !important;
-    line-height: 1.8 !important;
-    padding: 0 16px !important;
-  }
-
-  .article-body h2 {
-    font-size: 1.2rem !important;
-  }
-
-  .article-body h3 {
-    font-size: 1rem !important;
-  }
+  /* ══════════════════════════════════════════════════════════
+     MODAL TABS — responsive
+  ══════════════════════════════════════════════════════════ */
+  .modal-tabs { padding: 0 16px !important; }
+  .modal-tab  { font-size: 0.8rem !important; padding: 10px 16px !important; }
+  .product-modal-images { flex-direction: column !important; align-items: center !important; padding: 16px 16px 0 !important; }
+  .product-modal-images img { height: 180px !important; }
+  .product-modal-body { padding: 16px !important; }
+  .product-modal-title { font-size: 1.2rem !important; }
 
 } /* fin @media 768px */
 
-
-/* ── Très petit écran (< 380px) ──────────────────────────── */
 @media (max-width: 380px) {
-  .navbar .logo,
-  .navbar a.logo {
-    font-size: 1.1rem !important;
-    max-width: calc(100% - 140px) !important;
-  }
-
-  .lang-flag {
-    font-size: 16px !important;
-  }
-
-  .lang-btn {
-    min-width: 28px !important;
-    padding: 4px 5px !important;
-  }
+  .navbar .logo, .navbar a.logo { font-size: 1.1rem !important; }
+  .lang-flag { font-size: 17px !important; }
 }
