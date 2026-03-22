@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Méditations | Plume d'O²</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="plumedo2-animations.css">
+    <link rel="stylesheet" href="plumedo2-player.css">
+    <link rel="stylesheet" href="lang-switcher.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/jpeg" href="logo-original.jpg">
+    <style>
+    .med-page { max-width: 900px; margin: 0 auto; padding: 110px 24px 80px; }
+    .med-page-hero { margin-bottom: 40px; }
+    .med-page-hero h1 { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: #fff; margin-bottom: 8px; }
+    .med-page-hero p { font-family: 'Montserrat', sans-serif; font-size: 14px; color: rgba(255,255,255,0.5); margin-bottom: 0; }
+    .btn-back { color: rgba(255,255,255,0.65) !important; text-decoration: none !important; font-family: 'Montserrat', sans-serif; font-size: 13px; display: inline-block; margin-bottom: 28px; }
+    .btn-back:hover { color: #fff !important; }
+    .med-section-tag { font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(0,200,220,0.75); display: block; margin-bottom: 8px; }
+    .med-fr-notice { font-family: 'Montserrat', sans-serif; font-size: 12px; color: rgba(0,200,220,0.7); background: rgba(0,200,220,0.07); border: 1px solid rgba(0,200,220,0.2); border-radius: 20px; padding: 5px 14px; display: inline-block; margin-bottom: 28px; }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <a href="index.html" class="logo">Plume d'O²</a>
+        <nav>
+            <a href="ecoute.html" data-i18n="nav_ecouter">Écouter</a>
+            <a href="meditations.html" data-i18n="nav_meditations">Méditations</a>
+            <a href="journal.html" data-i18n="nav_journal">Le Journal</a>
+            <a href="boutique.html" data-i18n="nav_boutique">Boutique</a>
+        </nav>
+        <div class="lang-switcher">
+            <button class="lang-btn" data-lang="fr" onclick="setLanguage('fr')"><span class="lang-flag">🇫🇷</span> FR</button>
+            <button class="lang-btn" data-lang="en" onclick="setLanguage('en')"><span class="lang-flag">🇬🇧</span> EN</button>
+            <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')"><span class="lang-flag">🇸🇦</span> AR</button>
+        </div>
+    </header>
+
+    <main class="med-page">
+        <a href="index.html" class="btn-back">← Retour à l'accueil</a>
+
+        <div class="med-page-hero scroll-fade">
+            <span class="med-section-tag">Audio spirituel</span>
+            <h1 data-i18n="meditation_title">Méditations Quotidiennes</h1>
+            <p data-i18n="meditation_subtitle">Une méditation audio renouvelée toutes les deux semaines.</p>
+        </div>
+
+        <!-- Notice FR only pour EN/AR -->
+        <div id="med-fr-notice" class="med-fr-notice" style="display:none;" data-i18n="meditation_fr_only"></div>
+
+        <!-- Grille style populaires -->
+        <div class="popular-tracks" id="med-tracks-container" style="max-width:100%;"></div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>Plume d'O²</h3>
+                <p data-i18n="footer_tagline">Votre sanctuaire audio pour apaiser le cœur et nourrir l'âme.</p>
+            </div>
+            <div class="footer-col">
+                <h4 data-i18n="footer_nav">Navigation</h4>
+                <ul>
+                    <li><a href="index.html" data-i18n="footer_home">Accueil</a></li>
+                    <li><a href="ecoute.html" data-i18n="nav_ecouter">Écouter</a></li>
+                    <li><a href="meditations.html" data-i18n="nav_meditations">Méditations</a></li>
+                    <li><a href="journal.html" data-i18n="nav_journal">Le Journal</a></li>
+                    <li><a href="boutique.html" data-i18n="nav_boutique">Boutique</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4 data-i18n="footer_networks">Réseaux & Plateformes</h4>
+                <div class="social-links">
+                    <a href="https://open.spotify.com/intl-fr/artist/3QGBoMKOchcr6qyKXZOab5" target="_blank" rel="noopener">Spotify</a>
+                    <a href="https://music.apple.com/fr/artist/oways-ahmad/1561790485" target="_blank" rel="noopener">Apple Music</a>
+                    <a href="https://youtube.com/@plumedo2_records" target="_blank" rel="noopener">YouTube</a>
+                    <a href="https://link.deezer.com/s/32GjMDt3vzl7ZV7YudgLt" target="_blank" rel="noopener">Deezer</a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Légal</h4>
+                <ul>
+                    <li><a href="legales.html">Mentions Légales</a></li>
+                    <li><a href="confidentialite.html">Confidentialité</a></li>
+                    <li><a href="cgv.html">CGV</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p data-i18n="footer_copyright">© 2026 Plume d'O². Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script src="meditations-data.js"></script>
+    <script src="meditation-player-v2.js"></script>
+    <script src="plumedo2-animations.js"></script>
+    <script src="translations.js"></script>
+    <script>
+        // Construire les cards
+        if (typeof buildMedCards === 'function') buildMedCards('med-tracks-container');
+
+        // Afficher/cacher la notice FR only selon la langue
+        function updateMedNotice() {
+            var lang = localStorage.getItem('plumedo2_lang') || 'fr';
+            var notice = document.getElementById('med-fr-notice');
+            if (notice) notice.style.display = (lang !== 'fr') ? 'inline-block' : 'none';
+        }
+        updateMedNotice();
+        document.querySelectorAll('.lang-btn').forEach(function(btn) {
+            btn.addEventListener('click', function() { setTimeout(updateMedNotice, 60); });
+        });
+    </script>
+</body>
+</html>

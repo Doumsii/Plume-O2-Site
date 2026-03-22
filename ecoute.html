@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Écouter | Plume d'O²</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="plumedo2-animations.css">
+    <link rel="stylesheet" href="journal.css">
+    <link rel="stylesheet" href="ecoute.css">
+    <link rel="stylesheet" href="plumedo2-player.css">
+    <link rel="stylesheet" href="lang-switcher.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        .journal-page .btn-back { color: rgba(255,255,255,0.65) !important; text-decoration: none !important; }
+        .journal-page .btn-back:hover { color: #fff !important; }
+    </style>
+    <meta name="description" content="Découvrez toute la discographie de Plume d'O² — Albums, EPs, récitations coraniques et vidéos spirituelles.">
+    <meta property="og:title" content="Écouter | Plume d'O²">
+    <meta property="og:image" content="https://plume-o2-site.vercel.app/logo-original.jpg">
+
+    <style id="video-post-styles">
+    /* ── FORMAT PUBLICATION CARRÉ ──────────────────────── */
+    .videos-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 24px;
+    }
+
+    .video-post-card {
+        border-radius: 16px;
+        overflow: hidden;
+        background: rgba(255,255,255,0.03);
+        border: 1px solid rgba(0, 200, 220, 0.15);
+        box-shadow: 0 0 18px rgba(0, 200, 220, 0.08), 0 0 1px rgba(0, 200, 220, 0.3);
+        transition: box-shadow 0.3s ease, transform 0.3s ease;
+    }
+
+    .video-post-card:hover {
+        box-shadow: 0 0 28px rgba(0, 200, 220, 0.2), 0 0 2px rgba(0, 200, 220, 0.5);
+        transform: translateY(-3px);
+    }
+
+    .video-post-frame {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        overflow: hidden;
+        background: #000;
+    }
+
+    .video-post-frame iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        display: block;
+    }
+
+    /* ── BARRE D'ACTIONS ────────────────────────────── */
+    .video-post-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 14px;
+        border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .video-like-btn,
+    .video-share-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.2s ease;
+        flex-shrink: 0;
+    }
+
+    .video-like-btn:hover { transform: scale(1.2); }
+    .video-share-btn:hover { transform: scale(1.15); }
+
+    .heart-icon {
+        fill: rgba(255,255,255,0.25);
+        stroke: rgba(255,255,255,0.5);
+        stroke-width: 1.5;
+        transition: fill 0.2s ease, stroke 0.2s ease, transform 0.15s ease;
+    }
+
+    .video-like-btn.liked .heart-icon {
+        fill: #00c8dc;
+        stroke: #00c8dc;
+        transform: scale(1.15);
+    }
+
+    .video-share-btn svg {
+        color: rgba(255,255,255,0.5);
+        transition: color 0.2s ease;
+    }
+
+    .video-share-btn:hover svg { color: #00c8dc; }
+
+    .video-yt-btn {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 11px;
+        font-weight: 600;
+        color: rgba(255,255,255,0.45);
+        text-decoration: none;
+        padding: 5px 10px;
+        border-radius: 20px;
+        border: 1px solid rgba(255,255,255,0.1);
+        transition: all 0.2s ease;
+        white-space: nowrap;
+    }
+
+    .video-yt-btn:hover {
+        color: #fff;
+        border-color: rgba(255,0,0,0.4);
+        background: rgba(255,0,0,0.08);
+    }
+
+    /* Toast partage */
+    .share-toast {
+        position: fixed;
+        bottom: 80px;
+        left: 50%;
+        transform: translateX(-50%) translateY(20px);
+        background: rgba(0, 200, 220, 0.15);
+        border: 1px solid rgba(0, 200, 220, 0.4);
+        color: #00c8dc;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 13px;
+        font-weight: 600;
+        padding: 10px 20px;
+        border-radius: 30px;
+        backdrop-filter: blur(10px);
+        opacity: 0;
+        transition: all 0.3s ease;
+        z-index: 9999;
+        pointer-events: none;
+    }
+
+    .share-toast.show {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+
+    @media (max-width: 768px) {
+        .videos-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+        }
+        .video-yt-btn span { display: none; }
+    }
+    </style>
+
+    <script>
+    function toggleLike(btn) {
+        btn.classList.toggle('liked');
+    }
+
+    function shareVideo(url) {
+        if (navigator.share) {
+            navigator.share({ title: "Plume d'O² — Récitation", url: url });
+        } else {
+            navigator.clipboard.writeText(url);
+            showToast('Lien copié ! 🔗');
+        }
+    }
+
+    function showToast(msg) {
+        let toast = document.getElementById('shareToast');
+        if (!toast) {
+            toast = document.createElement('div');
+            toast.id = 'shareToast';
+            toast.className = 'share-toast';
+            document.body.appendChild(toast);
+        }
+        toast.textContent = msg;
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2500);
+    }
+    </script>
+</head>
+<body>
+
+    <header class="navbar">
+        <a href="index.html" class="logo">Plume d'O²</a>
+        <nav>
+            <a href="ecoute.html" data-i18n="nav_ecouter">Écouter</a>
+            <a href="meditations.html" data-i18n="nav_meditations">Méditations</a>
+            <a href="journal.html" data-i18n="nav_journal">Le Journal</a>
+            <a href="boutique.html" data-i18n="nav_boutique">Boutique</a>
+        </nav>
+        <div class="lang-switcher">
+            <button class="lang-btn active" data-lang="fr" onclick="setLanguage('fr')"><span class="lang-flag">🇫🇷</span><span class="lang-text"> FR</span></button>
+            <button class="lang-btn" data-lang="en" onclick="setLanguage('en')"><span class="lang-flag">🇬🇧</span><span class="lang-text"> EN</span></button>
+            <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')"><span class="lang-flag">🇸🇦</span><span class="lang-text"> AR</span></button>
+        </div>
+    </header>
+
+    <main class="journal-page">
+
+        <div class="journal-page-hero">
+            <a href="index.html" class="btn-back" data-i18n="ecoute_back">← Retour à l'accueil</a>
+            <h1 data-i18n="ecoute_title">Écouter</h1>
+            <p data-i18n="ecoute_subtitle">Toute la discographie de Plume d'O² — récitations coraniques, invocations et méditations audio.</p>
+        </div>
+
+        <!-- PLATEFORMES -->
+        <div class="ecoute-platforms">
+            <a href="https://open.spotify.com/intl-fr/artist/3QGBoMKOchcr6qyKXZOab5" target="_blank" rel="noopener" class="platform-pill spotify">
+                <svg viewBox="0 0 496 512" width="16" height="16" fill="#1DB954"><path d="M248 8C111.1 8 0 119.1 0 256s111.1 248 248 248 248-111.1 248-248S384.9 8 248 8zm100.7 364.9c-4.2 0-6.8-1.3-10.7-3.6-62.4-37.6-135-39.2-206.7-24.5-3.9 1-9 2.6-11.9 2.6-9.7 0-15.8-7.7-15.8-15.8 0-10.3 6.1-15.2 13.6-16.8 81.9-18.1 165.6-16.5 237 26.2 6.1 3.9 9.7 7.4 9.7 16.5s-7.1 15.4-15.2 15.4zm26.9-65.6c-5.2 0-8.7-2.3-12.3-4.2-72.5-47-167.2-51.4-245.9-28.8-4.5 1.3-8.1 2.3-13.6 2.3-11.3 0-18.4-8.7-18.4-19.4 0-11 7.1-17.1 15.5-19.4 89.9-26.2 195.4-20.7 277.6 31.7 5.5 3.6 10.3 8.1 10.3 17.8 0 11.6-8.7 20-13.2 20zm30.4-71.5c-6.8 0-11.3-2.9-16.5-6.1-85.7-52.7-208-61.8-293.7-34.9-5.8 1.9-11.6 2.9-17.1 2.9-14.2 0-23.6-10.7-23.6-23.6 0-14.2 8.7-21.6 19.4-24.9 98.6-30.7 236.8-20.4 333.1 38.8 6.5 4.2 12.3 9.4 12.3 20.7 0 15.2-11.3 27.1-13.9 27.1z"/></svg>
+                Spotify
+            </a>
+            <a href="https://music.apple.com/fr/artist/oways-ahmad/1561790485" target="_blank" rel="noopener" class="platform-pill apple">
+                <svg viewBox="0 0 384 512" width="16" height="16" fill="#FA243C"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zM262.1 104.5c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+                Apple Music
+            </a>
+            <a href="https://link.deezer.com/s/32GjMDt3vzl7ZV7YudgLt" target="_blank" rel="noopener" class="platform-pill deezer">Deezer</a>
+            <a href="https://youtube.com/@plumedo2_records" target="_blank" rel="noopener" class="platform-pill youtube">YouTube</a>
+        </div>
+
+        <!-- ══ MÉDITATIONS ════════════════════════════════════ -->
+        <section class="ecoute-section">
+            <div class="ecoute-section-title">
+                <h2>Méditations Quotidiennes</h2>
+                <p>Des méditations guidées pour nourrir l'âme. Un nouvel épisode toutes les deux semaines.</p>
+            </div>
+            <div class="popular-tracks" id="med-tracks-container" style="max-width:560px;"></div>
+            <div style="margin-top:20px;">
+                <a href="meditations.html" class="btn-secondary" data-i18n="meditation_all">Voir tous les épisodes →</a>
+            </div>
+        </section>
+
+        <!-- 1. PROCHAINEMENT -->
+        <section class="ecoute-section">
+            <div class="ecoute-section-title">
+                <span class="upcoming-tag" data-i18n="upcoming_tag">Prochainement</span>
+                <h2 data-i18n="ecoute_upcoming_title">Les Invocations des Prophètes</h2>
+                <p data-i18n="ecoute_upcoming_p">Toutes les invocations (Duaas) prononcées par les prophètes, tirées exclusivement du Saint Coran. À venir très bientôt sur toutes vos plateformes.</p>
+            </div>
+            <div class="upcoming-covers">
+                <img src="prophetes-1.jpg" alt="Invocations des Prophètes 1">
+                <img src="prophetes-2.jpg" alt="Invocations des Prophètes 2">
+                <img src="prophetes-3.jpg" alt="Invocations des Prophètes 3">
+                <img src="prophetes-4.jpg" alt="Invocations des Prophètes 4">
+            </div>
+        </section>
+
+        <!-- 2. DISCOGRAPHIE -->
+        <section class="ecoute-section">
+            <div class="ecoute-section-title">
+                <h2 data-i18n="ecoute_disco_title">Discographie</h2>
+                <p data-i18n="ecoute_disco_subtitle">10 projets · 2021 — 2025</p>
+            </div>
+            <div class="albums-grid">
+
+                <div class="album-card">
+                    <div class="album-cover-wrapper">
+                        <img src="album-10-2025.jpg" alt="Sourate Al Kahf" class="album-cover">
+                        <div class="album-overlay"><div class="album-stream-btns">
+                            <a href="https://open.spotify.com/intl-fr/album/5e7w6Bq9T6S6BRAJVvgxLb" target="_blank" rel="noopener" class="stream-icon-btn spotify-btn"><svg viewBox="0 0 496 512" width="18" height="18" fill="#1DB954"><path d="M248 8C111.1 8 0 119.1 0 256s111.1 248 248 248 248-111.1 248-248S384.9 8 248 8zm100.7 364.9c-4.2 0-6.8-1.3-10.7-3.6-62.4-37.6-135-39.2-206.7-24.5-3.9 1-9 2.6-11.9 2.6-9.7 0-15.8-7.7-15.8-15.8 0-10.3 6.1-15.2 13.6-16.8 81.9-18.1 165.6-16.5 237 26.2 6.1 3.9 9.7 7.4 9.7 16.5s-7.1 15.4-15.2 15.4zm26.9-65.6c-5.2 0-8.7-2.3-12.3-4.2-72.5-47-167.2-51.4-245.9-28.8-4.5 1.3-8.1 2.3-13.6 2.3-11.3 0-18.4-8.7-18.4-19.4 0-11 7.1-17.1 15.5-19.4 89.9-26.2 195.4-20.7 277.6 31.7 5.5 3.6 10.3 8.1 10.3 17.8 0 11.6-8.7 20-13.2 20zm30.4-71.5c-6.8 0-11.3-2.9-16.5-6.1-85.7-52.7-208-61.8-293.7-34.9-5.8 1.9-11.6 2.9-17.1 2.9-14.2 0-23.6-10.7-23.6-23.6 0-14.2 8.7-21.6 19.4-24.9 98.6-30.7 236.8-20.4 333.1 38.8 6.5 4.2 12.3 9.4 12.3 20.7 0 15.2-11.3 27.1-13.9 27.1z"/></svg></a>
+                            <a href="https://music.apple.com/fr/album/sourate-al-kahf-%D8%A7%D9%84%D9%83%D9%87%D9%81-la-caverne-ep/1791458148" target="_blank" rel="noopener" class="stream-icon-btn apple-btn"><svg viewBox="0 0 384 512" width="18" height="18" fill="#FA243C"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zM262.1 104.5c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg></a>
+                        </div></div>
+                        <span class="album-type-badge">EP</span>
+                    </div>
+                    <div class="album-info"><span class="album-year">2025</span><h3>Sourate Al Kahf</h3><p>Ustadh Idriss</p></div>
+                </div>
+
+                <div class="album-card">
+                    <div class="album-cover-wrapper">
+                        <img src="album-9-2025.jpg" alt="Morning and Evening Invocations" class="album-cover">
+                        <div class="album-overlay"><div class="album-stream-btns">
+                            <a href="https://open.spotify.com/intl-fr/album/5K0KtoG2opHoHBEYlVr1yR" target="_blank" rel="noopener" class="stream-icon-btn spotify-btn"><svg viewBox="0 0 496 512" width="18" height="18" fill="#1DB954"><path d="M248 8C111.1 8 0 119.1 0 256s111.1 248 248 248 248-111.1 248-248S384.9 8 248 8zm100.7 364.9c-4.2 0-6.8-1.3-10.7-3.6-62.4-37.6-135-39.2-206.7-24.5-3.9 1-9 2.6-11.9 2.6-9.7 0-15.8-7.7-15.8-15.8 0-10.3 6.1-15.2 13.6-16.8 81.9-18.1 165.6-16.5 237 26.2 6.1 3.9 9.7 7.4 9.7 16.5s-7.1 15.4-15.2 15.4zm26.9-65.6c-5.2 0-8.7-2.3-12.3-4.2-72.5-47-167.2-51.4-245.9-28.8-4.5 1.3-8.1 2.3-13.6 2.3-11.3 0-18.4-8.7-18.4-19.4 0-11 7.1-17.1 15.5-19.4 89.9-26.2 195.4-20.7 277.6 31.7 5.5 3.6 10.3 8.1 10.3 17.8 0 11.6-8.7 20-13.2 20zm30.4-71.5c-6.8 0-11.3-2.9-16.5-6.1-85.7-52.7-208-61.8-293.7-34.9-5.8 1.9-11.6 2.9-17.1 2.9-14.2 0-23.6-10.7-23.6-23.6 0-14.2 8.7-21.6 19.4-24.9 98.6-30.7 236.8-20.4 333.1 38.8 6.5 4.2 12.3 9.4 12.3 20.7 0 15.2-11.3 27.1-13.9 27.1z"/></svg></a>
+                            <a href="https://music.apple.com/fr/album/morning-and-evening-invocations/1799114239" target="_blank" rel="noopener" class="stream-icon-btn apple-btn"><svg viewBox="0 0 384 512" width="18" height="18" fill="#FA243C"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zM262.1 104.5c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg></a>
+                        </div></div>
+                    </div>
+                    <div class="album-info"><span class="album-year">2025</span><h3>Morning and Evening Invocations</h3><p>Oways Ahmad feat Fatima</p></div>
+                </div>
+
+                <div class="album-card">
+                    <div class="album-cover-wrapper">
+                        <img src="album-8-2024.jpg" alt="Invocations du Matin et du Soir Pt.2" class="album-cover">
+                        <div class="album-overlay"><div class="album-stream-btns">
+                            <a href="https://open.spotify.com/intl-fr/album/2DkqfbX0Yz9PNnebUpNsoc" target="_blank" rel="noopener" class="stream-icon-btn spotify-btn"><svg viewBox="0 0 496 512" width="18" height="18" fill="#1DB954"><path d="M248 8C111.1 8 0 119.1 0 256s111.1 248 248 248 248-111.1 248-248S384.9 8 248 8zm100.7 364.9c-4.2 0-6.8-1.3-10.7-3.6-62.4-37.6-135-39.2-206.7-24.5-3.9 1-9 2.6-11.9 2.6-9.7 0-15.8-7.7-15.8-15.8 0-10.3 6.1-15.2 13.6-16.8 81.9-18.1 165.6-16.5 237 26.2 6.1 3.9 9.7 7.4 9.7 16.5s-7.1 15.4-15.2 15.4zm26.9-65.6c-5.2 0-8.7-2.3-12.3-4.2-72.5-47-167.2-51.4-245.9-28.8-4.5 1.3-8.1 2.3-13.6 2.3-11.3 0-18.4-8.7-18.4-19.4 0-11 7.1-17.1 15.5-19.4 89.9-26.2 195.4-20.7 277.6 31.7 5.5 3.6 10.3 8.1 10.3 17.8 0 11.6-8.7 20-13.2 20zm30.4-71.5c-6.8 0-11.3-2.9-16.5-6.1-85.7-52.7-208-61.8-293.7-34.9-5.8 1.9-11.6 2.9-17.1 2.9-14.2 0-23.6-10.7-23.6-23.6 0-14.2 8.7-21.6 19.4-24.9 98.6-30.7 236.8-20.4 333.1 38.8 6.5 4.2 12.3 9.4 12.3 20.7 0 15.2-11.3 27.1-13.9 27.1z"/></svg></a>
+                            <a href="https://music.apple.com/fr/album/invocations-du-matin-et-du-soir-pt-2/1753106904" target="_blank" rel="noopener" class="stream-icon-btn apple-btn"><svg viewBox="0 0 384 512" width="18" height="18" fill="#FA243C"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zM262.1 104.5c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg></a>
+                        </div></div>
+                    </div>
+                    <div class="album-info"><span class="album-year">2024</span><h3>Invocations du Matin et du Soir Pt.2</h3><p>Oways Ahmad</p></div>
+                </div>
+
+                <div class="album-card">
+                    <div class="album-cover-wrapper">
+                        <img src="album-7-2023.jpg" alt="Juz Tabarak Pt.1 - Mounir" class="album-cover">
+                        <div class="album-overlay"><div class="album-stream-btns">
+                            <a href="https://open.spotify.com/intl-fr/album/6Oyx72Ho4piSAMBsxhooqY" target="_blank" rel="noopener" class="stream-icon-btn spotify-btn"><svg viewBox="0 0 496 512" width="18" height="18" fill="#1DB954"><path d="M248 8C111.1 8 0 119.1 0 256s111.1 248 248 248 248-111.1 248-248S384.9 8 248 8zm100.7 364.9c-4.2 0-6.8-1.3-10.7-3.6-62.4-37.6-135-39.2-206.7-24.5-3.9 1-9 2.6-11.9 2.6-9.7 0-15.8-7.7-15.8-15.8 0-10.3 6.1-15.2 13.6-16.8 81.9-18.1 165.6-16.5 237 26.2 6.1 3.9 9.7 7.4 9.7 16.5s-7.1 15.4-15.2 15.4zm26.9-65.6c-5.2 0-8.7-2.3-12.3-4.2-72.5-47-167.2-51.4-245.9-28.8-4.5 1.3-8.1 2.3-13.6 2.3-11.3 0-18.4-8.7-18.4-19.4 0-11 7.1-17.1 15.5-19.4 89.9-26.2 195.4-20.7 277.6 31.7 5.5 3.6 10.3 8.1 10.3 17.8 0 11.6-8.7 20-13.2 20zm30.4-71.5c-6.8 0-11.3-2.9-16.5-6.1-85.7-52.7-208-61.8-293.7-34.9-5.8 1.9-11.6 2.9-17.1 2.9-14.2 0-23.6-10.7-23.6-23.6 0-14.2 8.7-21.6 19.4-24.9 98.6-30.7 236.8-20.4 333.1 38.8 6.5 4.2 12.3 9.4 12.3 20.7 0 15.2-11.3 27.1-13.9 27.1z"/></svg></a>
+                            <a href="https://music.apple.com/fr/album/mounir-juz-tabarak-pt-1/1681982163" target="_blank" rel="noopener" class="stream-icon-btn apple-btn"><svg viewBox="0 0 384 512" width="18" height="18" fill="#FA243C"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zM262.1 104.5c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg></a>
+                        </div></div>
+                    </div>
+                    <div class="album-info"><span class="album-year">2023</span><h3>Juz Tabarak Pt.1</h3><p>Ustadh Mounir Ezzaraoui</p></div>
+                </div>
+
+                <div class="album-card">
+                    <div class="album-cover-wrapper">
+                        <img src="album-6-2023.jpg" alt="Juz Tabarak Pt.2 - Idriss" class="album-cover">
+                        <div class="album-overlay"><div class="album-stream-btns">
+                            <a href="https://open.spotify.com/intl-fr/album/42IRQeSMIzemy5xWI4SDIX" target="_blank" rel="noopener" class="stream-icon-btn spotify-btn"><svg viewBox="0 0 496 512" width="18" height="18" fill="#1DB954"><path d="M248 8C111.1 8 0 119.1 0 256s111.1 248 248 248 248-111.1 248-248S384.9 8 248 8zm100.7 364.9c-4.2 0-6.8-1.3-10.7-3.6-62.4-37.6-135-39.2-206.7-24.5-3.9 1-9 2.6-11.9 2.6-9.7 0-15.8-7.7-15.8-15.8 0-10.3 6.1-15.2 13.6-16.8 81.9-18.1 165.6-16.5 237 26.2 6.1 3.9 9.7 7.4 9.7 16.5s-7.1 15.4-15.2 15.4zm26.9-65.6c-5.2 0-8.7-2.3-12.3-4.2-72.5-47-167.2-51.4-245.9-28.8-4.5 1.3-8.1 2.3-13.6 2.3-11.3 0-18.4-8.7-18.4-19.4 0-11 7.1-17.1 15.5-19.4 89.9-26.2 195.4-20.7 277.6 31.7 5.5 3.6 10.3 8.1 10.3 17.8 0 11.6-8.7 20-13.2 20zm30.4-71.5c-6.8 0-11.3-2.9-16.5-6.1-85.7-52.7-208-61.8-293.7-34.9-5.8 1.9-11.6 2.9-17.1 2.9-14.2 0-23.6-10.7-23.6-23.6 0-14.2 8.7-21.6 19.4-24.9 98.6-30.7 236.8-20.4 333.1 38.8 6.5 4.2 12.3 9.4 12.3 20.7 0 15.2-11.3 27.1-13.9 27.1z"/></svg></a>
+                            <a href="https://music.apple.com/fr/album/idriss-juz-tabarak-pt-2-ep/1664290088" target="_blank" rel="noopener" class="stream-icon-btn apple-btn"><svg viewBox="0 0 384 512" width="18" height="18" fill="#FA243C"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zM262.1 104.5c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg></a>
+                        </div></div>
+                    </div>
+                    <div class="album-info"><span class="album-year">2023</span><h3>Juz Tabarak Pt.2</h3><p>Ustadh Idriss</p></div>
+                </div>
+
+                <div class="album-card">
+                    <div class="album-cover-wrapper">
+                        <img src="album-5-2022.jpg" alt="Juz Tabarak Pt.1 - Idriss" class="album-cover">
+                        <div class="album-overlay"><div class="album-stream-btns">
+                            <a href="https://open.spotify.com/album/5GaCAfdcOXN47W5RbmDcov" target="_blank" rel="noopener" class="stream-icon-btn spotify-btn"><svg viewBox="0 0 496 512" width="18" height="18" fill="#1DB954"><path d="M248 8C111.1 8 0 119.1 0 256s111.1 248 248 248 248-111.1 248-248S384.9 8 248 8zm100.7 364.9c-4.2 0-6.8-1.3-10.7-3.6-62.4-37.6-135-39.2-206.7-24.5-3.9 1-9 2.6-11.9 2.6-9.7 0-15.8-7.7-15.8-15.8 0-10.3 6.1-15.2 13.6-16.8 81.9-18.1 165.6-16.5 237 26.2 6.1 3.9 9.7 7.4 9.7 16.5s-7.1 15.4-15.2 15.4zm26.9-65.6c-5.2 0-8.7-2.3-12.3-4.2-72.5-47-167.2-51.4-245.9-28.8-4.5 1.3-8.1 2.3-13.6 2.3-11.3 0-18.4-8.7-18.4-19.4 0-11 7.1-17.1 15.5-19.4 89.9-26.2 195.4-20.7 277.6 31.7 5.5 3.6 10.3 8.1 10.3 17.8 0 11.6-8.7 20-13.2 20zm30.4-71.5c-6.8 0-11.3-2.9-16.5-6.1-85.7-52.7-208-61.8-293.7-34.9-5.8 1.9-11.6 2.9-17.1 2.9-14.2 0-23.6-10.7-23.6-23.6 0-14.2 8.7-21.6 19.4-24.9 98.6-30.7 236.8-20.4 333.1 38.8 6.5 4.2 12.3 9.4 12.3 20.7 0 15.2-11.3 27.1-13.9 27.1z"/></svg></a>
+                            <a href="https://music.apple.com/fr/album/idriss-juz-tabarak-pt-1-ep/1651011142" target="_blank" rel="noopener" class="stream-icon-btn apple-btn"><svg viewBox="0 0 384 512" width="18" height="18" fill="#FA243C"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zM262.1 104.5c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg></a>
+                        </div></div>
+                    </div>
+                    <div class="album-info"><span class="album-year">2022</span><h3>Juz Tabarak Pt.1</h3><p>Ustadh Idriss</p></div>
+                </div>
+
+                <div class="album-card">
+                    <div class="album-cover-wrapper">
+                        <img src="album-4-2023.jpg" alt="Juz Amma Pt.2 Muhammad Marega" class="album-cover">
+                        <div class="album-overlay"><div class="album-stream-btns">
+                            <a href="https://open.spotify.com/intl-fr/album/1eb2jstkarm1LoZObKVK2J" target="_blank" rel="noopener" class="stream-icon-btn spotify-btn"><svg viewBox="0 0 496 512" width="18" height="18" fill="#1DB954"><path d="M248 8C111.1 8 0 119.1 0 256s111.1 248 248 248 248-111.1 248-248S384.9 8 248 8zm100.7 364.9c-4.2 0-6.8-1.3-10.7-3.6-62.4-37.6-135-39.2-206.7-24.5-3.9 1-9 2.6-11.9 2.6-9.7 0-15.8-7.7-15.8-15.8 0-10.3 6.1-15.2 13.6-16.8 81.9-18.1 165.6-16.5 237 26.2 6.1 3.9 9.7 7.4 9.7 16.5s-7.1 15.4-15.2 15.4zm26.9-65.6c-5.2 0-8.7-2.3-12.3-4.2-72.5-47-167.2-51.4-245.9-28.8-4.5 1.3-8.1 2.3-13.6 2.3-11.3 0-18.4-8.7-18.4-19.4 0-11 7.1-17.1 15.5-19.4 89.9-26.2 195.4-20.7 277.6 31.7 5.5 3.6 10.3 8.1 10.3 17.8 0 11.6-8.7 20-13.2 20zm30.4-71.5c-6.8 0-11.3-2.9-16.5-6.1-85.7-52.7-208-61.8-293.7-34.9-5.8 1.9-11.6 2.9-17.1 2.9-14.2 0-23.6-10.7-23.6-23.6 0-14.2 8.7-21.6 19.4-24.9 98.6-30.7 236.8-20.4 333.1 38.8 6.5 4.2 12.3 9.4 12.3 20.7 0 15.2-11.3 27.1-13.9 27.1z"/></svg></a>
+                            <a href="https://music.apple.com/fr/album/muhammad-marega-juzamma-pt-2/1690396896" target="_blank" rel="noopener" class="stream-icon-btn apple-btn"><svg viewBox="0 0 384 512" width="18" height="18" fill="#FA243C"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zM262.1 104.5c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg></a>
+                        </div></div>
+                    </div>
+                    <div class="album-info"><span class="album-year">2023</span><h3>Juz 'Amma Pt.2</h3><p>Ustadh Muhammad Marega</p></div>
+                </div>
+
+                <div class="album-card">
+                    <div class="album-cover-wrapper">
+                        <img src="album-3-2022.jpg" alt="Juz Amma Mounir" class="album-cover">
+                        <div class="album-overlay"><div class="album-stream-btns">
+                            <a href="https://open.spotify.com/album/5cTOASPTxqHyD6jSge9Xmx" target="_blank" rel="noopener" class="stream-icon-btn spotify-btn"><svg viewBox="0 0 496 512" width="18" height="18" fill="#1DB954"><path d="M248 8C111.1 8 0 119.1 0 256s111.1 248 248 248 248-111.1 248-248S384.9 8 248 8zm100.7 364.9c-4.2 0-6.8-1.3-10.7-3.6-62.4-37.6-135-39.2-206.7-24.5-3.9 1-9 2.6-11.9 2.6-9.7 0-15.8-7.7-15.8-15.8 0-10.3 6.1-15.2 13.6-16.8 81.9-18.1 165.6-16.5 237 26.2 6.1 3.9 9.7 7.4 9.7 16.5s-7.1 15.4-15.2 15.4zm26.9-65.6c-5.2 0-8.7-2.3-12.3-4.2-72.5-47-167.2-51.4-245.9-28.8-4.5 1.3-8.1 2.3-13.6 2.3-11.3 0-18.4-8.7-18.4-19.4 0-11 7.1-17.1 15.5-19.4 89.9-26.2 195.4-20.7 277.6 31.7 5.5 3.6 10.3 8.1 10.3 17.8 0 11.6-8.7 20-13.2 20zm30.4-71.5c-6.8 0-11.3-2.9-16.5-6.1-85.7-52.7-208-61.8-293.7-34.9-5.8 1.9-11.6 2.9-17.1 2.9-14.2 0-23.6-10.7-23.6-23.6 0-14.2 8.7-21.6 19.4-24.9 98.6-30.7 236.8-20.4 333.1 38.8 6.5 4.2 12.3 9.4 12.3 20.7 0 15.2-11.3 27.1-13.9 27.1z"/></svg></a>
+                            <a href="https://music.apple.com/fr/album/mounir-juz-amma-pt-2/1633149798" target="_blank" rel="noopener" class="stream-icon-btn apple-btn"><svg viewBox="0 0 384 512" width="18" height="18" fill="#FA243C"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zM262.1 104.5c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg></a>
+                        </div></div>
+                    </div>
+                    <div class="album-info"><span class="album-year">2022</span><h3>Juz 'Amma Pt.2</h3><p>Ustadh Mounir Ezzaraoui</p></div>
+                </div>
+
+                <div class="album-card">
+                    <div class="album-cover-wrapper">
+                        <img src="album-2-2022.jpg" alt="Juz Amma Idriss" class="album-cover">
+                        <div class="album-overlay"><div class="album-stream-btns">
+                            <a href="https://open.spotify.com/album/5VDMnz225Q4lx930T9rG3S" target="_blank" rel="noopener" class="stream-icon-btn spotify-btn"><svg viewBox="0 0 496 512" width="18" height="18" fill="#1DB954"><path d="M248 8C111.1 8 0 119.1 0 256s111.1 248 248 248 248-111.1 248-248S384.9 8 248 8zm100.7 364.9c-4.2 0-6.8-1.3-10.7-3.6-62.4-37.6-135-39.2-206.7-24.5-3.9 1-9 2.6-11.9 2.6-9.7 0-15.8-7.7-15.8-15.8 0-10.3 6.1-15.2 13.6-16.8 81.9-18.1 165.6-16.5 237 26.2 6.1 3.9 9.7 7.4 9.7 16.5s-7.1 15.4-15.2 15.4zm26.9-65.6c-5.2 0-8.7-2.3-12.3-4.2-72.5-47-167.2-51.4-245.9-28.8-4.5 1.3-8.1 2.3-13.6 2.3-11.3 0-18.4-8.7-18.4-19.4 0-11 7.1-17.1 15.5-19.4 89.9-26.2 195.4-20.7 277.6 31.7 5.5 3.6 10.3 8.1 10.3 17.8 0 11.6-8.7 20-13.2 20zm30.4-71.5c-6.8 0-11.3-2.9-16.5-6.1-85.7-52.7-208-61.8-293.7-34.9-5.8 1.9-11.6 2.9-17.1 2.9-14.2 0-23.6-10.7-23.6-23.6 0-14.2 8.7-21.6 19.4-24.9 98.6-30.7 236.8-20.4 333.1 38.8 6.5 4.2 12.3 9.4 12.3 20.7 0 15.2-11.3 27.1-13.9 27.1z"/></svg></a>
+                            <a href="https://music.apple.com/fr/album/idriss-juz-amma-pt1/1618850262" target="_blank" rel="noopener" class="stream-icon-btn apple-btn"><svg viewBox="0 0 384 512" width="18" height="18" fill="#FA243C"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zM262.1 104.5c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg></a>
+                        </div></div>
+                    </div>
+                    <div class="album-info"><span class="album-year">2022</span><h3>Juz 'Amma Pt.2</h3><p>Ustadh Idriss</p></div>
+                </div>
+
+                <div class="album-card">
+                    <div class="album-cover-wrapper">
+                        <img src="album-1-2021.jpg" alt="Invocations du Matin et du Soir" class="album-cover">
+                        <div class="album-overlay"><div class="album-stream-btns">
+                            <a href="https://open.spotify.com/album/2DpernQ08CkHK57kc3dCFs" target="_blank" rel="noopener" class="stream-icon-btn spotify-btn"><svg viewBox="0 0 496 512" width="18" height="18" fill="#1DB954"><path d="M248 8C111.1 8 0 119.1 0 256s111.1 248 248 248 248-111.1 248-248S384.9 8 248 8zm100.7 364.9c-4.2 0-6.8-1.3-10.7-3.6-62.4-37.6-135-39.2-206.7-24.5-3.9 1-9 2.6-11.9 2.6-9.7 0-15.8-7.7-15.8-15.8 0-10.3 6.1-15.2 13.6-16.8 81.9-18.1 165.6-16.5 237 26.2 6.1 3.9 9.7 7.4 9.7 16.5s-7.1 15.4-15.2 15.4zm26.9-65.6c-5.2 0-8.7-2.3-12.3-4.2-72.5-47-167.2-51.4-245.9-28.8-4.5 1.3-8.1 2.3-13.6 2.3-11.3 0-18.4-8.7-18.4-19.4 0-11 7.1-17.1 15.5-19.4 89.9-26.2 195.4-20.7 277.6 31.7 5.5 3.6 10.3 8.1 10.3 17.8 0 11.6-8.7 20-13.2 20zm30.4-71.5c-6.8 0-11.3-2.9-16.5-6.1-85.7-52.7-208-61.8-293.7-34.9-5.8 1.9-11.6 2.9-17.1 2.9-14.2 0-23.6-10.7-23.6-23.6 0-14.2 8.7-21.6 19.4-24.9 98.6-30.7 236.8-20.4 333.1 38.8 6.5 4.2 12.3 9.4 12.3 20.7 0 15.2-11.3 27.1-13.9 27.1z"/></svg></a>
+                            <a href="https://music.apple.com/fr/album/invocations-du-matin-du-soir/1561822334" target="_blank" rel="noopener" class="stream-icon-btn apple-btn"><svg viewBox="0 0 384 512" width="18" height="18" fill="#FA243C"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zM262.1 104.5c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg></a>
+                        </div></div>
+                    </div>
+                    <div class="album-info"><span class="album-year">2021</span><h3>Invocations du Matin et du Soir</h3><p>Oways Ahmad</p></div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 3. VIDÉOS -->
+        <section class="ecoute-section">
+            <div class="ecoute-section-title">
+                <h2 data-i18n="ecoute_videos_title">Récitations</h2>
+                <p data-i18n="ecoute_videos_subtitle">Plongez dans l'univers sonore de Plume d'O²</p>
+            </div>
+            <div class="videos-grid">
+                <div class="video-post-card">
+                    <div class="video-post-frame">
+                        <iframe src="https://www.youtube.com/embed/ospnawIowKg" title="Récitation 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                    </div>
+                    <div class="video-post-actions">
+                        <button class="video-like-btn" onclick="toggleLike(this)" aria-label="J'aime">
+                            <svg viewBox="0 0 24 24" width="22" height="22" class="heart-icon"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                        </button>
+                        <button class="video-share-btn" onclick="shareVideo('https://youtu.be/ospnawIowKg')" aria-label="Partager">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8M16 6l-4-4-4 4M12 2v13"/></svg>
+                        </button>
+                        <a href="https://youtu.be/ospnawIowKg" target="_blank" rel="noopener" class="video-yt-btn"><svg viewBox="0 0 576 512" width="14" height="14" fill="#FF0000"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg></a>
+                    </div>
+                </div>
+                <div class="video-post-card">
+                    <div class="video-post-frame">
+                        <iframe src="https://www.youtube.com/embed/LDMQvh9I6x8" title="Récitation 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                    </div>
+                    <div class="video-post-actions">
+                        <button class="video-like-btn" onclick="toggleLike(this)" aria-label="J'aime">
+                            <svg viewBox="0 0 24 24" width="22" height="22" class="heart-icon"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                        </button>
+                        <button class="video-share-btn" onclick="shareVideo('https://youtu.be/LDMQvh9I6x8')" aria-label="Partager">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8M16 6l-4-4-4 4M12 2v13"/></svg>
+                        </button>
+                        <a href="https://youtu.be/LDMQvh9I6x8" target="_blank" rel="noopener" class="video-yt-btn"><svg viewBox="0 0 576 512" width="14" height="14" fill="#FF0000"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg></a>
+                    </div>
+                </div>
+                <div class="video-post-card">
+                    <div class="video-post-frame">
+                        <iframe src="https://www.youtube.com/embed/f3kOuyDZCOw" title="Récitation 3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                    </div>
+                    <div class="video-post-actions">
+                        <button class="video-like-btn" onclick="toggleLike(this)" aria-label="J'aime">
+                            <svg viewBox="0 0 24 24" width="22" height="22" class="heart-icon"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                        </button>
+                        <button class="video-share-btn" onclick="shareVideo('https://youtu.be/f3kOuyDZCOw')" aria-label="Partager">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8M16 6l-4-4-4 4M12 2v13"/></svg>
+                        </button>
+                        <a href="https://youtu.be/f3kOuyDZCOw" target="_blank" rel="noopener" class="video-yt-btn"><svg viewBox="0 0 576 512" width="14" height="14" fill="#FF0000"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg></a>
+                    </div>
+                </div>
+                <div class="video-post-card">
+                    <div class="video-post-frame">
+                        <iframe src="https://www.youtube.com/embed/O13KI9Nh7us" title="Récitation 4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                    </div>
+                    <div class="video-post-actions">
+                        <button class="video-like-btn" onclick="toggleLike(this)" aria-label="J'aime">
+                            <svg viewBox="0 0 24 24" width="22" height="22" class="heart-icon"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                        </button>
+                        <button class="video-share-btn" onclick="shareVideo('https://youtu.be/O13KI9Nh7us')" aria-label="Partager">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8M16 6l-4-4-4 4M12 2v13"/></svg>
+                        </button>
+                        <a href="https://youtu.be/O13KI9Nh7us" target="_blank" rel="noopener" class="video-yt-btn"><svg viewBox="0 0 576 512" width="14" height="14" fill="#FF0000"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg></a>
+                    </div>
+                </div>
+                <div class="video-post-card">
+                    <div class="video-post-frame">
+                        <iframe src="https://www.youtube.com/embed/rf8BFCB_I6g" title="Récitation 5" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                    </div>
+                    <div class="video-post-actions">
+                        <button class="video-like-btn" onclick="toggleLike(this)" aria-label="J'aime">
+                            <svg viewBox="0 0 24 24" width="22" height="22" class="heart-icon"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                        </button>
+                        <button class="video-share-btn" onclick="shareVideo('https://youtu.be/rf8BFCB_I6g')" aria-label="Partager">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8M16 6l-4-4-4 4M12 2v13"/></svg>
+                        </button>
+                        <a href="https://youtu.be/rf8BFCB_I6g" target="_blank" rel="noopener" class="video-yt-btn"><svg viewBox="0 0 576 512" width="14" height="14" fill="#FF0000"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg></a>
+                    </div>
+                </div>
+                <div class="video-post-card">
+                    <div class="video-post-frame">
+                        <iframe src="https://www.youtube.com/embed/CUoZiQMlsqo" title="Récitation 6" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                    </div>
+                    <div class="video-post-actions">
+                        <button class="video-like-btn" onclick="toggleLike(this)" aria-label="J'aime">
+                            <svg viewBox="0 0 24 24" width="22" height="22" class="heart-icon"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                        </button>
+                        <button class="video-share-btn" onclick="shareVideo('https://youtu.be/CUoZiQMlsqo')" aria-label="Partager">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8M16 6l-4-4-4 4M12 2v13"/></svg>
+                        </button>
+                        <a href="https://youtu.be/CUoZiQMlsqo" target="_blank" rel="noopener" class="video-yt-btn"><svg viewBox="0 0 576 512" width="14" height="14" fill="#FF0000"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg></a>
+                    </div>
+                </div>
+                <div class="video-post-card">
+                    <div class="video-post-frame">
+                        <iframe src="https://www.youtube.com/embed/Yt4bMoSoQdA" title="Récitation 7" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                    </div>
+                    <div class="video-post-actions">
+                        <button class="video-like-btn" onclick="toggleLike(this)" aria-label="J'aime">
+                            <svg viewBox="0 0 24 24" width="22" height="22" class="heart-icon"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                        </button>
+                        <button class="video-share-btn" onclick="shareVideo('https://youtu.be/Yt4bMoSoQdA')" aria-label="Partager">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8M16 6l-4-4-4 4M12 2v13"/></svg>
+                        </button>
+                        <a href="https://youtu.be/Yt4bMoSoQdA" target="_blank" rel="noopener" class="video-yt-btn"><svg viewBox="0 0 576 512" width="14" height="14" fill="#FF0000"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg></a>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align:center; margin-top: 2rem;" class="dropdown-container">
+                <button class="btn-primary dropdown-toggle" onclick="toggleDropdown()">
+                    Voir toutes les vidéos ↓
+                </button>
+                <div class="dropdown-menu" id="videoDropdown">
+                    <a href="https://youtube.com/@plumedo2_records" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 576 512" width="16" height="16" fill="#FF0000"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg>
+                        Plume d'O² Records
+                    </a>
+                    <a href="https://www.youtube.com/@instantcoranique" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 576 512" width="16" height="16" fill="#FF0000"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg>
+                        Instant Coranique
+                    </a>
+                    <a href="https://www.youtube.com/@mounirmonprofdarabe8460" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 576 512" width="16" height="16" fill="#FF0000"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg>
+                        Ustadh Mounir — Bibliodin
+                    </a>
+                    <a href="https://www.youtube.com/@Muddakkir/videos" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 576 512" width="16" height="16" fill="#FF0000"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg>
+                        Ustadh Muhammad — Centre Muddakir
+                    </a>
+                </div>
+            </div>
+
+            <style>
+            .dropdown-container { position: relative; display: inline-block; }
+            .dropdown-toggle { cursor: pointer; border: none; }
+            .dropdown-menu {
+                display: none;
+                position: absolute;
+                bottom: calc(100% + 10px);
+                left: 50%;
+                transform: translateX(-50%);
+                background: rgba(15, 12, 28, 0.95);
+                backdrop-filter: blur(20px);
+                border: 1px solid rgba(255,255,255,0.1);
+                border-radius: 14px;
+                padding: 8px;
+                min-width: 280px;
+                box-shadow: 0 -8px 32px rgba(0,0,0,0.4);
+                z-index: 100;
+                animation: dropUp 0.25s cubic-bezier(0.22,1,0.36,1);
+            }
+            @keyframes dropUp {
+                from { opacity: 0; transform: translateX(-50%) translateY(10px); }
+                to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+            }
+            .dropdown-menu.open { display: block; }
+            .dropdown-menu a {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                padding: 12px 16px;
+                border-radius: 10px;
+                text-decoration: none;
+                font-family: 'Montserrat', sans-serif;
+                font-size: 13px;
+                font-weight: 500;
+                color: rgba(255,255,255,0.8);
+                transition: background 0.2s ease, color 0.2s ease;
+            }
+            .dropdown-menu a:hover {
+                background: rgba(255,0,0,0.1);
+                color: #fff;
+            }
+            </style>
+            <script>
+            function toggleDropdown() {
+                const menu = document.getElementById('videoDropdown');
+                menu.classList.toggle('open');
+                const btn = document.querySelector('.dropdown-toggle');
+                btn.textContent = menu.classList.contains('open') ? 'Voir toutes les vidéos ↑' : 'Voir toutes les vidéos ↓';
+            }
+            document.addEventListener('click', function(e) {
+                const container = document.querySelector('.dropdown-container');
+                if (!container.contains(e.target)) {
+                    document.getElementById('videoDropdown').classList.remove('open');
+                    document.querySelector('.dropdown-toggle').textContent = 'Voir toutes les vidéos ↓';
+                }
+            });
+            </script>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-col"><h3>Plume d'O²</h3><p data-i18n="footer_tagline">Votre sanctuaire audio pour apaiser le cœur et nourrir l'âme.</p></div>
+            <div class="footer-col">
+                <h4 data-i18n="footer_nav">Navigation</h4>
+                <ul>
+                    <li><a href="index.html" data-i18n="footer_home">Accueil</a></li>
+                    <li><a href="ecoute.html">Écouter</a></li>
+                    <li><a href="journal.html">Le Journal</a></li>
+                    <li><a href="boutique.html">Boutique</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4 data-i18n="footer_networks">Réseaux & Plateformes</h4>
+                <div class="social-links">
+                    <a href="https://open.spotify.com/intl-fr/artist/3QGBoMKOchcr6qyKXZOab5" target="_blank" rel="noopener">Spotify</a>
+                    <a href="https://music.apple.com/fr/artist/oways-ahmad/1561790485" target="_blank" rel="noopener">Apple Music</a>
+                    <a href="https://youtube.com/@plumedo2_records" target="_blank" rel="noopener">YouTube</a>
+                    <a href="https://link.deezer.com/s/32GjMDt3vzl7ZV7YudgLt" target="_blank" rel="noopener">Deezer</a>
+                </div>
+            <div class="footer-col">
+                <h4>Légal</h4>
+                <ul>
+                    <li><a href="legales.html">Mentions Légales</a></li>
+                    <li><a href="confidentialite.html">Confidentialité</a></li>
+                    <li><a href="cgv.html">CGV</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom"><p data-i18n="footer_copyright">© 2026 Plume d'O². Tous droits réservés.</p></div>
+    </footer>
+
+    <script src="plumedo2-animations.js"></script>
+
+    <script src="meditations-data.js"></script>
+    <script src="meditation-player-v2.js"></script>
+    <script src="translations.js"></script>
+    <script>
+    if (typeof buildMedCards === 'function') buildMedCards('med-tracks-container');
+    </script>
+</body>
+</html>
