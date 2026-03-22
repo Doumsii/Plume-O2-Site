@@ -9,6 +9,7 @@ const TRANSLATIONS = {
     nav_ecouter: "Écouter",
     nav_journal: "Le Journal",
     nav_boutique: "Boutique",
+    nav_meditations: "Méditations",
 
     // HERO
     hero_title: "Respirez. Écoutez. Méditez.",
@@ -88,6 +89,7 @@ const TRANSLATIONS = {
     nav_ecouter: "Listen",
     nav_journal: "The Journal",
     nav_boutique: "Shop",
+    nav_meditations: "Meditations",
 
     // HERO
     hero_title: "Breathe. Listen. Meditate.",

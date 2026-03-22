@@ -6,16 +6,19 @@
     <title>Méditations | Plume d'O²</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="plumedo2-animations.css">
+    <link rel="stylesheet" href="plumedo2-player.css">
     <link rel="stylesheet" href="lang-switcher.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="icon" type="image/jpeg" href="logo-original.jpg">
     <style>
-    .med-page { max-width: 1200px; margin: 0 auto; padding: 110px 24px 80px; }
-    .med-page-hero { margin-bottom: 48px; }
-    .med-page-hero h1 { font-family: 'Playfair Display', serif; font-size: 2.4rem; color: #fff; margin-bottom: 8px; }
-    .med-page-hero p  { font-family: 'Montserrat', sans-serif; font-size: 14px; color: rgba(255,255,255,0.5); }
+    .med-page { max-width: 900px; margin: 0 auto; padding: 110px 24px 80px; }
+    .med-page-hero { margin-bottom: 40px; }
+    .med-page-hero h1 { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: #fff; margin-bottom: 8px; }
+    .med-page-hero p { font-family: 'Montserrat', sans-serif; font-size: 14px; color: rgba(255,255,255,0.5); margin-bottom: 0; }
     .btn-back { color: rgba(255,255,255,0.65) !important; text-decoration: none !important; font-family: 'Montserrat', sans-serif; font-size: 13px; display: inline-block; margin-bottom: 28px; }
     .btn-back:hover { color: #fff !important; }
+    .med-section-tag { font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(0,200,220,0.75); display: block; margin-bottom: 8px; }
+    .med-fr-notice { font-family: 'Montserrat', sans-serif; font-size: 12px; color: rgba(0,200,220,0.7); background: rgba(0,200,220,0.07); border: 1px solid rgba(0,200,220,0.2); border-radius: 20px; padding: 5px 14px; display: inline-block; margin-bottom: 28px; }
     </style>
 </head>
 <body>
@@ -39,16 +42,23 @@
 
         <div class="med-page-hero scroll-fade">
             <span class="med-section-tag">Audio spirituel</span>
-            <h1>Méditations Quotidiennes</h1>
-            <p>Des méditations guidées pour nourrir l'âme, apaisées et ressourçantes.<br>Un nouvel épisode toutes les deux semaines.</p>
+            <h1 data-i18n="meditation_title">Méditations Quotidiennes</h1>
+            <p data-i18n="meditation_subtitle">Une méditation audio renouvelée toutes les deux semaines.</p>
         </div>
 
-        <div class="med-tracks-grid" id="med-tracks-container" style="max-width:100%;padding:0;"></div>
+        <!-- Notice FR only pour EN/AR -->
+        <div id="med-fr-notice" class="med-fr-notice" style="display:none;" data-i18n="meditation_fr_only"></div>
+
+        <!-- Grille style populaires -->
+        <div class="popular-tracks" id="med-tracks-container" style="max-width:100%;"></div>
     </main>
 
     <footer class="footer">
         <div class="footer-container">
-            <div class="footer-col"><h3>Plume d'O²</h3><p data-i18n="footer_tagline">Votre sanctuaire audio pour apaiser le cœur et nourrir l'âme.</p></div>
+            <div class="footer-col">
+                <h3>Plume d'O²</h3>
+                <p data-i18n="footer_tagline">Votre sanctuaire audio pour apaiser le cœur et nourrir l'âme.</p>
+            </div>
             <div class="footer-col">
                 <h4 data-i18n="footer_nav">Navigation</h4>
                 <ul>
@@ -77,7 +87,9 @@
                 </ul>
             </div>
         </div>
-        <div class="footer-bottom"><p data-i18n="footer_copyright">© 2026 Plume d'O². Tous droits réservés.</p></div>
+        <div class="footer-bottom">
+            <p data-i18n="footer_copyright">© 2026 Plume d'O². Tous droits réservés.</p>
+        </div>
     </footer>
 
     <script src="meditations-data.js"></script>
@@ -85,7 +97,19 @@
     <script src="plumedo2-animations.js"></script>
     <script src="translations.js"></script>
     <script>
+        // Construire les cards
         if (typeof buildMedCards === 'function') buildMedCards('med-tracks-container');
+
+        // Afficher/cacher la notice FR only selon la langue
+        function updateMedNotice() {
+            var lang = localStorage.getItem('plumedo2_lang') || 'fr';
+            var notice = document.getElementById('med-fr-notice');
+            if (notice) notice.style.display = (lang !== 'fr') ? 'inline-block' : 'none';
+        }
+        updateMedNotice();
+        document.querySelectorAll('.lang-btn').forEach(function(btn) {
+            btn.addEventListener('click', function() { setTimeout(updateMedNotice, 60); });
+        });
     </script>
 </body>
 </html>
