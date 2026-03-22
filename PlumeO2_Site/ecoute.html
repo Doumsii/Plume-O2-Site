@@ -15,13 +15,50 @@
         .journal-page .btn-back { color: rgba(255,255,255,0.65) !important; text-decoration: none !important; }
         .journal-page .btn-back:hover { color: #fff !important; }
     
-    /* ── MED TRACK RESPONSIVE ─── */
+    
     @media (max-width: 600px) {
         .med-track-item { flex-wrap: nowrap; gap: 8px; padding: 8px; }
         .med-track-item .track-cover { width: 40px; height: 40px; min-width: 40px; }
         .med-track-item .track-name { font-size: 12px; }
         .med-track-item .track-artist { font-size: 10px; }
         .med-track-item .med-time { font-size: 9px; }
+    }
+    
+    /* ── MED TRACK ITEM — override play-btn absolute ───── */
+    .med-track-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: nowrap;
+    }
+    .med-track-item .track-info {
+        flex: 1;
+        min-width: 0;
+    }
+    .med-track-item .med-play-btn {
+        position: relative !important;
+        right: auto !important;
+        top: auto !important;
+        transform: none !important;
+        flex-shrink: 0;
+    }
+    .med-track-item:hover .med-play-btn {
+        transform: scale(1.08) !important;
+    }
+    .med-track-item .med-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-shrink: 0;
+    }
+    /* Responsive mobile */
+    @media (max-width: 600px) {
+        .med-track-item { gap: 8px; padding: 8px 6px; }
+        .med-track-item .track-cover { width: 40px !important; height: 40px !important; min-width: 40px !important; }
+        .med-track-item .track-name { font-size: 12px; }
+        .med-track-item .track-artist { font-size: 10px; }
+        .med-track-item .med-time { font-size: 9px; }
+        .med-track-item .med-actions { gap: 6px; }
     }
     </style>
     <meta name="description" content="Découvrez toute la discographie de Plume d'O² — Albums, EPs, récitations coraniques et vidéos spirituelles.">
@@ -697,6 +734,10 @@
             currentId = id;
             if (audio) { audio.pause(); audio.src = ''; }
             audio = new Audio(med.file);
+            window._medAudio = audio;
+            // Appliquer la vitesse si bouton speed existe
+            var speedBtn = document.querySelector('.med-track-item[data-id="' + id + '"] .med-speed-btn');
+            if (speedBtn) audio.playbackRate = parseFloat(speedBtn.getAttribute('data-speed')) || 1;
             audio.addEventListener('timeupdate', function() { updateBars(id); });
             audio.addEventListener('loadedmetadata', function() {
                 document.querySelectorAll('.med-track-item[data-id="' + id + '"] .med-time').forEach(function(t) { t.textContent = '0:00 / ' + formatTime(audio.duration); });
@@ -774,7 +815,7 @@
                 '</div>' +
 
                 /* Boutons droite */
-                '<div style="display:flex;align-items:center;gap:10px;flex-shrink:0;">' +
+                '<div class="med-actions">' +
                     '<span class="med-time" style="font-family:Montserrat,sans-serif;font-size:10px;color:rgba(255,255,255,0.35);white-space:nowrap;">0:00</span>' +
 
                     /* ❤️ Coeur */
@@ -798,6 +839,9 @@
                         '<svg class="med-play-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>' +
                         '<svg class="med-pause-icon" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>' +
                     '</button>' +
+                    '<button class="med-speed-btn" onclick="cycleMedSpeed(event,' + med.id + ')" title="Vitesse" ' +
+                        'style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:6px;cursor:pointer;color:rgba(255,255,255,0.6);font-family:Montserrat,sans-serif;font-size:10px;font-weight:700;padding:3px 6px;transition:all 0.2s;letter-spacing:0.03em;white-space:nowrap;" ' +
+                        'data-speed="1">x1</button>' +
                 '</div>';
 
             container.appendChild(div);

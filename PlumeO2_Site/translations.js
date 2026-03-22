@@ -73,8 +73,9 @@ const TRANSLATIONS = {
     footer_cgv: "CGV",
     footer_copyright: "© 2026 Plume d'O². Tous droits réservés.",
     // MÉDITATION QUOTIDIENNE
-    meditation_title: "Méditation Quotidienne",
-    meditation_subtitle: "Une méditation audio renouvelée toutes les deux semaines.",
+    meditation_title: "Méditations Quotidiennes",
+    meditation_subtitle: "Des méditations guidées pour nourrir l'âme — un nouvel épisode toutes les deux semaines.",
+    meditation_fr_only: "",
     meditation_tag: "Méditation",
     meditation_track_title: "Comment débuter sa journée",
     meditation_author: "Ustadh Mathieu",
@@ -239,6 +240,16 @@ const TRANSLATIONS = {
 let currentLang = localStorage.getItem('plumedo2_lang') || 'fr';
 
 function setLanguage(lang) {
+  // Couper les méditations si en cours
+  try {
+    if (typeof window._medAudio !== 'undefined' && window._medAudio) {
+      window._medAudio.pause();
+      document.querySelectorAll('.med-track-item.active').forEach(function(el) { el.classList.remove('active'); });
+      document.querySelectorAll('.med-track-item .med-play-btn').forEach(function(btn) { btn.classList.remove('playing'); });
+      document.querySelectorAll('.med-play-icon').forEach(function(i) { i.style.display = 'block'; });
+      document.querySelectorAll('.med-pause-icon').forEach(function(i) { i.style.display = 'none'; });
+    }
+  } catch(e) {}
   currentLang = lang;
   localStorage.setItem('plumedo2_lang', lang);
 
