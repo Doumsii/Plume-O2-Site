@@ -1,0 +1,85 @@
+<!-- ============================================================
+     PLUME D'O² — SEO & Meta Tags
+     À coller dans le <head> de chaque page, après le <title>
+     ============================================================ -->
+
+<!-- ── PAGE D'ACCUEIL (index.html) ────────────────────────── -->
+
+<!-- SEO Google -->
+<meta name="description" content="Plume d'O² — Votre sanctuaire audio pour apaiser le cœur et nourrir l'âme. Récitations coraniques, méditations spirituelles et outils pour se reconnecter à l'Éternel.">
+<meta name="keywords" content="récitation coran, audio spirituel, méditation islamique, invocations, plume d'O2, sanctuaire audio">
+<meta name="author" content="Plume d'O²">
+<meta name="robots" content="index, follow">
+
+<!-- Open Graph (Facebook, Instagram, WhatsApp) -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://plumedo2-officiel.netlify.app/">
+<meta property="og:title" content="Plume d'O² | Le sanctuaire de l'âme">
+<meta property="og:description" content="Votre sanctuaire audio pour apaiser le cœur et nourrir l'âme. Récitations coraniques, méditations et outils spirituels.">
+<meta property="og:image" content="https://plumedo2-officiel.netlify.app/logo.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="1200">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Plume d'O²">
+
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Plume d'O² | Le sanctuaire de l'âme">
+<meta name="twitter:description" content="Votre sanctuaire audio pour apaiser le cœur et nourrir l'âme. Récitations coraniques, méditations et outils spirituels.">
+<meta name="twitter:image" content="https://plumedo2-officiel.netlify.app/logo.jpg">
+
+<!-- Favicon -->
+<link rel="icon" type="image/jpeg" href="logo.jpg">
+<link rel="apple-touch-icon" href="logo.jpg">
+
+
+<!-- ============================================================ -->
+<!-- ── PAGE JOURNAL (journal.html) ────────────────────────────── -->
+
+<meta name="description" content="Le Journal de Plume d'O² — Explorations du Coran, recherches scientifiques et méditations spirituelles pour nourrir l'intellect et le cœur.">
+<meta property="og:url" content="https://plumedo2-officiel.netlify.app/journal.html">
+<meta property="og:title" content="Le Journal | Plume d'O²">
+<meta property="og:description" content="Explorations du Coran, recherches et méditations spirituelles. Découvrez les articles de Plume d'O².">
+<meta property="og:image" content="https://plumedo2-officiel.netlify.app/logo.jpg">
+<meta name="twitter:title" content="Le Journal | Plume d'O²">
+<meta name="twitter:description" content="Explorations du Coran, recherches et méditations spirituelles.">
+<meta name="twitter:image" content="https://plumedo2-officiel.netlify.app/logo.jpg">
+
+
+<!-- ============================================================ -->
+<!-- ── PAGE BOUTIQUE (boutique.html) ──────────────────────────── -->
+
+<meta name="description" content="Boutique Plume d'O² — Livres, recueils d'invocations et outils pédagogiques pour accompagner votre chemin spirituel au quotidien.">
+<meta property="og:url" content="https://plumedo2-officiel.netlify.app/boutique.html">
+<meta property="og:title" content="Boutique & Outils | Plume d'O²">
+<meta property="og:description" content="Livres, recueils d'invocations et outils pédagogiques pour votre chemin spirituel.">
+<meta property="og:image" content="https://plumedo2-officiel.netlify.app/logo.jpg">
+<meta name="twitter:title" content="Boutique & Outils | Plume d'O²">
+<meta name="twitter:description" content="Livres, recueils d'invocations et outils pédagogiques.">
+<meta name="twitter:image" content="https://plumedo2-officiel.netlify.app/logo.jpg">
+
+
+<!-- ============================================================ -->
+<!-- ── ARTICLE 1 (article1.html) ──────────────────────────────── -->
+
+<meta name="description" content="L'éthique de l'information et la préservation de l'honneur — Méditation sur la Sourate Al-Hujurat (V.6) par Oways Ahmad.">
+<meta property="og:url" content="https://plumedo2-officiel.netlify.app/article1.html">
+<meta property="og:title" content="L'éthique de l'information | Plume d'O²">
+<meta property="og:description" content="Méditation sur la Sourate Al-Hujurat — vérifier l'information, préserver l'honneur et éduquer la langue.">
+<meta property="og:image" content="https://plumedo2-officiel.netlify.app/cover-hujurat.jpg">
+<meta name="twitter:title" content="L'éthique de l'information | Plume d'O²">
+<meta name="twitter:description" content="Méditation sur la Sourate Al-Hujurat — vérifier l'information, préserver l'honneur.">
+<meta name="twitter:image" content="https://plumedo2-officiel.netlify.app/cover-hujurat.jpg">
+
+
+<!-- ============================================================ -->
+<!-- ── ARTICLE 2 (article2.html) ──────────────────────────────── -->
+
+<meta name="description" content="L'engagement et l'équilibre — Recherche sur la Sourate Al-Hadid par Plume d'O². Comment concilier engagement spirituel et vie personnelle.">
+<meta property="og:url" content="https://plumedo2-officiel.netlify.app/article2.html">
+<meta property="og:title" content="L'engagement et l'équilibre | Plume d'O²">
+<meta property="og:description" content="Analyse de la Sourate Al-Hadid — engagement envers Allah et équilibre avec la vie personnelle.">
+<meta property="og:image" content="https://plumedo2-officiel.netlify.app/hadid.jpg">
+<meta name="twitter:title" content="L'engagement et l'équilibre | Plume d'O²">
+<meta name="twitter:description" content="Analyse de la Sourate Al-Hadid — engagement et équilibre spirituel.">
+<meta name="twitter:image" content="https://plumedo2-officiel.netlify.app/hadid.jpg">
