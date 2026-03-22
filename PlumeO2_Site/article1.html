@@ -19,7 +19,7 @@
     .hamburger.open span:nth-child(2) { opacity:0; }
     .hamburger.open span:nth-child(3) { transform:rotate(-45deg) translate(5px,-5px); }
     @media (max-width:768px) {
-        .hamburger { display:flex; order:-1; margin-right:12px; }
+        .hamburger { display:flex; margin-right:12px; }
         .navbar { flex-wrap:nowrap !important; padding:0 16px !important; }
         .navbar .logo { flex:1; text-align:left; }
         .lang-switcher { margin-left:auto; }
@@ -32,6 +32,7 @@
 </head>
 <body>
     <header class="navbar">
+        <button class="hamburger" id="nav-hamburger" aria-label="Menu" onclick="toggleHamburger()"><span></span><span></span><span></span></button>
         <a href="index.html" class="logo">Plume d'O²</a>
         <nav>
             <a href="ecoute.html" data-i18n="nav_ecouter">Écouter</a>
@@ -44,9 +45,6 @@
             <button class="lang-btn" data-lang="en" onclick="setLanguage('en')"><span class="lang-flag">🇬🇧</span><span class="lang-text"> EN</span></button>
             <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')"><span class="lang-flag">🇸🇦</span><span class="lang-text"> AR</span></button>
         </div>
-        <button class="hamburger" id="nav-hamburger" aria-label="Menu" onclick="toggleHamburger()">
-            <span></span><span></span><span></span>
-        </button>
     </header>
 
     <main class="article-page">
