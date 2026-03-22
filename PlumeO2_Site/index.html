@@ -473,9 +473,21 @@
             </div>
         </div>
     </div>
-<div style="text-align:center;margin-top:20px;"><a href="meditations.html" class="btn-secondary" data-i18n="meditation_all">Voir tous les épisodes →</a></div>
-    </section>
-<audio id="meditation-audio" preload="metadata"></audio>
+</section>
+
+
+<!-- ══ MÉDITATIONS ══════════════════════════════════════ -->
+<section class="med-tracks-section">
+    <div class="section-header med-tracks-section">
+        <span class="med-section-tag">Audio spirituel</span>
+        <h2>Méditations Quotidiennes</h2>
+        <p>Des méditations guidées pour nourrir l'âme au quotidien.</p>
+    </div>
+    <div class="med-tracks-grid" id="med-tracks-container"></div>
+    <div style="text-align:center;margin-top:28px;">
+        <a href="meditations.html" class="btn-secondary" data-i18n="meditation_all">Voir tous les épisodes →</a>
+    </div>
+</section>
 
     <section id="boutique" class="boutique">
         <div class="section-header">
@@ -628,6 +640,7 @@
     <script src="plumedo2-animations.js"></script>
     <script src="plumedo2-player.js"></script>
     <script src="plumedo2-mobile.js"></script>
+
     <script src="meditations-data.js"></script>
     <script src="meditation-player-v2.js"></script>
     <script src="translations.js"></script>
@@ -759,5 +772,8 @@ document.addEventListener('keydown', e => {
         });
     });
 </script>
+    <script>
+    if (typeof buildMedCards === 'function') buildMedCards('med-tracks-container');
+    </script>
 </body>
 </html>

@@ -10,53 +10,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="icon" type="image/jpeg" href="logo-original.jpg">
     <style>
-    .med-page { max-width: 860px; margin: 0 auto; padding: 120px 24px 80px; }
-    .med-page h1 { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: #fff; margin-bottom: 8px; }
-    .med-page .med-subtitle { font-family: 'Montserrat', sans-serif; font-size: 14px; color: rgba(255,255,255,0.5); margin-bottom: 48px; }
-
-    /* Player principal */
-    .med-featured { margin-bottom: 48px; }
-    .med-featured-label { font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(0,200,220,0.8); margin-bottom: 14px; display: block; }
-
-    /* Liste épisodes */
-    .med-list-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: #fff; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.08); }
-    .med-episode {
-        display: flex;
-        align-items: center;
-        gap: 18px;
-        padding: 16px 20px;
-        border-radius: 14px;
-        border: 1px solid rgba(255,255,255,0.07);
-        background: rgba(255,255,255,0.02);
-        margin-bottom: 10px;
-        cursor: pointer;
-        transition: all 0.25s;
-    }
-    .med-episode:hover, .med-episode.active-ep {
-        border-color: rgba(0,200,220,0.35);
-        background: rgba(0,200,220,0.05);
-    }
-    .med-episode.active-ep { box-shadow: 0 0 20px rgba(0,200,220,0.08); }
-    .med-ep-num {
-        font-family: 'Playfair Display', serif;
-        font-size: 1.5rem;
-        color: rgba(0,200,220,0.4);
-        font-weight: 700;
-        min-width: 36px;
-        text-align: center;
-    }
-    .med-ep-info { flex: 1; }
-    .med-ep-title { font-family: 'Playfair Display', serif; font-size: 1rem; color: #fff; margin-bottom: 3px; }
-    .med-ep-author { font-family: 'Montserrat', sans-serif; font-size: 12px; color: rgba(255,255,255,0.45); }
-    .med-ep-date { font-family: 'Montserrat', sans-serif; font-size: 11px; color: rgba(255,255,255,0.3); white-space: nowrap; }
-    .med-ep-play {
-        width: 36px; height: 36px; border-radius: 50%;
-        background: rgba(0,200,220,0.1); border: 1px solid rgba(0,200,220,0.3);
-        display: flex; align-items: center; justify-content: center;
-        color: rgba(0,200,220,0.8); font-size: 14px; min-width: 36px;
-        transition: all 0.2s;
-    }
-    .med-episode:hover .med-ep-play { background: rgba(0,200,220,0.2); }
+    .med-page { max-width: 1200px; margin: 0 auto; padding: 110px 24px 80px; }
+    .med-page-hero { margin-bottom: 48px; }
+    .med-page-hero h1 { font-family: 'Playfair Display', serif; font-size: 2.4rem; color: #fff; margin-bottom: 8px; }
+    .med-page-hero p  { font-family: 'Montserrat', sans-serif; font-size: 14px; color: rgba(255,255,255,0.5); }
+    .btn-back { color: rgba(255,255,255,0.65) !important; text-decoration: none !important; font-family: 'Montserrat', sans-serif; font-size: 13px; display: inline-block; margin-bottom: 28px; }
+    .btn-back:hover { color: #fff !important; }
     </style>
 </head>
 <body>
@@ -76,47 +35,26 @@
     </header>
 
     <main class="med-page">
-        <a href="index.html" class="btn-back" style="display:inline-block;margin-bottom:32px;" data-i18n="journal_page_back">← Retour à l'accueil</a>
-        <h1 data-i18n="meditation_title">Méditations Quotidiennes</h1>
-        <p class="med-subtitle" data-i18n="meditation_subtitle">Une méditation audio renouvelée toutes les deux semaines.</p>
+        <a href="index.html" class="btn-back">← Retour à l'accueil</a>
 
-        <!-- Player de l'épisode sélectionné -->
-        <div class="med-featured">
-            <span class="med-featured-label" data-i18n="meditation_latest">Épisode en cours</span>
-            <div class="meditation-player-card" id="med-card" onclick="toggleMeditation()">
-                <button class="meditation-play-btn" id="med-play-btn" aria-label="Lecture">
-                    <svg id="med-icon-play" viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-                    <svg id="med-icon-pause" viewBox="0 0 24 24" width="22" height="22" fill="currentColor" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                </button>
-                <div class="meditation-info">
-                    <span class="meditation-tag" data-i18n="meditation_tag">Méditation</span>
-                    <h3 class="meditation-title" id="med-track-title">—</h3>
-                    <p class="meditation-author" id="med-track-author">—</p>
-                    <p class="meditation-desc" id="med-track-desc">—</p>
-                    <div class="meditation-progress-wrap">
-                        <div class="meditation-progress-bar" id="med-progress-bar" onclick="seekMeditation(event)">
-                            <div class="meditation-progress-fill" id="med-progress-fill"></div>
-                        </div>
-                        <span class="meditation-time" id="med-time">0:00 / 0:00</span>
-                    </div>
-                </div>
-            </div>
+        <div class="med-page-hero scroll-fade">
+            <span class="med-section-tag">Audio spirituel</span>
+            <h1>Méditations Quotidiennes</h1>
+            <p>Des méditations guidées pour nourrir l'âme, apaisées et ressourçantes.<br>Un nouvel épisode toutes les deux semaines.</p>
         </div>
-        <audio id="meditation-audio" preload="metadata"></audio>
 
-        <!-- Liste tous les épisodes -->
-        <h2 class="med-list-title" data-i18n="meditation_all">Tous les épisodes</h2>
-        <div id="med-episodes-list"></div>
+        <div class="med-tracks-grid" id="med-tracks-container" style="max-width:100%;padding:0;"></div>
     </main>
 
     <footer class="footer">
         <div class="footer-container">
-            <div class="footer-col"><h3>Plume d'O²</h3><p data-i18n="footer_tagline">Votre sanctuaire audio.</p></div>
+            <div class="footer-col"><h3>Plume d'O²</h3><p data-i18n="footer_tagline">Votre sanctuaire audio pour apaiser le cœur et nourrir l'âme.</p></div>
             <div class="footer-col">
                 <h4 data-i18n="footer_nav">Navigation</h4>
                 <ul>
                     <li><a href="index.html" data-i18n="footer_home">Accueil</a></li>
                     <li><a href="ecoute.html" data-i18n="nav_ecouter">Écouter</a></li>
+                    <li><a href="meditations.html" data-i18n="nav_meditations">Méditations</a></li>
                     <li><a href="journal.html" data-i18n="nav_journal">Le Journal</a></li>
                     <li><a href="boutique.html" data-i18n="nav_boutique">Boutique</a></li>
                 </ul>
@@ -127,7 +65,16 @@
                     <a href="https://open.spotify.com/intl-fr/artist/3QGBoMKOchcr6qyKXZOab5" target="_blank" rel="noopener">Spotify</a>
                     <a href="https://music.apple.com/fr/artist/oways-ahmad/1561790485" target="_blank" rel="noopener">Apple Music</a>
                     <a href="https://youtube.com/@plumedo2_records" target="_blank" rel="noopener">YouTube</a>
+                    <a href="https://link.deezer.com/s/32GjMDt3vzl7ZV7YudgLt" target="_blank" rel="noopener">Deezer</a>
                 </div>
+            </div>
+            <div class="footer-col">
+                <h4>Légal</h4>
+                <ul>
+                    <li><a href="legales.html">Mentions Légales</a></li>
+                    <li><a href="confidentialite.html">Confidentialité</a></li>
+                    <li><a href="cgv.html">CGV</a></li>
+                </ul>
             </div>
         </div>
         <div class="footer-bottom"><p data-i18n="footer_copyright">© 2026 Plume d'O². Tous droits réservés.</p></div>
@@ -135,42 +82,10 @@
 
     <script src="meditations-data.js"></script>
     <script src="meditation-player-v2.js"></script>
+    <script src="plumedo2-animations.js"></script>
     <script src="translations.js"></script>
     <script>
-    // Générer la liste des épisodes
-    function buildEpisodeList() {
-        var lang = localStorage.getItem('plumedo2_lang') || 'fr';
-        var list = document.getElementById('med-episodes-list');
-        if (!list) return;
-        list.innerHTML = '';
-        MEDITATIONS.forEach(function(med, i) {
-            var d = med[lang] || med.fr;
-            var div = document.createElement('div');
-            div.className = 'med-episode' + (i === 0 ? ' active-ep' : '');
-            div.setAttribute('data-id', med.id);
-            div.innerHTML = `
-                <div class="med-ep-num">${String(MEDITATIONS.length - i).padStart(2,'0')}</div>
-                <div class="med-ep-info">
-                    <div class="med-ep-title">${d.title}</div>
-                    <div class="med-ep-author">${d.author}</div>
-                </div>
-                <div class="med-ep-date">${med.date}</div>
-                <div class="med-ep-play">
-                    <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-                </div>`;
-            div.addEventListener('click', function() {
-                document.querySelectorAll('.med-episode').forEach(function(el) { el.classList.remove('active-ep'); });
-                div.classList.add('active-ep');
-                playMedById(med.id);
-            });
-            list.appendChild(div);
-        });
-    }
-    buildEpisodeList();
-    // Rebuild on language change
-    document.querySelectorAll('.lang-btn').forEach(function(btn) {
-        btn.addEventListener('click', function() { setTimeout(buildEpisodeList, 60); });
-    });
+        if (typeof buildMedCards === 'function') buildMedCards('med-tracks-container');
     </script>
 </body>
 </html>

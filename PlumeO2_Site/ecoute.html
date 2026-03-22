@@ -586,8 +586,12 @@
     </footer>
 
     <script src="plumedo2-animations.js"></script>
+
     <script src="meditations-data.js"></script>
     <script src="meditation-player-v2.js"></script>
     <script src="translations.js"></script>
+    <script>
+    if (typeof buildMedCards === 'function') buildMedCards('med-tracks-container');
+    </script>
 </body>
 </html>
