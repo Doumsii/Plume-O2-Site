@@ -31,6 +31,7 @@
     .cgv-bloc-tag { font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(0,200,220,0.8); background: rgba(0,200,220,0.08); border: 1px solid rgba(0,200,220,0.2); border-radius: 20px; padding: 3px 12px; display: inline-block; margin-bottom: 14px; }
     </style>
 
+    <link rel="stylesheet" href="plumedo2-mobile.css">
 </head>
 <body>
     <header class="navbar">
@@ -82,7 +83,7 @@
                 <h3>Propriété intellectuelle</h3>
                 <p>Les Cartes Mentales sont protégées par le droit d'auteur. Toute reproduction, redistribution ou partage non autorisé est un délit de contrefaçon.</p>
                 <h3>Réclamations</h3>
-                <p>Contact : <a href="mailto:[À compléter]">[À compléter]</a> — Réponse sous 5 jours ouvrés.</p>
+                <p>Contact : <a href="/cdn-cgi/l/email-protection#7f24bcff5f1c10120f13bcd60b1a0d22">[À compléter]</a> — Réponse sous 5 jours ouvrés.</p>
             </div>
         </div>
 
@@ -134,7 +135,7 @@
         </div>
         <div class="footer-bottom"><p>© 2026 Plume d'O². Tous droits réservés.</p></div>
     </footer>
-    <script src="translations.js"></script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="translations.js"></script>
     <script>
     if (!window._hambInit) {
         window._hambInit = true;
@@ -178,11 +179,4 @@
     // Intercepter les boutons de langue pour mettre à jour la bannière aussi
     document.addEventListener('DOMContentLoaded', function() {
         document.querySelectorAll('.lang-btn').forEach(function(btn) {
-            btn.addEventListener('click', function() {
-                setTimeout(updateLegalBanner, 50);
-            });
-        });
-    });
-    </script>
-</body>
-</html>
+            btn.addEventL

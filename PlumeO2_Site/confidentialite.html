@@ -31,6 +31,7 @@
     .cgv-bloc-tag { font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(0,200,220,0.8); background: rgba(0,200,220,0.08); border: 1px solid rgba(0,200,220,0.2); border-radius: 20px; padding: 3px 12px; display: inline-block; margin-bottom: 14px; }
     </style>
 
+    <link rel="stylesheet" href="plumedo2-mobile.css">
 </head>
 <body>
     <header class="navbar">
@@ -111,7 +112,7 @@
                 <li><strong>Droit à la portabilité</strong> — recevoir vos données dans un format lisible</li>
                 <li><strong>Droit d'opposition</strong> — vous opposer à certains traitements</li>
             </ul>
-            <p>Contact : <a href="mailto:[À compléter]">[À compléter]</a> — Réclamation CNIL : <a href="https://www.cnil.fr" target="_blank" rel="noopener">cnil.fr</a></p>
+            <p>Contact : <a href="/cdn-cgi/l/email-protection#5d069edd7d3e32302d319ef429382f00">[À compléter]</a> — Réclamation CNIL : <a href="https://www.cnil.fr" target="_blank" rel="noopener">cnil.fr</a></p>
         </div>
     </main>
 
@@ -138,7 +139,7 @@
         </div>
         <div class="footer-bottom"><p>© 2026 Plume d'O². Tous droits réservés.</p></div>
     </footer>
-    <script src="translations.js"></script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="translations.js"></script>
     <script>
     if (!window._hambInit) {
         window._hambInit = true;
@@ -182,11 +183,4 @@
     // Intercepter les boutons de langue pour mettre à jour la bannière aussi
     document.addEventListener('DOMContentLoaded', function() {
         document.querySelectorAll('.lang-btn').forEach(function(btn) {
-            btn.addEventListener('click', function() {
-                setTimeout(updateLegalBanner, 50);
-            });
-        });
-    });
-    </script>
-</body>
-</html>
+            btn.addEventL
