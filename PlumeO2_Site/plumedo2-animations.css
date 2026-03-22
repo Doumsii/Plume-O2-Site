@@ -124,3 +124,98 @@ html {
   transform: translateY(-6px) !important;
   box-shadow: 0 20px 48px rgba(0, 0, 0, 0.35) !important;
 }
+
+/* ── NAVBAR LAYOUT ──────────────────────────────────────── */
+.navbar {
+  display: flex;
+  align-items: center;
+  padding: 0 2rem;
+  height: 64px;
+}
+
+.navbar .logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #fff;
+  text-decoration: none;
+  margin-right: auto;
+}
+
+.navbar nav {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.navbar nav a {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.65);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.navbar nav a:hover { color: #fff; }
+
+/* ── HAMBURGER ───────────────────────────────────────────── */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 6px;
+  z-index: 1001;
+  flex-shrink: 0;
+}
+
+.hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: rgba(255,255,255,0.85);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+/* ── MOBILE ───────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .navbar {
+    height: 56px;
+    padding: 0 14px;
+  }
+  .hamburger { display: flex; }
+  .navbar nav {
+    display: none;
+    position: fixed;
+    top: 56px;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    background: rgba(8, 12, 28, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 20px 24px 28px;
+    gap: 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    z-index: 1000;
+  }
+  .navbar nav.open { display: flex; }
+  .navbar nav a {
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    width: 100%;
+    font-size: 14px;
+  }
+  .navbar nav a:last-child { border-bottom: none; }
+}

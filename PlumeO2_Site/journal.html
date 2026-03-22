@@ -15,66 +15,6 @@
     <meta property="og:image" content="https://plume-o2-site.vercel.app/logo-original.jpg">
     <meta property="og:url" content="https://plume-o2-site.vercel.app/journal.html">
     <link rel="icon" type="image/jpeg" href="logo-original.jpg">
-    <style>
-    .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none; padding:4px; z-index:1001; }
-    .hamburger span { display:block; width:22px; height:2px; background:rgba(255,255,255,0.8); border-radius:2px; transition:all 0.3s; }
-    .hamburger.open span:nth-child(1) { transform:rotate(45deg) translate(5px,5px); }
-    .hamburger.open span:nth-child(2) { opacity:0; }
-    .hamburger.open span:nth-child(3) { transform:rotate(-45deg) translate(5px,-5px); }
-    @media (max-width:768px) {
-        /* Une seule ligne : ☰ — Plume d'O² — 🇫🇷🇬🇧🇸🇦 */
-        .navbar {
-            flex-wrap: nowrap !important;
-            padding: 0 14px !important;
-            display: flex !important;
-            align-items: center !important;
-            height: 56px;
-        }
-        .hamburger {
-            display: flex;
-            flex-shrink: 0;
-            margin-right: 10px;
-            order: 1;
-        }
-        .navbar .logo {
-            flex: 1;
-            text-align: center;
-            order: 2;
-            font-size: 1rem;
-        }
-        .lang-switcher {
-            order: 3;
-            flex-shrink: 0;
-            margin-left: 0;
-            gap: 4px;
-        }
-        .lang-btn { padding: 3px 6px; font-size: 10px; }
-        .lang-btn .lang-text { display: none; }
-        /* Menu déroulant */
-        .navbar nav {
-            display: none;
-            position: fixed;
-            top: 56px;
-            left: 0; right: 0;
-            background: rgba(8,12,28,0.98);
-            backdrop-filter: blur(20px);
-            flex-direction: column;
-            padding: 20px 24px 28px;
-            gap: 0;
-            border-bottom: 1px solid rgba(255,255,255,0.08);
-            z-index: 1000;
-            order: 4;
-        }
-        .navbar nav.open { display: flex !important; }
-        .navbar nav a {
-            padding: 14px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.06);
-            font-size: 15px;
-            text-align: left;
-        }
-        .navbar nav a:last-child { border-bottom: none; }
-    }
-    </style>
 </head>
 <body>
     <header class="navbar">
