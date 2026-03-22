@@ -1,29 +1,46 @@
 /* ═══════════════════════════════════════════════════════════════
-   PLUME D'O² — MOBILE CSS v3
+   PLUME D'O² — MOBILE CSS v4
    ✅ Desktop : inchangé
-   ✅ Mobile  : [☰] logo centré [drapeaux sans bordure]
-   ✅ Toutes pages : même navbar
+   ✅ Mobile navbar 2 lignes :
+        Ligne 1 : Plume d'O² (centré, pleine largeur)
+        Ligne 2 : [☰ gauche]     [🇫🇷 🇬🇧 🇸🇦 droite sans bordure]
 ═══════════════════════════════════════════════════════════════ */
 
 @media (max-width: 768px) {
 
   /* ══════════════════════════════════════════════════════════
-     NAVBAR — 1 ligne propre
+     NAVBAR — 2 lignes via flex-wrap
   ══════════════════════════════════════════════════════════ */
   .navbar {
     display: flex !important;
+    flex-wrap: wrap !important;
     flex-direction: row !important;
     align-items: center !important;
-    justify-content: space-between !important;
-    padding: 12px 16px !important;
-    min-height: 58px !important;
-    position: relative !important;
-    flex-wrap: nowrap !important;
+    padding: 12px 16px 8px !important;
     gap: 0 !important;
+    position: relative !important;
   }
 
-  /* HAMBURGER — gauche */
+  /* LIGNE 1 : Logo — pleine largeur, centré */
+  .navbar .logo,
+  .navbar a.logo {
+    order: 1 !important;
+    width: 100% !important;
+    text-align: center !important;
+    /* Reset position absolue des versions précédentes */
+    position: static !important;
+    transform: none !important;
+    left: auto !important;
+    top: auto !important;
+    font-size: 1.5rem !important;
+    margin-bottom: 8px !important;
+    white-space: nowrap !important;
+    pointer-events: auto !important;
+  }
+
+  /* LIGNE 2 gauche : Hamburger */
   .hamburger {
+    order: 2 !important;
     display: flex !important;
     flex-direction: column !important;
     justify-content: center !important;
@@ -36,7 +53,7 @@
     cursor: pointer !important;
     padding: 4px !important;
     flex-shrink: 0 !important;
-    order: 1 !important;
+    margin-right: auto !important;
     z-index: 200 !important;
   }
 
@@ -54,36 +71,23 @@
   .hamburger.open span:nth-child(2) { opacity: 0 !important; transform: scaleX(0) !important; }
   .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg) !important; }
 
-  /* LOGO — centré absolu */
-  .navbar .logo,
-  .navbar a.logo {
-    position: absolute !important;
-    left: 50% !important;
-    top: 50% !important;
-    transform: translate(-50%, -50%) !important;
-    font-size: 1.35rem !important;
-    white-space: nowrap !important;
-    order: 2 !important;
-    text-align: center !important;
-    pointer-events: auto !important;
-    z-index: 1 !important;
-  }
-
-  /* LANG SWITCHER — droite, SANS bordure */
+  /* LIGNE 2 droite : Drapeaux — ZÉRO bordure, ZÉRO texte */
   .lang-switcher {
+    order: 3 !important;
     display: flex !important;
     flex-direction: row !important;
     align-items: center !important;
-    gap: 2px !important;
+    gap: 4px !important;
     flex-shrink: 0 !important;
-    order: 3 !important;
     margin-left: auto !important;
     z-index: 200 !important;
   }
 
   .lang-btn {
-    padding: 4px 5px !important;
+    padding: 3px 5px !important;
     border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
     background: transparent !important;
     border-radius: 6px !important;
     cursor: pointer !important;
@@ -91,9 +95,20 @@
     align-items: center !important;
     justify-content: center !important;
     font-size: 0 !important;
-    min-width: 30px !important;
-    height: 30px !important;
+    min-width: 32px !important;
+    height: 32px !important;
     transition: background 0.2s !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+  }
+
+  /* Retire TOUTE bordure y compris sur .active */
+  .lang-btn,
+  .lang-btn:hover,
+  .lang-btn:focus,
+  .lang-btn:active,
+  .lang-btn.active {
+    border: none !important;
     box-shadow: none !important;
     outline: none !important;
   }
@@ -101,18 +116,18 @@
   .lang-btn:hover,
   .lang-btn.active {
     background: rgba(255,255,255,0.1) !important;
-    border: none !important;
-    box-shadow: none !important;
   }
 
   .lang-flag {
-    font-size: 20px !important;
+    font-size: 22px !important;
     line-height: 1 !important;
   }
 
-  /* NAV MENU — dropdown */
-  .navbar nav {
+  /* NAV MENU — dropdown absolu sous toute la navbar */
+  .navbar > nav {
     display: none !important;
+    order: 4 !important;
+    width: 100% !important;
     position: absolute !important;
     top: 100% !important;
     left: 0 !important;
@@ -129,7 +144,7 @@
     box-shadow: 0 12px 40px rgba(0,0,0,0.5) !important;
   }
 
-  .navbar nav.open {
+  .navbar > nav.open {
     display: flex !important;
     animation: menuSlide 0.25s ease !important;
   }
@@ -139,7 +154,7 @@
     to   { opacity: 1; transform: translateY(0); }
   }
 
-  .navbar nav a {
+  .navbar > nav a {
     width: 100% !important;
     text-align: center !important;
     padding: 14px 24px !important;
@@ -150,12 +165,13 @@
     margin: 0 !important;
     transition: color 0.2s, background 0.2s !important;
     text-decoration: none !important;
+    display: block !important;
   }
 
-  .navbar nav a:last-child { border-bottom: none !important; }
+  .navbar > nav a:last-child { border-bottom: none !important; }
 
-  .navbar nav a:hover,
-  .navbar nav a:active {
+  .navbar > nav a:hover,
+  .navbar > nav a:active {
     color: #00c8dc !important;
     background: rgba(0,200,220,0.06) !important;
   }
@@ -163,7 +179,7 @@
   /* ══════════════════════════════════════════════════════════
      HERO
   ══════════════════════════════════════════════════════════ */
-  .hero { height: auto !important; min-height: 75vh !important; }
+  .hero { height: auto !important; min-height: 72vh !important; }
   .hero-content h1 { font-size: 2rem !important; line-height: 1.25 !important; }
   .hero-content p  { font-size: 0.85rem !important; line-height: 1.7 !important; padding: 0 !important; }
 
@@ -209,21 +225,15 @@
   .product-card  { min-width: 100% !important; max-width: 100% !important; }
   .product-info  { padding: 20px !important; }
   .product-info h3 { font-size: 1rem !important; margin-bottom: 12px !important; }
-
   .bio-container { gap: 10px !important; margin-bottom: 12px !important; align-items: center !important; }
   .bio-avatar    { width: 44px !important; height: 44px !important; flex-shrink: 0 !important; }
-
-  .author-bio p {
-    font-size: 0.78rem !important; line-height: 1.55 !important; margin-bottom: 6px !important;
-  }
+  .author-bio p  { font-size: 0.78rem !important; line-height: 1.55 !important; margin-bottom: 6px !important; }
   .author-bio .label-role { font-size: 0.75rem !important; padding-top: 10px !important; margin-top: 10px !important; }
-
   .product-desc {
     font-size: 0.78rem !important; line-height: 1.6 !important;
     display: -webkit-box !important; -webkit-line-clamp: 4 !important;
     -webkit-box-orient: vertical !important; overflow: hidden !important;
   }
-
   .product-action { flex-direction: column !important; gap: 12px !important; align-items: stretch !important; text-align: center !important; padding-top: 16px !important; }
   .product-action-multi { padding-top: 16px !important; gap: 10px !important; }
   .store-buttons { flex-wrap: wrap !important; gap: 6px !important; justify-content: center !important; }
@@ -244,7 +254,7 @@
   /* ══════════════════════════════════════════════════════════
      BOUTONS
   ══════════════════════════════════════════════════════════ */
-  .btn-primary { font-size: 0.78rem !important; padding: 12px 24px !important; letter-spacing: 0.1em !important; }
+  .btn-primary { font-size: 0.78rem !important; padding: 12px 24px !important; }
   .streaming-links { flex-wrap: wrap !important; gap: 8px !important; justify-content: center !important; }
 
   /* ══════════════════════════════════════════════════════════
@@ -263,15 +273,13 @@
   .boutique-page-grid            { grid-template-columns: 1fr !important; gap: 16px !important; }
   .boutique-page-card            { min-width: 100% !important; }
   .journal-page-grid             { grid-template-columns: 1fr !important; gap: 16px !important; }
-  .article-body      { font-size: 0.85rem !important; line-height: 1.8 !important; padding: 0 16px !important; }
-  .article-body h2   { font-size: 1.2rem !important; }
-  .article-body h3   { font-size: 1rem !important; }
+  .article-body    { font-size: 0.85rem !important; line-height: 1.8 !important; padding: 0 16px !important; }
+  .article-body h2 { font-size: 1.2rem !important; }
+  .article-body h3 { font-size: 1rem !important; }
 
   /* ══════════════════════════════════════════════════════════
-     MODAL TABS — responsive
+     MODAL TABS
   ══════════════════════════════════════════════════════════ */
-  .modal-tabs { padding: 0 16px !important; }
-  .modal-tab  { font-size: 0.8rem !important; padding: 10px 16px !important; }
   .product-modal-images { flex-direction: column !important; align-items: center !important; padding: 16px 16px 0 !important; }
   .product-modal-images img { height: 180px !important; }
   .product-modal-body { padding: 16px !important; }
@@ -280,6 +288,6 @@
 } /* fin @media 768px */
 
 @media (max-width: 380px) {
-  .navbar .logo, .navbar a.logo { font-size: 1.1rem !important; }
-  .lang-flag { font-size: 17px !important; }
+  .navbar .logo, .navbar a.logo { font-size: 1.2rem !important; }
+  .lang-flag { font-size: 18px !important; }
 }

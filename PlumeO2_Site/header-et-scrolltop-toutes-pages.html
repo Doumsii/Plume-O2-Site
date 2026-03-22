@@ -1,0 +1,135 @@
+<!--
+══════════════════════════════════════════════════════════════════
+  INSTRUCTIONS — À FAIRE SUR CHAQUE PAGE :
+  ecoute.html / meditations.html / journal.html / boutique.html
+
+  1. Dans le <head>, vérifie que tu as CES 2 lignes
+     (ajoute-les si elles sont absentes) :
+
+     <link rel="stylesheet" href="plumedo2-mobile.css">
+     <link rel="stylesheet" href="lang-switcher.css">
+
+  2. Trouve le <header class="navbar"> existant sur la page
+     et REMPLACE-LE ENTIÈREMENT par le bloc ci-dessous.
+
+  3. Colle le BOUTON SCROLL TOP juste avant </body>.
+
+══════════════════════════════════════════════════════════════════
+-->
+
+
+<!-- ══ ÉTAPE 2 : HEADER (identique sur toutes les pages) ══ -->
+<header class="navbar">
+    <button class="hamburger" id="nav-hamburger" aria-label="Menu" onclick="toggleHamburger()">
+        <span></span><span></span><span></span>
+    </button>
+    <a href="index.html" class="logo">Plume d'O²</a>
+    <nav>
+        <a href="ecoute.html" data-i18n="nav_ecouter">Écouter</a>
+        <a href="meditations.html" data-i18n="nav_meditations">Méditations</a>
+        <a href="journal.html" data-i18n="nav_journal">Le Journal</a>
+        <a href="boutique.html" data-i18n="nav_boutique">Boutique</a>
+    </nav>
+    <div class="lang-switcher">
+        <button class="lang-btn active" data-lang="fr" onclick="setLanguage('fr')">
+            <span class="lang-flag">🇫🇷</span> FR
+        </button>
+        <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">
+            <span class="lang-flag">🇬🇧</span> EN
+        </button>
+        <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')">
+            <span class="lang-flag">🇸🇦</span> AR
+        </button>
+    </div>
+</header>
+
+<!-- Script hamburger — à ajouter si absent sur la page -->
+<script>
+function toggleHamburger() {
+    var nav = document.querySelector(".navbar nav");
+    var btn = document.getElementById("nav-hamburger");
+    if (!nav || !btn) return;
+    nav.classList.toggle("open");
+    btn.classList.toggle("open");
+}
+document.addEventListener("click", function(e) {
+    var nav = document.querySelector(".navbar nav");
+    var btn = document.getElementById("nav-hamburger");
+    if (!nav || !btn) return;
+    if (!nav.contains(e.target) && !btn.contains(e.target)) {
+        nav.classList.remove("open");
+        btn.classList.remove("open");
+    }
+});
+document.querySelectorAll(".navbar nav a").forEach(function(a) {
+    a.addEventListener("click", function() {
+        var nav = document.querySelector(".navbar nav");
+        var btn = document.getElementById("nav-hamburger");
+        if (nav) nav.classList.remove("open");
+        if (btn) btn.classList.remove("open");
+    });
+});
+</script>
+
+
+<!-- ══ ÉTAPE 3 : BOUTON SCROLL TOP — coller avant </body> ══ -->
+
+<button
+    id="scroll-top-btn"
+    onclick="window.scrollTo({top:0,behavior:'smooth'})"
+    aria-label="Retour en haut"
+    title="Retour en haut"
+>
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none"
+         stroke="currentColor" stroke-width="2.5"
+         stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="18 15 12 9 6 15"/>
+    </svg>
+</button>
+
+<style>
+#scroll-top-btn {
+    position: fixed;
+    bottom: 28px;
+    right: 22px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(0, 200, 220, 0.12);
+    border: 1px solid rgba(0, 200, 220, 0.35);
+    color: #00c8dc;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9000;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.3s ease, transform 0.3s ease, background 0.2s;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    pointer-events: none;
+}
+#scroll-top-btn:hover {
+    background: rgba(0, 200, 220, 0.28);
+}
+</style>
+
+<script>
+(function() {
+    var btn = document.getElementById('scroll-top-btn');
+    if (!btn) return;
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 300) {
+            btn.style.opacity  = '1';
+            btn.style.transform = 'translateY(0)';
+            btn.style.pointerEvents = 'auto';
+        } else {
+            btn.style.opacity  = '0';
+            btn.style.transform = 'translateY(12px)';
+            btn.style.pointerEvents = 'none';
+        }
+    }, { passive: true });
+})();
+</script>
