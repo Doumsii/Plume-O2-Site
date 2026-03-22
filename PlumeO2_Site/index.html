@@ -1043,12 +1043,46 @@ document.addEventListener('keydown', e => {
 
     window.seekMedTrack = function(e, id) {
         e.stopPropagation();
-        if (!_medAudio || _medCurrentId !== id || !_medAudio.duration) return;
+        if (!_medAudio || !_medAudio.duration) return;
+        // Si c'est un autre track, juste sélectionner sans seeker
+        if (_medCurrentId !== id) return;
         var bar = e.currentTarget;
         var rect = bar.getBoundingClientRect();
-        var pct = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+        var clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        var pct = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
         _medAudio.currentTime = pct * _medAudio.duration;
     };
+
+    // Drag fluide sur la barre de progression
+    window._medDragging = false;
+    window._medDragId = null;
+
+    window.startMedDrag = function(e, id) {
+        e.stopPropagation();
+        if (!_medAudio || _medCurrentId !== id || !_medAudio.duration) return;
+        _medDragging = true;
+        _medDragId = id;
+        window.seekMedTrack(e, id);
+        e.preventDefault();
+    };
+
+    function _onMedDragMove(e) {
+        if (!_medDragging || !_medAudio || !_medAudio.duration) return;
+        var bar = document.querySelector('.med-track-item[data-id="' + _medDragId + '"] .track-progress');
+        if (!bar) return;
+        var rect = bar.getBoundingClientRect();
+        var clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        var pct = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+        _medAudio.currentTime = pct * _medAudio.duration;
+        e.preventDefault();
+    }
+
+    function _onMedDragEnd() { _medDragging = false; _medDragId = null; }
+
+    document.addEventListener('mousemove', _onMedDragMove);
+    document.addEventListener('touchmove', _onMedDragMove, { passive: false });
+    document.addEventListener('mouseup', _onMedDragEnd);
+    document.addEventListener('touchend', _onMedDragEnd);
 
     window.cycleMedSpeed = function(e, id) {
         e.stopPropagation();
@@ -1100,7 +1134,7 @@ document.addEventListener('keydown', e => {
                 "<div class=\"track-info\" style=\"cursor:default;\">" +
                     "<span class=\"track-name\">" + med.title + "</span>" +
                     "<span class=\"track-artist\">" + med.author + "</span>" +
-                    "<div class=\"med-progress-wrap\" style=\"position:relative;height:14px;display:flex;align-items:center;\" onclick=\"seekMedTrack(event," + med.id + ")\">" +
+                    "<div class=\"med-progress-wrap\" style=\"position:relative;height:14px;display:flex;align-items:center;cursor:pointer;\" onclick=\"seekMedTrack(event," + med.id + ")\" onmousedown=\"startMedDrag(event," + med.id + ")\" ontouchstart=\"startMedDrag(event," + med.id + ")\">" +
                         "<div class=\"track-progress\" style=\"position:relative;width:100%;height:3px;background:rgba(255,255,255,0.1);border-radius:2px;cursor:pointer;\">" +
                             "<div class=\"track-progress-bar\" style=\"height:100%;width:0%;background:linear-gradient(90deg,#00c8dc,#00e5f5);border-radius:2px;position:relative;\"></div>" +
                         "</div>" +

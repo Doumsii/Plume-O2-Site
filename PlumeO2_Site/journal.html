@@ -22,13 +22,14 @@
     .hamburger.open span:nth-child(2) { opacity:0; }
     .hamburger.open span:nth-child(3) { transform:rotate(-45deg) translate(5px,-5px); }
     @media (max-width:768px) {
-        .hamburger { display:flex; }
+        .hamburger { display:flex; order:-1; margin-right:12px; }
         .navbar { flex-wrap:nowrap !important; padding:0 16px !important; }
+        .navbar .logo { flex:1; text-align:left; }
+        .lang-switcher { margin-left:auto; }
         .navbar nav { display:none; position:fixed; top:56px; left:0; right:0; background:rgba(8,12,28,0.98); backdrop-filter:blur(20px); flex-direction:column; padding:20px 24px 28px; gap:0; border-bottom:1px solid rgba(255,255,255,0.08); z-index:1000; }
         .navbar nav.open { display:flex !important; }
         .navbar nav a { padding:14px 0; border-bottom:1px solid rgba(255,255,255,0.06); font-size:14px; text-align:left; }
         .navbar nav a:last-child { border-bottom:none; }
-        .lang-switcher { margin-left:auto; margin-right:8px; }
     }
     </style>
 </head>
