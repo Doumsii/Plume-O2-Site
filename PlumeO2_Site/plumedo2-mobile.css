@@ -2,7 +2,7 @@
    PLUME D'O² — MOBILE CSS (max-width: 768px)
    ✅ Desktop : inchangé
    ✅ Mobile  : navbar 1 ligne [☰ gauche | logo centre | flags droite]
-   ✅ Mobile  : texte corps réduit et aéré
+   ✅ v2      : logo agrandi, flags compacts, pas d'overlap
 ═══════════════════════════════════════════════════════════════ */
 
 @media (max-width: 768px) {
@@ -13,8 +13,8 @@
     flex-direction: row !important;
     align-items: center !important;
     justify-content: space-between !important;
-    padding: 10px 16px !important;
-    min-height: 56px !important;
+    padding: 12px 16px !important;
+    min-height: 58px !important;
     position: relative !important;
     flex-wrap: nowrap !important;
     gap: 0 !important;
@@ -48,7 +48,6 @@
     transform-origin: center !important;
   }
 
-  /* Animation croix quand ouvert */
   .hamburger.open span:nth-child(1) {
     transform: translateY(7px) rotate(45deg) !important;
   }
@@ -60,46 +59,53 @@
     transform: translateY(-7px) rotate(-45deg) !important;
   }
 
-  /* ── LOGO : centré absolument ────────────────────────────── */
+  /* ── LOGO : centré, taille augmentée ─────────────────────── */
   .navbar .logo,
   .navbar a.logo {
     position: absolute !important;
     left: 50% !important;
     top: 50% !important;
     transform: translate(-50%, -50%) !important;
-    font-size: 1.1rem !important;
+    font-size: 1.35rem !important;    /* ↑ augmenté vs 1.1rem */
     white-space: nowrap !important;
     order: 2 !important;
     text-align: center !important;
     pointer-events: auto !important;
+    /* Évite que le logo sorte sous les flags */
+    max-width: calc(100% - 160px) !important;
   }
 
-  /* ── LANG SWITCHER : à droite ────────────────────────────── */
+  /* ── LANG SWITCHER : à droite, compact ───────────────────── */
   .lang-switcher {
     display: flex !important;
     flex-direction: row !important;
     align-items: center !important;
-    gap: 4px !important;
+    gap: 3px !important;
     flex-shrink: 0 !important;
     order: 3 !important;
     margin-left: auto !important;
   }
 
+  /* Bouton langue : drapeau seul sur mobile (texte masqué) */
   .lang-btn {
-    padding: 4px 7px !important;
-    font-size: 10px !important;
+    padding: 5px 7px !important;
+    font-size: 0 !important;           /* cache le texte "FR/EN/AR" */
     border-radius: 20px !important;
     white-space: nowrap !important;
     display: flex !important;
     align-items: center !important;
-    gap: 3px !important;
+    justify-content: center !important;
+    gap: 0 !important;
+    min-width: 32px !important;
+    height: 30px !important;
   }
 
+  /* Seul le drapeau reste visible */
   .lang-flag {
-    font-size: 13px !important;
+    font-size: 18px !important;
   }
 
-  /* ── NAV MENU : dropdown vertical caché par défaut ──────── */
+  /* ── NAV MENU : dropdown vertical ────────────────────────── */
   .navbar nav {
     display: none !important;
     position: absolute !important;
@@ -117,6 +123,10 @@
     border-bottom: 1px solid rgba(255,255,255,0.06) !important;
     z-index: 999 !important;
     box-shadow: 0 12px 40px rgba(0,0,0,0.5) !important;
+  }
+
+  .navbar nav.open {
+    display: flex !important;
     animation: menuSlide 0.25s ease !important;
   }
 
@@ -125,18 +135,15 @@
     to   { opacity: 1; transform: translateY(0); }
   }
 
-  .navbar nav.open {
-    display: flex !important;
-  }
-
   .navbar nav a {
     width: 100% !important;
     text-align: center !important;
-    padding: 13px 24px !important;
+    padding: 14px 24px !important;
     font-size: 0.9rem !important;
     letter-spacing: 0.12em !important;
     border-bottom: 1px solid rgba(255,255,255,0.04) !important;
     color: rgba(255,255,255,0.8) !important;
+    margin: 0 !important;
     transition: color 0.2s, background 0.2s !important;
   }
 
@@ -152,7 +159,7 @@
 
 
   /* ══════════════════════════════════════════════════════════
-     HERO — texte adapté mobile
+     HERO
   ══════════════════════════════════════════════════════════ */
   .hero-content h1 {
     font-size: 2rem !important;
@@ -162,7 +169,7 @@
   .hero-content p {
     font-size: 0.85rem !important;
     line-height: 1.7 !important;
-    max-width: 100% !important;
+    padding: 0 !important;
   }
 
 
@@ -192,12 +199,13 @@
 
 
   /* ══════════════════════════════════════════════════════════
-     MISSION — texte condensé
+     MISSION
   ══════════════════════════════════════════════════════════ */
   .mission-content {
     padding: 0 !important;
   }
 
+  .mission h2,
   .mission-content h2 {
     font-size: 1.35rem !important;
     margin-bottom: 16px !important;
@@ -215,11 +223,15 @@
   ══════════════════════════════════════════════════════════ */
   .players-grid {
     grid-template-columns: 1fr !important;
+    display: flex !important;
+    flex-direction: column !important;
     gap: 16px !important;
   }
 
   .player-card-profile {
-    padding: 16px !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
   }
 
   .popular-tracks h4 {
@@ -241,6 +253,11 @@
   .upcoming-container {
     flex-direction: column !important;
     gap: 24px !important;
+    text-align: center !important;
+  }
+
+  .upcoming-text {
+    text-align: center !important;
   }
 
   .upcoming-text h2 {
@@ -252,24 +269,36 @@
     line-height: 1.7 !important;
   }
 
+  .upcoming-gallery-scroll {
+    width: 100% !important;
+  }
+
 
   /* ══════════════════════════════════════════════════════════
      JOURNAL
   ══════════════════════════════════════════════════════════ */
   .journal-grid {
-    grid-template-columns: 1fr !important;
+    flex-direction: column !important;
     gap: 16px !important;
   }
 
-  .article-content h3 {
+  .article-card {
+    min-width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .article-content {
+    padding: 20px !important;
+  }
+
+  .article-card h3 {
     font-size: 1rem !important;
     line-height: 1.4 !important;
   }
 
-  .article-content p {
+  .article-card p {
     font-size: 0.8rem !important;
     line-height: 1.65 !important;
-    /* Limiter l'aperçu à 3 lignes */
     display: -webkit-box !important;
     -webkit-line-clamp: 3 !important;
     -webkit-box-orient: vertical !important;
@@ -282,29 +311,54 @@
 
 
   /* ══════════════════════════════════════════════════════════
-     BOUTIQUE
+     BOUTIQUE — cards produit
   ══════════════════════════════════════════════════════════ */
   .boutique-grid {
-    grid-template-columns: 1fr !important;
+    flex-direction: column !important;
     gap: 16px !important;
   }
 
   .product-card {
-    padding: 16px !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .product-info {
+    padding: 20px !important;
   }
 
   .product-info h3 {
     font-size: 1rem !important;
+    margin-bottom: 12px !important;
   }
 
-  /* Bio auteur : limiter à 3 lignes sur mobile */
+  /* ── Bio auteur : avatar + texte côte à côte, limité ─── */
+  .bio-container {
+    gap: 10px !important;
+    margin-bottom: 12px !important;
+    align-items: flex-start !important;
+  }
+
+  .bio-avatar {
+    width: 44px !important;
+    height: 44px !important;
+    flex-shrink: 0 !important;
+  }
+
   .author-bio p {
     font-size: 0.78rem !important;
-    line-height: 1.6 !important;
+    line-height: 1.55 !important;
+    margin-bottom: 8px !important;
     display: -webkit-box !important;
-    -webkit-line-clamp: 3 !important;
+    -webkit-line-clamp: 2 !important;
     -webkit-box-orient: vertical !important;
     overflow: hidden !important;
+  }
+
+  .author-bio .label-role {
+    font-size: 0.75rem !important;
+    padding-top: 10px !important;
+    margin-top: 10px !important;
   }
 
   .product-desc {
@@ -316,29 +370,56 @@
     overflow: hidden !important;
   }
 
-  .store-buttons {
-    flex-wrap: wrap !important;
-    gap: 6px !important;
-  }
-
-  .btn-secondary {
-    font-size: 0.72rem !important;
-    padding: 6px 12px !important;
+  .product-action {
+    flex-direction: column !important;
+    gap: 12px !important;
+    align-items: stretch !important;
+    text-align: center !important;
+    padding-top: 16px !important;
   }
 
   .product-action-multi {
+    padding-top: 16px !important;
+    gap: 10px !important;
+  }
+
+  .store-buttons {
     flex-wrap: wrap !important;
-    gap: 8px !important;
+    gap: 6px !important;
+    justify-content: center !important;
+  }
+
+  .store-buttons .btn-secondary,
+  .btn-secondary {
+    font-size: 0.72rem !important;
+    padding: 8px 14px !important;
+  }
+
+  .product-img-wrapper {
+    height: 220px !important;
   }
 
 
   /* ══════════════════════════════════════════════════════════
      FOOTER
   ══════════════════════════════════════════════════════════ */
+  .footer {
+    padding: 40px 16px 20px !important;
+  }
+
   .footer-container {
     flex-direction: column !important;
     gap: 24px !important;
-    padding: 32px 16px !important;
+    padding: 0 !important;
+    margin-bottom: 24px !important;
+  }
+
+  .footer-col {
+    min-width: auto !important;
+  }
+
+  .footer-col h3 {
+    font-size: 1.3rem !important;
   }
 
   .footer-col p,
@@ -352,7 +433,7 @@
     gap: 8px !important;
     text-align: center !important;
     font-size: 0.72rem !important;
-    padding: 16px !important;
+    padding-top: 16px !important;
   }
 
   .legal-links {
@@ -399,6 +480,61 @@
     gap: 4px !important;
   }
 
+
+  /* ══════════════════════════════════════════════════════════
+     PAGES INTERNES — écoute, méditations, journal, boutique
+     (assurent que le header est aussi corrigé sur ces pages)
+  ══════════════════════════════════════════════════════════ */
+
+  /* Page écoute */
+  .ecoute-hero h1,
+  .page-hero h1 {
+    font-size: 1.8rem !important;
+  }
+
+  .ecoute-hero p,
+  .page-hero p {
+    font-size: 0.82rem !important;
+  }
+
+  /* Grille tracks écoute */
+  .tracks-grid,
+  .episodes-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
+  /* Page boutique */
+  .boutique-page-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  .boutique-page-card {
+    min-width: 100% !important;
+  }
+
+  /* Page journal */
+  .journal-page-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  /* Articles internes */
+  .article-body {
+    font-size: 0.85rem !important;
+    line-height: 1.8 !important;
+    padding: 0 16px !important;
+  }
+
+  .article-body h2 {
+    font-size: 1.2rem !important;
+  }
+
+  .article-body h3 {
+    font-size: 1rem !important;
+  }
+
 } /* fin @media 768px */
 
 
@@ -406,15 +542,16 @@
 @media (max-width: 380px) {
   .navbar .logo,
   .navbar a.logo {
-    font-size: 0.95rem !important;
-  }
-
-  .lang-btn {
-    padding: 3px 5px !important;
-    font-size: 9px !important;
+    font-size: 1.1rem !important;
+    max-width: calc(100% - 140px) !important;
   }
 
   .lang-flag {
-    font-size: 11px !important;
+    font-size: 16px !important;
+  }
+
+  .lang-btn {
+    min-width: 28px !important;
+    padding: 4px 5px !important;
   }
 }
