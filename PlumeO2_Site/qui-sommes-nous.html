@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qui sommes-nous | Plume d'O²</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="plumedo2-animations.css">
+    <link rel="stylesheet" href="lang-switcher.css">
+    <link rel="stylesheet" href="plumedo2-mobile.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <meta name="description" content="Qui sommes-nous — L'histoire et la vision de Plume d'O².">
+    <link rel="icon" type="image/jpeg" href="logo-original.jpg">
+
+    <style>
+    /* ── PAGE HERO ─────────────────────────────────────────── */
+    .qsn-page {
+        min-height: 100vh;
+        padding-top: 0;
+    }
+
+    .qsn-hero {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 120px 24px 80px;
+        background: radial-gradient(ellipse at center, #132A46 0%, #081728 65%);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .qsn-hero::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at 50% 60%, rgba(0,200,220,0.07) 0%, transparent 65%);
+        pointer-events: none;
+    }
+
+    .qsn-hero-logo {
+        width: 80px;
+        height: auto;
+        margin-bottom: 32px;
+        opacity: 0.9;
+        filter: drop-shadow(0 0 24px rgba(0,200,220,0.4));
+    }
+
+    .qsn-overtitle {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: rgba(0,200,220,0.75);
+        margin-bottom: 20px;
+    }
+
+    .qsn-hero h1 {
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(2.2rem, 6vw, 4rem);
+        font-weight: 400;
+        color: #fff;
+        line-height: 1.2;
+        margin-bottom: 28px;
+        max-width: 720px;
+    }
+
+    .qsn-hero-tagline {
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(1rem, 2.5vw, 1.35rem);
+        font-style: italic;
+        color: rgba(255,255,255,0.6);
+        max-width: 560px;
+        line-height: 1.7;
+    }
+
+    .qsn-scroll-hint {
+        position: absolute;
+        bottom: 32px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        color: rgba(255,255,255,0.25);
+        font-family: 'Montserrat', sans-serif;
+        font-size: 10px;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+        0%, 100% { transform: translateX(-50%) translateY(0); }
+        50%       { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* ── SECTIONS MANIFESTE ────────────────────────────────── */
+    .qsn-section {
+        padding: 100px 24px;
+        position: relative;
+    }
+
+    .qsn-section:nth-child(odd)  { background: #081728; }
+    .qsn-section:nth-child(even) { background: #0d1f35; }
+
+    .qsn-section-inner {
+        max-width: 760px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .qsn-section-tag {
+        display: inline-block;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: rgba(0,200,220,0.8);
+        background: rgba(0,200,220,0.07);
+        border: 1px solid rgba(0,200,220,0.2);
+        border-radius: 20px;
+        padding: 5px 16px;
+        margin-bottom: 28px;
+    }
+
+    .qsn-section h2 {
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(1.8rem, 4vw, 2.8rem);
+        font-weight: 400;
+        color: #fff;
+        line-height: 1.25;
+        margin-bottom: 28px;
+    }
+
+    .qsn-section h2 em {
+        color: rgba(0,200,220,0.9);
+        font-style: italic;
+    }
+
+    .qsn-section p {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.05rem;
+        color: rgba(255,255,255,0.62);
+        line-height: 1.9;
+        margin-bottom: 18px;
+        max-width: 640px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .qsn-divider {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        justify-content: center;
+        margin: 40px auto;
+        max-width: 300px;
+    }
+
+    .qsn-divider span {
+        font-family: 'Playfair Display', serif;
+        font-size: 0.85rem;
+        color: rgba(0,200,220,0.65);
+        white-space: nowrap;
+        font-style: italic;
+    }
+
+    .qsn-divider::before,
+    .qsn-divider::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background: rgba(0,200,220,0.25);
+    }
+
+    /* ── HOMMAGE ───────────────────────────────────────────── */
+    .qsn-hommage {
+        padding: 100px 24px;
+        background: linear-gradient(135deg, #040d17 0%, #081728 100%);
+        border-top: 1px solid rgba(255,255,255,0.05);
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .qsn-hommage-inner {
+        max-width: 680px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .qsn-quote-mark {
+        font-family: 'Playfair Display', serif;
+        font-size: 6rem;
+        line-height: 0.5;
+        color: rgba(0,200,220,0.15);
+        display: block;
+        margin-bottom: 24px;
+        user-select: none;
+    }
+
+    .qsn-hommage-name {
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(1.6rem, 4vw, 2.4rem);
+        font-style: italic;
+        color: rgba(255,255,255,0.9);
+        margin-bottom: 16px;
+        line-height: 1.3;
+    }
+
+    .qsn-hommage-subtitle {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 13px;
+        font-weight: 500;
+        color: rgba(0,200,220,0.7);
+        letter-spacing: 0.08em;
+        margin-bottom: 32px;
+    }
+
+    .qsn-hommage p {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1rem;
+        color: rgba(255,255,255,0.58);
+        line-height: 1.9;
+        margin-bottom: 18px;
+    }
+
+    .qsn-hommage-signature {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.1rem;
+        font-style: italic;
+        color: rgba(255,255,255,0.35);
+        margin-top: 40px;
+    }
+
+    /* ── AUTEUR ────────────────────────────────────────────── */
+    .qsn-author {
+        padding: 100px 24px;
+        background: #081728;
+    }
+
+    .qsn-author-inner {
+        max-width: 680px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 28px;
+        text-align: center;
+    }
+
+    .qsn-author-photo {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid rgba(0,200,220,0.5);
+        box-shadow: 0 0 30px rgba(0,200,220,0.15);
+    }
+
+    .qsn-author-name {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.5rem;
+        color: #fff;
+        margin-bottom: 4px;
+    }
+
+    .qsn-author-role {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: rgba(0,200,220,0.7);
+    }
+
+    .qsn-author p {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1rem;
+        color: rgba(255,255,255,0.58);
+        line-height: 1.9;
+        max-width: 560px;
+    }
+
+    /* ── MOBILE ────────────────────────────────────────────── */
+    @media (max-width: 768px) {
+        .qsn-hero { padding: 100px 20px 60px; min-height: 85vh; }
+        .qsn-section { padding: 64px 20px; }
+        .qsn-section p { font-size: 0.9rem; }
+        .qsn-hommage { padding: 64px 20px; }
+        .qsn-hommage p { font-size: 0.9rem; }
+        .qsn-author { padding: 64px 20px; }
+    }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <button class="hamburger" id="nav-hamburger" aria-label="Menu" onclick="toggleHamburger()"><span></span><span></span><span></span></button>
+        <a href="index.html" class="logo">Plume d'O²</a>
+        <nav>
+            <a href="ecoute.html" data-i18n="nav_ecouter">Écouter</a>
+            <a href="meditations.html" data-i18n="nav_meditations">Méditations</a>
+            <a href="journal.html" data-i18n="nav_journal">Le Journal</a>
+            <a href="boutique.html" data-i18n="nav_boutique">Boutique</a>
+        </nav>
+        <div class="lang-switcher">
+            <button class="lang-btn active" data-lang="fr" onclick="setLanguage('fr')"><span class="lang-flag">🇫🇷</span><span class="lang-text"> FR</span></button>
+            <button class="lang-btn" data-lang="en" onclick="setLanguage('en')"><span class="lang-flag">🇬🇧</span><span class="lang-text"> EN</span></button>
+            <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')"><span class="lang-flag">🇸🇦</span><span class="lang-text"> AR</span></button>
+        </div>
+    </header>
+
+    <main class="qsn-page">
+
+        <!-- ══ HÉRO ══════════════════════════════════════════ -->
+        <section class="qsn-hero">
+            <img src="logo-original.jpg" alt="Logo Plume d'O²" class="qsn-hero-logo" onerror="this.style.display='none'">
+            <p class="qsn-overtitle">Notre histoire</p>
+            <h1 data-i18n="qsn_hero_title">Pourquoi Plume d'O² ?</h1>
+            <p class="qsn-hero-tagline" data-i18n="qsn_hero_tagline">Une Plume, Mille Récitations, une Harmonie.<br>Respirez. Écoutez. Méditez. Apaisez-vous.</p>
+            <div class="qsn-scroll-hint">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+        </section>
+
+        <!-- ══ O² ORIENT & OCCIDENT ═══════════════════════════ -->
+        <section class="qsn-section">
+            <div class="qsn-section-inner">
+                <span class="qsn-section-tag">O²</span>
+                <h2 data-i18n="qsn_oo_title"><em>O²</em> comme Orient et Occident.</h2>
+                <p data-i18n="qsn_oo_p1">La parole divine n'a pas de frontières. Elle voyage des cœurs de l'Est vers ceux de l'Ouest, traversant les langues, les cultures et les siècles sans jamais s'épuiser.</p>
+                <p data-i18n="qsn_oo_p2">Plume d'O² se veut un pont entre ces deux mondes — une voix qui puise dans la tradition orientale pour la faire résonner jusqu'au cœur de l'Occident.</p>
+                <div class="qsn-divider"><span>Plume d'Orient et d'Occident</span></div>
+            </div>
+        </section>
+
+        <!-- ══ O² OXYGÈNE ═════════════════════════════════════ -->
+        <section class="qsn-section">
+            <div class="qsn-section-inner">
+                <span class="qsn-section-tag">O²</span>
+                <h2 data-i18n="qsn_ox_title"><em>O²</em> comme Oxygène.</h2>
+                <p data-i18n="qsn_ox_p1">Une nourriture pour l'âme. Un souffle vital dans un monde qui étouffe.</p>
+                <p data-i18n="qsn_ox_p2">Dans un quotidien saturé de bruit, de vitesse et de superficialité, Plume d'O² est une respiration. Chaque récitation, chaque méditation est conçue pour créer un espace de silence intérieur — là où le cœur peut enfin se poser et s'élever.</p>
+                <div class="qsn-divider"><span>Plume d'oxygène</span></div>
+            </div>
+        </section>
+
+        <!-- ══ NOTRE VISION ═══════════════════════════════════ -->
+        <section class="qsn-section">
+            <div class="qsn-section-inner">
+                <span class="qsn-section-tag">Notre vision</span>
+                <h2 data-i18n="qsn_vision_title">Un sanctuaire pour l'âme.</h2>
+                <p data-i18n="qsn_vision_p1">Plume d'O² n'est pas simplement un label audio. C'est un sanctuaire numérique — une respiration nécessaire pour quiconque cherche à se reconnecter à l'Éternel dans le tumulte du monde.</p>
+                <p data-i18n="qsn_vision_p2">À travers des récitations apaisantes, des histoires inspirantes et des réflexions profondes, nous allions la pureté du son à la beauté visuelle pour créer une expérience immersive qui nourrit l'intellect et apaise le cœur.</p>
+                <p data-i18n="qsn_vision_p3">Notre objectif est de vous accompagner sur le chemin de l'introspection et de la paix intérieure — que vous soyez à l'aube ou au crépuscule de votre journée, dans la mosquée ou dans le métro.</p>
+            </div>
+        </section>
+
+        <!-- ══ HOMMAGE ═════════════════════════════════════════ -->
+        <section class="qsn-hommage">
+            <div class="qsn-hommage-inner">
+                <span class="qsn-quote-mark">"</span>
+                <p class="qsn-hommage-name" data-i18n="qsn_hommage_name">En hommage à Ustadha Najat Boyaala</p>
+                <p class="qsn-hommage-subtitle" data-i18n="qsn_hommage_subtitle">La créatrice du concept Plume d'O²</p>
+                <p data-i18n="qsn_hommage_p1">Le nom Plume d'O² ne m'appartient pas — il m'a été transmis. C'est Ustadha Najat Boyaala, professeure d'exception et femme de lettres, qui a fait naître ce concept avant moi. Une plume qui traverse les deux horizons, une voix qui nourrit comme l'oxygène nourrit le corps.</p>
+                <p data-i18n="qsn_hommage_p2">En créant ce label de récitation coranique, j'ai souhaité lui rendre hommage à ma façon — perpétuer ce qu'elle a semé, et porter encore plus loin cette vision d'une parole divine accessible à tous, d'Orient en Occident.</p>
+                <p data-i18n="qsn_hommage_p3">Que Allah la récompense au centuple pour tout ce qu'elle a transmis.</p>
+                <p class="qsn-hommage-signature" data-i18n="qsn_hommage_signature">— En hommage à Ustadha Najat Boyaala</p>
+            </div>
+        </section>
+
+        <!-- ══ L'AUTEUR ════════════════════════════════════════ -->
+        <section class="qsn-author">
+            <div class="qsn-author-inner">
+                <img src="oways.jpg" alt="Oways Ahmad" class="qsn-author-photo">
+                <div>
+                    <p class="qsn-author-name">Oways Ahmad</p>
+                    <p class="qsn-author-role" data-i18n="qsn_author_role">Créateur & Dirigeant de Plume d'O²</p>
+                </div>
+                <p data-i18n="qsn_author_p1">Jeune étudiant et apprenant en langue arabe, mon ambition est de partager le bien autour de moi et de donner de l'amour aux gens. L'apprentissage et la mémorisation des invocations m'ont procuré un bien-être incroyable — un trésor que j'ai voulu mettre à la portée de tous.</p>
+                <p data-i18n="qsn_author_p2">Plume d'O² est né de cette conviction simple : la parole d'Allah est la meilleure des paroles, et elle mérite d'être entendue par le plus grand nombre, avec le plus grand soin.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>Plume d'O²</h3>
+                <p data-i18n="footer_tagline">Votre sanctuaire audio pour apaiser le cœur et nourrir l'âme.</p>
+            </div>
+            <div class="footer-col">
+                <h4 data-i18n="footer_nav">Navigation</h4>
+                <ul>
+                    <li><a href="index.html" data-i18n="footer_home">Accueil</a></li>
+                    <li><a href="ecoute.html" data-i18n="nav_ecouter">Écouter</a></li>
+                    <li><a href="journal.html" data-i18n="nav_journal">Le Journal</a></li>
+                    <li><a href="boutique.html" data-i18n="nav_boutique">Boutique</a></li>
+                    <li><a href="qui-sommes-nous.html" data-i18n="footer_about">Qui sommes-nous</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4 data-i18n="footer_networks">Réseaux & Plateformes</h4>
+                <div class="social-links">
+                    <a href="https://open.spotify.com/intl-fr/artist/3QGBoMKOchcr6qyKXZOab5" target="_blank" rel="noopener noreferrer">Spotify</a>
+                    <a href="https://music.apple.com/fr/artist/oways-ahmad/1561790485" target="_blank" rel="noopener noreferrer">Apple Music</a>
+                    <a href="https://youtube.com/@plumedo2_records?si=ej0LK4i50TXXwfjH" target="_blank" rel="noopener noreferrer">YouTube</a>
+                    <a href="https://link.deezer.com/s/32GjMDt3vzl7ZV7YudgLt" target="_blank" rel="noopener noreferrer">Deezer</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p data-i18n="footer_copyright">© 2026 Plume d'O². Tous droits réservés.</p>
+            <div class="legal-links">
+                <a href="legales.html#mentions" data-i18n="footer_legal">Mentions Légales</a>
+                <a href="legales.html#confidentialite" data-i18n="footer_privacy">Politique de Confidentialité</a>
+                <a href="legales.html#cgv" data-i18n="footer_cgv">CGV</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ══ SCROLL TO TOP ══ -->
+    <button id="scroll-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Retour en haut" style="position:fixed;bottom:28px;right:22px;width:44px;height:44px;border-radius:50%;background:rgba(0,200,220,0.12);border:1px solid rgba(0,200,220,0.35);color:#00c8dc;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:9000;opacity:0;transform:translateY(12px);transition:opacity 0.3s ease,transform 0.3s ease,background 0.2s;backdrop-filter:blur(8px);box-shadow:0 4px 20px rgba(0,0,0,0.3);pointer-events:none;"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg></button>
+    <script>(function(){var b=document.getElementById("scroll-top-btn");if(!b)return;window.addEventListener("scroll",function(){if(window.scrollY>300){b.style.opacity="1";b.style.transform="translateY(0)";b.style.pointerEvents="auto";}else{b.style.opacity="0";b.style.transform="translateY(12px)";b.style.pointerEvents="none";}},{passive:true});b.addEventListener("mouseenter",function(){b.style.background="rgba(0,200,220,0.28)";});b.addEventListener("mouseleave",function(){b.style.background="rgba(0,200,220,0.12)";});})();</script>
+
+    <script src="plumedo2-animations.js"></script>
+    <script src="translations.js"></script>
+    <script>
+    if (!window._hambInit) {
+        window._hambInit = true;
+        function toggleHamburger() {
+            var nav = document.querySelector('.navbar nav');
+            var btn = document.getElementById('nav-hamburger');
+            if (nav) nav.classList.toggle('open');
+            if (btn) btn.classList.toggle('open');
+        }
+        document.addEventListener('click', function(e) {
+            var nav = document.querySelector('.navbar nav');
+            var btn = document.getElementById('nav-hamburger');
+            if (nav && nav.classList.contains('open') && btn && !nav.contains(e.target) && !btn.contains(e.target)) {
+                nav.classList.remove('open');
+                btn.classList.remove('open');
+            }
+        });
+    }
+    </script>
+</body>
+</html>
