@@ -388,9 +388,9 @@ const TRANSLATIONS_EXTRA = {
     // ARTICLE 2
     art2_back: "← Retour au Journal",
     art2_tag: "Recherche",
-    art2_title: "L'engagement et l'équilibre",
+    art2_title: "L'engagement",
     art2_ref: "Sourate Al-Hadid",
-    art2_read: "5 min de lecture",
+    art2_read: "6 min de lecture",
     art2_intro: "La sourate Al-Hadid — Le Fer — porte en elle une invitation paradoxale : s'engager pleinement envers Allah tout en restant ancré dans le monde. Une tension féconde qui définit l'équilibre du croyant.",
     art2_h2_1: "Un engagement véritable",
     art2_p1: "Le sujet central de la sourate Al-Hadid est l'engagement véritable envers Allah, Sa religion, Son Prophète ﷺ et Sa voie. Cet engagement n'est pas une posture extérieure — c'est une transformation intérieure profonde, continue, qui colore chaque acte de notre vie.",
@@ -539,9 +539,9 @@ const TRANSLATIONS_EXTRA = {
 
     art2_back: "← العودة إلى المجلة",
     art2_tag: "بحث",
-    art2_title: "الالتزام والتوازن",
+    art2_title: "الالتزام",
     art2_ref: "سورة الحديد",
-    art2_read: "5 دقائق قراءة",
+    art2_read: "6 دقائق قراءة",
     art2_intro: "تحمل سورة الحديد دعوةً متناقضة في ظاهرها: الانخراط الكلي في طاعة الله مع البقاء راسخًا في الحياة الدنيا. توتر خلّاق يُحدّد توازن المؤمن.",
     art2_h2_1: "التزام حقيقي",
     art2_p1: "يدور محور سورة الحديد حول الالتزام الحقيقي بالله ودينه ونبيه ﷺ وطريقه. هذا الالتزام ليس مظهرًا خارجيًا — بل هو تحوّل داخلي عميق ومستمر يصبغ كل عمل في حياتنا.",
