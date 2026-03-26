@@ -1,4 +1,13 @@
 const MEDITATIONS = [
+        {
+        id: 3,
+        file:  "meditation-3.m4a",
+        image: "meditation-3.jpg",
+        date:  "Mars 2026",
+        title:  "Tazkiyatu Al-Nafs",
+        author: "Ustadh Anthony",
+        desc:   "Une invitation a plonger au coeur de la vie spirituelle, pour nourrir l'ame et raviver la flamme interieure."
+    },
     {
         id: 2,
         file:  "meditation-2.m4a",
