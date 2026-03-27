@@ -674,14 +674,13 @@
             <p data-i18n="journal_subtitle">Exploration du Coran, recherches scientifiques et méditations spirituelles.</p>
         </div>
         <div class="journal-grid">
-            <article class="article-card featured" onclick="openArticleModal(1)" style="cursor:pointer;">
+            <article class="article-card featured" onclick="openArticleModal(3)" style="cursor:pointer;">
                 <div class="article-content">
-                    <span class="article-tag" data-i18n="journal_tag1">Méditation</span>
-                    <h3 data-i18n="journal_article1_title">L'éthique de l'information et la préservation de l'honneur</h3>
-                    <div class="article-meta" data-i18n="journal_article1_meta">Sourate Al-Hujurat (Verset 6) • Oways Ahmad</div>
-                    <p data-i18n="journal_article1_p1">Ce verset vient après un passage qui évoque le mauvais comportement envers le Prophète et les graves conséquences qui en découlent.</p>
-                    <p data-i18n="journal_article1_p2">Il nous rappelle au moins trois finalités de notre religion (Maqasid Ashari'a).</p>
-                    <span class="btn-read-more" data-i18n="journal_read1" onclick="event.stopPropagation();openArticleModal(1)">Aperçu de l'article →</span>
+                    <span class="article-tag">Méditation</span>
+                    <h3>Méditation sur la Sourate Al-Fatiha</h3>
+                    <div class="article-meta">Sourate Al-Fatiha (1) • Oways Ahmad</div>
+                    <p>L'ouverture du Livre — le nom de Dieu, la Miséricorde comme fondement du monde et de notre existence.</p>
+                    <span class="btn-read-more" onclick="event.stopPropagation();openArticleModal(3)">Aperçu de l'article →</span>
                 </div>
             </article>
             <article class="article-card has-image" onclick="openArticleModal(2)" style="cursor:pointer;">
@@ -701,6 +700,49 @@
     </section>
 
     <!-- ══ MODALS ARTICLES ════════════════════════════════════════════════ -->
+
+    <!-- Modal Article 3 — Al-Fatiha -->
+    <div id="article-modal-3" class="article-modal-overlay" onclick="closeArticleModal(3)">
+        <div class="article-modal-box" onclick="event.stopPropagation()">
+            <button class="article-modal-close" onclick="closeArticleModal(3)" aria-label="Fermer">✕</button>
+
+            <div class="article-modal-header">
+                <span class="article-tag">Méditation</span>
+                <h2>Méditation sur la Sourate Al-Fatiha</h2>
+                <div class="article-modal-meta">
+                    <span>Oways Ahmad</span>
+                    <span class="article-dot">·</span>
+                    <span>Sourate Al-Fatiha (1)</span>
+                    <span class="article-dot">·</span>
+                    <span style="color:rgba(0,200,220,0.8);">⏱ 5 min de lecture</span>
+                </div>
+            </div>
+
+            <div class="article-modal-body">
+                <p class="article-modal-intro">La sourate Al-Fatiha n'est pas la première à avoir été révélée, mais elle est la première que nous rencontrons en ouvrant le Coran. Ce choix relève d'une sagesse profonde : toute introduction se doit de synthétiser l'ensemble de l'œuvre qu'elle précède. C'est pourquoi certains savants affirmaient que la Fatiha contient tout le Coran.</p>
+
+                <h3>Le sens d'un nom</h3>
+                <p><em>Fatiha</em> signifie « l'ouverture ». Ce nom dit à la fois ce qu'est la sourate et ce qu'elle fait. Les noms des sourates ne sont pas des repères arbitraires — ils sont choisis en fonction du sujet, du rôle et de la fonction de chaque sourate, d'un choix divin.</p>
+
+                <h3>Bismillah — Par le nom de Dieu</h3>
+                <p>Cette introduction nous parle d'abord de Celui qui nous a adressé ce message. Et c'est en Son nom que tout commence — <em>Bismillahi Ar-Rahmani Ar-Rahim</em>. Aucun autre livre ne commence ainsi. Le nom que nous donnons à l'Être suprême devient le principe à partir duquel nous interprétons le monde et fondons nos actions. Si on Le désigne mal, les conséquences sont profondes : ce n'est plus Dieu que l'on désigne, mais une idole.</p>
+
+                <blockquote style="margin:20px 0;padding:16px 20px;background:rgba(0,200,220,0.05);border-left:3px solid rgba(0,200,220,0.4);border-radius:0 10px 10px 0;font-family:'Playfair Display',serif;font-style:italic;color:rgba(255,255,255,0.85);font-size:1rem;line-height:1.7;">
+                    بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيمِ
+                    <cite style="display:block;font-family:'Montserrat',sans-serif;font-size:12px;font-style:normal;color:rgba(0,200,220,0.7);margin-top:8px;">Au nom de Dieu, le Tout-Clément, le Tout-Miséricordieux.</cite>
+                </blockquote>
+
+                <h3>Ar-Rahman, Ar-Rahim — La Miséricorde comme essence</h3>
+                <p>Ce par quoi Dieu choisit de se présenter à nous, c'est la Miséricorde. <em>Ar-Rahman</em> désigne une miséricorde qui couvre et protège — à l'image de la matrice maternelle. <em>Ar-Rahim</em> désigne une miséricorde plus ciblée qui accompagne chaque être dans son cheminement. Commencer par ces noms change profondément le regard que l'on pose sur l'existence : vous savez que vous êtes soutenus, que l'existence elle-même est un cadeau.</p>
+
+                <p>La réforme du monde commence par la réforme de l'idée que l'on se fait du Divin. Toutes les crises que nous traversons trouvent leur racine dans la mauvaise compréhension de Dieu — que ce soit en Le niant ou en Le réduisant à une image qui n'est pas la Sienne.</p>
+            </div>
+
+            <div class="article-modal-footer">
+                <a href="article3.html" class="btn-primary" style="text-decoration:none;">Lire l'article complet →</a>
+            </div>
+        </div>
+    </div>
 
     <!-- Modal Article 1 — Al-Hujurat -->
     <div id="article-modal-1" class="article-modal-overlay" onclick="closeArticleModal(1)">
@@ -1360,7 +1402,7 @@ function closeArticleModal(n) {
 }
 // Fermer avec Escape
 document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') { closeArticleModal(1); closeArticleModal(2); }
+    if (e.key === 'Escape') { closeArticleModal(1); closeArticleModal(2); closeArticleModal(3); }
 });
 </script>
 
