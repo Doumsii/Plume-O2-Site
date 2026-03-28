@@ -1,0 +1,367 @@
+/* ============================================================
+   PLUME D'O² — Styles pages Journal & Boutique catalogue
+   ============================================================ */
+
+/* ── HERO PAGE ──────────────────────────────────────────── */
+.journal-page {
+  min-height: 100vh;
+  padding-top: 100px;
+}
+
+.journal-page-hero {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 3rem 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.journal-page-hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  color: #fff;
+  margin: 0;
+}
+
+.journal-page-hero p {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0;
+}
+
+/* ── FILTRES ────────────────────────────────────────────── */
+.journal-filters {
+  max-width: 900px;
+  margin: 0 auto 2.5rem;
+  padding: 0 2rem;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 8px 18px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filter-btn:hover {
+  border-color: rgba(0, 200, 220, 0.4);
+  color: rgba(0, 200, 220, 0.8);
+}
+
+.filter-btn.active {
+  background: rgba(0, 200, 220, 0.1);
+  border-color: rgba(0, 200, 220, 0.5);
+  color: #00c8dc;
+}
+
+/* ── GRILLE JOURNAL ─────────────────────────────────────── */
+.journal-page-grid {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 2rem 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.journal-card-full {
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.journal-card-full:hover {
+  border-color: rgba(0, 200, 220, 0.2);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+}
+
+.journal-card-link {
+  display: flex;
+  text-decoration: none;
+  color: inherit;
+}
+
+.journal-card-img-wrapper {
+  position: relative;
+  width: 280px;
+  height: 220px;        /* hauteur fixe identique pour toutes les cards */
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.journal-card-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.5s ease;
+}
+
+.journal-card-full:hover .journal-card-img-wrapper img {
+  transform: scale(1.05);
+}
+
+.journal-card-tag {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: rgba(0, 200, 220, 0.15);
+  color: #00c8dc;
+  border: 1px solid rgba(0, 200, 220, 0.3);
+  border-radius: 20px;
+  padding: 4px 10px;
+}
+
+.journal-card-body {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  justify-content: center;
+}
+
+.journal-card-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.journal-card-meta .dot { opacity: 0.3; }
+.journal-card-meta .cyan { color: rgba(0, 200, 220, 0.7); }
+
+.journal-card-body h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  color: #fff;
+  line-height: 1.35;
+  margin: 0;
+}
+
+.journal-card-body p {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.55);
+  line-height: 1.7;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.journal-card-read {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #00c8dc;
+  margin-top: 4px;
+  transition: gap 0.2s ease;
+}
+
+/* ── GRILLE BOUTIQUE ────────────────────────────────────── */
+.boutique-page-grid {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 2rem 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.boutique-page-card {
+  display: flex;
+  gap: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.boutique-page-card:hover {
+  border-color: rgba(0, 200, 220, 0.2);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+}
+
+.boutique-page-img {
+  position: relative;
+  width: 260px;
+  flex-shrink: 0;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.boutique-page-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.boutique-page-card:hover .boutique-page-img img {
+  transform: scale(1.04);
+}
+
+.boutique-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: rgba(0, 200, 220, 0.15);
+  color: #00c8dc;
+  border: 1px solid rgba(0, 200, 220, 0.3);
+  border-radius: 20px;
+  padding: 4px 10px;
+}
+
+.boutique-page-info {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  justify-content: center;
+}
+
+.boutique-category {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.boutique-page-info h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  color: #fff;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.boutique-author {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.boutique-author-img {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.boutique-author span {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.55);
+  font-weight: 500;
+}
+
+.boutique-page-info p {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.55);
+  line-height: 1.7;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.boutique-page-action {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 6px;
+}
+
+.boutique-price {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  color: #fff;
+  font-weight: 700;
+}
+
+.boutique-store-btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* ── MOBILE ─────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .journal-page { padding-top: 80px; }
+
+  .journal-page-hero {
+    padding: 2rem 1.2rem 1rem;
+  }
+
+  .journal-filters {
+    padding: 0 1.2rem;
+  }
+
+  .journal-page-grid,
+  .boutique-page-grid {
+    padding: 0 1.2rem 4rem;
+  }
+
+  .journal-card-link {
+    flex-direction: column;
+  }
+
+  .journal-card-img-wrapper {
+    width: 100%;
+    height: 200px;
+  }
+
+  .boutique-page-card {
+    flex-direction: column;
+  }
+
+  .boutique-page-img {
+    width: 100%;
+    height: 220px;
+  }
+}
+.btn-back {
+  color: rgba(255, 255, 255, 0.65) !important;
+  text-decoration: none !important;
+}
+
+.btn-back:hover {
+  color: #fff !important;
+}

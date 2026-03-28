@@ -254,11 +254,261 @@
     user-select: none;
     -webkit-user-select: none;
 }
+
+    
+    @media (max-width: 600px) {
+        .med-track-item { flex-wrap: nowrap; gap: 8px; padding: 8px; }
+        .med-track-item .track-cover { width: 40px; height: 40px; min-width: 40px; }
+        .med-track-item .track-name { font-size: 12px; }
+        .med-track-item .track-artist { font-size: 10px; }
+        .med-track-item .med-time { font-size: 9px; }
+    }
+    
+    /* ── MED TRACK ITEM — override play-btn absolute ───── */
+    .med-track-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: nowrap;
+    }
+    .med-track-item .track-info {
+        flex: 1;
+        min-width: 0;
+    }
+    .med-track-item .med-play-btn {
+        position: relative !important;
+        right: auto !important;
+        top: auto !important;
+        transform: none !important;
+        flex-shrink: 0;
+    }
+    .med-track-item:hover .med-play-btn {
+        transform: scale(1.08) !important;
+    }
+    .med-track-item .med-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-shrink: 0;
+    }
+    /* Responsive mobile */
+    @media (max-width: 600px) {
+        .med-track-item { gap: 8px; padding: 8px 6px; }
+        .med-track-item .track-cover { width: 40px !important; height: 40px !important; min-width: 40px !important; }
+        .med-track-item .track-name { font-size: 12px; }
+        .med-track-item .track-artist { font-size: 10px; }
+        .med-track-item .med-time { font-size: 9px; }
+        .med-track-item .med-actions { gap: 6px; }
+    }
+    
+    /* ── BARRE PROGRESSION MED — boule draggable ─────── */
+    .med-track-item .track-progress {
+        position: relative;
+        cursor: pointer;
+        height: 4px !important;
+        border-radius: 2px;
+        margin: 6px 0 4px;
+    }
+    .med-track-item .track-progress:hover { height: 5px !important; }
+    .med-track-item .track-progress-bar {
+        position: relative;
+    }
+    .med-track-item .track-progress-bar::after {
+        content: '';
+        position: absolute;
+        right: -5px;
+        top: 50%;
+        transform: translateY(-50%) scale(0);
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #00c8dc;
+        box-shadow: 0 0 6px rgba(0,200,220,0.7);
+        transition: transform 0.15s ease;
+        pointer-events: none;
+    }
+    .med-track-item:hover .track-progress-bar::after,
+    .med-track-item.active .track-progress-bar::after {
+        transform: translateY(-50%) scale(1);
+    }
+    
+    /* ── BARRE PROGRESSION MED — knob draggable ─────────── */
+    .med-track-item .track-progress {
+        position: relative !important;
+        bottom: auto !important;
+        left: auto !important;
+        right: auto !important;
+        height: 4px !important;
+        opacity: 1 !important;
+        cursor: pointer;
+        margin-top: 4px;
+        overflow: visible !important;
+    }
+    .med-track-item .track-progress-bar {
+        position: relative;
+    }
+    .med-track-item .track-progress-bar::after {
+        content: '';
+        position: absolute;
+        right: -6px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #00c8dc;
+        box-shadow: 0 0 6px rgba(0,200,220,0.6);
+        opacity: 0;
+        transition: opacity 0.2s;
+    }
+    .med-track-item.active .track-progress-bar::after,
+    .med-track-item .track-progress:hover .track-progress-bar::after {
+        opacity: 1;
+    }
+    /* Speed btn — pas en position absolute */
+    .med-speed-btn {
+        position: relative !important;
+        right: auto !important;
+        top: auto !important;
+        transform: none !important;
+        flex-shrink: 0;
+    }
+    </style>
+
+<style>
+/* ══ ARTICLE MODALS ══════════════════════════════════════════════════════════ */
+.article-modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 9998;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    overflow-y: auto;
+}
+.article-modal-overlay.open { display: flex; }
+
+.article-modal-box {
+    background: #0c1020;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 20px;
+    max-width: 760px;
+    width: 100%;
+    max-height: 88vh;
+    overflow-y: auto;
+    position: relative;
+    animation: articleModalIn 0.35s cubic-bezier(0.22,1,0.36,1);
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0,200,220,0.3) transparent;
+}
+
+@keyframes articleModalIn {
+    from { opacity: 0; transform: translateY(30px) scale(0.97); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.article-modal-close {
+    position: sticky;
+    top: 16px;
+    float: right;
+    margin: 16px 16px 0 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+    z-index: 10;
+    flex-shrink: 0;
+}
+.article-modal-close:hover { background: rgba(255,255,255,0.2); }
+
+.article-modal-header {
+    padding: 20px 32px 24px;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    clear: both;
+}
+
+.article-modal-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.3rem, 3vw, 1.8rem);
+    color: #fff;
+    margin: 14px 0 12px;
+    line-height: 1.3;
+}
+
+.article-modal-meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    color: rgba(255,255,255,0.45);
+}
+
+.article-modal-body {
+    padding: 28px 32px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    line-height: 1.85;
+    color: rgba(255,255,255,0.75);
+}
+
+.article-modal-intro {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-style: italic;
+    color: rgba(255,255,255,0.88);
+    border-left: 3px solid rgba(0,200,220,0.45);
+    padding-left: 16px;
+    margin-bottom: 24px;
+    line-height: 1.75;
+}
+
+.article-modal-body h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    color: #fff;
+    margin: 24px 0 10px;
+    font-weight: 700;
+}
+
+.article-modal-body p {
+    margin-bottom: 14px;
+    color: rgba(255,255,255,0.7);
+}
+
+.article-modal-footer {
+    padding: 20px 32px 28px;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    display: flex;
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+    .article-modal-box { border-radius: 14px; max-height: 92vh; }
+    .article-modal-header { padding: 16px 20px 20px; }
+    .article-modal-body { padding: 20px; font-size: 14px; }
+    .article-modal-footer { padding: 16px 20px 24px; }
+}
 </style>
+
 </head>
 <body>
 
     <header class="navbar">
+        <button class="hamburger" id="nav-hamburger" aria-label="Menu" onclick="toggleHamburger()"><span></span><span></span><span></span></button>
         <a href="index.html" class="logo">Plume d'O²</a>
         <nav>
             <a href="ecoute.html" data-i18n="nav_ecouter">Écouter</a>
@@ -284,16 +534,6 @@
             <h1 data-i18n="hero_title">Respirez. Écoutez. Méditez.</h1>
             <p data-i18n="hero_subtitle">Votre sanctuaire audio pour apaiser le cœur et nourrir l'âme. Des récitations et histoires inspirantes pour se reconnecter à l'Éternel dans le tumulte du monde.</p>
             <a href="ecoute.html" class="btn-primary" data-i18n="hero_btn">Découvrir les écoutes</a>
-        </div>
-    </section>
-
-    <section id="mission" class="mission">
-        <div class="mission-content">
-            <h2 data-i18n="mission_title">Notre Vision : Un Souffle pour l'Âme</h2>
-            <div class="mission-text">
-                <p data-i18n="mission_p1">Plume d'O² n'est pas simplement un label audio ; c'est un sanctuaire numérique, une respiration nécessaire dans un monde saturé de bruit et de distractions. Notre mission est d'offrir un espace intime et pur pour se reconnecter à l'Éternel.</p>
-                <p data-i18n="mission_p2">À travers des récitations apaisantes, des histoires inspirantes et des réflexions profondes, nous allions la pureté du son à la beauté visuelle pour créer une expérience immersive qui nourrit l'intellect et apaise le cœur. Notre objectif est de vous accompagner sur le chemin de l'introspection et de la paix intérieure.</p>
-            </div>
         </div>
     </section>
 
@@ -434,24 +674,25 @@
             <p data-i18n="journal_subtitle">Exploration du Coran, recherches scientifiques et méditations spirituelles.</p>
         </div>
         <div class="journal-grid">
-            <article class="article-card featured">
+            <article class="article-card has-image" onclick="openArticleModal(3)" style="cursor:pointer;">
+                <img src="cover-fatiha.jpg" alt="Méditation sur la Sourate Al-Fatiha" class="article-image"
+                     onerror="this.src='logo-original.jpg';this.style.objectFit='contain';this.style.background='#0d1f35';this.style.padding='20px';">
                 <div class="article-content">
-                    <span class="article-tag" data-i18n="journal_tag1">Méditation</span>
-                    <h3 data-i18n="journal_article1_title">L'éthique de l'information et la préservation de l'honneur</h3>
-                    <div class="article-meta" data-i18n="journal_article1_meta">Sourate Al-Hujurat (Verset 6) • Oways Ahmad</div>
-                    <p data-i18n="journal_article1_p1">Ce verset vient après un passage qui évoque le mauvais comportement envers le Prophète et les graves conséquences qui en découlent.</p>
-                    <p data-i18n="journal_article1_p2">Il nous rappelle au moins trois finalités de notre religion (Maqasid Ashari'a).</p>
-                    <a href="article1.html" class="btn-read-more" data-i18n="journal_read1">Lire l'article complet</a>
+                    <span class="article-tag">Méditation</span>
+                    <div class="article-meta">Sourate Al-Fatiha (1) • Oways Ahmad</div>
+                    <h3>Méditation sur la Sourate Al-Fatiha</h3>
+                    <p>L'ouverture du Livre — le nom de Dieu, la Miséricorde comme fondement du monde et de notre existence.</p>
+                    <span class="btn-read-more" onclick="event.stopPropagation();openArticleModal(3)">Aperçu de l'article →</span>
                 </div>
             </article>
-            <article class="article-card has-image">
+            <article class="article-card has-image" onclick="openArticleModal(2)" style="cursor:pointer;">
                 <img src="hadid.jpg" alt="Sourate Al-Hadid" class="article-image">
                 <div class="article-content">
                     <span class="article-tag" data-i18n="journal_tag2">Recherche</span>
                     <div class="article-meta" data-i18n="journal_article2_meta">Sourate Al-Hadid • Oways Ahmad</div>
-                    <h3 data-i18n="journal_article2_title">L'engagement et l'équilibre</h3>
-                    <p data-i18n="journal_article2_p1">Une analyse profonde de la sourate Al-Hadid.</p>
-                    <a href="article2.html" class="btn-read-more" data-i18n="journal_read2">Lire la recherche</a>
+                    <h3 data-i18n="journal_article2_title">L'engagement</h3>
+                    <p data-i18n="journal_article2_p1">Foi, action et vision dans un monde en mouvement perpétuel — une méditation sur la Sourate Al-Hadid.</p>
+                    <span class="btn-read-more" data-i18n="journal_read2" onclick="event.stopPropagation();openArticleModal(2)">Aperçu de la recherche →</span>
                 </div>
             </article>
         </div>
@@ -459,6 +700,142 @@
             <a href="journal.html" class="btn-primary" data-i18n="journal_btn">Voir tous les articles</a>
         </div>
     </section>
+
+    <!-- ══ MODALS ARTICLES ════════════════════════════════════════════════ -->
+
+    <!-- Modal Article 3 — Al-Fatiha -->
+    <div id="article-modal-3" class="article-modal-overlay" onclick="closeArticleModal(3)">
+        <div class="article-modal-box" onclick="event.stopPropagation()">
+            <button class="article-modal-close" onclick="closeArticleModal(3)" aria-label="Fermer">✕</button>
+
+            <div class="article-modal-header">
+                <span class="article-tag">Méditation</span>
+                <h2>Méditation sur la Sourate Al-Fatiha</h2>
+                <div class="article-modal-meta">
+                    <span>Oways Ahmad</span>
+                    <span class="article-dot">·</span>
+                    <span>Sourate Al-Fatiha (1)</span>
+                    <span class="article-dot">·</span>
+                    <span style="color:rgba(0,200,220,0.8);">⏱ 5 min de lecture</span>
+                </div>
+            </div>
+
+            <div class="article-modal-body">
+                <p class="article-modal-intro">La sourate Al-Fatiha n'est pas la première à avoir été révélée, mais elle est la première que nous rencontrons en ouvrant le Coran. Ce choix relève d'une sagesse profonde : toute introduction se doit de synthétiser l'ensemble de l'œuvre qu'elle précède. C'est pourquoi certains savants affirmaient que la Fatiha contient tout le Coran.</p>
+
+                <h3>Le sens d'un nom</h3>
+                <p><em>Fatiha</em> signifie « l'ouverture ». Ce nom dit à la fois ce qu'est la sourate et ce qu'elle fait. Les noms des sourates ne sont pas des repères arbitraires — ils sont choisis en fonction du sujet, du rôle et de la fonction de chaque sourate, d'un choix divin.</p>
+
+                <h3>Bismillah — Par le nom de Dieu</h3>
+                <p>Cette introduction nous parle d'abord de Celui qui nous a adressé ce message. Et c'est en Son nom que tout commence — <em>Bismillahi Ar-Rahmani Ar-Rahim</em>. Aucun autre livre ne commence ainsi. Le nom que nous donnons à l'Être suprême devient le principe à partir duquel nous interprétons le monde et fondons nos actions. Si on Le désigne mal, les conséquences sont profondes : ce n'est plus Dieu que l'on désigne, mais une idole.</p>
+
+                <blockquote style="margin:20px 0;padding:16px 20px;background:rgba(0,200,220,0.05);border-left:3px solid rgba(0,200,220,0.4);border-radius:0 10px 10px 0;font-family:'Playfair Display',serif;font-style:italic;color:rgba(255,255,255,0.85);font-size:1rem;line-height:1.7;">
+                    بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيمِ
+                    <cite style="display:block;font-family:'Montserrat',sans-serif;font-size:12px;font-style:normal;color:rgba(0,200,220,0.7);margin-top:8px;">Au nom de Dieu, le Tout-Clément, le Tout-Miséricordieux.</cite>
+                </blockquote>
+
+                <h3>Ar-Rahman, Ar-Rahim — La Miséricorde comme essence</h3>
+                <p>Ce par quoi Dieu choisit de se présenter à nous, c'est la Miséricorde. <em>Ar-Rahman</em> désigne une miséricorde qui couvre et protège — à l'image de la matrice maternelle. <em>Ar-Rahim</em> désigne une miséricorde plus ciblée qui accompagne chaque être dans son cheminement. Commencer par ces noms change profondément le regard que l'on pose sur l'existence : vous savez que vous êtes soutenus, que l'existence elle-même est un cadeau.</p>
+
+                <p>La réforme du monde commence par la réforme de l'idée que l'on se fait du Divin. Toutes les crises que nous traversons trouvent leur racine dans la mauvaise compréhension de Dieu — que ce soit en Le niant ou en Le réduisant à une image qui n'est pas la Sienne.</p>
+            </div>
+
+            <div class="article-modal-footer">
+                <a href="article3.html" class="btn-primary" style="text-decoration:none;">Lire l'article complet →</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Article 1 — Al-Hujurat -->
+    <div id="article-modal-1" class="article-modal-overlay" onclick="closeArticleModal(1)">
+        <div class="article-modal-box" onclick="event.stopPropagation()">
+            <button class="article-modal-close" onclick="closeArticleModal(1)" aria-label="Fermer">✕</button>
+
+            <div class="article-modal-header">
+                <span class="article-tag" data-i18n="journal_tag1">Méditation</span>
+                <h2 data-i18n="journal_article1_title">L'éthique de l'information et la préservation de l'honneur</h2>
+                <div class="article-modal-meta">
+                    <span>Oways Ahmad</span>
+                    <span class="article-dot">·</span>
+                    <span data-i18n="journal_article1_meta_short">Sourate Al-Hujurat (V.6)</span>
+                    <span class="article-dot">·</span>
+                    <span style="color:rgba(0,200,220,0.8);">⏱ <span data-i18n="art1_read">4 min de lecture</span></span>
+                </div>
+            </div>
+
+            <div class="article-modal-body">
+                <p class="article-modal-intro" data-i18n="art1_intro">Ce verset vient après un passage qui évoque le mauvais comportement envers le Prophète ﷺ et les graves conséquences qui en découlent. Il nous appelle à la vigilance face aux informations que l'on reçoit et pourrait propager.</p>
+
+                <h3 data-i18n="art1_h2_1">La vérification, une obligation religieuse</h3>
+                <p data-i18n="art1_p1">Il est primordial de vérifier chaque information, surtout lorsqu'elle vient d'une source dont on doute de la probité. Allah nous avertit qu'agir sans vérification peut causer un tort immense à des innocents, et nous en serons tenus responsables.</p>
+                <p data-i18n="art1_p2">À l'ère des réseaux sociaux, ce verset résonne avec une acuité particulière. Repartager une rumeur, une capture d'écran hors contexte, une accusation non vérifiée — tout cela peut détruire en quelques secondes ce qu'un être humain a mis des années à bâtir.</p>
+
+                <h3 data-i18n="art1_h2_2">Les trois finalités rappelées</h3>
+                <p data-i18n="art1_p3">Ce verset nous rappelle au moins trois finalités fondamentales de notre religion :</p>
+                <ul style="margin:12px 0 16px 20px;display:flex;flex-direction:column;gap:8px;">
+                    <li data-i18n="art1_li1" style="color:rgba(255,255,255,0.75);font-size:0.9rem;"><strong>La préservation de la société</strong> — aucune société ne peut s'épanouir dans le doute et la médisance généralisés.</li>
+                    <li data-i18n="art1_li2" style="color:rgba(255,255,255,0.75);font-size:0.9rem;"><strong>La préservation de la religion</strong> — l'insouciance dans la parole affaiblit notre intégrité spirituelle.</li>
+                    <li data-i18n="art1_li3" style="color:rgba(255,255,255,0.75);font-size:0.9rem;"><strong>La préservation de l'honneur</strong> — chaque être humain possède une dignité sacrée qu'il est interdit de violer.</li>
+                </ul>
+
+                <blockquote style="margin:20px 0;padding:16px 20px;background:rgba(0,200,220,0.05);border-left:3px solid rgba(0,200,220,0.4);border-radius:0 10px 10px 0;font-family:'Playfair Display',serif;font-style:italic;color:rgba(255,255,255,0.85);font-size:1rem;line-height:1.7;">
+                    « Ô vous qui croyez ! Si un pervers vous apporte une nouvelle, vérifiez-la... »
+                    <cite style="display:block;font-family:'Montserrat',sans-serif;font-size:12px;font-style:normal;color:rgba(0,200,220,0.7);margin-top:8px;">— Coran, Sourate Al-Hujurat (49:6)</cite>
+                </blockquote>
+
+                <h3 data-i18n="art1_h2_4">Une invitation à la lenteur</h3>
+                <p data-i18n="art1_p6">Dans un monde qui valorise la vitesse, ce verset est une invitation au discernement bienveillant. Prendre le temps de vérifier, de s'interroger sur la source, d'évaluer les conséquences avant de parler — c'est un signe de maturité spirituelle, non de faiblesse.</p>
+            </div>
+
+            <div class="article-modal-footer">
+                <a href="article1.html" class="btn-primary" style="text-decoration:none;" data-i18n="art_read_full">Lire l'article complet →</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Article 2 — Al-Hadid -->
+    <div id="article-modal-2" class="article-modal-overlay" onclick="closeArticleModal(2)">
+        <div class="article-modal-box" onclick="event.stopPropagation()">
+            <button class="article-modal-close" onclick="closeArticleModal(2)" aria-label="Fermer">✕</button>
+
+            <div class="article-modal-header">
+                <span class="article-tag" data-i18n="journal_tag2">Recherche</span>
+                <h2 data-i18n="journal_article2_title">L'engagement</h2>
+                <div class="article-modal-meta">
+                    <span>Oways Ahmad</span>
+                    <span class="article-dot">·</span>
+                    <span>Sourate Al-Hadid (57)</span>
+                    <span class="article-dot">·</span>
+                    <span style="color:rgba(0,200,220,0.8);">⏱ <span data-i18n="art2_read">7 min de lecture</span></span>
+                </div>
+            </div>
+
+            <div class="article-modal-body">
+                <p class="article-modal-intro">Il ne sert à rien d'apprendre ou de comprendre si ce n'est pour agir. Et il ne sert à rien d'agir si ce n'est porté par une vision profonde. La Sourate Al-Hadid se déploie comme un manifeste tissant des liens indissociables entre les enjeux spirituels, politiques et sociaux de notre époque.</p>
+
+                <h3>Le Cosmos en Mouvement</h3>
+                <p>De la plus infime particule à la galaxie la plus vertigineuse, chaque élément de l'univers existe dans un état de conscience et d'adoration continuelle. Le Tasbih n'est pas une simple répétition verbale — c'est la nécessité de faire évoluer notre idée de Dieu. Dieu n'est pas éloigné ou impuissant ; Sa présence est si permanente qu'elle en devient invisible à l'œil non averti.</p>
+
+                <h3>L'Économie Spirituelle : le courage du don</h3>
+                <p>La foi sans la dépense de soi est une impasse. Ce que nous possédons n'est pas une propriété absolue, mais un dépôt divin. La Sadaqa est un acte de foi et de courage — un prêt gracieux fait à Dieu Lui-même, dont la rentabilité dépasse notre économie matérielle. S'engager pour une cause juste quand la victoire semble lointaine, c'est la marque de ceux qui changent le monde.</p>
+
+                <blockquote style="margin:20px 0;padding:16px 20px;background:rgba(0,200,220,0.05);border-left:3px solid rgba(0,200,220,0.4);border-radius:0 10px 10px 0;font-family:'Playfair Display',serif;font-style:italic;color:rgba(255,255,255,0.85);font-size:1rem;line-height:1.7;">
+                    « Qui donc consentira à Dieu un beau prêt ? Il le lui multipliera et lui accordera une généreuse récompense. »
+                    <cite style="display:block;font-family:'Montserrat',sans-serif;font-size:12px;font-style:normal;color:rgba(0,200,220,0.7);margin-top:8px;">— Coran, Sourate Al-Hadid (57:11)</cite>
+                </blockquote>
+
+                <h3>La Lutte contre l'Endurcissement du Cœur</h3>
+                <p>Le moment n'est-il pas venu que nos cœurs s'humilient à l'évocation de Dieu ? Le danger n'est pas l'absence de religion, mais la pratique d'une religion sans cœur. La foi, c'est d'abord une émotion — une vision — et une action en conséquence. L'humilité est la porte d'entrée vers la satisfaction divine.</p>
+
+                <h3>Le Livre, la Balance et le Fer</h3>
+                <p>Trois piliers pour bâtir une société juste : la Révélation (vision et cadre moral), la Balance (justice sociale et équité), et le Fer (force matérielle et puissance). Une spiritualité sans force est condamnée à être écrasée. Une force sans éthique devient barbarie. La foi est intrinsèquement liée à un projet de civilisation.</p>
+            </div>
+
+            <div class="article-modal-footer">
+                <a href="article2.html" class="btn-primary" style="text-decoration:none;" data-i18n="art_read_full">Lire l'article complet →</a>
+            </div>
+        </div>
+    </div>
     <section id="boutique" class="boutique">
         <div class="section-header">
             <h2 data-i18n="boutique_title">Boutique & Outils</h2>
@@ -565,6 +942,7 @@
                     <li><a href="ecoute.html" data-i18n="nav_ecouter">Écouter</a></li>
                     <li><a href="journal.html" data-i18n="nav_journal">Le Journal</a></li>
                     <li><a href="boutique.html" data-i18n="nav_boutique">Boutique</a></li>
+                    <li><a href="qui-sommes-nous.html" data-i18n="footer_about">Qui sommes-nous</a></li>
                 </ul>
             </div>
             <div class="footer-col">
@@ -607,12 +985,37 @@
         modal.addEventListener("click", (e) => { if(e.target === modal) modal.style.display = "none"; });
     </script>
 
+    <script>
+    function toggleHamburger() {
+        var nav = document.querySelector(".navbar nav");
+        var btn = document.getElementById("nav-hamburger");
+        if (!nav || !btn) return;
+        nav.classList.toggle("open");
+        btn.classList.toggle("open");
+    }
+    // Fermer le menu si on clique ailleurs
+    document.addEventListener("click", function(e) {
+        var nav = document.querySelector(".navbar nav");
+        var btn = document.getElementById("nav-hamburger");
+        if (!nav || !btn) return;
+        if (!nav.contains(e.target) && !btn.contains(e.target)) {
+            nav.classList.remove("open");
+            btn.classList.remove("open");
+        }
+    });
+    // Fermer le menu quand on clique sur un lien
+    document.querySelectorAll(".navbar nav a").forEach(function(a) {
+        a.addEventListener("click", function() {
+            var nav = document.querySelector(".navbar nav");
+            var btn = document.getElementById("nav-hamburger");
+            if (nav) nav.classList.remove("open");
+            if (btn) btn.classList.remove("open");
+        });
+    });
+    </script>
     <script src="plumedo2-animations.js"></script>
     <script src="plumedo2-player.js"></script>
     <script src="plumedo2-mobile.js"></script>
-
-    <script src="meditations-data.js"></script>
-    <script src="meditation-player-v2.js"></script>
     <script src="translations.js"></script>
 
     <!-- ══ MODAL RECUEIL ══════════════════════════════════════ -->
@@ -742,20 +1145,268 @@ document.addEventListener('keydown', e => {
         });
     });
 </script>
+
     <script>
-    if (typeof buildMedCards === 'function') buildMedCards('med-tracks-container');
-    // Notice FR only sur index
-    (function() {
-        function updateNotice() {
-            var lang = localStorage.getItem('plumedo2_lang') || 'fr';
-            var notice = document.getElementById('med-fr-notice-index');
-            if (notice) notice.style.display = lang !== 'fr' ? 'block' : 'none';
+    // ═══ MÉDITATIONS — Données ══════════════════════════════
+    const MEDITATIONS = [
+        {
+            id: 3,
+            file:  "meditation-3.m4a",
+            image: "meditation-3.jpg",
+            date:  "Mars 2026",
+            title:  "Tazkiyatu al-Nafs",
+            author: "Ustadh Anthony",
+            desc:   "La purification de l'ame — un voyage interieur vers la plénitude spirituelle."
+        },
+        {
+            id: 2,
+            file:  "meditation-2.m4a",
+            image: "meditation-2.jpg",
+            date:  "Mars 2026",
+            title:  "Au coeur de la spiritualite",
+            author: "Ustadh Anthony",
+            desc:   "Une invitation a plonger au coeur de la vie spirituelle."
         }
-        updateNotice();
-        document.querySelectorAll('.lang-btn').forEach(function(b) {
-            b.addEventListener('click', function() { setTimeout(updateNotice, 60); });
+    ];
+
+    // ═══ MÉDITATIONS — Player ═══════════════════════════════
+    var _medCurrentId = null;
+    var _medAudio = null;
+
+    function _medPad(n) { return n < 10 ? "0" + n : "" + n; }
+
+    function _medFmt(s) {
+        if (!s || isNaN(s)) return "0:00";
+        var h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), sec = Math.floor(s % 60);
+        return h > 0 ? h + ":" + _medPad(m) + ":" + _medPad(sec) : m + ":" + _medPad(sec);
+    }
+
+    function _medSetUI(id, playing) {
+        document.querySelectorAll(".med-track-item[data-id=\"" + id + "\"]").forEach(function(item) {
+            var cover = item.querySelector(".med-track-cover");
+            var btn   = item.querySelector(".med-play-btn");
+            var iP    = item.querySelector(".med-play-icon");
+            var iPa   = item.querySelector(".med-pause-icon");
+            var prog  = item.querySelector(".track-progress");
+            if (playing) {
+                item.classList.add("active");
+                if (cover) cover.classList.add("playing-cover");
+                if (btn)   btn.classList.add("playing");
+                if (iP)    iP.style.display = "none";
+                if (iPa)   iPa.style.display = "block";
+                if (prog)  prog.style.opacity = "1";
+            } else {
+                item.classList.remove("active");
+                if (cover) cover.classList.remove("playing-cover");
+                if (btn)   btn.classList.remove("playing");
+                if (iP)    iP.style.display = "block";
+                if (iPa)   iPa.style.display = "none";
+            }
         });
-    })();
+    }
+
+    function _medUpdateBars(id) {
+        if (!_medAudio || !_medAudio.duration) return;
+        var pct = (_medAudio.currentTime / _medAudio.duration * 100).toFixed(1) + "%";
+        document.querySelectorAll(".med-track-item[data-id=\"" + id + "\"] .track-progress-bar").forEach(function(b) { b.style.width = pct; });
+        document.querySelectorAll(".med-track-item[data-id=\"" + id + "\"] .med-dot").forEach(function(d) { d.style.left = pct; });
+        document.querySelectorAll(".med-track-item[data-id=\"" + id + "\"] .med-time").forEach(function(t) { t.textContent = _medFmt(_medAudio.currentTime) + " / " + _medFmt(_medAudio.duration); });
+    }
+
+    window.toggleMedTrack = function(id) {
+        var med = MEDITATIONS.find(function(m) { return m.id === id; });
+        if (!med) return;
+        if (_medCurrentId && _medCurrentId !== id) {
+            _medSetUI(_medCurrentId, false);
+            if (_medAudio) _medAudio.pause();
+        }
+        if (_medCurrentId !== id) {
+            _medCurrentId = id;
+            if (_medAudio) { _medAudio.pause(); _medAudio.src = ""; }
+            _medAudio = new Audio(med.file);
+            window._medAudio = _medAudio;
+            // Appliquer la vitesse existante
+            var speedBtn = document.querySelector(".med-track-item[data-id=\"" + id + "\"] .med-speed-btn");
+            if (speedBtn) _medAudio.playbackRate = parseFloat(speedBtn.getAttribute("data-speed")) || 1;
+            _medAudio.addEventListener("timeupdate", function() { _medUpdateBars(id); });
+            _medAudio.addEventListener("loadedmetadata", function() {
+                document.querySelectorAll(".med-track-item[data-id=\"" + id + "\"] .med-time").forEach(function(t) { t.textContent = "0:00 / " + _medFmt(_medAudio.duration); });
+            });
+            _medAudio.addEventListener("ended", function() {
+                _medSetUI(id, false);
+                document.querySelectorAll(".med-track-item[data-id=\"" + id + "\"] .track-progress-bar").forEach(function(b) { b.style.width = "0%"; });
+                document.querySelectorAll(".med-track-item[data-id=\"" + id + "\"] .med-dot").forEach(function(d) { d.style.left = "0%"; });
+                document.querySelectorAll(".med-track-item[data-id=\"" + id + "\"] .med-time").forEach(function(t) { t.textContent = "0:00"; });
+            });
+        }
+        if (_medAudio.paused) {
+            _medAudio.play().catch(function(e) { console.warn("Erreur:", e); });
+            _medSetUI(id, true);
+        } else {
+            _medAudio.pause();
+            _medSetUI(id, false);
+        }
+    };
+
+    window.seekMedTrack = function(e, id) {
+        e.stopPropagation();
+        if (!_medAudio || !_medAudio.duration) return;
+        // Si c'est un autre track, juste sélectionner sans seeker
+        if (_medCurrentId !== id) return;
+        var bar = e.currentTarget;
+        var rect = bar.getBoundingClientRect();
+        var clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        var pct = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+        _medAudio.currentTime = pct * _medAudio.duration;
+    };
+
+    // Drag fluide sur la barre de progression
+    window._medDragging = false;
+    window._medDragId = null;
+
+    window.startMedDrag = function(e, id) {
+        e.stopPropagation();
+        if (!_medAudio || _medCurrentId !== id || !_medAudio.duration) return;
+        _medDragging = true;
+        _medDragId = id;
+        window.seekMedTrack(e, id);
+        e.preventDefault();
+    };
+
+    function _onMedDragMove(e) {
+        if (!_medDragging || !_medAudio || !_medAudio.duration) return;
+        var bar = document.querySelector('.med-track-item[data-id="' + _medDragId + '"] .track-progress');
+        if (!bar) return;
+        var rect = bar.getBoundingClientRect();
+        var clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        var pct = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+        _medAudio.currentTime = pct * _medAudio.duration;
+        e.preventDefault();
+    }
+
+    function _onMedDragEnd() { _medDragging = false; _medDragId = null; }
+
+    document.addEventListener('mousemove', _onMedDragMove);
+    document.addEventListener('touchmove', _onMedDragMove, { passive: false });
+    document.addEventListener('mouseup', _onMedDragEnd);
+    document.addEventListener('touchend', _onMedDragEnd);
+
+    window.cycleMedSpeed = function(e, id) {
+        e.stopPropagation();
+        var btn = e.currentTarget;
+        var speeds = [1, 1.5, 2, 0.75];
+        var cur = parseFloat(btn.getAttribute("data-speed")) || 1;
+        var next = speeds[(speeds.indexOf(cur) + 1) % speeds.length];
+        btn.setAttribute("data-speed", next);
+        btn.textContent = "x" + next;
+        btn.style.color = next === 1 ? "rgba(255,255,255,0.6)" : "rgba(0,200,220,0.9)";
+        btn.style.borderColor = next === 1 ? "rgba(255,255,255,0.15)" : "rgba(0,200,220,0.4)";
+        btn.style.background = next === 1 ? "rgba(255,255,255,0.08)" : "rgba(0,200,220,0.1)";
+        if (_medAudio && _medCurrentId === id) _medAudio.playbackRate = next;
+    };
+
+    window.likeMedTrack = function(e, id) {
+        e.stopPropagation();
+        var btn = e.currentTarget;
+        var liked = btn.getAttribute("data-liked") === "1";
+        btn.setAttribute("data-liked", liked ? "0" : "1");
+        var path = btn.querySelector("svg path");
+        if (path) path.style.fill = liked ? "" : "rgba(0,200,220,0.9)";
+        btn.style.color = liked ? "" : "rgba(0,200,220,0.9)";
+    };
+
+    window.shareMedTrack = function(e, id) {
+        e.stopPropagation();
+        var btn = e.currentTarget;
+        var url = window.location.origin + "/meditations.html";
+        if (navigator.share) {
+            navigator.share({ title: "Plume d O2 Meditation", url: url });
+        } else {
+            try { navigator.clipboard.writeText(url); } catch(er) {}
+        }
+        btn.style.color = "#00c8dc";
+        setTimeout(function() { btn.style.color = ""; }, 2000);
+    };
+
+    window.buildMedCards = function(containerId) {
+        var container = document.getElementById(containerId);
+        if (!container) return;
+        container.innerHTML = "";
+        MEDITATIONS.forEach(function(med) {
+            var div = document.createElement("div");
+            div.className = "track-item med-track-item";
+            div.setAttribute("data-id", med.id);
+            div.innerHTML =
+                "<img class=\"track-cover med-track-cover\" src=\"" + med.image + "\" alt=\"" + med.title + "\" onclick=\"toggleMedTrack(" + med.id + ")\" onerror=\"this.src=\'logo-original.jpg\'\" style=\"cursor:pointer;\">" +
+                "<div class=\"track-info\" style=\"cursor:default;\">" +
+                    "<span class=\"track-name\">" + med.title + "</span>" +
+                    "<span class=\"track-artist\">" + med.author + "</span>" +
+                    "<div class=\"med-progress-wrap\" style=\"position:relative;height:14px;display:flex;align-items:center;cursor:pointer;\" onclick=\"seekMedTrack(event," + med.id + ")\" onmousedown=\"startMedDrag(event," + med.id + ")\" ontouchstart=\"startMedDrag(event," + med.id + ")\">" +
+                        "<div class=\"track-progress\" style=\"position:relative;width:100%;height:3px;background:rgba(255,255,255,0.1);border-radius:2px;cursor:pointer;\">" +
+                            "<div class=\"track-progress-bar\" style=\"height:100%;width:0%;background:linear-gradient(90deg,#00c8dc,#00e5f5);border-radius:2px;position:relative;\"></div>" +
+                        "</div>" +
+                        "<div class=\"med-dot\" style=\"position:absolute;left:0%;top:50%;transform:translate(-50%,-50%);width:10px;height:10px;border-radius:50%;background:#00c8dc;box-shadow:0 0 6px rgba(0,200,220,0.8);cursor:pointer;transition:transform 0.1s;z-index:2;\" onmouseover=\"this.style.transform=\'translate(-50%,-50%) scale(1.4)'\" onmouseout=\"this.style.transform=\'translate(-50%,-50%)\'\"></div>" +
+                    "</div>" +
+                "</div>" +
+                "<div class=\"med-actions\">" +
+                    "<span class=\"med-time\" style=\"font-family:Montserrat,sans-serif;font-size:10px;color:rgba(255,255,255,0.35);white-space:nowrap;\">0:00</span>" +
+                    "<button onclick=\"likeMedTrack(event," + med.id + ")\" title=\"J aime\" style=\"background:none;border:none;cursor:pointer;color:rgba(255,255,255,0.45);transition:color 0.2s,transform 0.2s;display:flex;align-items:center;padding:3px;\" onmouseover=\"this.style.color=\'rgba(0,200,220,0.9)\';this.style.transform=\'scale(1.15)'\" onmouseout=\"if(this.getAttribute(\'data-liked\')!==\'1\'){this.style.color=\'rgba(255,255,255,0.45)\';this.style.transform=\'\'}\">" +
+                        "<svg viewBox=\"0 0 24 24\" width=\"17\" height=\"17\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z\"/></svg>" +
+                    "</button>" +
+                    "<button onclick=\"shareMedTrack(event," + med.id + ")\" title=\"Partager\" style=\"background:none;border:none;cursor:pointer;color:rgba(255,255,255,0.45);transition:color 0.2s,transform 0.2s;display:flex;align-items:center;padding:3px;\" onmouseover=\"this.style.color=\'rgba(0,200,220,0.9)\';this.style.transform=\'scale(1.15)'\" onmouseout=\"this.style.color=\'rgba(255,255,255,0.45)\';this.style.transform=\'\">" +
+                        "<svg viewBox=\"0 0 24 24\" width=\"17\" height=\"17\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8\"/><polyline points=\"16 6 12 2 8 6\"/><line x1=\"12\" y1=\"2\" x2=\"12\" y2=\"15\"/></svg>" +
+                    "</button>" +
+                    "<button class=\"play-btn med-play-btn\" onclick=\"toggleMedTrack(" + med.id + ");event.stopPropagation()\" aria-label=\"Lecture\" style=\"margin-left:2px;\">" +
+                        "<svg class=\"med-play-icon\" viewBox=\"0 0 24 24\" fill=\"currentColor\"><path d=\"M8 5v14l11-7z\"/></svg>" +
+                        "<svg class=\"med-pause-icon\" viewBox=\"0 0 24 24\" fill=\"currentColor\" style=\"display:none\"><path d=\"M6 19h4V5H6v14zm8-14v14h4V5h-4z\"/></svg>" +
+                    "</button>" +
+                    "<button class=\"med-speed-btn\" onclick=\"cycleMedSpeed(event," + med.id + ")\" data-speed=\"1\" style=\"background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:6px;cursor:pointer;color:rgba(255,255,255,0.6);font-family:Montserrat,sans-serif;font-size:10px;font-weight:700;padding:3px 6px;margin-left:2px;white-space:nowrap;\">x1</button>" +
+                "</div>";
+            container.appendChild(div);
+        });
+    };
+
+    // ═══ MÉDITATIONS — Init ══════════════════════════════════
+    document.addEventListener("DOMContentLoaded", function() {
+        if (typeof buildMedCards === "function") {
+            buildMedCards("med-tracks-container");
+        }
+        // Notice FR only
+        function updateMedNotice() {
+            var lang = localStorage.getItem("plumedo2_lang") || "fr";
+            ["med-fr-notice-index","med-fr-notice-ecoute"].forEach(function(id) {
+                var el = document.getElementById(id);
+                if (el) el.style.display = lang !== "fr" ? "block" : "none";
+            });
+        }
+        updateMedNotice();
+        document.querySelectorAll(".lang-btn").forEach(function(b) {
+            b.addEventListener("click", function() { setTimeout(updateMedNotice, 60); });
+        });
+    });
     </script>
+
+<script>
+function openArticleModal(n) {
+    var overlay = document.getElementById('article-modal-' + n);
+    if (!overlay) return;
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    // Scroll le contenu du modal en haut
+    var box = overlay.querySelector('.article-modal-box');
+    if (box) box.scrollTop = 0;
+}
+function closeArticleModal(n) {
+    var overlay = document.getElementById('article-modal-' + n);
+    if (!overlay) return;
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+}
+// Fermer avec Escape
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { closeArticleModal(1); closeArticleModal(2); closeArticleModal(3); }
+});
+</script>
+
 </body>
 </html>
