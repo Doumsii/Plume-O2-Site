@@ -482,13 +482,11 @@
         if (typeof buildMedCards === "function") {
             buildMedCards("med-tracks-container");
         }
-        // Reconstruire les cards au changement de langue (layout RTL/LTR)
+        // Rebuild au changement de langue (layout RTL)
         document.querySelectorAll(".lang-btn").forEach(function(btn) {
             btn.addEventListener("click", function() {
                 setTimeout(function() {
-                    if (typeof buildMedCards === "function") {
-                        buildMedCards("med-tracks-container");
-                    }
+                    if (typeof buildMedCards === "function") buildMedCards("med-tracks-container");
                 }, 80);
             });
         });

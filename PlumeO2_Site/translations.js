@@ -83,23 +83,23 @@ const TRANSLATIONS = {
     meditation_latest: "Épisode en cours",
     meditation_all: "Tous les épisodes",
     boutique_modal_recueil_desc: "Ce recueil aux mille vertus rassemble les invocations du matin et du soir — tirées du Coran et de la Sunna, avec translittération et traduction française. À l'aube, ces prières agissent comme une douche revigorante avant d'affronter la journée. Au crépuscule, elles apaisent comme un bain après un long labeur. Car les invocations ne sont pas de simples mots : elles établissent un lien vivant avec Allah, protègent des pensées négatives et régénèrent le cœur, le corps et l'âme. Comme le rappelle le Prophète ﷺ : «La différence entre celui qui invoque son Seigneur et celui qui ne l'invoque pas est comme la différence entre le vivant et le mort.»",
+
     // ARTICLE 3 — Al-Fatiha
     art3_back: "← Retour au Journal",
     art3_tag: "Méditation",
     art3_title: "Méditation sur la Sourate Al-Fatiha",
     art3_ref: "Sourate Al-Fatiha",
     art3_read: "5 min de lecture",
-    art3_intro: "La sourate Al-Fatiha n'est pas la première à avoir été révélée, mais elle est la première que nous rencontrons en ouvrant le Coran. Toute introduction se doit de synthétiser l'ensemble de l'œuvre qu'elle précède.",
+    art3_intro: "La sourate Al-Fatiha n'est pas la première révélée, mais la première que nous rencontrons en ouvrant le Coran. Toute introduction doit synthétiser l'œuvre qu'elle précède.",
     art3_h2_1: "I. Le sens d'un nom",
     art3_h2_2: "II. Bismillah — Par le nom de Dieu",
-    art3_h2_3: "III. Le Nom — Ism : se positionner dans le monde",
+    art3_h2_3: "III. Le Nom : se positionner dans le monde",
     art3_h2_4: "IV. Ar-Rahman, Ar-Rahim — La Miséricorde comme essence divine",
     art3_h2_5: "V. Connaître Dieu — au-delà du savoir",
     art3_share: "Partager cet article",
     art3_copy: "Copier le lien",
     art3_next_label: "Article suivant →",
     art3_next_title: "L'éthique de l'information et la préservation de l'honneur",
-
   },
 
   en: {
@@ -181,23 +181,23 @@ const TRANSLATIONS = {
     meditation_latest: "Current episode",
     meditation_all: "All episodes",
     boutique_modal_recueil_desc: "This collection of thousand-virtue supplications gathers the morning and evening invocations — drawn from the Quran and Sunnah, with transliteration and French translation. At dawn, these prayers act like a reviving shower before facing the day. At dusk, they soothe like a warm bath after long labor. For invocations are not mere words: they forge a living bond with Allah, shield against negative thoughts and regenerate the heart, body and soul. As the Prophet ﷺ said: «The difference between one who remembers his Lord and one who does not is like the difference between the living and the dead.»",
-    // ARTICLE 3 — Al-Fatiha
-    art3_back: "← Back to Journal",
-    art3_tag: "Meditation",
-    art3_title: "Meditation on Surah Al-Fatiha",
-    art3_ref: "Surah Al-Fatiha",
-    art3_read: "5 min read",
-    art3_intro: "Surah Al-Fatiha was not the first to be revealed, but it is the first we encounter when opening the Quran. Every introduction must synthesize the whole work it precedes.",
-    art3_h2_1: "I. The meaning of a name",
-    art3_h2_2: "II. Bismillah — In the name of God",
-    art3_h2_3: "III. The Name — Ism: positioning oneself in the world",
-    art3_h2_4: "IV. Ar-Rahman, Ar-Rahim — Mercy as divine essence",
-    art3_h2_5: "V. Knowing God — beyond knowledge",
-    art3_share: "Share this article",
-    art3_copy: "Copy link",
-    art3_next_label: "Next article →",
-    art3_next_title: "The ethics of information and the preservation of honour",
 
+    // المقال 3 — الفاتحة
+    art3_back: "← العودة إلى المجلة",
+    art3_tag: "تأمل",
+    art3_title: "تأمل في سورة الفاتحة",
+    art3_ref: "سورة الفاتحة",
+    art3_read: "5 دقائق قراءة",
+    art3_intro: "لم تكن سورة الفاتحة أول ما نزل، لكنها أول ما نلتقيه حين نفتح الكتاب. وكل مقدمة لا بد أن تلخّص الكتاب الذي تفتحه.",
+    art3_h2_1: "أولاً — معنى الاسم",
+    art3_h2_2: "ثانياً — بسم الله",
+    art3_h2_3: "ثالثاً — الاسم : التموضع في العالم",
+    art3_h2_4: "رابعاً — الرحمن الرحيم : الرحمة كجوهر إلهي",
+    art3_h2_5: "خامساً — معرفة الله",
+    art3_share: "شارك هذا المقال",
+    art3_copy: "نسخ الرابط",
+    art3_next_label: "المقال التالي ←",
+    art3_next_title: "أخلاقيات المعلومة والحفاظ على الأعراض",
   },
 
   ar: {
@@ -400,6 +400,23 @@ const TRANSLATIONS_EXTRA = {
     ecoute_videos_title: "Récitations",
     ecoute_videos_subtitle: "Plongez dans l'univers sonore de Plume d'O²",
     ecoute_videos_btn: "Voir toutes les vidéos ↓",
+
+    // ARTICLE 3 — Al-Fatiha
+    art3_back: "← Back to Journal",
+    art3_tag: "Meditation",
+    art3_title: "Meditation on Surah Al-Fatiha",
+    art3_ref: "Surah Al-Fatiha",
+    art3_read: "5 min read",
+    art3_intro: "Surah Al-Fatiha was not the first to be revealed, but it is the first we encounter when opening the Quran. Every introduction must synthesize the whole work it precedes.",
+    art3_h2_1: "I. The meaning of a name",
+    art3_h2_2: "II. Bismillah — In the name of God",
+    art3_h2_3: "III. The Name: positioning oneself in the world",
+    art3_h2_4: "IV. Ar-Rahman, Ar-Rahim — Mercy as divine essence",
+    art3_h2_5: "V. Knowing God — beyond knowledge",
+    art3_share: "Share this article",
+    art3_copy: "Copy link",
+    art3_next_label: "Next article →",
+    art3_next_title: "The ethics of information and the preservation of honour",
   },
 
   en: {
@@ -475,6 +492,23 @@ const TRANSLATIONS_EXTRA = {
     ecoute_videos_title: "Recitations",
     ecoute_videos_subtitle: "Dive into the sound universe of Plume d'O²",
     ecoute_videos_btn: "See all videos ↓",
+
+    // المقال 3 — الفاتحة
+    art3_back: "← العودة إلى المجلة",
+    art3_tag: "تأمل",
+    art3_title: "تأمل في سورة الفاتحة",
+    art3_ref: "سورة الفاتحة",
+    art3_read: "5 دقائق قراءة",
+    art3_intro: "لم تكن سورة الفاتحة أول ما نزل، لكنها أول ما نلتقيه حين نفتح الكتاب. وكل مقدمة لا بد أن تلخّص الكتاب الذي تفتحه.",
+    art3_h2_1: "أولاً — معنى الاسم",
+    art3_h2_2: "ثانياً — بسم الله",
+    art3_h2_3: "ثالثاً — الاسم : التموضع في العالم",
+    art3_h2_4: "رابعاً — الرحمن الرحيم : الرحمة كجوهر إلهي",
+    art3_h2_5: "خامساً — معرفة الله",
+    art3_share: "شارك هذا المقال",
+    art3_copy: "نسخ الرابط",
+    art3_next_label: "المقال التالي ←",
+    art3_next_title: "أخلاقيات المعلومة والحفاظ على الأعراض",
   },
 
   ar: {
@@ -562,23 +596,6 @@ const TRANSLATIONS_EXTRA = {
     meditation_latest: "الحلقة الحالية",
     meditation_all: "جميع الحلقات",
     boutique_modal_recueil_desc: "يجمع هذا الكتيّب أدعية الصباح والمساء ذات الفضائل الجمّة — مستقاةً من القرآن الكريم والسنة النبوية، مع كتابتها الصوتية وترجمتها الفرنسية. في الفجر، تعمل هذه الأدعية كالدش المنعش قبل مواجهة اليوم. وعند الغروب، تُهدِّئ كحمّام دافئ بعد يوم طويل من العمل. فالأدعية ليست مجرد كلمات: بل هي رابط حيّ مع الله، وحصن من الأفكار السلبية، وتجديد للقلب والجسد والروح. كما قال النبي ﷺ: «مثل الذي يذكر ربه والذي لا يذكر ربه مثل الحي والميت.»",
-    // المقال 3 — الفاتحة
-    art3_back: "← العودة إلى المجلة",
-    art3_tag: "تأمل",
-    art3_title: "تأمل في سورة الفاتحة",
-    art3_ref: "سورة الفاتحة",
-    art3_read: "5 دقائق قراءة",
-    art3_intro: "لم تكن سورة الفاتحة أول ما نزل من القرآن، لكنها أول ما نلتقيه حين نفتح الكتاب. وكل مقدمة لا بد أن تلخّص الكتاب الذي تفتحه.",
-    art3_h2_1: "أولاً — معنى الاسم",
-    art3_h2_2: "ثانياً — بسم الله",
-    art3_h2_3: "ثالثاً — الاسم : التموضع في العالم",
-    art3_h2_4: "رابعاً — الرحمن الرحيم : الرحمة كجوهر إلهي",
-    art3_h2_5: "خامساً — معرفة الله : ما وراء المعلومات",
-    art3_share: "شارك هذا المقال",
-    art3_copy: "نسخ الرابط",
-    art3_next_label: "المقال التالي ←",
-    art3_next_title: "أخلاقيات المعلومة والحفاظ على الأعراض",
-
   }
 };
 
