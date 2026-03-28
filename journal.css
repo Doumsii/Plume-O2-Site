@@ -100,7 +100,7 @@
 .journal-card-img-wrapper {
   position: relative;
   width: 280px;
-  height: 220px;        /* hauteur fixe identique pour toutes les cards */
+  height: 220px;        /* ← hauteur fixe uniforme pour toutes les cards */
   flex-shrink: 0;
   overflow: hidden;
 }
