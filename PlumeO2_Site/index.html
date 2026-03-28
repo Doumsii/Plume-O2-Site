@@ -376,126 +376,71 @@
     </style>
 
 <style>
-/* ══ ARTICLE MODALS ══════════════════════════════════════════════════════════ */
+/* ══ ARTICLE MODALS ══════════════════════════════════════════ */
 .article-modal-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
+    display: none; position: fixed; inset: 0;
     background: rgba(0,0,0,0.85);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    z-index: 9998;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    overflow-y: auto;
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    z-index: 9998; align-items: center; justify-content: center;
+    padding: 20px; overflow-y: auto;
 }
 .article-modal-overlay.open { display: flex; }
-
 .article-modal-box {
     background: #0c1020;
     border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 20px;
-    max-width: 760px;
-    width: 100%;
-    max-height: 88vh;
-    overflow-y: auto;
-    position: relative;
+    border-radius: 20px; max-width: 760px; width: 100%;
+    max-height: 88vh; overflow-y: auto; position: relative;
     animation: articleModalIn 0.35s cubic-bezier(0.22,1,0.36,1);
-    scrollbar-width: thin;
-    scrollbar-color: rgba(0,200,220,0.3) transparent;
+    scrollbar-width: thin; scrollbar-color: rgba(0,200,220,0.3) transparent;
 }
-
 @keyframes articleModalIn {
     from { opacity: 0; transform: translateY(30px) scale(0.97); }
     to   { opacity: 1; transform: translateY(0) scale(1); }
 }
-
 .article-modal-close {
-    position: sticky;
-    top: 16px;
-    float: right;
-    margin: 16px 16px 0 0;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.1);
-    border: none;
-    cursor: pointer;
-    color: #fff;
-    font-size: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.2s;
-    z-index: 10;
-    flex-shrink: 0;
+    position: sticky; top: 16px; float: right;
+    margin: 16px 16px 0 0; width: 36px; height: 36px;
+    border-radius: 50%; background: rgba(255,255,255,0.1);
+    border: none; cursor: pointer; color: #fff; font-size: 16px;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s; z-index: 10;
 }
 .article-modal-close:hover { background: rgba(255,255,255,0.2); }
-
 .article-modal-header {
     padding: 20px 32px 24px;
-    border-bottom: 1px solid rgba(255,255,255,0.07);
-    clear: both;
+    border-bottom: 1px solid rgba(255,255,255,0.07); clear: both;
 }
-
 .article-modal-header h2 {
     font-family: 'Playfair Display', serif;
     font-size: clamp(1.3rem, 3vw, 1.8rem);
-    color: #fff;
-    margin: 14px 0 12px;
-    line-height: 1.3;
+    color: #fff; margin: 14px 0 12px; line-height: 1.3;
 }
-
 .article-modal-meta {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 6px;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 12px;
+    display: flex; align-items: center; flex-wrap: wrap; gap: 6px;
+    font-family: 'Montserrat', sans-serif; font-size: 12px;
     color: rgba(255,255,255,0.45);
 }
-
 .article-modal-body {
     padding: 28px 32px;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 15px;
-    line-height: 1.85;
-    color: rgba(255,255,255,0.75);
+    font-family: 'Montserrat', sans-serif; font-size: 15px;
+    line-height: 1.85; color: rgba(255,255,255,0.75);
 }
-
 .article-modal-intro {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.05rem;
-    font-style: italic;
-    color: rgba(255,255,255,0.88);
+    font-family: 'Playfair Display', serif; font-size: 1.05rem;
+    font-style: italic; color: rgba(255,255,255,0.88);
     border-left: 3px solid rgba(0,200,220,0.45);
-    padding-left: 16px;
-    margin-bottom: 24px;
-    line-height: 1.75;
+    padding-left: 16px; margin-bottom: 24px; line-height: 1.75;
 }
-
 .article-modal-body h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.15rem;
-    color: #fff;
-    margin: 24px 0 10px;
-    font-weight: 700;
+    font-family: 'Playfair Display', serif; font-size: 1.15rem;
+    color: #fff; margin: 24px 0 10px; font-weight: 700;
 }
-
-.article-modal-body p {
-    margin-bottom: 14px;
-    color: rgba(255,255,255,0.7);
-}
-
+.article-modal-body p { margin-bottom: 14px; color: rgba(255,255,255,0.7); }
 .article-modal-footer {
     padding: 20px 32px 28px;
     border-top: 1px solid rgba(255,255,255,0.07);
-    display: flex;
-    justify-content: center;
+    display: flex; justify-content: center;
 }
-
 @media (max-width: 768px) {
     .article-modal-box { border-radius: 14px; max-height: 92vh; }
     .article-modal-header { padding: 16px 20px 20px; }
@@ -674,23 +619,27 @@
             <p data-i18n="journal_subtitle">Exploration du Coran, recherches scientifiques et méditations spirituelles.</p>
         </div>
         <div class="journal-grid">
-            <article class="article-card featured" onclick="openArticleModal(3)" style="cursor:pointer;">
+            <!-- Card Al-Fatiha -->
+            <article class="article-card has-image" onclick="openArticleModal(3)" style="cursor:pointer;">
+                <img src="cover-fatiha.jpg" alt="Méditation sur la Sourate Al-Fatiha" class="article-image"
+                     onerror="this.src='logo-original.jpg';this.style.objectFit='contain';this.style.background='#0d1f35';this.style.padding='20px';">
                 <div class="article-content">
                     <span class="article-tag">Méditation</span>
-                    <h3>Méditation sur la Sourate Al-Fatiha</h3>
                     <div class="article-meta">Sourate Al-Fatiha (1) • Oways Ahmad</div>
+                    <h3>Méditation sur la Sourate Al-Fatiha</h3>
                     <p>L'ouverture du Livre — le nom de Dieu, la Miséricorde comme fondement du monde et de notre existence.</p>
                     <span class="btn-read-more" onclick="event.stopPropagation();openArticleModal(3)">Aperçu de l'article →</span>
                 </div>
             </article>
+            <!-- Card Al-Hadid -->
             <article class="article-card has-image" onclick="openArticleModal(2)" style="cursor:pointer;">
                 <img src="hadid.jpg" alt="Sourate Al-Hadid" class="article-image">
                 <div class="article-content">
                     <span class="article-tag" data-i18n="journal_tag2">Recherche</span>
                     <div class="article-meta" data-i18n="journal_article2_meta">Sourate Al-Hadid • Oways Ahmad</div>
                     <h3 data-i18n="journal_article2_title">L'engagement</h3>
-                    <p data-i18n="journal_article2_p1">Foi, action et vision dans un monde en mouvement perpétuel — une méditation sur la Sourate Al-Hadid.</p>
-                    <span class="btn-read-more" data-i18n="journal_read2" onclick="event.stopPropagation();openArticleModal(2)">Aperçu de la recherche →</span>
+                    <p>Foi, action et vision dans un monde en mouvement perpétuel.</p>
+                    <span class="btn-read-more" onclick="event.stopPropagation();openArticleModal(2)">Aperçu de la recherche →</span>
                 </div>
             </article>
         </div>
@@ -699,136 +648,64 @@
         </div>
     </section>
 
-    <!-- ══ MODALS ARTICLES ════════════════════════════════════════════════ -->
-
-    <!-- Modal Article 3 — Al-Fatiha -->
+    <!-- ══ MODAL ARTICLE 3 — Al-Fatiha ═══════════════════════════════════════ -->
     <div id="article-modal-3" class="article-modal-overlay" onclick="closeArticleModal(3)">
         <div class="article-modal-box" onclick="event.stopPropagation()">
-            <button class="article-modal-close" onclick="closeArticleModal(3)" aria-label="Fermer">✕</button>
-
+            <button class="article-modal-close" onclick="closeArticleModal(3)">✕</button>
             <div class="article-modal-header">
                 <span class="article-tag">Méditation</span>
                 <h2>Méditation sur la Sourate Al-Fatiha</h2>
                 <div class="article-modal-meta">
-                    <span>Oways Ahmad</span>
-                    <span class="article-dot">·</span>
-                    <span>Sourate Al-Fatiha (1)</span>
-                    <span class="article-dot">·</span>
+                    <span>Oways Ahmad</span><span class="article-dot">·</span>
+                    <span>Sourate Al-Fatiha (1)</span><span class="article-dot">·</span>
                     <span style="color:rgba(0,200,220,0.8);">⏱ 5 min de lecture</span>
                 </div>
             </div>
-
             <div class="article-modal-body">
-                <p class="article-modal-intro">La sourate Al-Fatiha n'est pas la première à avoir été révélée, mais elle est la première que nous rencontrons en ouvrant le Coran. Ce choix relève d'une sagesse profonde : toute introduction se doit de synthétiser l'ensemble de l'œuvre qu'elle précède. C'est pourquoi certains savants affirmaient que la Fatiha contient tout le Coran.</p>
-
-                <h3>Le sens d'un nom</h3>
-                <p><em>Fatiha</em> signifie « l'ouverture ». Ce nom dit à la fois ce qu'est la sourate et ce qu'elle fait. Les noms des sourates ne sont pas des repères arbitraires — ils sont choisis en fonction du sujet, du rôle et de la fonction de chaque sourate, d'un choix divin.</p>
-
+                <p class="article-modal-intro">La sourate Al-Fatiha n'est pas la première à avoir été révélée, mais elle est la première que nous rencontrons en ouvrant le Coran. Toute introduction se doit de synthétiser l'ensemble de l'œuvre qu'elle précède. C'est pourquoi certains savants affirmaient que la Fatiha contient tout le Coran.</p>
                 <h3>Bismillah — Par le nom de Dieu</h3>
-                <p>Cette introduction nous parle d'abord de Celui qui nous a adressé ce message. Et c'est en Son nom que tout commence — <em>Bismillahi Ar-Rahmani Ar-Rahim</em>. Aucun autre livre ne commence ainsi. Le nom que nous donnons à l'Être suprême devient le principe à partir duquel nous interprétons le monde et fondons nos actions. Si on Le désigne mal, les conséquences sont profondes : ce n'est plus Dieu que l'on désigne, mais une idole.</p>
-
-                <blockquote style="margin:20px 0;padding:16px 20px;background:rgba(0,200,220,0.05);border-left:3px solid rgba(0,200,220,0.4);border-radius:0 10px 10px 0;font-family:'Playfair Display',serif;font-style:italic;color:rgba(255,255,255,0.85);font-size:1rem;line-height:1.7;">
-                    بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيمِ
-                    <cite style="display:block;font-family:'Montserrat',sans-serif;font-size:12px;font-style:normal;color:rgba(0,200,220,0.7);margin-top:8px;">Au nom de Dieu, le Tout-Clément, le Tout-Miséricordieux.</cite>
-                </blockquote>
-
+                <p>C'est en Son nom que tout commence : <em>بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيمِ</em>. Aucun autre livre ne commence ainsi. Le nom que nous donnons à l'Être suprême devient le principe à partir duquel nous interprétons le monde. Si on Le désigne mal, les conséquences sont profondes : ce n'est plus Dieu que l'on désigne, mais une idole.</p>
                 <h3>Ar-Rahman, Ar-Rahim — La Miséricorde comme essence</h3>
-                <p>Ce par quoi Dieu choisit de se présenter à nous, c'est la Miséricorde. <em>Ar-Rahman</em> désigne une miséricorde qui couvre et protège — à l'image de la matrice maternelle. <em>Ar-Rahim</em> désigne une miséricorde plus ciblée qui accompagne chaque être dans son cheminement. Commencer par ces noms change profondément le regard que l'on pose sur l'existence : vous savez que vous êtes soutenus, que l'existence elle-même est un cadeau.</p>
-
-                <p>La réforme du monde commence par la réforme de l'idée que l'on se fait du Divin. Toutes les crises que nous traversons trouvent leur racine dans la mauvaise compréhension de Dieu — que ce soit en Le niant ou en Le réduisant à une image qui n'est pas la Sienne.</p>
+                <p>Ce par quoi Dieu choisit de se présenter à nous, c'est la Miséricorde. <em>Ar-Rahman</em> désigne une miséricorde qui couvre et protège — à l'image de la matrice maternelle. Commencer par ces noms change profondément le regard que l'on pose sur l'existence : l'existence elle-même est un cadeau, et vous n'êtes pas abandonnés.</p>
+                <blockquote style="margin:16px 0;padding:14px 18px;background:rgba(0,200,220,0.05);border-left:3px solid rgba(0,200,220,0.4);border-radius:0 10px 10px 0;font-family:'Playfair Display',serif;font-style:italic;color:rgba(255,255,255,0.85);font-size:0.95rem;line-height:1.7;">
+                    « Ayez de la miséricorde pour les gens sur terre, et Celui qui est aux cieux aura de la miséricorde pour vous. »
+                    <cite style="display:block;font-family:'Montserrat',sans-serif;font-size:11px;font-style:normal;color:rgba(0,200,220,0.7);margin-top:6px;">— Le Prophète Muhammad ﷺ</cite>
+                </blockquote>
+                <h3>Connaître Dieu — au-delà du savoir</h3>
+                <p>La réforme du monde commence par la réforme de l'idée que l'on se fait du Divin. Connaître Dieu, c'est méditer Ses noms, les intérioriser, percevoir leur réalité dans le monde et en soi-même. Car celui qui connaît véritablement le Miséricordieux devient miséricordieux envers les autres.</p>
             </div>
-
             <div class="article-modal-footer">
                 <a href="article3.html" class="btn-primary" style="text-decoration:none;">Lire l'article complet →</a>
             </div>
         </div>
     </div>
 
-    <!-- Modal Article 1 — Al-Hujurat -->
-    <div id="article-modal-1" class="article-modal-overlay" onclick="closeArticleModal(1)">
-        <div class="article-modal-box" onclick="event.stopPropagation()">
-            <button class="article-modal-close" onclick="closeArticleModal(1)" aria-label="Fermer">✕</button>
-
-            <div class="article-modal-header">
-                <span class="article-tag" data-i18n="journal_tag1">Méditation</span>
-                <h2 data-i18n="journal_article1_title">L'éthique de l'information et la préservation de l'honneur</h2>
-                <div class="article-modal-meta">
-                    <span>Oways Ahmad</span>
-                    <span class="article-dot">·</span>
-                    <span data-i18n="journal_article1_meta_short">Sourate Al-Hujurat (V.6)</span>
-                    <span class="article-dot">·</span>
-                    <span style="color:rgba(0,200,220,0.8);">⏱ <span data-i18n="art1_read">4 min de lecture</span></span>
-                </div>
-            </div>
-
-            <div class="article-modal-body">
-                <p class="article-modal-intro" data-i18n="art1_intro">Ce verset vient après un passage qui évoque le mauvais comportement envers le Prophète ﷺ et les graves conséquences qui en découlent. Il nous appelle à la vigilance face aux informations que l'on reçoit et pourrait propager.</p>
-
-                <h3 data-i18n="art1_h2_1">La vérification, une obligation religieuse</h3>
-                <p data-i18n="art1_p1">Il est primordial de vérifier chaque information, surtout lorsqu'elle vient d'une source dont on doute de la probité. Allah nous avertit qu'agir sans vérification peut causer un tort immense à des innocents, et nous en serons tenus responsables.</p>
-                <p data-i18n="art1_p2">À l'ère des réseaux sociaux, ce verset résonne avec une acuité particulière. Repartager une rumeur, une capture d'écran hors contexte, une accusation non vérifiée — tout cela peut détruire en quelques secondes ce qu'un être humain a mis des années à bâtir.</p>
-
-                <h3 data-i18n="art1_h2_2">Les trois finalités rappelées</h3>
-                <p data-i18n="art1_p3">Ce verset nous rappelle au moins trois finalités fondamentales de notre religion :</p>
-                <ul style="margin:12px 0 16px 20px;display:flex;flex-direction:column;gap:8px;">
-                    <li data-i18n="art1_li1" style="color:rgba(255,255,255,0.75);font-size:0.9rem;"><strong>La préservation de la société</strong> — aucune société ne peut s'épanouir dans le doute et la médisance généralisés.</li>
-                    <li data-i18n="art1_li2" style="color:rgba(255,255,255,0.75);font-size:0.9rem;"><strong>La préservation de la religion</strong> — l'insouciance dans la parole affaiblit notre intégrité spirituelle.</li>
-                    <li data-i18n="art1_li3" style="color:rgba(255,255,255,0.75);font-size:0.9rem;"><strong>La préservation de l'honneur</strong> — chaque être humain possède une dignité sacrée qu'il est interdit de violer.</li>
-                </ul>
-
-                <blockquote style="margin:20px 0;padding:16px 20px;background:rgba(0,200,220,0.05);border-left:3px solid rgba(0,200,220,0.4);border-radius:0 10px 10px 0;font-family:'Playfair Display',serif;font-style:italic;color:rgba(255,255,255,0.85);font-size:1rem;line-height:1.7;">
-                    « Ô vous qui croyez ! Si un pervers vous apporte une nouvelle, vérifiez-la... »
-                    <cite style="display:block;font-family:'Montserrat',sans-serif;font-size:12px;font-style:normal;color:rgba(0,200,220,0.7);margin-top:8px;">— Coran, Sourate Al-Hujurat (49:6)</cite>
-                </blockquote>
-
-                <h3 data-i18n="art1_h2_4">Une invitation à la lenteur</h3>
-                <p data-i18n="art1_p6">Dans un monde qui valorise la vitesse, ce verset est une invitation au discernement bienveillant. Prendre le temps de vérifier, de s'interroger sur la source, d'évaluer les conséquences avant de parler — c'est un signe de maturité spirituelle, non de faiblesse.</p>
-            </div>
-
-            <div class="article-modal-footer">
-                <a href="article1.html" class="btn-primary" style="text-decoration:none;" data-i18n="art_read_full">Lire l'article complet →</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Article 2 — Al-Hadid -->
+    <!-- ══ MODAL ARTICLE 2 — Al-Hadid ════════════════════════════════════════ -->
     <div id="article-modal-2" class="article-modal-overlay" onclick="closeArticleModal(2)">
         <div class="article-modal-box" onclick="event.stopPropagation()">
-            <button class="article-modal-close" onclick="closeArticleModal(2)" aria-label="Fermer">✕</button>
-
+            <button class="article-modal-close" onclick="closeArticleModal(2)">✕</button>
             <div class="article-modal-header">
                 <span class="article-tag" data-i18n="journal_tag2">Recherche</span>
                 <h2 data-i18n="journal_article2_title">L'engagement</h2>
                 <div class="article-modal-meta">
-                    <span>Oways Ahmad</span>
-                    <span class="article-dot">·</span>
-                    <span>Sourate Al-Hadid (57)</span>
-                    <span class="article-dot">·</span>
-                    <span style="color:rgba(0,200,220,0.8);">⏱ <span data-i18n="art2_read">7 min de lecture</span></span>
+                    <span>Oways Ahmad</span><span class="article-dot">·</span>
+                    <span>Sourate Al-Hadid (57)</span><span class="article-dot">·</span>
+                    <span style="color:rgba(0,200,220,0.8);">⏱ 7 min de lecture</span>
                 </div>
             </div>
-
             <div class="article-modal-body">
-                <p class="article-modal-intro">Il ne sert à rien d'apprendre ou de comprendre si ce n'est pour agir. Et il ne sert à rien d'agir si ce n'est porté par une vision profonde. La Sourate Al-Hadid se déploie comme un manifeste tissant des liens indissociables entre les enjeux spirituels, politiques et sociaux de notre époque.</p>
-
+                <p class="article-modal-intro">Il ne sert à rien d'apprendre ou de comprendre si ce n'est pour agir. Et il ne sert à rien d'agir si ce n'est porté par une vision profonde. La Sourate Al-Hadid se déploie comme un manifeste tissant des liens entre les enjeux spirituels, politiques et sociaux de notre époque.</p>
                 <h3>Le Cosmos en Mouvement</h3>
-                <p>De la plus infime particule à la galaxie la plus vertigineuse, chaque élément de l'univers existe dans un état de conscience et d'adoration continuelle. Le Tasbih n'est pas une simple répétition verbale — c'est la nécessité de faire évoluer notre idée de Dieu. Dieu n'est pas éloigné ou impuissant ; Sa présence est si permanente qu'elle en devient invisible à l'œil non averti.</p>
-
-                <h3>L'Économie Spirituelle : le courage du don</h3>
-                <p>La foi sans la dépense de soi est une impasse. Ce que nous possédons n'est pas une propriété absolue, mais un dépôt divin. La Sadaqa est un acte de foi et de courage — un prêt gracieux fait à Dieu Lui-même, dont la rentabilité dépasse notre économie matérielle. S'engager pour une cause juste quand la victoire semble lointaine, c'est la marque de ceux qui changent le monde.</p>
-
-                <blockquote style="margin:20px 0;padding:16px 20px;background:rgba(0,200,220,0.05);border-left:3px solid rgba(0,200,220,0.4);border-radius:0 10px 10px 0;font-family:'Playfair Display',serif;font-style:italic;color:rgba(255,255,255,0.85);font-size:1rem;line-height:1.7;">
+                <p>De la plus infime particule à la galaxie la plus vertigineuse, l'univers entier est en état d'adoration continuelle. Le Tasbih n'est pas une simple répétition verbale — c'est la nécessité de faire évoluer notre idée de Dieu. Sa présence est si permanente qu'elle en devient invisible à l'œil non averti.</p>
+                <h3>La foi appelle l'action</h3>
+                <p>Ce que nous possédons n'est pas une propriété absolue, mais un dépôt divin. La Sadaqa est un acte de foi et de courage. S'engager pour une cause juste quand la victoire semble lointaine — c'est la marque de ceux qui changent le monde.</p>
+                <blockquote style="margin:16px 0;padding:14px 18px;background:rgba(0,200,220,0.05);border-left:3px solid rgba(0,200,220,0.4);border-radius:0 10px 10px 0;font-family:'Playfair Display',serif;font-style:italic;color:rgba(255,255,255,0.85);font-size:0.95rem;line-height:1.7;">
                     « Qui donc consentira à Dieu un beau prêt ? Il le lui multipliera et lui accordera une généreuse récompense. »
-                    <cite style="display:block;font-family:'Montserrat',sans-serif;font-size:12px;font-style:normal;color:rgba(0,200,220,0.7);margin-top:8px;">— Coran, Sourate Al-Hadid (57:11)</cite>
+                    <cite style="display:block;font-family:'Montserrat',sans-serif;font-size:11px;font-style:normal;color:rgba(0,200,220,0.7);margin-top:6px;">— Coran, Sourate Al-Hadid (57:11)</cite>
                 </blockquote>
-
-                <h3>La Lutte contre l'Endurcissement du Cœur</h3>
-                <p>Le moment n'est-il pas venu que nos cœurs s'humilient à l'évocation de Dieu ? Le danger n'est pas l'absence de religion, mais la pratique d'une religion sans cœur. La foi, c'est d'abord une émotion — une vision — et une action en conséquence. L'humilité est la porte d'entrée vers la satisfaction divine.</p>
-
                 <h3>Le Livre, la Balance et le Fer</h3>
-                <p>Trois piliers pour bâtir une société juste : la Révélation (vision et cadre moral), la Balance (justice sociale et équité), et le Fer (force matérielle et puissance). Une spiritualité sans force est condamnée à être écrasée. Une force sans éthique devient barbarie. La foi est intrinsèquement liée à un projet de civilisation.</p>
+                <p>Trois piliers pour bâtir une société juste : la Révélation (vision morale), la Balance (justice sociale), le Fer (force matérielle). Une spiritualité sans force est condamnée à être écrasée. Une force sans éthique devient barbarie. La foi est intrinsèquement liée à un projet de civilisation.</p>
             </div>
-
             <div class="article-modal-footer">
                 <a href="article2.html" class="btn-primary" style="text-decoration:none;" data-i18n="art_read_full">Lire l'article complet →</a>
             </div>
@@ -1148,22 +1025,22 @@ document.addEventListener('keydown', e => {
     // ═══ MÉDITATIONS — Données ══════════════════════════════
     const MEDITATIONS = [
         {
-            id: 3,
-            file:  "meditation-3.m4a",
-            image: "meditation-3.jpg",
+            id: 2,
+            file:  "meditation-2.m4a",
+            image: "meditation-2.jpg",
             date:  "Mars 2026",
-            title:  "Tazkiyat Al-Nafs",
+            title:  "Au coeur de la spiritualite",
             author: "Ustadh Anthony",
-            desc:   "La purification de l'ame — un voyage interieur vers la plénitude spirituelle."
+            desc:   "Une invitation a plonger au coeur de la vie spirituelle."
         },
         {
             id: 1,
             file:  "meditation-1.m4a",
             image: "meditation-1.jpg",
             date:  "Mars 2026",
-            title:  "Comment débuter sa journée",
+            title:  "Comment debuter sa journee",
             author: "Ustadh Mathieu",
-            desc:   "Une invitation a plonger au coeur de la vie spirituelle."
+            desc:   "Comment debuter sa journee dans la conscience d Allah et la serenite du coeur."
         }
     ];
 
@@ -1386,23 +1263,21 @@ document.addEventListener('keydown', e => {
 
 <script>
 function openArticleModal(n) {
-    var overlay = document.getElementById('article-modal-' + n);
-    if (!overlay) return;
-    overlay.classList.add('open');
+    var o = document.getElementById('article-modal-' + n);
+    if (!o) return;
+    o.classList.add('open');
     document.body.style.overflow = 'hidden';
-    // Scroll le contenu du modal en haut
-    var box = overlay.querySelector('.article-modal-box');
-    if (box) box.scrollTop = 0;
+    var b = o.querySelector('.article-modal-box');
+    if (b) b.scrollTop = 0;
 }
 function closeArticleModal(n) {
-    var overlay = document.getElementById('article-modal-' + n);
-    if (!overlay) return;
-    overlay.classList.remove('open');
+    var o = document.getElementById('article-modal-' + n);
+    if (!o) return;
+    o.classList.remove('open');
     document.body.style.overflow = '';
 }
-// Fermer avec Escape
 document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') { closeArticleModal(1); closeArticleModal(2); closeArticleModal(3); }
+    if (e.key === 'Escape') { closeArticleModal(2); closeArticleModal(3); }
 });
 </script>
 
