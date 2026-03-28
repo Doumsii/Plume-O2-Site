@@ -80,3 +80,22 @@
   .lang-banner { padding: 10px 16px; font-size: 12px; line-height: 1.5; }
   .legal-page { padding-top: 100px !important; }
 }
+
+/* ── RTL — Journal & Méditations ────────────────────────── */
+[dir="rtl"] .journal-card-link { flex-direction: row-reverse; }
+[dir="rtl"] .journal-card-body { text-align: right; }
+[dir="rtl"] .journal-card-meta { flex-direction: row-reverse; }
+[dir="rtl"] .med-track-item { flex-direction: row-reverse; }
+[dir="rtl"] .track-info { text-align: right; }
+[dir="rtl"] .journal-page-hero { text-align: right; }
+[dir="rtl"] .journal-filters { flex-direction: row-reverse; }
+[dir="rtl"] .article-modal-header { text-align: right; }
+[dir="rtl"] .article-modal-body { text-align: right; direction: rtl; }
+[dir="rtl"] .article-modal-meta { flex-direction: row-reverse; }
+
+/* ── Mobile RTL — journal card en colonne → pas de reverse ─ */
+@media (max-width: 768px) {
+  [dir="rtl"] .journal-card-link { flex-direction: column !important; }
+  [dir="rtl"] .journal-card-body { text-align: right; }
+  [dir="rtl"] .med-track-item { flex-direction: row-reverse !important; }
+}

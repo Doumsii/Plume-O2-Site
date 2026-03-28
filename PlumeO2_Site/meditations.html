@@ -233,6 +233,9 @@
     }
     </script>
     <script>
+        // Construire les cards
+        if (typeof buildMedCards === 'function') buildMedCards('med-tracks-container');
+
         // Afficher/cacher la notice FR only selon la langue
         function updateMedNotice() {
             var lang = localStorage.getItem('plumedo2_lang') || 'fr';
@@ -253,7 +256,7 @@
             file:  "meditation-3.m4a",
             image: "meditation-3.jpg",
             date:  "Mars 2026",
-            title:  "Tazkiyat Al-Nafs",
+            title:  "Tazkiyatu al-Nafs",
             author: "Ustadh Anthony",
             desc:   "La purification de l'ame — un voyage interieur vers la plénitude spirituelle."
         },
@@ -479,6 +482,16 @@
         if (typeof buildMedCards === "function") {
             buildMedCards("med-tracks-container");
         }
+        // Reconstruire les cards au changement de langue (layout RTL/LTR)
+        document.querySelectorAll(".lang-btn").forEach(function(btn) {
+            btn.addEventListener("click", function() {
+                setTimeout(function() {
+                    if (typeof buildMedCards === "function") {
+                        buildMedCards("med-tracks-container");
+                    }
+                }, 80);
+            });
+        });
         // Notice FR only
         function updateMedNotice() {
             var lang = localStorage.getItem("plumedo2_lang") || "fr";

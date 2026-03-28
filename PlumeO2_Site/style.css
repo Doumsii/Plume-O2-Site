@@ -673,12 +673,13 @@ body {
     border-bottom: 1px solid var(--ligne-separation);
 }
 
-.light-bg { background-color: #f9f6f0; padding: 20px; }
+.light-bg { background-color: transparent; padding: 0; }
 
 .product-img.contain {
     width: 100%;
     height: 100%;
-    object-fit: contain; 
+    object-fit: cover;
+    object-position: center;
 }
 
 .product-info {
