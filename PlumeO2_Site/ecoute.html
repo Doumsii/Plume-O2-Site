@@ -973,29 +973,33 @@
         });
     };
 
-    // ═══ MÉDITATIONS — Init ══════════════════════════════════
-    document.addEventListener("DOMContentLoaded", function() {
-        if (typeof buildMedCards === "function") {
-            buildMedCards("med-tracks-container");
+   // ═══ MÉDITATIONS — Données ══════════════════════════════
+    const MEDITATIONS = [
+        {
+            id: 3,
+            file:  "meditation-3.m4a",
+            image: "meditation-3.jpg",
+            date:  "Avril 2026",
+            title:  "Tazkiyat an Nafs",
+            author: "Ustadh Anthony",
+            desc:   "Méditation sur la purification de l'âme."
+        },
+        {
+            id: 2,
+            file:  "meditation-2.m4a",
+            image: "meditation-2.jpg",
+            date:  "Mars 2026",
+            title:  "Au coeur de la spiritualite",
+            author: "Ustadh Anthony",
+            desc:   "Une invitation a plonger au coeur de la vie spirituelle."
+        },
+        {
+            id: 1,
+            file:  "meditation-1.m4a",
+            image: "meditation-1.jpg",
+            date:  "Mars 2026",
+            title:  "Comment debuter sa journee",
+            author: "Ustadh Mathieu",
+            desc:   "Comment debuter sa journee dans la conscience d Allah et la serenite du coeur."
         }
-        // Notice FR only
-        function updateMedNotice() {
-            var lang = localStorage.getItem("plumedo2_lang") || "fr";
-            ["med-fr-notice-index","med-fr-notice-ecoute"].forEach(function(id) {
-                var el = document.getElementById(id);
-                if (el) el.style.display = lang !== "fr" ? "block" : "none";
-            });
-        }
-        updateMedNotice();
-        document.querySelectorAll(".lang-btn").forEach(function(b) {
-            b.addEventListener("click", function() { setTimeout(updateMedNotice, 60); });
-        });
-    });
-    </script>
-
-<!-- ══ SCROLL TO TOP ══ -->
-<button id="scroll-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Retour en haut" title="Retour en haut" style="position:fixed;bottom:28px;right:22px;width:44px;height:44px;border-radius:50%;background:rgba(0,200,220,0.12);border:1px solid rgba(0,200,220,0.35);color:#00c8dc;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:9000;opacity:0;transform:translateY(12px);transition:opacity 0.3s ease,transform 0.3s ease,background 0.2s;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 4px 20px rgba(0,0,0,0.3);pointer-events:none;"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg></button>
-<script>(function(){var b=document.getElementById("scroll-top-btn");if(!b)return;window.addEventListener("scroll",function(){if(window.scrollY>300){b.style.opacity="1";b.style.transform="translateY(0)";b.style.pointerEvents="auto";}else{b.style.opacity="0";b.style.transform="translateY(12px)";b.style.pointerEvents="none";}},{passive:true});b.addEventListener("mouseenter",function(){b.style.background="rgba(0,200,220,0.28)";});b.addEventListener("mouseleave",function(){b.style.background="rgba(0,200,220,0.12)";});})();</script>
-
-</body>
-</html>
+    ];
