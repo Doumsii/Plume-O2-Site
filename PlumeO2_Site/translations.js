@@ -310,22 +310,6 @@ function setLanguage(lang) {
   });
 }
 
-    // المقال 3 — الفاتحة
-    art3_back: "← العودة إلى المجلة",
-    art3_tag: "تأمل",
-    art3_title: "تأمل في سورة الفاتحة",
-    art3_ref: "سورة الفاتحة",
-    art3_read: "5 دقائق قراءة",
-    art3_intro: "لم تكن سورة الفاتحة أول ما نزل، لكنها أول ما نلتقيه حين نفتح الكتاب.",
-    art3_h2_1: "معنى الاسم",
-    art3_h2_2: "بسم الله",
-    art3_h2_3: "الاسم: التموضع في العالم",
-    art3_h2_4: "الرحمن الرحيم — الرحمة كجوهر إلهي",
-    art3_h2_5: "معرفة الله",
-    art3_share: "شارك هذا المقال",
-    art3_copy: "نسخ الرابط",
-    art3_next_label: "المقال التالي ←",
-    art3_next_title: "أخلاقيات المعلومة والحفاظ على الأعراض",
 // Initialiser au chargement
 document.addEventListener('DOMContentLoaded', () => {
   setLanguage(currentLang);

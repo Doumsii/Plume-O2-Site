@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="lang-switcher.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-    <!-- SEO -->
     <meta name="description" content="Plume d'O² — Votre sanctuaire audio pour apaiser le cœur et nourrir l'âme.">
     <meta name="keywords" content="récitation coran, audio spirituel, méditation islamique, invocations">
     <meta name="author" content="Plume d'O²">
@@ -508,7 +507,6 @@
             <a href="https://link.deezer.com/s/32GjMDt3vzl7ZV7YudgLt" target="_blank" rel="noopener noreferrer" class="btn-secondary">Deezer</a>
         </div>
 
-    <!-- ══ MÉDITATIONS ════════════════════════════════════ -->
     <section class="streaming" style="padding-top:56px;padding-bottom:48px;">
         <div class="section-header">
             <h2 data-i18n="meditation_title">Méditations Quotidiennes</h2>
@@ -571,7 +569,6 @@
         </div>
     </section>
 
-    <!-- MODALS ARTICLES -->
     <div id="article-modal-3" class="article-modal-overlay" onclick="closeArticleModal(3)">
       <div class="article-modal-box" onclick="event.stopPropagation()">
         <button class="article-modal-close" onclick="closeArticleModal(3)">✕</button>
@@ -837,7 +834,6 @@
     <script src="plumedo2-mobile.js"></script>
     <script src="translations.js"></script>
 
-    <!-- ══ MODAL RECUEIL ══════════════════════════════════════ -->
     <div class="product-modal-overlay" id="modal-recueil" onclick="closeModalOutside(event,'recueil')">
         <div class="product-modal">
             <button class="product-modal-close" onclick="closeModal('recueil')">✕</button>
@@ -863,7 +859,6 @@
         </div>
     </div>
 
-    <!-- ══ MODAL CARTES MENTALES ══════════════════════════════ -->
     <div class="product-modal-overlay" id="modal-cartes" onclick="closeModalOutside(event,'cartes')">
         <div class="product-modal">
             <button class="product-modal-close" onclick="closeModal('cartes')">✕</button>
@@ -968,6 +963,15 @@ document.addEventListener('keydown', e => {
     <script>
     // ═══ MÉDITATIONS — Données ══════════════════════════════
     const MEDITATIONS = [
+        {
+            id: 3,
+            file:  "meditation-3.m4a",
+            image: "meditation-3.jpg",
+            date:  "Avril 2026",
+            title:  "Tazkiyat an Nafs",
+            author: "Ustadh",
+            desc:   "Méditation sur la purification de l'âme."
+        },
         {
             id: 2,
             file:  "meditation-2.m4a",
