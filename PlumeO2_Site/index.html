@@ -549,10 +549,10 @@
                      onerror="this.src='logo-original.jpg';this.style.objectFit='contain';this.style.padding='20px';">
                 <div class="article-content">
                     <span class="article-tag" data-i18n="art3_tag">Méditation</span>
-                    <div class="article-meta" data-i18n="art3_ref">Sourate Al-Fatiha • Oways Ahmad</div>
+                    <div class="article-meta"><span data-i18n="art3_ref">Sourate Al-Fatiha</span> • Oways Ahmad</div>
                     <h3 data-i18n="art3_title">Méditation sur la Sourate Al-Fatiha</h3>
                     <p data-i18n="art3_intro">La sourate Al-Fatiha n'est pas la première révélée, mais la première que nous rencontrons en ouvrant le Coran.</p>
-                    <span class="btn-read-more" onclick="event.stopPropagation();openArticleModal(3)" data-i18n="art3_back">Aperçu →</span>
+                    <span class="btn-read-more" onclick="event.stopPropagation();openArticleModal(3)">Aperçu →</span>
                 </div>
             </article>
             <article class="article-card has-image" onclick="openArticleModal(2)" style="cursor:pointer;">
@@ -561,7 +561,7 @@
                     <span class="article-tag" data-i18n="journal_tag2">Recherche</span>
                     <div class="article-meta" data-i18n="journal_article2_meta">Sourate Al-Hadid • Oways Ahmad</div>
                     <h3 data-i18n="journal_article2_title">L'engagement</h3>
-                    <p>Foi, action et vision dans un monde en mouvement perpétuel.</p>
+                    <p data-i18n="journal_article2_p1">Une analyse profonde de la sourate Al-Hadid.</p>
                     <span class="btn-read-more" onclick="event.stopPropagation();openArticleModal(2)" data-i18n="journal_read2">Aperçu →</span>
                 </div>
             </article>
@@ -571,7 +571,90 @@
         </div>
     </section>
 
+    <!-- MODALS ARTICLES -->
+    <div id="article-modal-3" class="article-modal-overlay" onclick="closeArticleModal(3)">
+      <div class="article-modal-box" onclick="event.stopPropagation()">
+        <button class="article-modal-close" onclick="closeArticleModal(3)">✕</button>
+        <div class="article-modal-header">
+          <span class="article-tag" data-i18n="art3_tag">Méditation</span>
+          <h2 data-i18n="art3_title">Méditation sur la Sourate Al-Fatiha</h2>
+          <div class="article-modal-meta">
+            <span>Oways Ahmad</span><span class="article-dot">·</span>
+            <span data-i18n="art3_ref">Sourate Al-Fatiha</span><span class="article-dot">·</span>
+            <span style="color:rgba(0,200,220,0.8);" data-i18n="art3_read">5 min de lecture</span>
+          </div>
+        </div>
+        <div class="article-modal-body">
+          <p class="article-modal-intro" data-i18n="art3_intro">La sourate Al-Fatiha n'est pas la première révélée, mais la première que nous rencontrons en ouvrant le Coran.</p>
+          <h3 data-i18n="art3_h2_2">Bismillah — Par le nom de Dieu</h3>
+          <p>C'est en Son nom que tout commence : <em>بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيمِ</em>. Le nom que nous donnons à l'Être suprême devient le principe à partir duquel nous interprétons le monde entier.</p>
+          <h3 data-i18n="art3_h2_4">Ar-Rahman, Ar-Rahim</h3>
+          <p>Ce par quoi Dieu choisit de se présenter à nous, c'est la Miséricorde. L'existence elle-même est un cadeau de Sa miséricorde. Vous n'êtes pas abandonnés.</p>
+          <blockquote style="margin:16px 0;padding:14px 18px;background:rgba(0,200,220,0.05);border-left:3px solid rgba(0,200,220,0.4);border-radius:0 10px 10px 0;font-family:'Playfair Display',serif;font-style:italic;color:rgba(255,255,255,0.85);font-size:0.95rem;line-height:1.7;">
+            « Ayez de la miséricorde pour les gens sur terre, et Celui qui est aux cieux aura de la miséricorde pour vous. »
+            <cite style="display:block;font-family:'Montserrat',sans-serif;font-size:11px;font-style:normal;color:rgba(0,200,220,0.7);margin-top:6px;">— Le Prophète Muhammad ﷺ</cite>
+          </blockquote>
+          <h3 data-i18n="art3_h2_5">Connaître Dieu — au-delà du savoir</h3>
+          <p>La réforme du monde commence par la réforme de l'idée que l'on se fait du Divin. Celui qui connaît véritablement le Miséricordieux devient miséricordieux envers les autres.</p>
+        </div>
+        <div class="article-modal-footer">
+          <a href="article3.html" class="btn-primary" style="text-decoration:none;">Lire l'article complet →</a>
+        </div>
+      </div>
+    </div>
 
+    <div id="article-modal-2" class="article-modal-overlay" onclick="closeArticleModal(2)">
+      <div class="article-modal-box" onclick="event.stopPropagation()">
+        <button class="article-modal-close" onclick="closeArticleModal(2)">✕</button>
+        <div class="article-modal-header">
+          <span class="article-tag" data-i18n="journal_tag2">Recherche</span>
+          <h2 data-i18n="journal_article2_title">L'engagement</h2>
+          <div class="article-modal-meta">
+            <span>Oways Ahmad</span><span class="article-dot">·</span>
+            <span>Sourate Al-Hadid (57)</span><span class="article-dot">·</span>
+            <span style="color:rgba(0,200,220,0.8);" data-i18n="art2_read">7 min de lecture</span>
+          </div>
+        </div>
+        <div class="article-modal-body">
+          <p class="article-modal-intro" data-i18n="art2_intro">Il ne sert à rien d'apprendre ou de comprendre si ce n'est pour agir. La Sourate Al-Hadid est un manifeste tissant les enjeux spirituels, politiques et sociaux de notre époque.</p>
+          <h3>Le Cosmos en Mouvement</h3>
+          <p>De la plus infime particule à la galaxie la plus vertigineuse, l'univers entier est en état d'adoration continuelle. Le Tasbih n'est pas une simple répétition verbale — c'est la nécessité de faire évoluer notre idée de Dieu.</p>
+          <h3>La foi appelle l'action</h3>
+          <p>Ce que nous possédons est un dépôt divin. La Sadaqa est un acte de foi et de courage. S'engager pour une cause juste quand la victoire semble lointaine — c'est la marque de ceux qui changent le monde.</p>
+          <blockquote style="margin:16px 0;padding:14px 18px;background:rgba(0,200,220,0.05);border-left:3px solid rgba(0,200,220,0.4);border-radius:0 10px 10px 0;font-family:'Playfair Display',serif;font-style:italic;color:rgba(255,255,255,0.85);font-size:0.95rem;line-height:1.7;">
+            « Qui donc consentira à Dieu un beau prêt ? Il le lui multipliera et lui accordera une généreuse récompense. »
+            <cite style="display:block;font-family:'Montserrat',sans-serif;font-size:11px;font-style:normal;color:rgba(0,200,220,0.7);margin-top:6px;">— Coran, Sourate Al-Hadid (57:11)</cite>
+          </blockquote>
+        </div>
+        <div class="article-modal-footer">
+          <a href="article2.html" class="btn-primary" style="text-decoration:none;" data-i18n="journal_read2">Lire l'article complet →</a>
+        </div>
+      </div>
+    </div>
+
+    <style>
+    .article-modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);z-index:9998;align-items:center;justify-content:center;padding:20px;overflow-y:auto;}
+    .article-modal-overlay.open{display:flex;}
+    .article-modal-box{background:#0c1020;border:1px solid rgba(255,255,255,0.08);border-radius:20px;max-width:760px;width:100%;max-height:88vh;overflow-y:auto;position:relative;animation:articleModalIn 0.35s cubic-bezier(0.22,1,0.36,1);}
+    @keyframes articleModalIn{from{opacity:0;transform:translateY(30px) scale(0.97);}to{opacity:1;transform:translateY(0) scale(1);}}
+    .article-modal-close{position:sticky;top:16px;float:right;margin:16px 16px 0 0;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.1);border:none;cursor:pointer;color:#fff;font-size:16px;display:flex;align-items:center;justify-content:center;z-index:10;}
+    .article-modal-close:hover{background:rgba(255,255,255,0.2);}
+    .article-modal-header{padding:20px 32px 24px;border-bottom:1px solid rgba(255,255,255,0.07);clear:both;}
+    .article-modal-header h2{font-family:'Playfair Display',serif;font-size:clamp(1.3rem,3vw,1.8rem);color:#fff;margin:14px 0 12px;line-height:1.3;}
+    .article-modal-meta{display:flex;align-items:center;flex-wrap:wrap;gap:6px;font-family:'Montserrat',sans-serif;font-size:12px;color:rgba(255,255,255,0.45);}
+    .article-modal-body{padding:28px 32px;font-family:'Montserrat',sans-serif;font-size:15px;line-height:1.85;color:rgba(255,255,255,0.75);}
+    .article-modal-intro{font-family:'Playfair Display',serif;font-size:1.05rem;font-style:italic;color:rgba(255,255,255,0.88);border-left:3px solid rgba(0,200,220,0.45);padding-left:16px;margin-bottom:24px;line-height:1.75;}
+    .article-modal-body h3{font-family:'Playfair Display',serif;font-size:1.1rem;color:#fff;margin:20px 0 8px;font-weight:700;}
+    .article-modal-body p{margin-bottom:12px;color:rgba(255,255,255,0.7);}
+    .article-modal-footer{padding:20px 32px 28px;border-top:1px solid rgba(255,255,255,0.07);display:flex;justify-content:center;}
+    @media(max-width:768px){.article-modal-header{padding:16px 20px 20px;}.article-modal-body{padding:20px;font-size:14px;}.article-modal-footer{padding:16px 20px 24px;}}
+    </style>
+
+    <script>
+    function openArticleModal(n){var o=document.getElementById('article-modal-'+n);if(!o)return;o.classList.add('open');document.body.style.overflow='hidden';var b=o.querySelector('.article-modal-box');if(b)b.scrollTop=0;}
+    function closeArticleModal(n){var o=document.getElementById('article-modal-'+n);if(!o)return;o.classList.remove('open');document.body.style.overflow='';}
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeArticleModal(2);closeArticleModal(3);}});
+    </script>
     <section id="boutique" class="boutique">
         <div class="section-header">
             <h2 data-i18n="boutique_title">Boutique & Outils</h2>

@@ -81,20 +81,13 @@
   .legal-page { padding-top: 100px !important; }
 }
 
-/* ── RTL — Journal cards ────────────────────────────────── */
-[dir="rtl"] .journal-card-link { flex-direction: row-reverse; }
-[dir="rtl"] .journal-card-body { text-align: right; }
-[dir="rtl"] .journal-card-meta { flex-direction: row-reverse; }
-[dir="rtl"] .journal-page-hero { text-align: right; }
-[dir="rtl"] .journal-filters { flex-direction: row-reverse; }
+/* ── RTL — Journal & Méditations ─────────────────────────── */
+[dir="rtl"] .journal-card-link  { flex-direction: row-reverse; }
+[dir="rtl"] .journal-card-body  { text-align: right; }
+[dir="rtl"] .journal-card-meta  { flex-direction: row-reverse; }
+[dir="rtl"] .med-track-item     { flex-direction: row-reverse; }
+[dir="rtl"] .track-info         { text-align: right; }
 
-/* ── RTL — Méditations ──────────────────────────────────── */
-[dir="rtl"] .med-track-item { flex-direction: row-reverse; }
-[dir="rtl"] .track-info { text-align: right; }
-[dir="rtl"] .med-actions { flex-direction: row-reverse; }
-
-/* ── RTL Mobile — forcer colonne (pas de row-reverse) ───── */
 @media (max-width: 768px) {
   [dir="rtl"] .journal-card-link { flex-direction: column !important; }
-  [dir="rtl"] .med-track-item    { flex-direction: row-reverse !important; }
 }
