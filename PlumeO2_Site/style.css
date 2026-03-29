@@ -608,10 +608,11 @@ body {
     width: 100%;
     height: auto;
     max-height: 300px;
-    object-fit: contain;
+    object-fit: cover;
     border-bottom: 1px solid var(--ligne-separation);
-    background-color: #f9f6f0;
-    padding: 10px;
+    background-color: transparent;
+    padding: 0;
+
 }
 
 .article-card.has-image .article-content {
@@ -673,7 +674,7 @@ body {
     border-bottom: 1px solid var(--ligne-separation);
 }
 
-.light-bg { background-color: #132A46; padding: 16px; }
+.light-bg { background-color: transparent; padding: 0; }
 
 .product-img.contain {
     width: 100%;
