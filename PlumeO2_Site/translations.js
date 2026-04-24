@@ -13,7 +13,7 @@ const TRANSLATIONS = {
 
     // HERO
     hero_title: "Respirez. Écoutez. Méditez.",
-    hero_subtitle: "Votre sanctuaire audio pour apaiser le cœur et nourrir l'âme. Des récitations et histoires inspirantes pour se reconnecter à l'Éternel dans le tumulte du monde.",
+    hero_subtitle: "Le souffle quotidien pour apaiser le cœur et nourrir l'âme. Des récitations et histoires inspirantes pour se reconnecter à l'Éternel dans le tumulte du monde.",
     hero_btn: "Découvrir les écoutes",
 
     // MISSION
@@ -64,7 +64,7 @@ const TRANSLATIONS = {
     boutique_buy: "Acheter le pack",
 
     // FOOTER
-    footer_tagline: "Votre sanctuaire audio pour apaiser le cœur et nourrir l'âme. Récitations, méditations et outils spirituels.",
+    footer_tagline: "Le souffle quotidien pour apaiser le cœur et nourrir l'âme. Récitations, méditations et outils spirituels.",
     footer_nav: "Navigation",
     footer_home: "Accueil",
     footer_networks: "Réseaux & Plateformes",
@@ -109,7 +109,7 @@ const TRANSLATIONS = {
 
     // HERO
     hero_title: "Breathe. Listen. Meditate.",
-    hero_subtitle: "Your audio sanctuary to soothe the heart and nourish the soul. Recitations and inspiring stories to reconnect with the Eternal amidst the noise of the world.",
+    hero_subtitle: "Your daily breath to soothe the heart and nourish the soul. Recitations and inspiring stories to reconnect with the Eternal amidst the noise of the world.",
     hero_btn: "Discover the listens",
 
     // MISSION
@@ -160,7 +160,7 @@ const TRANSLATIONS = {
     boutique_buy: "Buy the pack",
 
     // FOOTER
-    footer_tagline: "Your audio sanctuary to soothe the heart and nourish the soul. Recitations, meditations and spiritual tools.",
+    footer_tagline: "Your daily breath to soothe the heart and nourish the soul. Recitations, meditations and spiritual tools.",
     footer_nav: "Navigation",
     footer_home: "Home",
     footer_networks: "Networks & Platforms",
@@ -205,7 +205,7 @@ const TRANSLATIONS = {
 
     // HERO
     hero_title: "تنفَّس. استمِع. تأمَّل.",
-    hero_subtitle: "ملاذكم الصوتي لتهدئة القلب وتغذية الروح. تلاوات وقصص ملهِمة للتواصل مع الخالق وسط صخب الحياة.",
+    hero_subtitle: "نفَسكم اليومي لتهدئة القلب وتغذية الروح. تلاوات وقصص ملهِمة للتواصل مع الخالق وسط صخب الحياة.",
     hero_btn: "اكتشف التلاوات",
 
     // MISSION
@@ -256,7 +256,7 @@ const TRANSLATIONS = {
     boutique_buy: "اشترِ الحزمة",
 
     // FOOTER
-    footer_tagline: "ملاذكم الصوتي لتهدئة القلب وتغذية الروح. تلاوات وتأملات وأدوات روحية.",
+    footer_tagline: "نفَسكم اليومي لتهدئة القلب وتغذية الروح. تلاوات وتأملات وأدوات روحية.",
     footer_nav: "التنقل",
     footer_home: "الرئيسية",
     footer_networks: "الشبكات والمنصات",
